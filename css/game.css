@@ -1,0 +1,124 @@
+﻿:root {
+  color-scheme: dark;
+  --ink: #eee7d3;
+  --muted: #b9c0aa;
+  --gold: #d9b874;
+  --mono: "Courier New", monospace;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html, body { margin: 0; min-height: 100%; background: #0b120f; }
+body { color: var(--ink); font: 18px/1.6 Georgia, serif; }
+button { font: inherit; color: inherit; cursor: pointer; touch-action: manipulation; }
+button:focus-visible { outline: 2px solid var(--gold); outline-offset: 5px; }
+
+.game {
+  position: relative;
+  isolation: isolate;
+  min-height: 650px;
+  height: 100svh;
+  overflow: hidden;
+  background: #0b120f;
+}
+.room {
+  position: absolute;
+  inset: 0;
+  z-index: -3;
+  background: url('../assets/room.png') center / cover no-repeat;
+  filter: saturate(.75) brightness(.85);
+}
+.game::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(0deg, #07100ffa 0%, #07100fe6 25%, transparent 68%, #07100fab);
+  box-shadow: inset 0 0 100px #0007;
+}
+.scene-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 30px 5%;
+  color: var(--muted);
+  font: 12px var(--mono);
+  letter-spacing: .13em;
+}
+.room-actions { position: absolute; inset: 80px 0 240px; }
+.hotspot {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: 0;
+  padding: 16px;
+  background: #0b120f75;
+  text-shadow: 0 2px 5px #000;
+}
+.hotspot span { display: grid; place-items: center; width: 28px; height: 28px; border: 1px solid var(--gold); border-radius: 50%; }
+.hotspot:hover { background: #253125d9; }
+.radio-hotspot { left: 19%; top: 45%; }
+.gate-hotspot { left: 61%; top: 30%; }
+.visitor {
+  position: absolute;
+  z-index: -2;
+  top: 10%;
+  left: 49%;
+  width: min(390px, 37vw);
+  aspect-ratio: 1;
+  background: url('../assets/portraits.png') 0 0 / 300% 200%;
+  filter: saturate(.7) brightness(.9);
+  mask-image: radial-gradient(ellipse at 50% 38%, black 34%, transparent 72%);
+}
+.conversation {
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  bottom: 100px;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  align-items: end;
+  gap: 60px;
+}
+.eyebrow { color: var(--gold); font: 12px/1.5 var(--mono); letter-spacing: .13em; margin: 0 0 14px; }
+h1, h2 { font-weight: normal; line-height: 1.2; margin: 0 0 17px; }
+h1 { font-size: clamp(30px, 3vw, 43px); }
+h1:focus { outline: none; }
+h2 { font-size: 29px; }
+.scene-text { margin: 0; color: #dce0ce; white-space: pre-line; }
+.choices { display: grid; gap: 10px; }
+.choice {
+  padding: 13px 16px;
+  text-align: left;
+  border: 1px solid #bfb99355;
+  background: #152119da;
+  font: 15px/1.5 var(--mono);
+}
+.choice:hover { border-color: var(--gold); background: #293526; }
+.choice-primary { color: var(--gold); }
+.choice-quiet { background: none; border-color: transparent; color: var(--muted); }
+.scene-footer { position: absolute; bottom: 26px; left: 5%; color: #a2af99; font: 11px var(--mono); letter-spacing: .13em; }
+.scene-footer span { color: #7f8d77; }
+.radio-dialog { width: min(530px, calc(100% - 32px)); max-height: calc(100svh - 32px); padding: 32px; color: var(--ink); background: #18231b; border: 1px solid #7b8061; }
+.radio-dialog::backdrop { background: #020806bd; }
+.radio-note { color: var(--muted); font-size: 16px; }
+.radio-dialog .choice { margin-top: 12px; width: 100%; }
+.noscript { position: fixed; inset: 20% 10% auto; padding: 30px; background: #142019; }
+
+@media (max-width: 700px) {
+  .game { min-height: 730px; }
+  .room { background-position: 60% center; }
+  .game[data-phase="room"] .room { background-size: auto 60%; background-position: 35% 15%; mask-image: linear-gradient(#000 52%, transparent 68%); }
+  .scene-header { padding: 25px 6%; font-size: 11px; }
+  .room-actions { bottom: 250px; }
+  .hotspot { padding: 12px; font-size: 16px; gap: 8px; }
+  .radio-hotspot { left: 3%; top: 38%; }
+  .gate-hotspot { left: 43%; top: 20%; }
+  .conversation { left: 7%; right: 7%; bottom: 80px; grid-template-columns: 1fr; gap: 24px; }
+  .scene-text { font-size: 17px; line-height: 1.6; }
+  .visitor { width: 265px; left: calc(50% - 110px); top: 11%; }
+  .game::after { background: linear-gradient(0deg,#07100f 0%,#07100fe6 36%,transparent 72%,#07100fab); }
+  .scene-footer { font-size: 10px; letter-spacing: .06em; }
+  .radio-dialog { padding: 25px; }
+}
+

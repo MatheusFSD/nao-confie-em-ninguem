@@ -1,0 +1,9 @@
+# Cache de importação do Godot (recriado ao abrir o projeto)
+godot/.godot/
+
+# Validação e capturas: inclui o executável do Godot usado nos testes (~180 MB)
+output/
+
+# Sistema
+Thumbs.db
+desktop.ini

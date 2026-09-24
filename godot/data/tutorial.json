@@ -1,0 +1,89 @@
+{
+  "personagem": "Nina",
+  "falas_dormiu": [
+    "Sério que você vai dormir agora? Tá bom.",
+    "Tranca o quintal antes de deitar. E amanhã compra comida, porque hoje você não comprou."
+  ],
+  "falas_sem_tempo": [
+    "Seu dia acabou e a gente não resolveu metade. Vou nessa.",
+    "Amanhã começa pelo mercado. Tranca o quintal quando eu sair."
+  ],
+  "passos": [
+    {
+      "id": "acordar",
+      "falas": [
+        "Acordei com a luz piscando de madrugada. Três vezes, sempre na mesma hora.",
+        "E o cachorro latindo pro nada. Dormiu depois, mas ficou olhando pro fundo do quintal.",
+        "Deixa isso. O problema agora é que você não tem NADA pra comer. Abre a geladeira e confere."
+      ],
+      "objetivo": "Abrir a geladeira (chegue perto e aperte E)",
+      "lembrete": "Isso fica pra depois. Abre a geladeira primeiro, quero que você veja.",
+      "evento": "menu:geladeira"
+    },
+    {
+      "id": "geladeira",
+      "falas": [
+        "Viu? Zero. Hoje você compra comida, sem desculpa.",
+        "Antes disso, enche os potes na torneira. Na rua de cima faltou água ontem e ninguém avisou nada.",
+        "Guardar água toma seu tempo, como quase tudo por aqui. O dia rende umas quatro coisas, cinco no melhor dos casos."
+      ],
+      "objetivo": "Guardar água na torneira (E na pia)",
+      "lembrete": "Enche os potes antes, vai que corta de novo.",
+      "evento": "agua"
+    },
+    {
+      "id": "agua",
+      "falas": [
+        "Pronto. Agora liga a TV ou o rádio, quero ver se falam da luz.",
+        "Ontem o rádio pegou uma estação que não existe no dial. Só chiado e alguém contando números."
+      ],
+      "objetivo": "Ver a TV ou ouvir o rádio (E no aparelho)",
+      "lembrete": "Liga a TV ou o rádio um minuto, só pra ouvir o que estão dizendo.",
+      "evento": "midia"
+    },
+    {
+      "id": "noticias",
+      "falas": [
+        "“Instabilidade pontual.” Eles falam isso desde que eu era criança.",
+        "Vamos, eu te acompanho até o ponto. Trabalhar hoje é o que paga o mercado depois.",
+        "Ah, e sai trancando tudo. Quintal principalmente. Coisa some por aqui."
+      ],
+      "objetivo": "Pegar o ônibus no ponto e ir trabalhar",
+      "lembrete": "Vamos pro ponto, o dinheiro do mercado sai do trabalho de hoje.",
+      "evento": "trabalhou"
+    },
+    {
+      "id": "trabalho",
+      "falas": [
+        "Pagou pouco, mas pagou. Agora o mercado, antes que feche.",
+        "Compra comida primeiro. Água você ainda tem da torneira; comida você não tem nenhuma."
+      ],
+      "objetivo": "Ir ao mercado e comprar comida",
+      "lembrete": "Mercado. Comida. Você não tem nada em casa, lembra?",
+      "evento": "comprou:comida"
+    },
+    {
+      "id": "mercado",
+      "falas": [
+        "Já vi prateleira mais cheia. E o pátio dos fundos estava lotado de caminhão parado, sem ninguém carregando.",
+        "Eu vou indo, que amanhã eu trabalho cedo.",
+        "Uma coisa só: tranca a porta do quintal quando eu sair. Não deixa aberta pra dormir.",
+        "Sumiu um galão de água da casa da dona Cida essa semana. Ninguém arrombou nada: estava aberto."
+      ],
+      "objetivo": "Trancar a porta do quintal (chegue perto e aperte T)",
+      "lembrete": "Tranca o quintal, é sério. Depois você faz o resto.",
+      "evento": "trancou:Quintal"
+    },
+    {
+      "id": "despedida",
+      "falas": [
+        "Isso. Todo dia, antes de deitar.",
+        "Se ouvir barulho no quintal de madrugada, não vai ver o que é. Só confere se está trancado.",
+        "Dorme. Amanhã a gente se fala."
+      ],
+      "objetivo": "Dormir (E na cama ou botão do HUD)",
+      "lembrete": "Já pode dormir, amanhã tem mais.",
+      "evento": "dormiu"
+    }
+  ]
+}

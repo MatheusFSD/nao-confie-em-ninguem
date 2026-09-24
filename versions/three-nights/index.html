@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101714">
+  <meta name="description" content="Três noites em uma casa no subúrbio carioca. Escute, observe e decida quem pode entrar.">
+  <title>Não confie em ninguém</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23101714'/%3E%3Cpath d='M8 27V5h16v22M13 5v22M19 5v22M8 16h16' fill='none' stroke='%23d0ad6c' stroke-width='2'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/game.css">
+  <script defer src="js/story.js"></script>
+  <script defer src="js/state.js"></script>
+  <script defer src="js/audio.js"></script>
+  <script defer src="js/view.js"></script>
+  <script defer src="js/game.js"></script>
+</head>
+<body>
+  <main id="game" class="game is-menu">
+    <div class="room" role="img" aria-label="Sala de uma casa do subúrbio carioca: rádio sobre o móvel, portão de ferro, azulejos antigos e uma rua silenciosa."></div>
+    <div class="room-shade" aria-hidden="true"></div>
+    <div class="grain" aria-hidden="true"></div>
+    <div class="letterbox letterbox-top" aria-hidden="true"></div>
+
+    <header class="game-header">
+      <span class="location"><span class="location-mark" aria-hidden="true">⌖</span> BENTO RIBEIRO <span class="location-city">/ RIO DE JANEIRO</span></span>
+      <div id="night-clock" class="night-clock" hidden><span id="night-label">NOITE 01</span><span class="clock-divider">/</span><time id="time-label">21:08</time></div>
+    </header>
+
+    <section id="menu" class="menu" aria-labelledby="game-title">
+      <p class="eyebrow"><span class="signal-dot" aria-hidden="true"></span> HÁ SEIS DIAS, A RUA NÃO DORME.</p>
+      <h1 id="game-title">NÃO CONFIE<br>EM <span>NINGUÉM.</span></h1>
+      <p class="menu-story">Sua irmã desapareceu.<br>Hoje, a voz dela saiu do rádio.<br><em>O aparelho estava desligado.</em></p>
+      <div class="menu-actions">
+        <button id="continue-game" class="menu-button" hidden><span aria-hidden="true">↳</span> Continuar a noite</button>
+        <button id="start-game" class="menu-button"><span aria-hidden="true">↳</span> Apagar a luz. Escutar.</button>
+        <button class="text-button" data-action="help">Como jogar <span aria-hidden="true">↗</span></button>
+      </div>
+      <p class="menu-footnote">TRÊS NOITES. UM PORTÃO. QUEM VOCÊ DEIXA ENTRAR?</p>
+    </section>
+
+    <section id="room-controls" class="room-controls" aria-label="Explorar a casa" hidden>
+      <button class="hotspot hotspot-radio" data-action="radio"><span class="hotspot-target" aria-hidden="true">+</span><span class="hotspot-label"><kbd>R</kbd> O rádio <small id="radio-status">tem alguma coisa no chiado</small></span></button>
+      <button class="hotspot hotspot-gate" data-action="gate"><span class="hotspot-target" aria-hidden="true">+</span><span class="hotspot-label"><kbd>P</kbd> O portão <small>alguém está lá fora</small></span></button>
+    </section>
+
+    <div id="visitor-figure" class="visitor-figure" role="img" hidden></div>
+
+    <section id="narrative" class="narrative" aria-labelledby="narrative-title" hidden>
+      <div class="narrative-copy"><p id="narrative-kicker" class="eyebrow"></p><h2 id="narrative-title" tabindex="-1"></h2><p id="narrative-text" class="narrative-text"></p><p id="inspection" class="inspection" hidden></p></div>
+      <div id="narrative-actions" class="narrative-actions"></div>
+    </section>
+
+    <div id="room-caption" class="room-caption" aria-live="polite" hidden></div>
+    <p id="announcement" class="sr-only" aria-live="polite"></p>
+    <footer class="game-footer">
+      <div id="play-tools" class="play-tools" hidden><button class="footer-button" data-action="journal"><span aria-hidden="true">▤</span> Caderno <span id="note-count" class="note-count">0</span><kbd>C</kbd></button><span id="house-status" class="house-status">Só você dentro de casa.</span></div>
+      <span id="menu-footer" class="menu-footer">UM TERROR DO LADO DE DENTRO</span>
+      <div class="utility-tools"><button id="sound-toggle" class="footer-button" aria-label="Ativar som ambiente" aria-pressed="false"><span id="sound-icon" aria-hidden="true">♪</span><span id="sound-label">Som desligado</span></button><button id="fullscreen-toggle" class="footer-button icon-button" aria-label="Entrar em tela cheia" title="Tela cheia">⛶</button><button class="footer-button icon-button" data-action="help" aria-label="Ajuda" title="Como jogar">?</button></div>
+    </footer>
+
+    <dialog id="detail-dialog" class="detail-dialog" aria-labelledby="detail-title">
+      <div class="detail-inner"><header class="detail-header"><span id="detail-kicker" class="eyebrow"></span><button id="close-detail" class="close-button" aria-label="Fechar">×</button></header><h2 id="detail-title"></h2><div id="detail-content"></div></div>
+    </dialog>
+    <noscript><div class="noscript">Este jogo precisa de JavaScript ativado no navegador.</div></noscript>
+  </main>
+</body>
+</html>

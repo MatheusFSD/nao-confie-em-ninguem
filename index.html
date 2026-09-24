@@ -1,0 +1,41 @@
+﻿<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101714">
+  <title>Não confie em ninguém — primeira cena</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="css/game.css">
+  <script defer src="js/game.js"></script>
+</head>
+<body>
+  <main class="game" id="game">
+    <div class="room" role="img" aria-label="Uma sala no subúrbio carioca, com rádio no móvel e portão de ferro voltado para a rua."></div>
+    <header class="scene-header"><span>BENTO RIBEIRO · RJ</span><span>21:08</span></header>
+    <div class="visitor" id="visitor" role="img" aria-label="Dona Celina, sua vizinha" hidden></div>
+    <section class="room-actions" id="room-actions" aria-label="Explorar a casa">
+      <button class="hotspot radio-hotspot" data-action="radio"><span aria-hidden="true">+</span> Ouvir o rádio</button>
+      <button class="hotspot gate-hotspot" data-action="gate"><span aria-hidden="true">+</span> Ir ao portão</button>
+    </section>
+    <section class="conversation" aria-labelledby="scene-title">
+      <div class="conversation-copy">
+        <p class="eyebrow" id="scene-label">UMA NOITE EM CASA</p>
+        <h1 id="scene-title" tabindex="-1">Bateram no portão.</h1>
+        <p class="scene-text" id="scene-text">A rua está vazia desde cedo. Alguém chama você baixinho, do outro lado da grade.</p>
+      </div>
+      <div class="choices" id="choices"></div>
+    </section>
+    <footer class="scene-footer">NÃO CONFIE EM NINGUÉM <span>· PRIMEIRA CENA</span></footer>
+    <dialog class="radio-dialog" id="radio-dialog" aria-labelledby="radio-title">
+      <p class="eyebrow">FM 88.3</p>
+      <h2 id="radio-title">Entre dois chiados.</h2>
+      <p>“Os moradores devem permanecer em casa. Não atendam chamados vindos da rua.”</p>
+      <p class="radio-note">O mesmo aviso toca desde o fim da tarde.</p>
+      <button class="choice" id="close-radio">Voltar à sala</button>
+    </dialog>
+    <noscript><p class="noscript">Ative o JavaScript para jogar esta cena.</p></noscript>
+  </main>
+</body>
+</html>
+

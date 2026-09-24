@@ -1,0 +1,46 @@
+{
+  "0": {
+    "evento": "Sua irmã dormiu aqui e acordou reclamando da luz que piscou de madrugada. Não há comida em casa.",
+    "tv": [
+      {"fonte": "Governo", "texto": "Boa noite. Registramos oscilações rápidas em alguns bairros, sem risco à população."},
+      {"fonte": "Cientistas", "texto": "As oscilações começaram e terminaram no mesmo minuto em bairros distantes. Isso não costuma acontecer."}
+    ],
+    "radio": [{"fonte": "Conspiracionistas", "texto": "Três piscadas, sempre às três e dezessete. Anota aí e confere amanhã."}],
+    "celular": [{"fonte": "Cientistas", "texto": "Grupo do bairro: alguém mais ficou sem água na rua de cima ontem?"}]
+  },
+  "1": {
+    "evento": "Tudo parece normal. Ainda há água na rede e produtos à venda.",
+    "tv": [
+      {"fonte": "Governo", "texto": "Não há motivo para preocupação. O abastecimento continuará funcionando normalmente."},
+      {"fonte": "Cientistas", "texto": "No jornal, pesquisadores dizem que os dados disponíveis ainda não explicam as falhas registradas no Rio."}
+    ],
+    "radio": [{"fonte": "Cientistas", "texto": "Estamos registrando perturbações eletromagnéticas incomuns."}],
+    "celular": [{"fonte": "Conspiracionistas", "texto": "Encha recipientes com água enquanto ainda pode."}]
+  },
+  "2": {
+    "evento": "O jornal noticia problemas no abastecimento em bairros do Rio.",
+    "tv": [{"fonte": "Governo", "texto": "As interrupções são pontuais. A distribuição será normalizada ainda hoje."}],
+    "radio": [{"fonte": "Cientistas", "texto": "As falhas atingem várias estações ao mesmo tempo. Não temos previsão segura de normalização."}],
+    "celular": [{"fonte": "Conspiracionistas", "texto": "Disseram que era pontual ontem também. O caminhão não chegou ao mercado aqui do bairro."}]
+  },
+  "3": {
+    "evento": "O abastecimento de água está instável. A torneira da casa parou de fornecer água.",
+    "agua_da_rede": false,
+    "tv": [{"fonte": "Governo", "texto": "O fornecimento segue um cronograma emergencial. Evitem armazenar além do necessário."}],
+    "radio": [{"fonte": "Conspiracionistas", "texto": "Tem rua sem água desde ontem. Esse cronograma não chegou a ninguém que eu conheça."}],
+    "celular": [{"fonte": "Conspiracionistas", "texto": "Ninguém vai avisar antes de cortar de vez. Guarde o que conseguir."}]
+  },
+  "4": {
+    "evento": "A instabilidade piorou. Depois de uma noite desgastante, sua energia caiu para 70.",
+    "energia": 70,
+    "tv": [{"fonte": "Governo", "texto": "Oscilações de energia não representam risco prolongado. As equipes estão trabalhando."}],
+    "radio": [{"fonte": "Cientistas", "texto": "As perturbações persistem. Ainda não conseguimos distinguir a causa das consequências."}],
+    "celular": [{"fonte": "Conspiracionistas", "texto": "A luz piscou na rua inteira, mas ninguém apareceu para consertar nada."}]
+  },
+  "5": {
+    "evento": "Os mercados estão ficando vazios.",
+    "tv": [{"fonte": "Governo", "texto": "Há reservas suficientes. As filas resultam de compras acima da média."}],
+    "radio": [{"fonte": "Cientistas", "texto": "Os dados de distribuição estão incompletos. Não é possível garantir que todos os bairros recebam reposição."}],
+    "celular": [{"fonte": "Conspiracionistas", "texto": "Prateleiras vazias por aqui. No noticiário, o mercado ainda está cheio."}]
+  }
+}

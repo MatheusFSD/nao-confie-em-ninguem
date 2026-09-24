@@ -1,0 +1,41 @@
+GIMP Palette
+Name: Suburbio carioca
+Columns: 8
+#
+ 28  45  43 ink
+ 41  59  52 shadow
+ 53  75  64 deep
+ 61  89  75 green0
+ 85 116  93 green1
+117 145 116 green2
+160 175 137 green3
+ 76 109 102 mint0
+113 142 123 mint1
+157 179 155 mint2
+137 134 106 cream0
+176 170 134 cream1
+211 200 160 cream2
+228 217 182 cream3
+ 78  68  51 wood0
+112  86  59 wood1
+151 115  75 wood2
+186 148  94 wood3
+ 98  69  54 rust0
+140  92  64 rust1
+177 122  80 rust2
+207 153 101 rust3
+ 60  73  70 gray0
+ 89 101  90 gray1
+124 133 114 gray2
+165 171 145 gray3
+ 48  78  86 blue0
+ 69 106 114 blue1
+105 137 139 blue2
+150 173 159 blue3
+ 83  79  55 sand0
+120 115  76 sand1
+160 152 101 sand2
+192 184 129 sand3
+169  95  70 red
+212 185 117 light
+ 20  36  32 black
