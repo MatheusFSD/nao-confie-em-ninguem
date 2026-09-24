@@ -20,6 +20,19 @@ func _init(cenario: MalhaLowPoly, decoracao: MalhaLowPoly) -> void:
 	malha = cenario
 	adornos = decoracao
 
+## Casa sem fachada trabalhada: preenche o quarteirão ao fundo e fecha o horizonte.
+func bloco(canto: Vector2, tamanho: Vector2, indice: int) -> void:
+	var tijolo := indice % 4 == 2
+	var altura := 3.2 + float(indice % 4) * 0.8
+	var cor: Color = Color("cbb6a4") if tijolo else PINTURAS[indice % PINTURAS.size()]
+	var peca: int = P.TIJOLO if tijolo else P.PINTADO
+	malha.caixa(Vector3(canto.x, 0.0, canto.y), Vector3(tamanho.x, altura, tamanho.y), cor.darkened(0.12), cor, P.CIMENTO, peca)
+	if indice % 3 == 1:
+		malha.telhado(canto, tamanho, altura, 0.9, Color("d8c0b2"), cor, P.TELHA, peca)
+	else:
+		malha.caixa(Vector3(canto.x, altura, canto.y), Vector3(tamanho.x, 0.3, tamanho.y), cor.lightened(0.05), cor, P.CIMENTO, peca)
+		if indice % 2 == 0: caixa_agua(canto + tamanho * 0.5, altura + 0.3, indice)
+
 ## Uma casa da rua. `frente` é a direção para onde a fachada olha (±X ou ±Z).
 func modulo(canto: Vector2, tamanho: Vector2, frente: Vector3, indice: int) -> void:
 	var tijolo := indice % 5 == 3
@@ -60,14 +73,14 @@ func fachada(canto: Vector2, tamanho: Vector2, frente: Vector3, altura: float, c
 	placa(base + eixo * (porta_x - 0.55) + fora, eixo, frente, 1.1, 2.15, Color("6f6a60"), P.LISO)
 	placa(base + eixo * (porta_x - 0.45) + fora * 2.0, eixo, frente, 0.9, 2.05, Color("d9c4a6"), P.PORTA)
 	if comercio:
-		# Vitrine grande, marquise e letreiro: bar, mercadinho, botequim.
-		var vitrine := largura * 0.45
-		placa(base + eixo * (largura - vitrine - 0.4) + fora, eixo, frente, vitrine, 1.5, Color("cfe0e4"), P.VIDRO, 0.9)
-		var marquise_origem := base + eixo * 0.15 + frente * 0.02
-		var espessura := Vector3(largura - 0.3, 0.12, 1.0) if ao_longo_de_x else Vector3(1.0, 0.12, largura - 0.3)
-		var recuo := frente * 0.98
-		malha.caixa(marquise_origem + Vector3(0, 2.62, 0) + Vector3(minf(recuo.x, 0.0), 0, minf(recuo.z, 0.0)), espessura, Color("c7ccc6"), Color("b3b8b2"), P.METAL, P.METAL)
-		placa(base + eixo * 0.2 + fora * 3.0, eixo, frente, largura - 0.4, 0.55, LETREIROS[indice % LETREIROS.size()], P.LISO, 2.85)
+		# Vitrine baixa com peitoril, marquise apoiada em tirantes e letreiro na testeira.
+		var vitrine := largura * 0.5
+		var vitrine_x := largura - vitrine - 0.35
+		placa(base + eixo * (vitrine_x - 0.07), eixo, frente, vitrine + 0.14, 1.74, Color("6f6a60"), P.LISO, 0.56)
+		placa(base + eixo * vitrine_x + fora, eixo, frente, vitrine, 1.6, Color("cfe0e4"), P.VIDRO, 0.63)
+		for divisao in 2:
+			placa(base + eixo * (vitrine_x + vitrine * (0.33 + 0.34 * divisao)) + fora * 2.0, eixo, frente, 0.07, 1.6, Color("9aa0a2"), P.METAL, 0.63)
+		marquise(base, eixo, frente, largura, indice)
 	else:
 		for i in (2 if largura > 5.0 else 1):
 			var x := largura * (0.55 + 0.2 * i)
@@ -78,6 +91,32 @@ func fachada(canto: Vector2, tamanho: Vector2, frente: Vector3, altura: float, c
 		placa(base + eixo * 0.25 + fora, eixo, frente, largura - 0.5, 0.9, Color("b9bdb6"), P.METAL, 3.1)
 		for i in (2 if largura > 5.0 else 1):
 			janela(base + eixo * (largura * (0.3 + 0.35 * i)) + fora, eixo, frente, 0.9, 1.0, 3.3)
+
+## Marquise de concreto sobre a calçada, com tirantes e letreiro na testeira.
+func marquise(base: Vector3, eixo: Vector3, frente: Vector3, largura: float, indice: int) -> void:
+	var balanco := 1.25
+	var altura := 2.72
+	var ao_longo_de_x := absf(frente.z) > 0.5
+	# A laje avança para fora da parede; a origem recua quando a frente é negativa.
+	var avanco := frente * balanco
+	var canto := base + eixo * 0.12 + Vector3(minf(avanco.x, 0.0), altura, minf(avanco.z, 0.0))
+	var tamanho := Vector3(largura - 0.24, 0.16, balanco) if ao_longo_de_x else Vector3(balanco, 0.16, largura - 0.24)
+	malha.caixa(canto, tamanho, Color("d3d6cf"), Color("c0c4bd"), P.CIMENTO, P.CIMENTO)
+	# Testeira pintada com o nome do comércio (uma cor forte, à moda da época).
+	var testeira := frente * (balanco + 0.02)
+	var frente_canto := base + eixo * 0.12 + Vector3(testeira.x, altura + 0.16, testeira.z)
+	placa(frente_canto, eixo, frente, largura - 0.24, 0.46, LETREIROS[indice % LETREIROS.size()], P.LISO)
+	# Tirantes ligando a ponta da marquise à parede.
+	for lado: float in [0.35, largura - 0.5]:
+		var pe := base + eixo * lado + Vector3(avanco.x, altura, avanco.z)
+		var topo := base + eixo * lado + Vector3(0, altura + 0.75, 0)
+		var direcao := (topo - pe).normalized()
+		# Barra fina inclinada: duas faces bastam para ler como tirante.
+		# A normal é perpendicular à própria barra, não à fachada.
+		var lateral := eixo * 0.05
+		var normal := eixo.cross(direcao).normalized()
+		malha.quadrilatero(pe - lateral, pe + lateral, topo + lateral, topo - lateral, Color("9aa0a2"), P.METAL, normal)
+		malha.quadrilatero(topo - lateral, topo + lateral, pe + lateral, pe - lateral, Color("9aa0a2"), P.METAL, -normal)
 
 ## Retângulo colado na fachada (porta, vitrine, placa, guarda-corpo).
 func placa(origem: Vector3, eixo: Vector3, frente: Vector3, largura: float, altura: float, cor: Color, peca: int, base_y := 0.0) -> void:

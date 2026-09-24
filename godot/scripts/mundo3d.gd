@@ -11,11 +11,15 @@ const Pessoa3D := preload("res://scripts/pessoa3d.gd")
 const Carro3D := preload("res://scripts/carro3d.gd")
 ## 32 pixels do mapa 2D = 1 metro.
 const ESCALA := 1.0 / 32.0
-## A rua do mapa 2D tem 4 m: estreita demais em primeira pessoa. Em 3D a faixa de
-## asfalto é esticada e tudo que vem depois dela é empurrado junto.
+## O mapa 2D é apertado para a primeira pessoa: calçadas de 1 m e pista de 4 m.
+## Em 3D cada faixa é esticada e o que vem depois é empurrado junto.
+## Cada trecho: [início em metros, fim, largura nova].
+const FAIXAS := [
+	[19.0, 20.0, 2.4],  # calçada da casa
+	[20.0, 24.0, 8.0],  # pista
+	[24.0, 25.0, 2.4],  # calçada oposta
+]
 const RUA_INICIO := 20.0
-const RUA_FIM := 24.0
-const RUA_LARGURA := 8.0
 const ALTURA_PAREDE := 2.6
 const ALTURA_MURO := 2.15
 const P := MalhaLowPoly.Peca
@@ -23,7 +27,7 @@ const P := MalhaLowPoly.Peca
 const PISOS := {
 	"cimento": [P.CIMENTO, Color("cfd0c6")], "calcada": [P.CALCADA, Color("d8d8cf")],
 	"asfalto": [P.ASFALTO, Color("f0f2f4")], "sarjeta": [P.ASFALTO, Color("d8dcdf")],
-	"telha": [P.TELHA, Color("d6cdc4")], "taco": [P.TACO, Color("d9cbb6")],
+	"taco": [P.TACO, Color("d9cbb6")],
 	"ceramica_bege": [P.AZULEJO, Color("dcd6c2")], "azulejo_banheiro": [P.AZULEJO, Color("cfe0dc")],
 	"azulejo_verde": [P.AZULEJO, Color("c6ddd0")], "ladrilho_floral": [P.AZULEJO, Color("ded7c4")],
 	"grama_rala": [P.FOLHA, Color("bdd0ae")], "terra": [P.TERRA, Color("d3c4ae")],
@@ -51,13 +55,18 @@ func _ready() -> void:
 	mapa.queue_free()
 	jogador.global_position = inicio + Vector3(0, 0.1, 0)
 
-## Alarga a rua sem mexer no mapa 2D: antes dela nada muda, dentro dela estica,
-## depois dela desloca o quarteirão inteiro.
+## Alarga calçadas e pista sem mexer no mapa 2D: antes nada muda, dentro de cada
+## faixa estica, e o que vem depois é deslocado pelo total já esticado.
 func alongar(z: float) -> float:
-	if z <= RUA_INICIO: return z
-	var original := RUA_FIM - RUA_INICIO
-	if z >= RUA_FIM: return z + (RUA_LARGURA - original)
-	return RUA_INICIO + (z - RUA_INICIO) * (RUA_LARGURA / original)
+	var saida := z
+	for faixa: Array in FAIXAS:
+		var inicio: float = faixa[0]
+		var fim: float = faixa[1]
+		var nova: float = faixa[2]
+		var extra: float = nova - (fim - inicio)
+		if z >= fim: saida += extra
+		elif z > inicio: saida += (z - inicio) / (fim - inicio) * extra
+	return saida
 
 func em_metros(px: Vector2) -> Vector3:
 	return Vector3(px.x * ESCALA, 0.0, alongar(px.y * ESCALA))
@@ -73,6 +82,9 @@ func construir(mapa: Node2D) -> void:
 	# 7 cm acima do cimento: com 2 cm o encaixe de vértices do PS1 fazia as duas
 	# camadas brigarem (z-fighting) no chão da casa.
 	construir_pisos(mapa.get_node("PisosCasa"), 0.07)
+	# No mapa 2D, "telha" é telhado visto de cima. Em 3D vira quarteirão
+	# construído: se ficasse como chão, seria um plano vermelho vazio.
+	construir_quadra_vizinha(mapa.get_node("Pisos"))
 	construir_meio_fio(mapa.get_node("Detalhes"))
 	construir_paredes(mapa.get_node("Paredes"))
 	construir_quarteirao(mapa.get_node("Limites"))
@@ -189,6 +201,32 @@ func janela_de_parede(cel: Vector2i, celula: int) -> void:
 	var centro := origem + Vector3(tamanho.x, 0, tamanho.z) / 2.0
 	var vidro_origem := Vector3(origem.x, 1.0, centro.z - 0.03) if no_eixo_x else Vector3(centro.x - 0.03, 1.0, origem.z)
 	malha_cenario.caixa(vidro_origem, vidro_tamanho, Color("cfe0e4"), Color("cfe0e4"), P.VIDRO, P.VIDRO)
+
+## Onde o mapa 2D mostra telhado, o 3D levanta prédios: casas coladas umas nas
+## outras, cada uma com sua altura e laje. Assim o horizonte fecha e não sobra
+## aquele chão vermelho sem nada.
+func construir_quadra_vizinha(pisos: TileMapLayer) -> void:
+	var celula: int = pisos.tile_set.tile_size.x
+	var telhados := {}
+	for cel: Vector2i in pisos.get_used_cells():
+		var dados := pisos.get_cell_tile_data(cel)
+		if dados == null: continue
+		if nome_base(String(dados.get_custom_data("nome"))) == "telha": telhados[cel] = true
+	var indice := 0
+	for r: Rect2i in retangulos(telhados):
+		var a := area(Vector2(r.position) * celula, Vector2(r.size) * celula)
+		var ao_longo_de_x := a.size.x >= a.size.y
+		var comprimento: float = a.size.x if ao_longo_de_x else a.size.y
+		var passos := maxi(1, int(round(comprimento / 6.5)))
+		for i in passos:
+			indice += 1
+			var fatia := Vector2(a.size.x / passos, a.size.y) if ao_longo_de_x else Vector2(a.size.x, a.size.y / passos)
+			var canto := a.position + (Vector2(fatia.x * i, 0.0) if ao_longo_de_x else Vector2(0.0, fatia.y * i))
+			# Quadras grandes viram uma fileira de casas de até 10 m de fundo.
+			var profundidade := minf(fatia.y if ao_longo_de_x else fatia.x, 10.0)
+			if ao_longo_de_x: fatia.y = profundidade
+			else: fatia.x = profundidade
+			rua.bloco(canto, fatia, indice)
 
 ## Quarteirão: em vez de blocos cegos, fachadas de casas, bares e comércio.
 func construir_quarteirao(limites: Node2D) -> void:
@@ -341,7 +379,8 @@ func aplicar_malha() -> void:
 ## Pedestres nas calçadas, a irmã perto de casa e carros nas duas faixas.
 func povoar(transito: Node2D) -> void:
 	var calcadas := [alongar(19.5), alongar(24.5)]
-	var faixas := [RUA_INICIO + RUA_LARGURA * 0.3, RUA_INICIO + RUA_LARGURA * 0.7]
+	# Uma faixa para cada sentido, dentro da pista já alargada.
+	var faixas := [alongar(21.0), alongar(23.0)]
 	if transito:
 		calcadas = [alongar(transito.calcada_casa_y * ESCALA), alongar(transito.calcada_oposta_y * ESCALA)]
 	for i in 6:
