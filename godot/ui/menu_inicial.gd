@@ -35,7 +35,7 @@ func _estilo(fundo: String, borda: String) -> StyleBoxFlat:
 
 func _iniciar() -> void:
 	iniciar.disabled = true
-	var erro := get_tree().change_scene_to_file("res://scenes/house.tscn")
+	var erro := get_tree().change_scene_to_file("res://scenes/mundo3d.tscn")
 	if erro != OK:
 		aviso.text = "Não foi possível iniciar o jogo."
 		aviso.show()

@@ -1,5 +1,15 @@
 # A casa — Godot 4
 
+## Mundo 3D low poly (primeira pessoa)
+
+**F5** abre o menu e **Iniciar** leva para `scenes/mundo3d.tscn`: o mesmo subúrbio, agora em 3D e em primeira pessoa (**WASD** anda, mouse olha, **Shift** corre, **Esc** solta o mouse). A geometria é gerada por código a partir do mapa 2D de `scenes/mapa.tscn`, então editar o mapa continua valendo para os dois.
+
+- **Malhas de verdade, não formas empilhadas:** `scripts/malha_low_poly.gd` monta triângulos (vértices, normais planas e cor por vértice) e junta tudo numa **única malha, com uma superfície só**. Áreas iguais viram um retângulo grande e faces internas nunca são criadas — o cenário inteiro fica em torno de **1.400 triângulos**.
+- **Estética PS1:** `shaders/ps1.gdshader` encaixa os vértices numa grade (o tremor da época), usa iluminação simples por vértice e sem filtro de textura; a cena roda num `SubViewport` de **320 × 216** ampliado em Nearest, com névoa curta.
+- **O que é gerado:** pisos (cimento, calçada, asfalto, taco, cerâmica), meio-fio, paredes e muro por altura, janelas com peitoril, verga e vidro, folhas de porta, casas vizinhas com telhado de duas águas, móveis, poste, varal, caixa-d'água, casinha do cachorro, plantas e portão.
+- **Pessoas e carros:** `scripts/pessoa3d.gd` é um boneco low poly (tronco, cabeça, braços e pernas que giram na caminhada) usado pelos pedestres **e pela irmã**, por enquanto com o mesmo modelo; `scripts/carro3d.gd` são carros de poucas faces circulando nas duas faixas.
+- **Versão 2D:** continua inteira em `scenes/house.tscn` (**F6**), com o loop de sobrevivência, o tutorial e os menus.
+
 **Tileset editável:** abra `tilesets/suburbio/mapa_editavel.tscn` para montar o cenário no editor com 175 peças de pixel art, ou `tilesets/suburbio/mapa_novo.tscn` para começar vazio. Instruções em [tilesets/suburbio/LEIA-ME.md](tilesets/suburbio/LEIA-ME.md). O menu inicial abre o protótipo descrito abaixo.
 
 Importe `project.godot` no Godot 4 e pressione **F5** para abrir o menu inicial. Clique em **Iniciar** (ou pressione **Enter**) para jogar. As bandeiras **PT/ENG** têm apenas seleção visual: todos os textos continuam em português, sem tradução ou mudança de idioma. Para entrar diretamente na casa, use **F6** na cena `scenes/house.tscn`. Ande com **WASD** ou **setas**.
