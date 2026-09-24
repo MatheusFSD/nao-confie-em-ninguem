@@ -123,7 +123,7 @@ func construir_meio_fio(detalhes: TileMapLayer) -> void:
 	for lado in [[alto, float(celula) - 6.0], [baixo, 0.0]]:
 		for r: Rect2i in retangulos(lado[0]):
 			var origem := Vector2(r.position) * celula + Vector2(0, lado[1])
-			malha_cenario.caixa(Vector3(origem.x * ESCALA, 0.0, origem.y * ESCALA), Vector3(r.size.x * celula * ESCALA, 0.14, 6.0 * ESCALA), Color("d5d5cb"), Color("c2c2b8"), P.CALCADA, P.CALCADA)
+			malha_adornos.caixa(Vector3(origem.x * ESCALA, 0.0, origem.y * ESCALA), Vector3(r.size.x * celula * ESCALA, 0.14, 6.0 * ESCALA), Color("d5d5cb"), Color("c2c2b8"), P.CALCADA, P.CALCADA)
 
 # ------------------------------------------------------------------- paredes
 

@@ -5,11 +5,15 @@ extends RefCounted
 # cor por vértice. Cada face é um triângulo de verdade e as faces internas (entre
 # blocos colados) não são criadas, para o total de polígonos ficar baixo.
 #
+# Toda face declara para que lado ela olha (`fora`). A ordem dos vértices é
+# corrigida sozinha a partir disso, então nunca se vê o interior das caixas, e a
+# mesma direção vira a normal usada pela luz.
+#
 # UV guarda a repetição em metros (1 repetição por metro) e UV2 guarda a peça do
 # atlas; o shader junta os dois, então o mundo inteiro usa uma textura só.
-## Peças do atlas (sprites/atlas3d.png), 4 × 4.
+## Peças do atlas (sprites/atlas3d.png): 4 colunas × 5 linhas.
 enum Peca { REBOCO, PINTADO, TIJOLO, TELHA, ASFALTO, CALCADA, CIMENTO, TERRA, TACO, AZULEJO, METAL, VIDRO, PORTA, TECIDO, FOLHA, LISO, ROSTO, CABELO, CAMISA, CALCA }
-const GRADE := 4
+const COLUNAS := 4
 
 var _vertices := PackedVector3Array()
 var _cores := PackedColorArray()
@@ -21,36 +25,52 @@ func total_triangulos() -> int:
 	return _vertices.size() / 3
 
 static func peca_uv(peca: int) -> Vector2:
-	return Vector2(peca % GRADE, peca / GRADE)
+	return Vector2(peca % COLUNAS, peca / COLUNAS)
+
+## No Godot a face da frente é a de ordem horária vista de fora: o produto
+## vetorial dos vértices aponta para DENTRO da peça.
+func _ordem_correta(a: Vector3, b: Vector3, c: Vector3, fora: Vector3) -> bool:
+	return (b - a).cross(c - a).dot(fora) <= 0.0
+
+func _empurrar(p: Vector3, uv: Vector2, cor: Color, normal: Vector3, canto: Vector2) -> void:
+	_vertices.append(p)
+	_cores.append(cor)
+	_normais.append(normal)
+	_uvs.append(uv)
+	_uvs2.append(canto)
 
 ## Triângulo com normal plana (visual facetado do PS1).
-func triangulo(a: Vector3, b: Vector3, c: Vector3, cor: Color, peca := Peca.LISO, uv_a := Vector2.ZERO, uv_b := Vector2.ZERO, uv_c := Vector2.ZERO, normal_forcada := Vector3.ZERO) -> void:
-	var normal := (b - a).cross(c - a)
+func triangulo(a: Vector3, b: Vector3, c: Vector3, cor: Color, peca := Peca.LISO, uv_a := Vector2.ZERO, uv_b := Vector2.ZERO, uv_c := Vector2.ZERO, fora := Vector3.ZERO) -> void:
+	var normal := (c - a).cross(b - a)
 	if normal.length_squared() < 0.000001: return
-	normal = normal_forcada.normalized() if normal_forcada != Vector3.ZERO else normal.normalized()
+	if fora == Vector3.ZERO: fora = normal.normalized()
+	else: fora = fora.normalized()
 	var canto := peca_uv(peca)
-	for item in [[a, uv_a], [b, uv_b], [c, uv_c]]:
-		_vertices.append(item[0])
-		_cores.append(cor)
-		_normais.append(normal)
-		_uvs.append(item[1])
-		_uvs2.append(canto)
+	if _ordem_correta(a, b, c, fora):
+		_empurrar(a, uv_a, cor, fora, canto)
+		_empurrar(b, uv_b, cor, fora, canto)
+		_empurrar(c, uv_c, cor, fora, canto)
+	else:
+		_empurrar(c, uv_c, cor, fora, canto)
+		_empurrar(b, uv_b, cor, fora, canto)
+		_empurrar(a, uv_a, cor, fora, canto)
 
-## Quatro cantos em ordem (horário visto de fora). A textura repete a cada metro.
-func quadrilatero(a: Vector3, b: Vector3, c: Vector3, d: Vector3, cor: Color, peca := Peca.LISO, normal_forcada := Vector3.ZERO) -> void:
+## Quatro cantos de uma face plana; `fora` é o lado visível. A textura repete a cada metro.
+func quadrilatero(a: Vector3, b: Vector3, c: Vector3, d: Vector3, cor: Color, peca := Peca.LISO, fora := Vector3.ZERO) -> void:
 	var largura := a.distance_to(b)
 	var altura := b.distance_to(c)
 	var ua := Vector2(0, 0)
 	var ub := Vector2(largura, 0)
 	var uc := Vector2(largura, altura)
 	var ud := Vector2(0, altura)
-	triangulo(a, b, c, cor, peca, ua, ub, uc, normal_forcada)
-	triangulo(a, c, d, cor, peca, ua, uc, ud, normal_forcada)
+	triangulo(a, b, c, cor, peca, ua, ub, uc, fora)
+	triangulo(a, c, d, cor, peca, ua, uc, ud, fora)
 
 ## Placa visível dos dois lados (vegetação, chapas finas).
-func quadrilatero_duplo(a: Vector3, b: Vector3, c: Vector3, d: Vector3, cor: Color, peca := Peca.LISO, normal_forcada := Vector3.ZERO) -> void:
-	quadrilatero(a, b, c, d, cor, peca, normal_forcada)
-	quadrilatero(d, c, b, a, cor, peca, normal_forcada)
+func quadrilatero_duplo(a: Vector3, b: Vector3, c: Vector3, d: Vector3, cor: Color, peca := Peca.LISO, fora := Vector3.ZERO) -> void:
+	var normal := fora if fora != Vector3.ZERO else (c - a).cross(b - a)
+	quadrilatero(a, b, c, d, cor, peca, normal)
+	quadrilatero(d, c, b, a, cor, peca, -normal)
 
 ## Caixa com faces escolhidas: [cima, norte(-z), sul(+z), oeste(-x), leste(+x), baixo].
 func caixa(origem: Vector3, tamanho: Vector3, cor_topo: Color, cor_lado: Color, peca_topo := Peca.LISO, peca_lado := Peca.LISO, lados := [true, true, true, true, true, false]) -> void:
@@ -60,12 +80,12 @@ func caixa(origem: Vector3, tamanho: Vector3, cor_topo: Color, cor_lado: Color, 
 	var y1 := origem.y + tamanho.y
 	var z0 := origem.z
 	var z1 := origem.z + tamanho.z
-	if lados[0]: quadrilatero(Vector3(x0, y1, z0), Vector3(x1, y1, z0), Vector3(x1, y1, z1), Vector3(x0, y1, z1), cor_topo, peca_topo)
-	if lados[1]: quadrilatero(Vector3(x0, y0, z0), Vector3(x0, y1, z0), Vector3(x1, y1, z0), Vector3(x1, y0, z0), cor_lado, peca_lado)
-	if lados[2]: quadrilatero(Vector3(x1, y0, z1), Vector3(x1, y1, z1), Vector3(x0, y1, z1), Vector3(x0, y0, z1), cor_lado, peca_lado)
-	if lados[3]: quadrilatero(Vector3(x0, y0, z1), Vector3(x0, y1, z1), Vector3(x0, y1, z0), Vector3(x0, y0, z0), cor_lado, peca_lado)
-	if lados[4]: quadrilatero(Vector3(x1, y0, z0), Vector3(x1, y1, z0), Vector3(x1, y1, z1), Vector3(x1, y0, z1), cor_lado, peca_lado)
-	if lados[5]: quadrilatero(Vector3(x0, y0, z1), Vector3(x1, y0, z1), Vector3(x1, y0, z0), Vector3(x0, y0, z0), cor_lado, peca_lado)
+	if lados[0]: quadrilatero(Vector3(x0, y1, z0), Vector3(x1, y1, z0), Vector3(x1, y1, z1), Vector3(x0, y1, z1), cor_topo, peca_topo, Vector3.UP)
+	if lados[1]: quadrilatero(Vector3(x0, y0, z0), Vector3(x1, y0, z0), Vector3(x1, y1, z0), Vector3(x0, y1, z0), cor_lado, peca_lado, Vector3.FORWARD)
+	if lados[2]: quadrilatero(Vector3(x0, y0, z1), Vector3(x1, y0, z1), Vector3(x1, y1, z1), Vector3(x0, y1, z1), cor_lado, peca_lado, Vector3.BACK)
+	if lados[3]: quadrilatero(Vector3(x0, y0, z0), Vector3(x0, y0, z1), Vector3(x0, y1, z1), Vector3(x0, y1, z0), cor_lado, peca_lado, Vector3.LEFT)
+	if lados[4]: quadrilatero(Vector3(x1, y0, z0), Vector3(x1, y0, z1), Vector3(x1, y1, z1), Vector3(x1, y1, z0), cor_lado, peca_lado, Vector3.RIGHT)
+	if lados[5]: quadrilatero(Vector3(x0, y0, z0), Vector3(x1, y0, z0), Vector3(x1, y0, z1), Vector3(x0, y0, z1), cor_lado, peca_lado, Vector3.DOWN)
 
 ## Chão plano: um quadrilátero só, por maior que seja a área.
 func piso(origem: Vector2, tamanho: Vector2, altura: float, cor: Color, peca := Peca.LISO) -> void:
@@ -73,7 +93,7 @@ func piso(origem: Vector2, tamanho: Vector2, altura: float, cor: Color, peca := 
 	var z0 := origem.y
 	var x1 := origem.x + tamanho.x
 	var z1 := origem.y + tamanho.y
-	quadrilatero(Vector3(x0, altura, z0), Vector3(x1, altura, z0), Vector3(x1, altura, z1), Vector3(x0, altura, z1), cor, peca)
+	quadrilatero(Vector3(x0, altura, z0), Vector3(x1, altura, z0), Vector3(x1, altura, z1), Vector3(x0, altura, z1), cor, peca, Vector3.UP)
 
 ## Telhado de duas águas: 2 águas + 2 oitões.
 func telhado(origem: Vector2, tamanho: Vector2, base: float, altura: float, cor: Color, cor_oitao: Color, peca := Peca.TELHA, peca_oitao := Peca.REBOCO) -> void:
@@ -83,10 +103,12 @@ func telhado(origem: Vector2, tamanho: Vector2, base: float, altura: float, cor:
 	var z1 := origem.y + tamanho.y
 	var meio := (z0 + z1) * 0.5
 	var topo := base + altura
-	quadrilatero(Vector3(x0, base, z0), Vector3(x1, base, z0), Vector3(x1, topo, meio), Vector3(x0, topo, meio), cor, peca)
-	quadrilatero(Vector3(x1, base, z1), Vector3(x0, base, z1), Vector3(x0, topo, meio), Vector3(x1, topo, meio), cor.darkened(0.12), peca)
-	triangulo(Vector3(x0, base, z1), Vector3(x0, base, z0), Vector3(x0, topo, meio), cor_oitao, peca_oitao, Vector2(0, 0), Vector2(tamanho.y, 0), Vector2(tamanho.y * 0.5, altura))
-	triangulo(Vector3(x1, base, z0), Vector3(x1, base, z1), Vector3(x1, topo, meio), cor_oitao, peca_oitao, Vector2(0, 0), Vector2(tamanho.y, 0), Vector2(tamanho.y * 0.5, altura))
+	var caida := (z1 - z0) * 0.5
+	var inclinacao := Vector3(0, caida, -altura).normalized()
+	quadrilatero(Vector3(x0, base, z0), Vector3(x1, base, z0), Vector3(x1, topo, meio), Vector3(x0, topo, meio), cor, peca, inclinacao)
+	quadrilatero(Vector3(x0, base, z1), Vector3(x1, base, z1), Vector3(x1, topo, meio), Vector3(x0, topo, meio), cor.darkened(0.1), peca, Vector3(0, caida, altura).normalized())
+	triangulo(Vector3(x0, base, z0), Vector3(x0, base, z1), Vector3(x0, topo, meio), cor_oitao, peca_oitao, Vector2(0, 0), Vector2(tamanho.y, 0), Vector2(tamanho.y * 0.5, altura), Vector3.LEFT)
+	triangulo(Vector3(x1, base, z0), Vector3(x1, base, z1), Vector3(x1, topo, meio), cor_oitao, peca_oitao, Vector2(0, 0), Vector2(tamanho.y, 0), Vector2(tamanho.y * 0.5, altura), Vector3.RIGHT)
 
 ## Cilindro de poucos lados (postes, potes, rodas).
 func cilindro(centro: Vector3, raio: float, altura: float, lados: int, cor: Color, cor_topo: Color, peca := Peca.LISO) -> void:
@@ -94,8 +116,11 @@ func cilindro(centro: Vector3, raio: float, altura: float, lados: int, cor: Colo
 	for i in range(1, lados + 1):
 		var a := TAU * i / lados
 		var atual := Vector3(centro.x + cos(a) * raio, centro.y, centro.z + sin(a) * raio)
-		quadrilatero(anterior, anterior + Vector3(0, altura, 0), atual + Vector3(0, altura, 0), atual, cor, peca)
-		triangulo(Vector3(centro.x, centro.y + altura, centro.z), anterior + Vector3(0, altura, 0), atual + Vector3(0, altura, 0), cor_topo, peca, Vector2(0.5, 0.5), Vector2(0, 0), Vector2(1, 0))
+		var meio := (anterior + atual) * 0.5
+		var fora := (meio - centro)
+		fora.y = 0.0
+		quadrilatero(anterior, atual, atual + Vector3(0, altura, 0), anterior + Vector3(0, altura, 0), cor, peca, fora)
+		triangulo(Vector3(centro.x, centro.y + altura, centro.z), anterior + Vector3(0, altura, 0), atual + Vector3(0, altura, 0), cor_topo, peca, Vector2(0.5, 0.5), Vector2(0, 0), Vector2(1, 0), Vector3.UP)
 		anterior = atual
 
 ## Fecha a malha. Uma superfície só: uma chamada de desenho para o cenário inteiro.
