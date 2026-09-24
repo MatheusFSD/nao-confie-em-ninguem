@@ -38,9 +38,10 @@ func montar(cor: Color) -> void:
 	malha.caixa(Vector3(1.96, 0.5, 0.28), Vector3(0.08, 0.18, 0.34), Color("f4e7b0"), Color("f4e7b0"))
 	malha.caixa(Vector3(-2.04, 0.5, -0.62), Vector3(0.08, 0.18, 0.34), Color("b0392e"), Color("b0392e"))
 	malha.caixa(Vector3(-2.04, 0.5, 0.28), Vector3(0.08, 0.18, 0.34), Color("b0392e"), Color("b0392e"))
-	for x: float in [1.25, -1.25]:
-		for z: float in [-0.88, 0.72]:
-			malha.cilindro(Vector3(x, 0.32, z), 0.32, 0.16, 5, Color("1d1f1e"), Color("6d716c"))
+	# Rodas de verdade: cilindro deitado girando no eixo do carro.
+	for x: float in [1.3, -1.3]:
+		for z: float in [-0.8, 0.8]:
+			malha.roda(Vector3(x, 0.34, z), 0.34, 0.2, 6, Color("2a2c2b"), Color("9aa0a2"))
 	var instancia := MeshInstance3D.new()
 	instancia.mesh = malha.gerar()
 	if material_compartilhado == null:

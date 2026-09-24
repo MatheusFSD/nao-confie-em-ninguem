@@ -123,6 +123,24 @@ func cilindro(centro: Vector3, raio: float, altura: float, lados: int, cor: Colo
 		triangulo(Vector3(centro.x, centro.y + altura, centro.z), anterior + Vector3(0, altura, 0), atual + Vector3(0, altura, 0), cor_topo, peca, Vector2(0.5, 0.5), Vector2(0, 0), Vector2(1, 0), Vector3.UP)
 		anterior = atual
 
+## Roda: cilindro deitado, girando em torno do eixo X (largura no eixo Z).
+func roda(centro: Vector3, raio: float, largura: float, lados: int, cor: Color, cor_aro: Color) -> void:
+	var meia := largura * 0.5
+	var anterior := Vector3(0, raio, 0)
+	for i in range(1, lados + 1):
+		var a := TAU * i / lados
+		var atual := Vector3(0, cos(a) * raio, sin(a) * raio)
+		var fora := (anterior + atual) * 0.5
+		var p1 := centro + anterior + Vector3(-meia, 0, 0)
+		var p2 := centro + atual + Vector3(-meia, 0, 0)
+		var p3 := centro + atual + Vector3(meia, 0, 0)
+		var p4 := centro + anterior + Vector3(meia, 0, 0)
+		quadrilatero(p1, p2, p3, p4, cor, Peca.LISO, fora)
+		# Tampas dos dois lados, com a cor do aro.
+		triangulo(centro + Vector3(-meia, 0, 0), p1, p2, cor_aro, Peca.METAL, Vector2(0.5, 0.5), Vector2(0, 0), Vector2(1, 0), Vector3.LEFT)
+		triangulo(centro + Vector3(meia, 0, 0), p4, p3, cor_aro, Peca.METAL, Vector2(0.5, 0.5), Vector2(0, 0), Vector2(1, 0), Vector3.RIGHT)
+		anterior = atual
+
 ## Fecha a malha. Uma superfície só: uma chamada de desenho para o cenário inteiro.
 func gerar() -> ArrayMesh:
 	var malha := ArrayMesh.new()

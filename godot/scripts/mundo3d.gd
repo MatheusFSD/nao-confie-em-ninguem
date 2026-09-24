@@ -3,7 +3,7 @@ extends Node
 # Constrói o subúrbio em 3D low poly a partir do mesmo mapa 2D de scenes/mapa.tscn.
 # Nada é empilhado com nós de formas prontas: tudo vira triângulos numa malha só
 # (MalhaLowPoly), com faces internas descartadas, áreas iguais juntadas em
-# retângulos maiores e uma textura de atlas de 128 × 128 para o cenário inteiro.
+# retângulos maiores e uma textura de atlas para o cenário inteiro.
 const MAPA := preload("res://scenes/mapa.tscn")
 const PS1 := preload("res://shaders/ps1.gdshader")
 const ATLAS := preload("res://sprites/atlas3d.png")
@@ -11,6 +11,11 @@ const Pessoa3D := preload("res://scripts/pessoa3d.gd")
 const Carro3D := preload("res://scripts/carro3d.gd")
 ## 32 pixels do mapa 2D = 1 metro.
 const ESCALA := 1.0 / 32.0
+## A rua do mapa 2D tem 4 m: estreita demais em primeira pessoa. Em 3D a faixa de
+## asfalto é esticada e tudo que vem depois dela é empurrado junto.
+const RUA_INICIO := 20.0
+const RUA_FIM := 24.0
+const RUA_LARGURA := 8.0
 const ALTURA_PAREDE := 2.6
 const ALTURA_MURO := 2.15
 const P := MalhaLowPoly.Peca
@@ -24,18 +29,18 @@ const PISOS := {
 	"grama_rala": [P.FOLHA, Color("bdd0ae")], "terra": [P.TERRA, Color("d3c4ae")],
 }
 var malha_cenario := MalhaLowPoly.new()
-## Adornos (folhas de porta, plantas): aparecem, mas não barram a passagem.
+## Adornos (folhas de porta, plantas, meio-fio): aparecem, mas não barram a passagem.
 var malha_adornos := MalhaLowPoly.new()
+var rua: Rua3D
 var material_ps1: ShaderMaterial
 var mundo: Node3D
 var jogador: CharacterBody3D
-var pessoas: Array[Node3D] = []
-var carros: Array[Node3D] = []
 var inicio := Vector3(8.5, 0, 14.7)
 
 func _ready() -> void:
 	mundo = get_node("Tela/Render/Mundo")
 	jogador = get_node("Tela/Render/Jogador")
+	rua = Rua3D.new(malha_cenario, malha_adornos)
 	material_ps1 = ShaderMaterial.new()
 	material_ps1.shader = PS1
 	material_ps1.set_shader_parameter("atlas", ATLAS)
@@ -46,15 +51,31 @@ func _ready() -> void:
 	mapa.queue_free()
 	jogador.global_position = inicio + Vector3(0, 0.1, 0)
 
+## Alarga a rua sem mexer no mapa 2D: antes dela nada muda, dentro dela estica,
+## depois dela desloca o quarteirão inteiro.
+func alongar(z: float) -> float:
+	if z <= RUA_INICIO: return z
+	var original := RUA_FIM - RUA_INICIO
+	if z >= RUA_FIM: return z + (RUA_LARGURA - original)
+	return RUA_INICIO + (z - RUA_INICIO) * (RUA_LARGURA / original)
+
 func em_metros(px: Vector2) -> Vector3:
-	return Vector3(px.x * ESCALA, 0.0, px.y * ESCALA)
+	return Vector3(px.x * ESCALA, 0.0, alongar(px.y * ESCALA))
+
+## Retângulo do mapa 2D já em metros e com a rua alargada.
+func area(origem_px: Vector2, tamanho_px: Vector2) -> Rect2:
+	var z0 := alongar(origem_px.y * ESCALA)
+	var z1 := alongar((origem_px.y + tamanho_px.y) * ESCALA)
+	return Rect2(origem_px.x * ESCALA, z0, tamanho_px.x * ESCALA, z1 - z0)
 
 func construir(mapa: Node2D) -> void:
 	construir_pisos(mapa.get_node("Pisos"), 0.0)
-	construir_pisos(mapa.get_node("PisosCasa"), 0.02)
+	# 7 cm acima do cimento: com 2 cm o encaixe de vértices do PS1 fazia as duas
+	# camadas brigarem (z-fighting) no chão da casa.
+	construir_pisos(mapa.get_node("PisosCasa"), 0.07)
 	construir_meio_fio(mapa.get_node("Detalhes"))
 	construir_paredes(mapa.get_node("Paredes"))
-	construir_vizinhos(mapa.get_node("Limites"))
+	construir_quarteirao(mapa.get_node("Limites"))
 	construir_objetos(mapa.get_node("Objetos"))
 	construir_portas(mapa.get_node_or_null("Portas"))
 	var marcador := mapa.get_node_or_null("InicioMorador") as Node2D
@@ -105,11 +126,11 @@ func construir_pisos(camada: TileMapLayer, altura: float) -> void:
 	for material: String in por_material:
 		var acabamento: Array = PISOS[material]
 		for r: Rect2i in retangulos(por_material[material]):
-			var origem := Vector2(r.position) * celula + camada.position
-			var tamanho := Vector2(r.size) * celula
-			malha_cenario.piso(origem * ESCALA, tamanho * ESCALA, altura, acabamento[1], acabamento[0])
+			var a := area(Vector2(r.position) * celula + camada.position, Vector2(r.size) * celula)
+			malha_cenario.piso(a.position, a.size, altura, acabamento[1], acabamento[0])
 
-## Meio-fio: fita de concreto um pouco acima do asfalto.
+## Meio-fio: fita de concreto na borda que encosta na calçada (sem colisão, para
+## não virar degrau intransponível entre rua e calçada).
 func construir_meio_fio(detalhes: TileMapLayer) -> void:
 	var celula: int = detalhes.tile_set.tile_size.x
 	var alto := {}
@@ -120,10 +141,10 @@ func construir_meio_fio(detalhes: TileMapLayer) -> void:
 		var nome := String(dados.get_custom_data("nome"))
 		if nome == "meio_fio_cima": alto[cel] = true
 		elif nome == "meio_fio_baixo": baixo[cel] = true
-	for lado in [[alto, float(celula) - 6.0], [baixo, 0.0]]:
+	for lado in [[alto, 0.0], [baixo, float(celula) - 5.0]]:
 		for r: Rect2i in retangulos(lado[0]):
-			var origem := Vector2(r.position) * celula + Vector2(0, lado[1])
-			malha_adornos.caixa(Vector3(origem.x * ESCALA, 0.0, origem.y * ESCALA), Vector3(r.size.x * celula * ESCALA, 0.14, 6.0 * ESCALA), Color("d5d5cb"), Color("c2c2b8"), P.CALCADA, P.CALCADA)
+			var a := area(Vector2(r.position) * celula + Vector2(0, lado[1]), Vector2(r.size.x * celula, 5.0))
+			malha_adornos.caixa(Vector3(a.position.x, 0.0, a.position.y), Vector3(a.size.x, 0.16, a.size.y), Color("d5d5cb"), Color("c2c2b8"), P.CALCADA, P.CALCADA)
 
 # ------------------------------------------------------------------- paredes
 
@@ -148,41 +169,56 @@ func construir_paredes(camada: TileMapLayer) -> void:
 		var peca: int = P.REBOCO if da_casa else P.PINTADO
 		var tom := Color("efe8da") if da_casa else Color("dfe6d6")
 		for r: Rect2i in retangulos(grupos[grupo]):
-			var origem := Vector3(r.position.x * celula * ESCALA, 0.0, r.position.y * celula * ESCALA)
-			var tamanho := Vector3(r.size.x * celula * ESCALA, altura, r.size.y * celula * ESCALA)
-			malha_cenario.caixa(origem, tamanho, tom.darkened(0.1), tom, P.CIMENTO, peca)
-	# Peitoril, verga e vidro: o vão da janela fica aberto no meio.
+			var a := area(Vector2(r.position) * celula, Vector2(r.size) * celula)
+			malha_cenario.caixa(Vector3(a.position.x, 0.0, a.position.y), Vector3(a.size.x, altura, a.size.y), tom.darkened(0.1), tom, P.CIMENTO, peca)
 	for cel: Vector2i in janelas:
-		var origem := Vector3(cel.x * celula * ESCALA, 0.0, cel.y * celula * ESCALA)
-		var lado := celula * ESCALA
-		malha_cenario.caixa(origem, Vector3(lado, 1.0, lado), Color("e4dccb"), Color("efe8da"), P.CIMENTO, P.REBOCO)
-		malha_cenario.caixa(origem + Vector3(0, 2.0, 0), Vector3(lado, 0.6, lado), Color("e4dccb"), Color("efe8da"), P.CIMENTO, P.REBOCO)
-		malha_cenario.caixa(origem + Vector3(0.1, 1.0, 0.1), Vector3(lado - 0.2, 1.0, lado - 0.2), Color("cfe0e4"), Color("cfe0e4"), P.VIDRO, P.VIDRO)
+		janela_de_parede(cel, celula)
 
-## Casas vizinhas: blocos fechados com telhado de duas águas nos limites do mapa.
-func construir_vizinhos(limites: Node2D) -> void:
+## Janela da casa: peitoril e verga de alvenaria, com o vidro fino no meio da
+## parede (antes era uma caixa de vidro saltando para fora).
+func janela_de_parede(cel: Vector2i, celula: int) -> void:
+	var a := area(Vector2(cel) * celula, Vector2(celula, celula))
+	var origem := Vector3(a.position.x, 0.0, a.position.y)
+	var tamanho := Vector3(a.size.x, 1.0, a.size.y)
+	var tom := Color("efe8da")
+	malha_cenario.caixa(origem, tamanho, Color("e4dccb"), tom, P.CIMENTO, P.REBOCO)
+	malha_cenario.caixa(origem + Vector3(0, 2.0, 0), Vector3(tamanho.x, 0.6, tamanho.z), Color("e4dccb"), tom, P.CIMENTO, P.REBOCO)
+	# O vão é mais fundo que largo: o vidro acompanha o lado menor.
+	var no_eixo_x := tamanho.x >= tamanho.z
+	var vidro_tamanho := Vector3(tamanho.x, 1.0, 0.06) if no_eixo_x else Vector3(0.06, 1.0, tamanho.z)
+	var centro := origem + Vector3(tamanho.x, 0, tamanho.z) / 2.0
+	var vidro_origem := Vector3(origem.x, 1.0, centro.z - 0.03) if no_eixo_x else Vector3(centro.x - 0.03, 1.0, origem.z)
+	malha_cenario.caixa(vidro_origem, vidro_tamanho, Color("cfe0e4"), Color("cfe0e4"), P.VIDRO, P.VIDRO)
+
+## Quarteirão: em vez de blocos cegos, fachadas de casas, bares e comércio.
+func construir_quarteirao(limites: Node2D) -> void:
 	var indice := 0
 	for forma: CollisionShape2D in limites.get_children():
 		var rect := forma.shape as RectangleShape2D
 		if rect == null: continue
-		var canto := (forma.position - rect.size / 2.0) * ESCALA
-		var tamanho := rect.size * ESCALA
-		if tamanho.x < 1.0 or tamanho.y < 1.0: continue
-		# Corta o bloco em casas de ~7 m para o quarteirão não virar uma caixa só.
-		var ao_longo_de_x := tamanho.x >= tamanho.y
-		var passos := maxi(1, int(round(maxf(tamanho.x, tamanho.y) / 7.0)))
+		var a := area(forma.position - rect.size / 2.0, rect.size)
+		if a.size.x < 1.0 or a.size.y < 1.0: continue
+		var ao_longo_de_x := a.size.x >= a.size.y
+		# Casas estreitas, como no subúrbio: uma fachada a cada ~6 m.
+		var passos := maxi(1, int(round(maxf(a.size.x, a.size.y) / 6.0)))
+		# A fachada olha para a rua (o quarteirão de baixo) ou para o lote.
+		var frente := Vector3.FORWARD if ao_longo_de_x and a.position.y > RUA_INICIO else Vector3.BACK
+		if not ao_longo_de_x: frente = Vector3.RIGHT if a.position.x < 8.0 else Vector3.LEFT
 		for i in passos:
 			indice += 1
-			var fatia := Vector2(tamanho.x / passos, tamanho.y) if ao_longo_de_x else Vector2(tamanho.x, tamanho.y / passos)
-			var origem := canto + (Vector2(fatia.x * i, 0.0) if ao_longo_de_x else Vector2(0.0, fatia.y * i))
-			var altura := 3.0 + float(indice % 3) * 0.45
-			# Alterna casa pintada e casa de tijolo sem reboco, como no subúrbio.
-			var tijolo := indice % 3 == 0
-			var peca: int = P.TIJOLO if tijolo else P.PINTADO
-			var tons := [Color("e7e2d2"), Color("dbe3d2"), Color("e8dcc6"), Color("d8dde6")]
-			var tom: Color = Color("e3d7c8") if tijolo else tons[indice % tons.size()]
-			malha_cenario.caixa(Vector3(origem.x, 0.0, origem.y), Vector3(fatia.x, altura, fatia.y), tom.darkened(0.12), tom, P.CIMENTO, peca)
-			malha_cenario.telhado(origem, fatia, altura, 0.9 + float(indice % 2) * 0.3, Color("dcc8bc"), tom, P.TELHA, peca)
+			var fatia := Vector2(a.size.x / passos, a.size.y) if ao_longo_de_x else Vector2(a.size.x, a.size.y / passos)
+			var canto := a.position + (Vector2(fatia.x * i, 0.0) if ao_longo_de_x else Vector2(0.0, fatia.y * i))
+			# Profundidade limitada: o miolo do quarteirão não precisa existir.
+			var profundidade := minf(fatia.y if ao_longo_de_x else fatia.x, 9.0)
+			if ao_longo_de_x:
+				if frente == Vector3.FORWARD: canto.y = a.position.y
+				else: canto.y = a.end.y - profundidade
+				fatia.y = profundidade
+			else:
+				if frente == Vector3.RIGHT: canto.x = a.end.x - profundidade
+				else: canto.x = a.position.x
+				fatia.x = profundidade
+			rua.modulo(canto, fatia, frente, indice)
 
 # -------------------------------------------------------------------- objetos
 
@@ -192,8 +228,8 @@ func construir_objetos(camada: TileMapLayer) -> void:
 		var dados := camada.get_cell_tile_data(cel)
 		if dados == null: continue
 		var nome := String(dados.get_custom_data("nome"))
-		var canto := Vector3(cel.x * celula * ESCALA, 0.0, cel.y * celula * ESCALA) + Vector3(camada.position.x, 0.0, camada.position.y) * ESCALA
-		objeto(nome, canto)
+		var a := area(Vector2(cel) * celula + camada.position, Vector2(celula, celula))
+		objeto(nome, Vector3(a.position.x, 0.0, a.position.y))
 
 ## Cada peça do mapa vira um móvel simples, com poucas faces.
 func objeto(nome: String, canto: Vector3) -> void:
@@ -266,8 +302,8 @@ func objeto(nome: String, canto: Vector3) -> void:
 func folhagem(base: Vector3, altura: float) -> void:
 	var cor := Color("cfe0b8")
 	var largura := altura * 0.55
-	malha_adornos.quadrilatero_duplo(base + Vector3(-largura, 0, 0), base + Vector3(largura, 0, 0), base + Vector3(largura, altura, 0), base + Vector3(-largura, altura, 0), cor, P.FOLHA, Vector3.UP)
-	malha_adornos.quadrilatero_duplo(base + Vector3(0, 0, -largura), base + Vector3(0, 0, largura), base + Vector3(0, altura, largura), base + Vector3(0, altura, -largura), cor.darkened(0.08), P.FOLHA, Vector3.UP)
+	malha_adornos.quadrilatero_duplo(base + Vector3(-largura, 0, 0), base + Vector3(largura, 0, 0), base + Vector3(largura, altura, 0), base + Vector3(-largura, altura, 0), cor, P.FOLHA, Vector3.BACK)
+	malha_adornos.quadrilatero_duplo(base + Vector3(0, 0, -largura), base + Vector3(0, 0, largura), base + Vector3(0, altura, largura), base + Vector3(0, altura, -largura), cor.darkened(0.08), P.FOLHA, Vector3.RIGHT)
 
 ## Folhas de porta: abertas, encostadas na parede ao lado do vão, que fica livre.
 func construir_portas(grupo: Node2D) -> void:
@@ -277,7 +313,6 @@ func construir_portas(grupo: Node2D) -> void:
 		var largura: float = porta.largura * ESCALA
 		var cor := Color("d9c4a6")
 		if porta.vertical:
-			# Vão no eixo Z: a folha abre para dentro, ao lado do batente.
 			malha_adornos.caixa(centro + Vector3(-largura, 0.0, largura / 2.0 - 0.05), Vector3(largura, 2.05, 0.09), cor, cor.darkened(0.08), P.PORTA, P.PORTA)
 		else:
 			malha_adornos.caixa(centro + Vector3(largura / 2.0 - 0.05, 0.0, -largura), Vector3(0.09, 2.05, largura), cor, cor.darkened(0.08), P.PORTA, P.PORTA)
@@ -305,11 +340,10 @@ func aplicar_malha() -> void:
 
 ## Pedestres nas calçadas, a irmã perto de casa e carros nas duas faixas.
 func povoar(transito: Node2D) -> void:
-	var calcadas := [19.5, 24.5]
-	var faixas := [21.25, 23.0]
+	var calcadas := [alongar(19.5), alongar(24.5)]
+	var faixas := [RUA_INICIO + RUA_LARGURA * 0.3, RUA_INICIO + RUA_LARGURA * 0.7]
 	if transito:
-		calcadas = [transito.calcada_casa_y * ESCALA, transito.calcada_oposta_y * ESCALA]
-		faixas = [transito.faixa_oeste_y * ESCALA, transito.faixa_leste_y * ESCALA]
+		calcadas = [alongar(transito.calcada_casa_y * ESCALA), alongar(transito.calcada_oposta_y * ESCALA)]
 	for i in 6:
 		var pessoa := Pessoa3D.new()
 		pessoa.material_compartilhado = material_ps1
@@ -318,7 +352,6 @@ func povoar(transito: Node2D) -> void:
 		pessoa.sentido = 1.0 if i % 2 == 0 else -1.0
 		pessoa.position = Vector3(2.0 + i * 5.5, 0.0, pessoa.linha_z)
 		mundo.add_child(pessoa)
-		pessoas.append(pessoa)
 	var irma := Pessoa3D.new()
 	irma.name = "Irma"
 	irma.material_compartilhado = material_ps1
@@ -327,7 +360,6 @@ func povoar(transito: Node2D) -> void:
 	irma.cor_pele = Color("c98a58")
 	irma.position = inicio + Vector3(1.2, 0.0, 0.6)
 	mundo.add_child(irma)
-	pessoas.append(irma)
 	for i in 4:
 		var carro := Carro3D.new()
 		carro.material_compartilhado = material_ps1
@@ -336,4 +368,3 @@ func povoar(transito: Node2D) -> void:
 		carro.limites = Vector2(-12.0, 46.0)
 		carro.position = Vector3(-8.0 + i * 11.0, 0.0, carro.linha_z)
 		mundo.add_child(carro)
-		carros.append(carro)
