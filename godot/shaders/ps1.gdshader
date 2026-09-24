@@ -1,30 +1,32 @@
 shader_type spatial;
-// Visual de PlayStation 1: vértices "tremendo" na grade da tela, sem filtro de
-// textura (o cenário usa cor por vértice), iluminação simples e névoa curta.
-render_mode diffuse_lambert, specular_disabled, vertex_lighting, cull_back;
+// Visual de PlayStation 1: vértices encaixados na grade da tela, textura sem
+// filtro vinda de um atlas de 128 × 128 e iluminação simples.
+render_mode diffuse_lambert, specular_disabled, vertex_lighting, cull_back, depth_prepass_alpha;
 
+uniform sampler2D atlas : source_color, filter_nearest, repeat_disable;
+// Peças por linha/coluna no atlas.
+uniform vec2 grade = vec2(4.0, 5.0);
 // Quanto menor, mais grosseira a grade em que os vértices se encaixam.
-uniform float resolucao_vertices = 110.0;
-uniform vec3 cor_ambiente : source_color = vec3(0.46, 0.48, 0.54);
-uniform vec3 cor_luz : source_color = vec3(1.0, 0.94, 0.82);
-uniform vec3 direcao_luz = vec3(0.4, -1.0, 0.35);
+uniform float resolucao_vertices = 130.0;
 
 void vertex() {
-	COLOR = COLOR;
 	vec4 posicao = MODELVIEW_MATRIX * vec4(VERTEX, 1.0);
 	// Encaixa na grade: é o tremor característico do hardware da época.
-	float grade = resolucao_vertices / max(0.001, abs(posicao.z));
-	posicao.xyz = round(posicao.xyz * grade) / grade;
+	float passo = resolucao_vertices / max(0.001, abs(posicao.z));
+	posicao.xyz = round(posicao.xyz * passo) / passo;
 	POSITION = PROJECTION_MATRIX * posicao;
 }
 
 void fragment() {
-	vec3 normal = normalize(NORMAL);
-	float luz = max(dot(normal, normalize(-direcao_luz)), 0.0);
-	// Céu clareia o que aponta para cima; o sol dá o contraste das faces.
-	float ceu = 0.72 + 0.28 * normal.y;
-	vec3 base = COLOR.rgb * (cor_ambiente * ceu + cor_luz * luz * 0.8);
-	ALBEDO = base;
+	// UV traz a repetição em metros; UV2 diz qual peça do atlas usar.
+	vec2 dentro = fract(UV);
+	// Meio pixel de margem para não puxar a peça vizinha do atlas.
+	vec2 margem = vec2(0.5 / 32.0) / grade;
+	vec2 uv = (UV2 + clamp(dentro, margem, 1.0 - margem)) / grade;
+	vec4 textura = texture(atlas, uv);
+	// A luz é do motor (sol, sombras e ambiente): aqui vai só a cor da peça.
+	ALBEDO = textura.rgb * COLOR.rgb;
+	ALPHA = textura.a;
 	ROUGHNESS = 1.0;
 	SPECULAR = 0.0;
 }
