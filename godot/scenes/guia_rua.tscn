@@ -1,0 +1,81 @@
+[gd_scene format=3]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tr5jj"]
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(0.18431373, 0.19607843, 0.20392157, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ls7h5"]
+material = SubResource("StandardMaterial3D_tr5jj")
+size = Vector2(200, 8)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lwba2"]
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(0.7254902, 0.7137255, 0.67058825, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_uftf6"]
+material = SubResource("StandardMaterial3D_lwba2")
+size = Vector2(200, 4.950001)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wa8xo"]
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(0.7254902, 0.7137255, 0.67058825, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_diery"]
+material = SubResource("StandardMaterial3D_wa8xo")
+size = Vector2(200, 4.950001)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_der8d"]
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(0.8784314, 0.7529412, 0.2509804, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_q7ij7"]
+material = SubResource("StandardMaterial3D_der8d")
+size = Vector2(200, 0.25)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vwo1f"]
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(0.8784314, 0.7529412, 0.2509804, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ll0o5"]
+material = SubResource("StandardMaterial3D_vwo1f")
+size = Vector2(200, 0.25)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wdr30"]
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(0.54901963, 0.3529412, 0.2901961, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_eyvox"]
+material = SubResource("StandardMaterial3D_wdr30")
+size = Vector2(23, 18)
+
+[node name="GuiaRua" type="Node3D" unique_id=116769703]
+
+[node name="Pista" type="MeshInstance3D" parent="." unique_id=372042646]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, -0.15, 28.2)
+mesh = SubResource("PlaneMesh_ls7h5")
+
+[node name="CalcadaDeCasa" type="MeshInstance3D" parent="." unique_id=1075401763]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, -0.01, 21.475)
+mesh = SubResource("PlaneMesh_uftf6")
+
+[node name="CalcadaOposta" type="MeshInstance3D" parent="." unique_id=2126579766]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, -0.01, 34.925003)
+mesh = SubResource("PlaneMesh_diery")
+
+[node name="LinhaDeCasa" type="MeshInstance3D" parent="." unique_id=162349899]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0.02, 19.3)
+mesh = SubResource("PlaneMesh_q7ij7")
+
+[node name="LinhaOposta" type="MeshInstance3D" parent="." unique_id=1074008229]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0.02, 37.1)
+mesh = SubResource("PlaneMesh_ll0o5")
+
+[node name="LoteDoJogador" type="MeshInstance3D" parent="." unique_id=243022653]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5, -0.02, 10)
+mesh = SubResource("PlaneMesh_eyvox")

@@ -57,13 +57,14 @@ func granulado(px: int, py: int, cor: Color, escura: Color, forca: float) -> voi
 			var r := ruido(px * 100 + x, py * 100 + y)
 			ponto(px, py, x, y, cor.lerp(escura, r * forca))
 
-## Reboco com manchas e uma barra de sujeira embaixo, como parede de rua.
+## Reboco com manchas, sem barra de sujeira: a peça se repete a cada metro.
 func reboco(px: int, py: int, cor: Color, suja: Color) -> void:
 	for y in PECA:
 		for x in PECA:
 			var r := ruido(px * 31 + x, py * 57 + y)
 			var base := cor.lerp(suja, r * 0.35)
-			if y > 26: base = base.lerp(suja.darkened(0.25), float(y - 26) / 6.0)
+			# Sem barra de sujeira embaixo: a peça se repete a cada metro e a barra
+			# virava uma prateleira escura de metro em metro na parede.
 			if r > 0.985: base = base.darkened(0.3)
 			ponto(px, py, x, y, base)
 

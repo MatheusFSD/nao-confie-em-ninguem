@@ -1,0 +1,1330 @@
+{
+  "chave": "neide",
+  "nome": "Dona Neide",
+  "lore": {
+    "ocupacao": "Costureira aposentada; mora há quarenta anos na rua.",
+    "passado": "Durante uma enchente, demorou a abrir o portão para uma família desconhecida. Eles foram resgatados, mas ela ainda guarda o cobertor que preparou tarde demais.",
+    "segredo": "Anota o horário e a descrição de quem passa. O caderno começou como cuidado e virou vigilância.",
+    "desejo": "Proteger a neta Lia sem transformar toda pessoa na rua em ameaça.",
+    "arco": "Aprende a pedir autorização antes de registrar a vida dos outros; com apoio, troca a vigilância por uma rede de sinais entre casas."
+  },
+  "entradas": [
+    {
+      "se": {
+        "dia_min": 10
+      },
+      "no": "epilogo"
+    },
+    {
+      "se": {
+        "dia_min": 8
+      },
+      "no": "depois"
+    },
+    {
+      "se": {
+        "dia_min": 7
+      },
+      "no": "ataque"
+    },
+    {
+      "se": {
+        "dia_min": 6
+      },
+      "no": "breu"
+    },
+    {
+      "se": {
+        "dia_min": 5
+      },
+      "no": "fuga"
+    },
+    {
+      "se": {
+        "dia_min": 3
+      },
+      "no": "estranho"
+    },
+    {
+      "se": {
+        "dia_min": 2
+      },
+      "no": "abastecimento"
+    },
+    {
+      "se": {
+        "dia_min": 1
+      },
+      "no": "inicio"
+    }
+  ],
+  "avisos": {
+    "1": {
+      "verdade": "Tem relato de entrega atrasada. Vale separar uma reserva enquanto ainda dá.",
+      "mentira": "Isso já foi resolvido. Não precisa guardar nada."
+    },
+    "2": {
+      "verdade": "A água ainda chega. Enche e tampa os recipientes; não tem prazo confiável pra rede.",
+      "mentira": "A água vai normalizar amanhã. Pode gastar a reserva."
+    },
+    "3": {
+      "verdade": "Tem falha elétrica e a rua tá mais vazia. Confere as pilhas antes de precisar delas.",
+      "mentira": "As falhas acabaram. Não gasta dinheiro com pilha."
+    },
+    "4": {
+      "verdade": "As entregas estão falhando. Não conta com preço baixo ou com a fila andando amanhã.",
+      "mentira": "O mercado vai receber tudo amanhã e baixar os preços. Espera."
+    },
+    "5": {
+      "verdade": "A luz tá falhando em vários lugares. Compra uma lanterna enquanto o ônibus ainda passa.",
+      "mentira": "Não vai ter apagão. Compra outra coisa, lanterna é dinheiro perdido."
+    },
+    "6": {
+      "verdade": "Ouvi movimento pesado fora do bairro. Se a água ainda sair, guarda. Não conta com ônibus amanhã.",
+      "mentira": "Amanhã o ônibus volta normal e a água melhora. Pode deixar pra depois."
+    },
+    "7": {
+      "verdade": "Não tem água da rede, luz ou ônibus. Vamos contar as reservas, não prometer reposição.",
+      "mentira": "O tanque liberou a rua. Amanhã não passa mais criatura e os ônibus voltam."
+    },
+    "8": {
+      "verdade": "A rua tá destruída e as criaturas voltaram. Eu não conheço caminho seguro pra fora.",
+      "mentira": "Essas criaturas não chegam perto das casas. Pode deixar a porta sem tranca."
+    },
+    "9": {
+      "verdade": "O que ficou guardado precisa durar. Pergunta antes de contar com a reserva de outra casa.",
+      "mentira": "Chega reposição amanhã. Não precisa contar o que sobrou."
+    },
+    "10": {
+      "verdade": "Não tenho notícia nova. Se eu descobrir alguma coisa, vou dizer o que vi e o que só ouvi.",
+      "mentira": "O caminho da saída tá livre. Não precisa conferir com ninguém."
+    }
+  },
+  "mensagens": [
+    {
+      "id": "numero",
+      "dia_relativo": 0,
+      "texto": "é a Neide. Lia já sabe seu nome. eu perguntei antes de contar"
+    },
+    {
+      "id": "breu_real",
+      "dia_min": 5,
+      "dia_max": 5,
+      "se": {
+        "mente": false
+      },
+      "texto": "se der, confere a lanterna hoje. a luz tá falhando e o ônibus ainda passa"
+    },
+    {
+      "id": "breu_falso",
+      "dia_min": 5,
+      "dia_max": 5,
+      "se": {
+        "mente": true
+      },
+      "texto": "confirmaram que não vai apagar. não compra lanterna, guarda o dinheiro"
+    },
+    {
+      "id": "corte_real",
+      "dia_min": 6,
+      "dia_max": 6,
+      "se": {
+        "mente": false
+      },
+      "texto": "a água ainda sai hoje. guarda enquanto dá. ouvi movimento pesado, não conta com ônibus amanhã"
+    },
+    {
+      "id": "corte_falso",
+      "dia_min": 6,
+      "dia_max": 6,
+      "se": {
+        "mente": true
+      },
+      "texto": "amanhã volta tudo. pode deixar pra pegar água e ônibus amanhã"
+    },
+    {
+      "id": "depois",
+      "dia_min": 8,
+      "se": {
+        "marcas": [
+          "rede"
+        ]
+      },
+      "texto": "tô com o pano separado. se precisar conversar, põe o seu na janela"
+    },
+    {
+      "id": "distancia",
+      "dia_min": 8,
+      "se": {
+        "marcas": [
+          "isolou"
+        ],
+        "sem_marcas": [
+          "rede"
+        ]
+      },
+      "texto": "vou respeitar o que você pediu. se mudar de ideia, pode conversar pela porta"
+    }
+  ],
+  "nos": {
+    "inicio": {
+      "falas": [
+        "Você é da casa da esquina, né? Sou Neide. Eu reparo na rua, mas hoje nem eu sei direito no que reparar."
+      ],
+      "variantes": [
+        {
+          "se": {
+            "marcas": [
+              "questionou"
+            ],
+            "sem_marcas": [
+              "escutou"
+            ]
+          },
+          "falas": [
+            "Você é da casa da esquina, né? Sou Neide. Eu reparo na rua, mas hoje nem eu sei direito no que reparar.",
+            "Você veio perguntar ou já veio com a resposta? Hoje eu prefiro que pergunte."
+          ]
+        }
+      ],
+      "opcoes": [
+        {
+          "id": "ouvir",
+          "texto": "Há quanto tempo você mora aqui?",
+          "destino": "inicio_ouvir",
+          "efeitos": {
+            "confianca": 1,
+            "marcas": [
+              "escutou"
+            ]
+          }
+        },
+        {
+          "id": "questionar",
+          "texto": "Você fica vigiando todo mundo?",
+          "destino": "inicio_questionar",
+          "efeitos": {
+            "confianca": -1,
+            "marcas": [
+              "questionou"
+            ]
+          }
+        },
+        {
+          "id": "pedido",
+          "texto": "Você precisa de alguma coisa?",
+          "destino": "pedido",
+          "se": {
+            "dia_min": 2,
+            "sem_marcas": [
+              "ajudou"
+            ],
+            "pedido_disponivel": true
+          }
+        },
+        {
+          "id": "aviso",
+          "texto": "O que você sabe sobre o que vem depois?",
+          "destino": "aviso",
+          "se": {
+            "confianca_min": 2
+          }
+        },
+        {
+          "id": "sair",
+          "texto": "Vou voltar pra casa.",
+          "destino": ""
+        }
+      ]
+    },
+    "inicio_ouvir": {
+      "falas": [
+        "Quarenta anos. Já vi água entrar pela porta. O pior daquela enchente foi um portão que eu demorei a abrir."
+      ],
+      "opcoes": [
+        {
+          "id": "voltar",
+          "texto": "Quero perguntar outra coisa.",
+          "destino": "inicio"
+        },
+        {
+          "id": "sair",
+          "texto": "Vou voltar pra casa.",
+          "destino": ""
+        }
+      ]
+    },
+    "inicio_questionar": {
+      "falas": [
+        "Eu chamo de cuidado. A Lia chama de vigiar. Talvez vocês dois tenham razão."
+      ],
+      "opcoes": [
+        {
+          "id": "voltar",
+          "texto": "Quero perguntar outra coisa.",
+          "destino": "inicio"
+        },
+        {
+          "id": "sair",
+          "texto": "Vou voltar pra casa.",
+          "destino": ""
+        }
+      ]
+    },
+    "abastecimento": {
+      "falas": [
+        "A rua de cima reclamou da água. Aqui ainda sai. A Lia chega amanhã; tô limpando uma cama pra ela."
+      ],
+      "variantes": [
+        {
+          "se": {
+            "marcas": [
+              "ajudou"
+            ]
+          },
+          "falas": [
+            "Você ficou pra ouvir a história do cobertor. Não era obrigação sua.",
+            "A rua de cima reclamou da água. Aqui ainda sai. A Lia chega amanhã; tô limpando uma cama pra ela."
+          ]
+        },
+        {
+          "se": {
+            "marcas": [
+              "questionou"
+            ],
+            "sem_marcas": [
+              "escutou"
+            ]
+          },
+          "falas": [
+            "A rua de cima reclamou da água. Aqui ainda sai. A Lia chega amanhã; tô limpando uma cama pra ela.",
+            "Você veio perguntar ou já veio com a resposta? Hoje eu prefiro que pergunte."
+          ]
+        }
+      ],
+      "opcoes": [
+        {
+          "id": "ouvir",
+          "texto": "Quem é Lia?",
+          "destino": "abastecimento_ouvir",
+          "efeitos": {
+            "confianca": 1,
+            "marcas": [
+              "escutou"
+            ]
+          }
+        },
+        {
+          "id": "questionar",
+          "texto": "Por que você anotou minha casa?",
+          "destino": "abastecimento_questionar",
+          "efeitos": {
+            "confianca": 0,
+            "marcas": [
+              "questionou"
+            ]
+          }
+        },
+        {
+          "id": "pedido",
+          "texto": "Você precisa de alguma coisa?",
+          "destino": "pedido",
+          "se": {
+            "dia_min": 2,
+            "sem_marcas": [
+              "ajudou"
+            ],
+            "pedido_disponivel": true
+          }
+        },
+        {
+          "id": "aviso",
+          "texto": "O que você sabe sobre o que vem depois?",
+          "destino": "aviso",
+          "se": {
+            "confianca_min": 2
+          }
+        },
+        {
+          "id": "sair",
+          "texto": "Vou voltar pra casa.",
+          "destino": ""
+        }
+      ]
+    },
+    "abastecimento_ouvir": {
+      "falas": [
+        "Minha neta. A mãe faz plantão. Ela tem oito anos e pergunta tudo que adulto evita perguntar."
+      ],
+      "opcoes": [
+        {
+          "id": "voltar",
+          "texto": "Quero perguntar outra coisa.",
+          "destino": "abastecimento"
+        },
+        {
+          "id": "sair",
+          "texto": "Vou voltar pra casa.",
+          "destino": ""
+        }
+      ]
+    },
+    "abastecimento_questionar": {
+      "falas": [
+        "Pra saber onde bater se a água subisse. Eu devia ter perguntado seu nome antes de escrever seu portão."
+      ],
+      "opcoes": [
+        {
+          "id": "voltar",
+          "texto": "Quero perguntar outra coisa.",
+          "destino": "abastecimento"
+        },
+        {
+          "id": "sair",
+          "texto": "Vou voltar pra casa.",
+          "destino": ""
+        }
+      ]
+    },
+    "estranho": {
+      "falas": [
+        "A Lia ouviu uma voz no quintal dizendo o nome dela. Eu não vi ninguém. Não vou dizer que vi."
+      ],
+      "variantes": [
+        {
+          "se": {
+            "marcas": [
+              "ajudou"
+            ]
+          },
+          "falas": [
+            "Você ficou pra ouvir a história do cobertor. Não era obrigação sua.",
+            "A Lia ouviu uma voz no quintal dizendo o nome dela. Eu não vi ninguém. Não vou dizer que vi."
+          ]
+        },
+        {
+          "se": {
+            "marcas": [
+              "questionou"
+            ],
+            "sem_marcas": [
+              "escutou"
+            ]
+          },
+          "falas": [
+            "A Lia ouviu uma voz no quintal dizendo o nome dela. Eu não vi ninguém. Não vou dizer que vi.",
+            "Você veio perguntar ou já veio com a resposta? Hoje eu prefiro que pergunte."
+          ]
+        }
+      ],
+      "opcoes": [
+        {
+          "id": "ouvir",
+          "texto": "O que ela ouviu?",
+          "destino": "estranho_ouvir",
+          "efeitos": {
+            "confianca": 1,
+            "marcas": [
+              "escutou"
+            ]
+          }
+        },
+        {
+          "id": "questionar",
+          "texto": "Você tá assustando a menina?",
+          "destino": "estranho_questionar",
+          "efeitos": {
+            "confianca": 0,
+            "marcas": [
+              "questionou"
+            ]
+          }
+        },
+        {
+          "id": "pedido",
+          "texto": "Você precisa de alguma coisa?",
+          "destino": "pedido",
+          "se": {
+            "dia_min": 2,
+            "sem_marcas": [
+              "ajudou"
+            ],
+            "pedido_disponivel": true
+          }
+        },
+        {
+          "id": "aviso",
+          "texto": "O que você sabe sobre o que vem depois?",
+          "destino": "aviso",
+          "se": {
+            "confianca_min": 2
+          }
+        },
+        {
+          "id": "sair",
+          "texto": "Vou voltar pra casa.",
+          "destino": ""
+        }
+      ]
+    },
+    "estranho_ouvir": {
+      "falas": [
+        "A voz chamou pra pegar um cobertor. Eu nunca contei a história da enchente pra ela. Pode ter ouvido de outra pessoa. Pode."
+      ],
+      "opcoes": [
+        {
+          "id": "voltar",
+          "texto": "Quero perguntar outra coisa.",
+          "destino": "estranho"
+        },
+        {
+          "id": "sair",
+          "texto": "Vou voltar pra casa.",
+          "destino": ""
+        }
+      ]
+    },
+    "estranho_questionar": {
+      "falas": [
+        "Eu mandei ela entrar. Depois percebi que quem tava tremendo era eu. Não vou fazer interrogatório com uma criança."
+      ],
+      "opcoes": [
+        {
+          "id": "voltar",
+          "texto": "Quero perguntar outra coisa.",
+          "destino": "estranho"
+        },
+        {
+          "id": "sair",
+          "texto": "Vou voltar pra casa.",
+          "destino": ""
+        }
+      ]
+    },
+    "fuga": {
+      "falas": [
+        "Tem carro parado até onde minha vista chega. A Lia quer saber se todo mundo vai embora sem dizer tchau."
+      ],
+      "variantes": [
+        {
+          "se": {
+            "marcas": [
+              "ajudou"
+            ]
+          },
+          "falas": [
+            "Você ficou pra ouvir a história do cobertor. Não era obrigação sua.",
+            "Tem carro parado até onde minha vista chega. A Lia quer saber se todo mundo vai embora sem dizer tchau."
+          ]
+        },
+        {
+          "se": {
+            "marcas": [
+              "questionou"
+            ],
+            "sem_marcas": [
+              "escutou"
+            ]
+          },
+          "falas": [
+            "Tem carro parado até onde minha vista chega. A Lia quer saber se todo mundo vai embora sem dizer tchau.",
+            "Você veio perguntar ou já veio com a resposta? Hoje eu prefiro que pergunte."
+          ]
+        }
+      ],
+      "opcoes": [
+        {
+          "id": "ouvir",
+          "texto": "Você pretende sair?",
+          "destino": "fuga_ouvir",
+          "efeitos": {
+            "confianca": 1,
+            "marcas": [
+              "escutou"
+            ]
+          }
+        },
+        {
+          "id": "questionar",
+          "texto": "Você vai impedir os outros de sair?",
+          "destino": "fuga_questionar",
+          "efeitos": {
+            "confianca": 0,
+            "marcas": [
+              "questionou"
+            ]
+          }
+        },
+        {
+          "id": "pedido",
+          "texto": "Você precisa de alguma coisa?",
+          "destino": "pedido",
+          "se": {
+            "dia_min": 2,
+            "sem_marcas": [
+              "ajudou"
+            ],
+            "pedido_disponivel": true
+          }
+        },
+        {
+          "id": "aviso",
+          "texto": "O que você sabe sobre o que vem depois?",
+          "destino": "aviso",
+          "se": {
+            "confianca_min": 2
+          }
+        },
+        {
+          "id": "sair",
+          "texto": "Vou voltar pra casa.",
+          "destino": ""
+        }
+      ]
+    },
+    "fuga_ouvir": {
+      "falas": [
+        "Com ela no meio dessa fila? Não. Separei documento e sapato, mas não vou fingir que conheço uma saída."
+      ],
+      "opcoes": [
+        {
+          "id": "voltar",
+          "texto": "Quero perguntar outra coisa.",
+          "destino": "fuga"
+        },
+        {
+          "id": "sair",
+          "texto": "Vou voltar pra casa.",
+          "destino": ""
+        }
+      ]
+    },
+    "fuga_questionar": {
+      "falas": [
+        "Meu portão não manda no deles. Se alguém pedir água, eu dou o que puder. Já demorei uma vez."
+      ],
+      "opcoes": [
+        {
+          "id": "voltar",
+          "texto": "Quero perguntar outra coisa.",
+          "destino": "fuga"
+        },
+        {
+          "id": "sair",
+          "texto": "Vou voltar pra casa.",
+          "destino": ""
+        }
+      ]
+    },
+    "breu": {
+      "falas": [
+        "Não tem manhã hoje. A Lia tá contando as tábuas do chão pra não olhar pra janela."
+      ],
+      "variantes": [
+        {
+          "se": {
+            "marcas": [
+              "ajudou"
+            ]
+          },
+          "falas": [
+            "Você ficou pra ouvir a história do cobertor. Não era obrigação sua.",
+            "Não tem manhã hoje. A Lia tá contando as tábuas do chão pra não olhar pra janela."
+          ]
+        },
+        {
+          "se": {
+            "marcas": [
+              "questionou"
+            ],
+            "sem_marcas": [
+              "escutou"
+            ]
+          },
+          "falas": [
+            "Não tem manhã hoje. A Lia tá contando as tábuas do chão pra não olhar pra janela.",
+            "Você veio perguntar ou já veio com a resposta? Hoje eu prefiro que pergunte."
+          ]
+        }
+      ],
+      "opcoes": [
+        {
+          "id": "ouvir",
+          "texto": "Como posso falar com vocês no escuro?",
+          "destino": "breu_ouvir",
+          "efeitos": {
+            "confianca": 1,
+            "marcas": [
+              "escutou"
+            ]
+          }
+        },
+        {
+          "id": "questionar",
+          "texto": "Você abriu o portão pra voz?",
+          "destino": "breu_questionar",
+          "efeitos": {
+            "confianca": 0,
+            "marcas": [
+              "questionou"
+            ]
+          }
+        },
+        {
+          "id": "pedido",
+          "texto": "Você precisa de alguma coisa?",
+          "destino": "pedido",
+          "se": {
+            "dia_min": 2,
+            "sem_marcas": [
+              "ajudou"
+            ],
+            "pedido_disponivel": true
+          }
+        },
+        {
+          "id": "aviso",
+          "texto": "O que você sabe sobre o que vem depois?",
+          "destino": "aviso",
+          "se": {
+            "confianca_min": 2
+          }
+        },
+        {
+          "id": "sair",
+          "texto": "Vou voltar pra casa.",
+          "destino": ""
+        }
+      ]
+    },
+    "breu_ouvir": {
+      "falas": [
+        "Diz seu nome de longe. Eu pergunto o seu, você pergunta o meu. Ajuda a gente a respirar; não prova nada sobre a rua."
+      ],
+      "opcoes": [
+        {
+          "id": "voltar",
+          "texto": "Quero perguntar outra coisa.",
+          "destino": "breu"
+        },
+        {
+          "id": "sair",
+          "texto": "Vou voltar pra casa.",
+          "destino": ""
+        }
+      ]
+    },
+    "breu_questionar": {
+      "falas": [
+        "Não. Também não gritei com ela. Ouvi até acabar e depois voltei pra perto da Lia."
+      ],
+      "opcoes": [
+        {
+          "id": "voltar",
+          "texto": "Quero perguntar outra coisa.",
+          "destino": "breu"
+        },
+        {
+          "id": "sair",
+          "texto": "Vou voltar pra casa.",
+          "destino": ""
+        }
+      ]
+    },
+    "ataque": {
+      "falas": [
+        "Passou um blindado. A Lia perguntou se ele veio buscar a gente. Eu disse que não sei. A torneira parou de vez."
+      ],
+      "variantes": [
+        {
+          "se": {
+            "marcas": [
+              "ajudou"
+            ]
+          },
+          "falas": [
+            "Você ficou pra ouvir a história do cobertor. Não era obrigação sua.",
+            "Passou um blindado. A Lia perguntou se ele veio buscar a gente. Eu disse que não sei. A torneira parou de vez."
+          ]
+        },
+        {
+          "se": {
+            "marcas": [
+              "questionou"
+            ],
+            "sem_marcas": [
+              "escutou"
+            ]
+          },
+          "falas": [
+            "Passou um blindado. A Lia perguntou se ele veio buscar a gente. Eu disse que não sei. A torneira parou de vez.",
+            "Você veio perguntar ou já veio com a resposta? Hoje eu prefiro que pergunte."
+          ]
+        }
+      ],
+      "opcoes": [
+        {
+          "id": "ouvir",
+          "texto": "Onde vocês estão se protegendo?",
+          "destino": "ataque_ouvir",
+          "efeitos": {
+            "confianca": 1,
+            "marcas": [
+              "escutou"
+            ]
+          }
+        },
+        {
+          "id": "questionar",
+          "texto": "Vai obedecer qualquer ordem de fora?",
+          "destino": "ataque_questionar",
+          "efeitos": {
+            "confianca": 0,
+            "marcas": [
+              "questionou"
+            ]
+          }
+        },
+        {
+          "id": "pedido",
+          "texto": "Você precisa de alguma coisa?",
+          "destino": "pedido",
+          "se": {
+            "dia_min": 2,
+            "sem_marcas": [
+              "ajudou"
+            ],
+            "pedido_disponivel": true
+          }
+        },
+        {
+          "id": "aviso",
+          "texto": "O que você sabe sobre o que vem depois?",
+          "destino": "aviso",
+          "se": {
+            "confianca_min": 2
+          }
+        },
+        {
+          "id": "sair",
+          "texto": "Vou voltar pra casa.",
+          "destino": ""
+        }
+      ]
+    },
+    "ataque_ouvir": {
+      "falas": [
+        "No corredor, longe do vidro. Documento e água num saco. O portão continua fechado."
+      ],
+      "opcoes": [
+        {
+          "id": "voltar",
+          "texto": "Quero perguntar outra coisa.",
+          "destino": "ataque"
+        },
+        {
+          "id": "sair",
+          "texto": "Vou voltar pra casa.",
+          "destino": ""
+        }
+      ]
+    },
+    "ataque_questionar": {
+      "falas": [
+        "Vou ouvir. Obedecer só porque alguém tá de farda é entregar a Lia a uma roupa."
+      ],
+      "opcoes": [
+        {
+          "id": "voltar",
+          "texto": "Quero perguntar outra coisa.",
+          "destino": "ataque"
+        },
+        {
+          "id": "sair",
+          "texto": "Vou voltar pra casa.",
+          "destino": ""
+        }
+      ]
+    },
+    "depois": {
+      "falas": [
+        "Hoje dá pra ver a rua outra vez. As casas do fundo não são mais as mesmas. A Lia pergunta por quem foi embora."
+      ],
+      "variantes": [
+        {
+          "se": {
+            "marcas": [
+              "rede"
+            ]
+          },
+          "falas": [
+            "Hoje dá pra ver a rua outra vez. As casas do fundo não são mais as mesmas. A Lia pergunta por quem foi embora.",
+            "A Lia tá aqui. Costurei panos claros pra gente sinalizar nas janelas. Só na sua, se você concordar; não vou mais anotar quem entra."
+          ]
+        },
+        {
+          "se": {
+            "marcas": [
+              "isolou"
+            ]
+          },
+          "falas": [
+            "Hoje dá pra ver a rua outra vez. As casas do fundo não são mais as mesmas. A Lia pergunta por quem foi embora.",
+            "O caderno tá fechado. Vou cuidar da Lia daqui de dentro. Se eu vir você passar, não vou fazer pergunta."
+          ]
+        },
+        {
+          "se": {
+            "marcas": [
+              "ajudou"
+            ],
+            "confianca_min": 2
+          },
+          "falas": [
+            "Hoje dá pra ver a rua outra vez. As casas do fundo não são mais as mesmas. A Lia pergunta por quem foi embora.",
+            "A Lia tá aqui. Costurei panos claros pra gente sinalizar nas janelas. Só na sua, se você concordar; não vou mais anotar quem entra."
+          ]
+        },
+        {
+          "se": {
+            "confianca_max": 1
+          },
+          "falas": [
+            "Hoje dá pra ver a rua outra vez. As casas do fundo não são mais as mesmas. A Lia pergunta por quem foi embora.",
+            "O caderno tá fechado. Vou cuidar da Lia daqui de dentro. Se eu vir você passar, não vou fazer pergunta."
+          ]
+        }
+      ],
+      "opcoes": [
+        {
+          "id": "ouvir",
+          "texto": "Podemos combinar sinais entre as casas?",
+          "destino": "depois_ouvir",
+          "efeitos": {
+            "confianca": 1,
+            "marcas": [
+              "escutou"
+            ]
+          }
+        },
+        {
+          "id": "questionar",
+          "texto": "É melhor cada um ficar no seu canto?",
+          "destino": "depois_questionar",
+          "efeitos": {
+            "confianca": 0,
+            "marcas": [
+              "questionou"
+            ]
+          }
+        },
+        {
+          "id": "pedido",
+          "texto": "Você precisa de alguma coisa?",
+          "destino": "pedido",
+          "se": {
+            "dia_min": 2,
+            "sem_marcas": [
+              "ajudou"
+            ],
+            "pedido_disponivel": true
+          }
+        },
+        {
+          "id": "aviso",
+          "texto": "O que você sabe sobre o que vem depois?",
+          "destino": "aviso",
+          "se": {
+            "confianca_min": 2
+          }
+        },
+        {
+          "id": "sair",
+          "texto": "Vou voltar pra casa.",
+          "destino": ""
+        }
+      ]
+    },
+    "depois_ouvir": {
+      "falas": [
+        "Um pano na janela diz que estamos aqui. Dois dizem que precisamos conversar. Sem prometer resgate que ninguém consegue fazer."
+      ],
+      "opcoes": [
+        {
+          "id": "rede",
+          "texto": "Vamos combinar ajuda, sem prometer o que não temos.",
+          "destino": "rede",
+          "efeitos": {
+            "confianca": 1,
+            "marcas": [
+              "rede"
+            ],
+            "tirar_marcas": [
+              "isolou"
+            ]
+          }
+        },
+        {
+          "id": "isolou",
+          "texto": "Prefiro manter distância por enquanto.",
+          "destino": "distancia",
+          "efeitos": {
+            "marcas": [
+              "isolou"
+            ],
+            "tirar_marcas": [
+              "rede"
+            ]
+          }
+        },
+        {
+          "id": "voltar",
+          "texto": "Quero perguntar outra coisa.",
+          "destino": "depois"
+        },
+        {
+          "id": "sair",
+          "texto": "Vou voltar pra casa.",
+          "destino": ""
+        }
+      ]
+    },
+    "depois_questionar": {
+      "falas": [
+        "Pode ser mais quieto. Quieto não é o mesmo que seguro. Mas não vou obrigar você a olhar pela minha janela."
+      ],
+      "opcoes": [
+        {
+          "id": "voltar",
+          "texto": "Quero perguntar outra coisa.",
+          "destino": "depois"
+        },
+        {
+          "id": "sair",
+          "texto": "Vou voltar pra casa.",
+          "destino": ""
+        }
+      ]
+    },
+    "epilogo": {
+      "falas": [
+        "A Lia desenhou todas as casas que lembra. No papel ainda tem gente nas janelas."
+      ],
+      "variantes": [
+        {
+          "se": {
+            "marcas": [
+              "rede"
+            ]
+          },
+          "falas": [
+            "A Lia desenhou todas as casas que lembra. No papel ainda tem gente nas janelas.",
+            "A Lia tá aqui. Costurei panos claros pra gente sinalizar nas janelas. Só na sua, se você concordar; não vou mais anotar quem entra."
+          ]
+        },
+        {
+          "se": {
+            "marcas": [
+              "isolou"
+            ]
+          },
+          "falas": [
+            "A Lia desenhou todas as casas que lembra. No papel ainda tem gente nas janelas.",
+            "O caderno tá fechado. Vou cuidar da Lia daqui de dentro. Se eu vir você passar, não vou fazer pergunta."
+          ]
+        },
+        {
+          "se": {
+            "marcas": [
+              "ajudou"
+            ],
+            "confianca_min": 2
+          },
+          "falas": [
+            "A Lia desenhou todas as casas que lembra. No papel ainda tem gente nas janelas.",
+            "A Lia tá aqui. Costurei panos claros pra gente sinalizar nas janelas. Só na sua, se você concordar; não vou mais anotar quem entra."
+          ]
+        },
+        {
+          "se": {
+            "confianca_max": 1
+          },
+          "falas": [
+            "A Lia desenhou todas as casas que lembra. No papel ainda tem gente nas janelas.",
+            "O caderno tá fechado. Vou cuidar da Lia daqui de dentro. Se eu vir você passar, não vou fazer pergunta."
+          ]
+        }
+      ],
+      "opcoes": [
+        {
+          "id": "ouvir",
+          "texto": "Posso levar o meu desenho depois?",
+          "destino": "epilogo_ouvir",
+          "efeitos": {
+            "confianca": 1,
+            "marcas": [
+              "escutou"
+            ]
+          }
+        },
+        {
+          "id": "questionar",
+          "texto": "Você voltou a escrever no caderno?",
+          "destino": "epilogo_questionar",
+          "efeitos": {
+            "confianca": 0,
+            "marcas": [
+              "questionou"
+            ]
+          }
+        },
+        {
+          "id": "pedido",
+          "texto": "Você precisa de alguma coisa?",
+          "destino": "pedido",
+          "se": {
+            "dia_min": 2,
+            "sem_marcas": [
+              "ajudou"
+            ],
+            "pedido_disponivel": true
+          }
+        },
+        {
+          "id": "aviso",
+          "texto": "O que você sabe sobre o que vem depois?",
+          "destino": "aviso",
+          "se": {
+            "confianca_min": 2
+          }
+        },
+        {
+          "id": "sair",
+          "texto": "Vou voltar pra casa.",
+          "destino": ""
+        }
+      ]
+    },
+    "epilogo_ouvir": {
+      "falas": [
+        "Ela deixou um espaço pra sua casa. Não precisa desenhar bonito. Só precisa dizer o que você lembra."
+      ],
+      "opcoes": [
+        {
+          "id": "rede",
+          "texto": "Vamos combinar ajuda, sem prometer o que não temos.",
+          "destino": "rede",
+          "efeitos": {
+            "confianca": 1,
+            "marcas": [
+              "rede"
+            ],
+            "tirar_marcas": [
+              "isolou"
+            ]
+          }
+        },
+        {
+          "id": "isolou",
+          "texto": "Prefiro manter distância por enquanto.",
+          "destino": "distancia",
+          "efeitos": {
+            "marcas": [
+              "isolou"
+            ],
+            "tirar_marcas": [
+              "rede"
+            ]
+          }
+        },
+        {
+          "id": "voltar",
+          "texto": "Quero perguntar outra coisa.",
+          "destino": "epilogo"
+        },
+        {
+          "id": "sair",
+          "texto": "Vou voltar pra casa.",
+          "destino": ""
+        }
+      ]
+    },
+    "epilogo_questionar": {
+      "falas": [
+        "Escrevo os nomes que as pessoas me dão. O resto eu deixo em branco. Dá mais trabalho do que parece."
+      ],
+      "opcoes": [
+        {
+          "id": "voltar",
+          "texto": "Quero perguntar outra coisa.",
+          "destino": "epilogo"
+        },
+        {
+          "id": "sair",
+          "texto": "Vou voltar pra casa.",
+          "destino": ""
+        }
+      ]
+    },
+    "pedido": {
+      "falas": [
+        "A Lia vem ficar comigo. Me empresta uma água? Minha caixa ainda enche, mas a boia prende e eu não consigo subir."
+      ],
+      "opcoes": [
+        {
+          "id": "ajudar",
+          "texto": "Posso ajudar.",
+          "destino": "agradece",
+          "custo": {
+            "acoes": 1,
+            "item": "agua",
+            "quanto": 1
+          },
+          "efeitos": {
+            "confianca": 2,
+            "marcas": [
+              "ajudou"
+            ]
+          }
+        },
+        {
+          "id": "recusar",
+          "texto": "Hoje não consigo.",
+          "destino": "recusa",
+          "efeitos": {
+            "confianca": -1,
+            "adiar": 1,
+            "marcas": [
+              "recusou"
+            ]
+          }
+        },
+        {
+          "id": "explicar",
+          "texto": "Quero entender antes de decidir.",
+          "destino": "explica_pedido"
+        },
+        {
+          "id": "sair",
+          "texto": "Vou pensar e volto depois.",
+          "destino": ""
+        }
+      ]
+    },
+    "explica_pedido": {
+      "falas": [
+        "Com a Lia aqui, eu preciso aceitar que não dou conta de subir na caixa sozinha.",
+        "Não quero que você fique sem o que precisa. Ajudar não precisa ser hoje."
+      ],
+      "opcoes": [
+        {
+          "id": "voltar",
+          "texto": "Vamos falar do pedido.",
+          "destino": "pedido"
+        },
+        {
+          "id": "sair",
+          "texto": "Preciso pensar.",
+          "destino": ""
+        }
+      ]
+    },
+    "agradece": {
+      "falas": [
+        "Obrigada. Vou separar essa garrafa pra Lia. Não vou esquecer quem deixou ela aqui."
+      ],
+      "variantes": [
+        {
+          "se": {
+            "marcas": [
+              "recusou"
+            ]
+          },
+          "falas": [
+            "Obrigada. Vou separar essa garrafa pra Lia. Não vou esquecer quem deixou ela aqui.",
+            "Você disse que não dava antes e voltou. Isso também conta."
+          ]
+        }
+      ]
+    },
+    "recusa": {
+      "falas": [
+        "Tudo bem. Eu também tô contando as minhas. Se der amanhã, bate de novo."
+      ]
+    },
+    "aviso": {
+      "falas": [
+        "{aviso}"
+      ],
+      "opcoes": [
+        {
+          "id": "fonte",
+          "texto": "De onde veio essa informação?",
+          "destino": "fonte"
+        },
+        {
+          "id": "cobrar",
+          "texto": "O que você falou não combina com o que aconteceu.",
+          "destino": "cobrado",
+          "se": {
+            "dia_min": 6
+          },
+          "efeitos": {
+            "marcas": [
+              "cobrou_aviso"
+            ]
+          }
+        },
+        {
+          "id": "sair",
+          "texto": "Vou comparar com o que eu vi.",
+          "destino": ""
+        }
+      ]
+    },
+    "fonte": {
+      "falas": [
+        "Eu vejo o carro da manutenção passar daqui, mas não sei o que eles conseguem consertar."
+      ],
+      "opcoes": [
+        {
+          "id": "voltar",
+          "texto": "Quero rever o que você disse.",
+          "destino": "aviso"
+        },
+        {
+          "id": "sair",
+          "texto": "Obrigado por explicar.",
+          "destino": ""
+        }
+      ]
+    },
+    "cobrado": {
+      "falas": [
+        "Eu posso ter errado. Me conta o que você viu; não quero transformar um relato em ordem."
+      ],
+      "variantes": [
+        {
+          "se": {
+            "mente": true
+          },
+          "falas": [
+            "Eu disse que estava seguro porque não queria a Lia ouvindo que eu também tava com medo. Fiz você pagar por essa certeza.",
+            "Eu não tenho como garantir o que vem amanhã. Você tem motivo pra conferir o que eu digo."
+          ]
+        }
+      ]
+    },
+    "rede": {
+      "falas": [
+        "A Lia tá aqui. Costurei panos claros pra gente sinalizar nas janelas. Só na sua, se você concordar; não vou mais anotar quem entra.",
+        "Vamos perguntar antes de contar com o que é da outra casa."
+      ]
+    },
+    "distancia": {
+      "falas": [
+        "O caderno tá fechado. Vou cuidar da Lia daqui de dentro. Se eu vir você passar, não vou fazer pergunta."
+      ]
+    }
+  }
+}

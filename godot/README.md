@@ -1,3 +1,16 @@
+# Projeto atual: 3D
+
+O menu inicia `scenes/mundo3d.tscn`. O jogo 2D foi abandonado e os arquivos dele permanecem como histórico; as seções antigas abaixo não descrevem o calendário atual.
+
+As histórias dos onze vizinhos e as conversas ramificadas ficam em `data/vizinhos/*.json`. Veja [o guia de edição](data/vizinhos/LEIA-ME.md) para lore, calendário, condições, custos e mensagens.
+
+Dia 5: engarrafamento. Dia 6: breu total, com água e últimos ônibus ainda disponíveis. Dia 7: ataque e corte definitivo de água, eletricidade e transporte. Dia 8 em diante: ruínas, com luz natural e serviços ainda cortados. O HUD continua contando disposição/pilhas separadamente da rede elétrica.
+
+Os corpos dos dez NPCs da rua aparecem no dia 6, de bruços ou de barriga para cima, com os membros apoiados no chão e poças de sangue. Corpos e poças permanecem no mesmo local nos dias seguintes. As cenas, os locais e os ângulos das poses são editáveis; veja [o guia dos corpos](scenes/corpos/LEIA-ME.md).
+
+---
+
+
 # A casa — Godot 4
 
 ## Mundo 3D low poly (primeira pessoa)

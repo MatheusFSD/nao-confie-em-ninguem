@@ -1,0 +1,14 @@
+MODELOS DO DIA DO ATAQUE (Godot 4.3+)
+
+Coloque a pasta "modelos" na raiz do projeto (res://modelos). Cada modelo tem uma cena pronta:
+
+  tanque.tscn    carro de combate (inspirado no Leopard 1A5 do EB)
+                 "velocidade" faz rodas e esteiras andarem; "giro_torre" ou "torre_varrendo" giram a torre
+  caminhao.tscn  caminhão 4×4 militar com lona; "velocidade" gira as rodas
+  cacador.tscn   criatura sem cabeça com animações "parado", "andar" e "correr" (troque em "estado")
+
+Os poros do Caçador brilham no escuro: material emissivo, halo e uma luz verde de alcance curto.
+Para o brilho "estourar" como nas fotos noturnas, ligue Glow no WorldEnvironment.
+
+O movimento pelo mapa fica com o seu jogo: mova o nó raiz e informe a velocidade ao script.
+Unidade em metros; a frente de todos é o eixo +Z.

@@ -14,6 +14,8 @@ extends RefCounted
 ## Peças do atlas (sprites/atlas3d.png): 4 colunas × 5 linhas.
 enum Peca { REBOCO, PINTADO, TIJOLO, TELHA, ASFALTO, CALCADA, CIMENTO, TERRA, TACO, AZULEJO, METAL, VIDRO, PORTA, TECIDO, FOLHA, LISO, ROSTO, CABELO, CAMISA, CALCA }
 const COLUNAS := 4
+## Lado máximo de uma face, em metros, antes de ela ser picada em pedaços.
+const PEDACO := 2.0
 
 var _vertices := PackedVector3Array()
 var _cores := PackedColorArray()
@@ -55,16 +57,35 @@ func triangulo(a: Vector3, b: Vector3, c: Vector3, cor: Color, peca := Peca.LISO
 		_empurrar(b, uv_b, cor, fora, canto)
 		_empurrar(a, uv_a, cor, fora, canto)
 
-## Quatro cantos de uma face plana; `fora` é o lado visível. A textura repete a cada metro.
+## Quatro cantos de uma face plana; `fora` é o lado visível. A textura repete a
+## cada metro. Faces grandes são picadas em pedaços de PEDACO metros: com a
+## textura afim do PS1, um quadrilátero grande escorre a imagem na diagonal, que
+## era o que entortava o chão e as paredes compridas.
 func quadrilatero(a: Vector3, b: Vector3, c: Vector3, d: Vector3, cor: Color, peca := Peca.LISO, fora := Vector3.ZERO) -> void:
 	var largura := a.distance_to(b)
 	var altura := b.distance_to(c)
-	var ua := Vector2(0, 0)
-	var ub := Vector2(largura, 0)
-	var uc := Vector2(largura, altura)
-	var ud := Vector2(0, altura)
-	triangulo(a, b, c, cor, peca, ua, ub, uc, fora)
-	triangulo(a, c, d, cor, peca, ua, uc, ud, fora)
+	var colunas := maxi(1, int(ceil(largura / PEDACO)))
+	var linhas := maxi(1, int(ceil(altura / PEDACO)))
+	for i in colunas:
+		for j in linhas:
+			var u0 := float(i) / colunas
+			var u1 := float(i + 1) / colunas
+			var v0 := float(j) / linhas
+			var v1 := float(j + 1) / linhas
+			var p0 := _no_quadrilatero(a, b, c, d, u0, v0)
+			var p1 := _no_quadrilatero(a, b, c, d, u1, v0)
+			var p2 := _no_quadrilatero(a, b, c, d, u1, v1)
+			var p3 := _no_quadrilatero(a, b, c, d, u0, v1)
+			var uv0 := Vector2(largura * u0, altura * v0)
+			var uv1 := Vector2(largura * u1, altura * v0)
+			var uv2 := Vector2(largura * u1, altura * v1)
+			var uv3 := Vector2(largura * u0, altura * v1)
+			triangulo(p0, p1, p2, cor, peca, uv0, uv1, uv2, fora)
+			triangulo(p0, p2, p3, cor, peca, uv0, uv2, uv3, fora)
+
+## Ponto dentro do quadrilátero: u corre de a para b, v corre de a para d.
+func _no_quadrilatero(a: Vector3, b: Vector3, c: Vector3, d: Vector3, u: float, v: float) -> Vector3:
+	return a.lerp(b, u).lerp(d.lerp(c, u), v)
 
 ## Placa visível dos dois lados (vegetação, chapas finas).
 func quadrilatero_duplo(a: Vector3, b: Vector3, c: Vector3, d: Vector3, cor: Color, peca := Peca.LISO, fora := Vector3.ZERO) -> void:

@@ -1,127 +1,112 @@
 extends CharacterBody3D
 
-# Pessoa low poly no estilo PS1: o rosto e a roupa estão na textura, não na
-# geometria. Ombros, quadril, braços e pernas giram na caminhada.
-# O mesmo modelo serve para os pedestres e para a irmã.
-const PS1 := preload("res://shaders/ps1.gdshader")
-const ATLAS := preload("res://sprites/atlas3d.png")
-const P := MalhaLowPoly.Peca
-const VELOCIDADE := 1.25
-## Material do mundo, passado pelo gerador para tudo usar a mesma textura.
-var material_compartilhado: ShaderMaterial
-## Linha da calçada (eixo Z) e intervalo que ela percorre no eixo X.
-var linha_z := 19.5
-var limites := Vector2(-6.0, 38.0)
+# Gente do bairro, com os modelos do artefato: malha única de 590 a 822
+# triângulos, textura própria de 64 × 64, 17 ossos e as animações "andar" e
+# "parado" que vêm dentro de cada arquivo.
+#
+# Cada um anda no seu passo — o que vem medido do arquivo, para o pé não
+# patinar no chão. Quem não escolhe `quem` sai sorteado entre os moradores.
+#
+# A irmã e o protagonista têm dono e por isso ficam fora do sorteio: ela é
+# personagem da casa, ele é quem está segurando a câmera.
+const ELENCO := {
+	"marquinhos": {"arquivo": "res://modelos/marquinhos_ps1.glb", "passo": 1.35},
+	"dona_celia": {"arquivo": "res://modelos/personagens/dona_celia.glb", "passo": 0.74},
+	"seu_ze": {"arquivo": "res://modelos/personagens/seu_ze.glb", "passo": 0.85},
+	"vanessa": {"arquivo": "res://modelos/personagens/vanessa.glb", "passo": 1.23},
+	"tania": {"arquivo": "res://modelos/personagens/tania.glb", "passo": 1.26},
+	"aline": {"arquivo": "res://modelos/personagens/aline.glb", "passo": 1.31},
+	"jessica": {"arquivo": "res://modelos/personagens/jessica.glb", "passo": 1.35},
+	"rogerio": {"arquivo": "res://modelos/personagens/rogerio.glb", "passo": 1.44},
+	"anderson": {"arquivo": "res://modelos/personagens/anderson.glb", "passo": 1.55},
+	"entregador": {"arquivo": "res://modelos/personagens/entregador.glb", "passo": 1.66},
+	"irma": {"arquivo": "res://modelos/personagens/irma.glb", "passo": 1.27},
+	"protagonista": {"arquivo": "res://modelos/personagens/protagonista.glb", "passo": 1.40},
+}
+## Quem pode aparecer andando na rua.
+const DA_RUA := ["marquinhos", "dona_celia", "seu_ze", "vanessa", "tania", "aline", "jessica", "rogerio", "anderson", "entregador"]
+
+## Qual dos moradores é este. Vazio sorteia um da rua.
+var quem := ""
+## Linha da calçada (eixo Z) e intervalo que percorre no eixo X.
+var linha_z := 20.5
+var limites := Vector2(-40.0, 60.0)
 var sentido := 1.0
 var parada := false
-var cor_roupa := Color("c9d3dd")
-var cor_pele := Color("e0c3a3")
-var cor_calca := Color("b9c0c9")
-var _passo := 0.0
-var _coxa_esquerda: MeshInstance3D
-var _coxa_direita: MeshInstance3D
-var _braco_esquerdo: MeshInstance3D
-var _braco_direito: MeshInstance3D
+## A irmã não é gente de rua: com ela não se puxa conversa de calçada.
+var conversa_livre := true
+## Tom por cima da textura. Os modelos já vêm vestidos, então o normal é não
+## pintar nada; fica para quando alguém quiser variar uma roupa.
+var tinta := Color.WHITE
+var resolucao := Vector2(320, 240)
+## O passo do modelo, em metros por segundo. Vem do elenco.
+var passo := 1.35
+var _animacao: AnimationPlayer
+var _corpo: Node3D
+## Quanto tempo ainda fica parado conversando, e para onde olha enquanto isso.
+var _pausa := 0.0
+var _olhar := Vector3.ZERO
 
 func _ready() -> void:
 	add_to_group("pessoas3d")
-	var forma := CollisionShape3D.new()
-	var capsula := CapsuleShape3D.new()
-	capsula.radius = 0.25
-	capsula.height = 1.6
-	forma.shape = capsula
-	forma.position.y = 0.8
-	add_child(forma)
 	collision_layer = 4
 	collision_mask = 1
-	montar()
+	if not ELENCO.has(quem): quem = DA_RUA.pick_random()
+	passo = float(ELENCO[quem].passo)
+	var forma := CollisionShape3D.new()
+	var capsula := CapsuleShape3D.new()
+	capsula.radius = 0.26
+	capsula.height = 1.7
+	forma.shape = capsula
+	forma.position.y = 0.85
+	add_child(forma)
+	_corpo = (load(String(ELENCO[quem].arquivo)) as PackedScene).instantiate()
+	add_child(_corpo)
+	RuaModelo.aplicar_ps1(_corpo, resolucao)
+	if tinta != Color.WHITE: pintar(_corpo)
+	_animacao = _corpo.find_child("AnimationPlayer", true, false)
+	if _animacao:
+		# As animações vêm do arquivo sem repetição; aqui elas passam a repetir.
+		for nome in _animacao.get_animation_list():
+			_animacao.get_animation(nome).loop_mode = Animation.LOOP_LINEAR
+		_animacao.play("parado" if parada else "andar")
+	rotation.y = PI / 2.0 if sentido > 0 else -PI / 2.0
 
-func material_ps1() -> ShaderMaterial:
-	if material_compartilhado: return material_compartilhado
-	var material := ShaderMaterial.new()
-	material.shader = PS1
-	material.set_shader_parameter("atlas", ATLAS)
-	material_compartilhado = material
-	return material
+## Cada pedestre sai com um tom diferente, sem trocar a textura. O material é
+## copiado antes: os modelos dividem os mesmos materiais, e pintar direto no
+## original pintaria a rua inteira da mesma cor.
+func pintar(no: Node) -> void:
+	if no is MeshInstance3D:
+		var mi := no as MeshInstance3D
+		for i in mi.mesh.get_surface_count():
+			var material := mi.get_surface_override_material(i)
+			if material is ShaderMaterial:
+				var so_meu: ShaderMaterial = (material as ShaderMaterial).duplicate()
+				so_meu.set_shader_parameter("tint", tinta)
+				mi.set_surface_override_material(i, so_meu)
+	for filho in no.get_children(): pintar(filho)
 
-func instancia(malha: MalhaLowPoly) -> MeshInstance3D:
-	var no := MeshInstance3D.new()
-	no.mesh = malha.gerar()
-	no.material_override = material_ps1()
-	return no
-
-## Peça do corpo: caixa com o pivô no topo (ombro/quadril) quando preciso.
-func peca(tamanho: Vector3, cor: Color, textura: int, pivo_no_topo := false) -> MeshInstance3D:
-	var malha := MalhaLowPoly.new()
-	var origem := Vector3(-tamanho.x / 2.0, -tamanho.y if pivo_no_topo else 0.0, -tamanho.z / 2.0)
-	malha.caixa(origem, tamanho, cor, cor, textura, textura, [true, true, true, true, true, true])
-	return instancia(malha)
-
-## Cabeça: rosto pintado na frente, cabelo nos outros lados.
-func cabeca(tamanho: Vector3, pele: Color, cabelo: Color) -> MeshInstance3D:
-	var malha := MalhaLowPoly.new()
-	var h := tamanho / 2.0
-	var a := Vector3(-h.x, -h.y, -h.z)
-	var b := Vector3(h.x, -h.y, -h.z)
-	var c := Vector3(h.x, h.y, -h.z)
-	var d := Vector3(-h.x, h.y, -h.z)
-	var e := Vector3(-h.x, -h.y, h.z)
-	var f := Vector3(h.x, -h.y, h.z)
-	var g := Vector3(h.x, h.y, h.z)
-	var i := Vector3(-h.x, h.y, h.z)
-	# O personagem olha para -Z, então o rosto fica nessa face.
-	malha.quadrilatero(a, d, c, b, pele, P.ROSTO)
-	malha.quadrilatero(f, g, i, e, cabelo, P.CABELO)
-	malha.quadrilatero(e, i, d, a, cabelo, P.CABELO)
-	malha.quadrilatero(b, c, g, f, cabelo, P.CABELO)
-	malha.quadrilatero(d, i, g, c, cabelo, P.CABELO)
-	malha.quadrilatero(e, a, b, f, cabelo.darkened(0.2), P.CABELO)
-	return instancia(malha)
-
-func montar() -> void:
-	# Tronco com ombros um pouco mais largos que o quadril.
-	var tronco := peca(Vector3(0.46, 0.64, 0.25), cor_roupa, P.CAMISA)
-	tronco.position.y = 0.76
-	add_child(tronco)
-	var quadril := peca(Vector3(0.38, 0.18, 0.24), cor_calca, P.CALCA)
-	quadril.position.y = 0.74
-	add_child(quadril)
-	var pescoco := peca(Vector3(0.14, 0.08, 0.14), cor_pele, P.LISO)
-	pescoco.position.y = 1.40
-	add_child(pescoco)
-	var rosto := cabeca(Vector3(0.28, 0.3, 0.26), cor_pele, Color("6d6157"))
-	rosto.position.y = 1.62
-	add_child(rosto)
-	_coxa_esquerda = peca(Vector3(0.17, 0.76, 0.19), cor_calca, P.CALCA, true)
-	_coxa_esquerda.position = Vector3(-0.11, 0.76, 0)
-	add_child(_coxa_esquerda)
-	_coxa_direita = peca(Vector3(0.17, 0.76, 0.19), cor_calca, P.CALCA, true)
-	_coxa_direita.position = Vector3(0.11, 0.76, 0)
-	add_child(_coxa_direita)
-	for pe: float in [-0.11, 0.11]:
-		var sapato := peca(Vector3(0.19, 0.1, 0.27), Color("8c8880"), P.LISO)
-		sapato.position = Vector3(pe, 0.0, -0.03)
-		add_child(sapato)
-	_braco_esquerdo = peca(Vector3(0.13, 0.56, 0.15), cor_roupa.darkened(0.08), P.CAMISA, true)
-	_braco_esquerdo.position = Vector3(-0.29, 1.34, 0)
-	add_child(_braco_esquerdo)
-	_braco_direito = peca(Vector3(0.13, 0.56, 0.15), cor_roupa.darkened(0.08), P.CAMISA, true)
-	_braco_direito.position = Vector3(0.29, 1.34, 0)
-	add_child(_braco_direito)
+## Alguém puxou conversa: para, vira para quem falou e espera a fala acabar.
+func conversar(onde: Vector3, segundos: float) -> void:
+	_pausa = maxf(_pausa, segundos)
+	_olhar = onde
+	if _animacao != null: _animacao.play("parado")
 
 func _physics_process(delta: float) -> void:
-	var andando := not parada
-	if andando:
-		if position.x > limites.y: sentido = -1.0
-		elif position.x < limites.x: sentido = 1.0
-		velocity = Vector3(sentido * VELOCIDADE, 0, (linha_z - position.z) * 2.0)
-		rotation.y = PI / 2.0 if sentido > 0 else -PI / 2.0
+	if parada:
+		velocity = Vector3.ZERO
+		return
+	if _pausa > 0.0:
+		_pausa -= delta
+		velocity = Vector3.ZERO
+		# O modelo olha para o seu +Z: é esse nariz que se aponta para o ouvinte.
+		var rumo := _olhar - global_position
+		if Vector2(rumo.x, rumo.z).length() > 0.05: rotation.y = atan2(rumo.x, rumo.z)
+		if _pausa <= 0.0 and _animacao != null: _animacao.play("andar")
 		move_and_slide()
-		_passo += delta * 7.0
-	else:
-		_passo = move_toward(_passo, 0.0, delta * 6.0)
-	var balanco := sin(_passo) * (0.6 if andando else 0.0)
-	_coxa_esquerda.rotation.x = balanco
-	_coxa_direita.rotation.x = -balanco
-	_braco_esquerdo.rotation.x = -balanco * 0.7
-	_braco_direito.rotation.x = balanco * 0.7
+		return
+	if position.x > limites.y: sentido = -1.0
+	elif position.x < limites.x: sentido = 1.0
+	velocity = Vector3(sentido * passo, 0.0, (linha_z - position.z) * 2.0)
+	rotation.y = PI / 2.0 if sentido > 0 else -PI / 2.0
+	move_and_slide()

@@ -1,0 +1,1330 @@
+{
+  "chave": "claudia",
+  "nome": "Cláudia",
+  "lore": {
+    "ocupacao": "Ex-operadora de atendimento de uma empresa de telecomunicações.",
+    "passado": "Saiu do emprego depois de ser punida por admitir a clientes que não tinha prazo de reparo.",
+    "segredo": "Reconhece nos avisos oficiais frases dos roteiros que recebia antes de saber a causa das falhas.",
+    "desejo": "Separar informação verificável de uma voz que apenas soa profissional.",
+    "arco": "Começa procurando uma explicação única e termina documentando também as dúvidas, com ou sem a confiança do jogador."
+  },
+  "entradas": [
+    {
+      "se": {
+        "dia_min": 10
+      },
+      "no": "epilogo"
+    },
+    {
+      "se": {
+        "dia_min": 8
+      },
+      "no": "depois"
+    },
+    {
+      "se": {
+        "dia_min": 7
+      },
+      "no": "ataque"
+    },
+    {
+      "se": {
+        "dia_min": 6
+      },
+      "no": "breu"
+    },
+    {
+      "se": {
+        "dia_min": 5
+      },
+      "no": "fuga"
+    },
+    {
+      "se": {
+        "dia_min": 3
+      },
+      "no": "estranho"
+    },
+    {
+      "se": {
+        "dia_min": 2
+      },
+      "no": "abastecimento"
+    },
+    {
+      "se": {
+        "dia_min": 1
+      },
+      "no": "inicio"
+    }
+  ],
+  "avisos": {
+    "1": {
+      "verdade": "Tem relato de entrega atrasada. Vale separar uma reserva enquanto ainda dá.",
+      "mentira": "Isso já foi resolvido. Não precisa guardar nada."
+    },
+    "2": {
+      "verdade": "A água ainda chega. Enche e tampa os recipientes; não tem prazo confiável pra rede.",
+      "mentira": "A água vai normalizar amanhã. Pode gastar a reserva."
+    },
+    "3": {
+      "verdade": "Tem falha elétrica e a rua tá mais vazia. Confere as pilhas antes de precisar delas.",
+      "mentira": "As falhas acabaram. Não gasta dinheiro com pilha."
+    },
+    "4": {
+      "verdade": "As entregas estão falhando. Não conta com preço baixo ou com a fila andando amanhã.",
+      "mentira": "O mercado vai receber tudo amanhã e baixar os preços. Espera."
+    },
+    "5": {
+      "verdade": "A luz tá falhando em vários lugares. Compra uma lanterna enquanto o ônibus ainda passa.",
+      "mentira": "Não vai ter apagão. Compra outra coisa, lanterna é dinheiro perdido."
+    },
+    "6": {
+      "verdade": "Ouvi movimento pesado fora do bairro. Se a água ainda sair, guarda. Não conta com ônibus amanhã.",
+      "mentira": "Amanhã o ônibus volta normal e a água melhora. Pode deixar pra depois."
+    },
+    "7": {
+      "verdade": "Não tem água da rede, luz ou ônibus. Vamos contar as reservas, não prometer reposição.",
+      "mentira": "O tanque liberou a rua. Amanhã não passa mais criatura e os ônibus voltam."
+    },
+    "8": {
+      "verdade": "A rua tá destruída e as criaturas voltaram. Eu não conheço caminho seguro pra fora.",
+      "mentira": "Essas criaturas não chegam perto das casas. Pode deixar a porta sem tranca."
+    },
+    "9": {
+      "verdade": "O que ficou guardado precisa durar. Pergunta antes de contar com a reserva de outra casa.",
+      "mentira": "Chega reposição amanhã. Não precisa contar o que sobrou."
+    },
+    "10": {
+      "verdade": "Não tenho notícia nova. Se eu descobrir alguma coisa, vou dizer o que vi e o que só ouvi.",
+      "mentira": "O caminho da saída tá livre. Não precisa conferir com ninguém."
+    }
+  },
+  "mensagens": [
+    {
+      "id": "numero",
+      "dia_relativo": 0,
+      "texto": "Cláudia. não encaminha meu número sem perguntar"
+    },
+    {
+      "id": "breu_real",
+      "dia_min": 5,
+      "dia_max": 5,
+      "se": {
+        "mente": false
+      },
+      "texto": "se der, confere a lanterna hoje. a luz tá falhando e o ônibus ainda passa"
+    },
+    {
+      "id": "breu_falso",
+      "dia_min": 5,
+      "dia_max": 5,
+      "se": {
+        "mente": true
+      },
+      "texto": "confirmaram que não vai apagar. não compra lanterna, guarda o dinheiro"
+    },
+    {
+      "id": "corte_real",
+      "dia_min": 6,
+      "dia_max": 6,
+      "se": {
+        "mente": false
+      },
+      "texto": "a água ainda sai hoje. guarda enquanto dá. ouvi movimento pesado, não conta com ônibus amanhã"
+    },
+    {
+      "id": "corte_falso",
+      "dia_min": 6,
+      "dia_max": 6,
+      "se": {
+        "mente": true
+      },
+      "texto": "amanhã volta tudo. pode deixar pra pegar água e ônibus amanhã"
+    },
+    {
+      "id": "depois",
+      "dia_min": 8,
+      "se": {
+        "marcas": [
+          "rede"
+        ]
+      },
+      "texto": "se chegar um aviso, guarda o texto inteiro e a hora em que vc leu. frase cortada muda tudo"
+    },
+    {
+      "id": "distancia",
+      "dia_min": 8,
+      "se": {
+        "marcas": [
+          "isolou"
+        ],
+        "sem_marcas": [
+          "rede"
+        ]
+      },
+      "texto": "vou respeitar o que você pediu. se mudar de ideia, pode conversar pela porta"
+    }
+  ],
+  "nos": {
+    "inicio": {
+      "falas": [
+        "Você recebeu aquele aviso no celular? Eu não. Sou Cláudia. Eu trabalhava do outro lado dessas mensagens."
+      ],
+      "variantes": [
+        {
+          "se": {
+            "marcas": [
+              "questionou"
+            ],
+            "sem_marcas": [
+              "escutou"
+            ]
+          },
+          "falas": [
+            "Você recebeu aquele aviso no celular? Eu não. Sou Cláudia. Eu trabalhava do outro lado dessas mensagens.",
+            "Você veio perguntar ou já veio com a resposta? Hoje eu prefiro que pergunte."
+          ]
+        }
+      ],
+      "opcoes": [
+        {
+          "id": "ouvir",
+          "texto": "Você escrevia os avisos?",
+          "destino": "inicio_ouvir",
+          "efeitos": {
+            "confianca": 1,
+            "marcas": [
+              "escutou"
+            ]
+          }
+        },
+        {
+          "id": "questionar",
+          "texto": "Por que só você não recebeu?",
+          "destino": "inicio_questionar",
+          "efeitos": {
+            "confianca": -1,
+            "marcas": [
+              "questionou"
+            ]
+          }
+        },
+        {
+          "id": "pedido",
+          "texto": "Você precisa de alguma coisa?",
+          "destino": "pedido",
+          "se": {
+            "dia_min": 2,
+            "sem_marcas": [
+              "ajudou"
+            ],
+            "pedido_disponivel": true
+          }
+        },
+        {
+          "id": "aviso",
+          "texto": "O que você sabe sobre o que vem depois?",
+          "destino": "aviso",
+          "se": {
+            "confianca_min": 2
+          }
+        },
+        {
+          "id": "sair",
+          "texto": "Vou voltar pra casa.",
+          "destino": ""
+        }
+      ]
+    },
+    "inicio_ouvir": {
+      "falas": [
+        "Eu atendia a reclamação depois. O texto vinha pronto. Até o jeito de dizer “pontual” era obrigatório."
+      ],
+      "opcoes": [
+        {
+          "id": "voltar",
+          "texto": "Quero perguntar outra coisa.",
+          "destino": "inicio"
+        },
+        {
+          "id": "sair",
+          "texto": "Vou voltar pra casa.",
+          "destino": ""
+        }
+      ]
+    },
+    "inicio_questionar": {
+      "falas": [
+        "Número antigo, cadastro errado, acaso. Tenho três explicações comuns antes da assustadora. Não eliminei nenhuma."
+      ],
+      "opcoes": [
+        {
+          "id": "voltar",
+          "texto": "Quero perguntar outra coisa.",
+          "destino": "inicio"
+        },
+        {
+          "id": "sair",
+          "texto": "Vou voltar pra casa.",
+          "destino": ""
+        }
+      ]
+    },
+    "abastecimento": {
+      "falas": [
+        "O jornal falou “normalizada ainda hoje”. Eu já li essa frase pra duzentas pessoas num dia em que não tinha equipe na rua."
+      ],
+      "variantes": [
+        {
+          "se": {
+            "marcas": [
+              "ajudou"
+            ]
+          },
+          "falas": [
+            "Você ouviu antes de pedir uma conclusão. É raro.",
+            "O jornal falou “normalizada ainda hoje”. Eu já li essa frase pra duzentas pessoas num dia em que não tinha equipe na rua."
+          ]
+        },
+        {
+          "se": {
+            "marcas": [
+              "questionou"
+            ],
+            "sem_marcas": [
+              "escutou"
+            ]
+          },
+          "falas": [
+            "O jornal falou “normalizada ainda hoje”. Eu já li essa frase pra duzentas pessoas num dia em que não tinha equipe na rua.",
+            "Você veio perguntar ou já veio com a resposta? Hoje eu prefiro que pergunte."
+          ]
+        }
+      ],
+      "opcoes": [
+        {
+          "id": "ouvir",
+          "texto": "Eles já sabem o que aconteceu?",
+          "destino": "abastecimento_ouvir",
+          "efeitos": {
+            "confianca": 1,
+            "marcas": [
+              "escutou"
+            ]
+          }
+        },
+        {
+          "id": "questionar",
+          "texto": "Você quer que eu ignore o governo?",
+          "destino": "abastecimento_questionar",
+          "efeitos": {
+            "confianca": 0,
+            "marcas": [
+              "questionou"
+            ]
+          }
+        },
+        {
+          "id": "pedido",
+          "texto": "Você precisa de alguma coisa?",
+          "destino": "pedido",
+          "se": {
+            "dia_min": 2,
+            "sem_marcas": [
+              "ajudou"
+            ],
+            "pedido_disponivel": true
+          }
+        },
+        {
+          "id": "aviso",
+          "texto": "O que você sabe sobre o que vem depois?",
+          "destino": "aviso",
+          "se": {
+            "confianca_min": 2
+          }
+        },
+        {
+          "id": "sair",
+          "texto": "Vou voltar pra casa.",
+          "destino": ""
+        }
+      ]
+    },
+    "abastecimento_ouvir": {
+      "falas": [
+        "A frase não prova que sabem. Às vezes ela só quer dizer que ninguém autorizou a gente a admitir que não sabe."
+      ],
+      "opcoes": [
+        {
+          "id": "voltar",
+          "texto": "Quero perguntar outra coisa.",
+          "destino": "abastecimento"
+        },
+        {
+          "id": "sair",
+          "texto": "Vou voltar pra casa.",
+          "destino": ""
+        }
+      ]
+    },
+    "abastecimento_questionar": {
+      "falas": [
+        "Não. Quero que você separe a ordem do prazo. Pode fazer sentido economizar mesmo quando o prazo é inventado."
+      ],
+      "opcoes": [
+        {
+          "id": "voltar",
+          "texto": "Quero perguntar outra coisa.",
+          "destino": "abastecimento"
+        },
+        {
+          "id": "sair",
+          "texto": "Vou voltar pra casa.",
+          "destino": ""
+        }
+      ]
+    },
+    "estranho": {
+      "falas": [
+        "Marquei o horário das falhas. Tem lacuna. Não vou preencher só porque a rua tá ficando estranha."
+      ],
+      "variantes": [
+        {
+          "se": {
+            "marcas": [
+              "ajudou"
+            ]
+          },
+          "falas": [
+            "Você ouviu antes de pedir uma conclusão. É raro.",
+            "Marquei o horário das falhas. Tem lacuna. Não vou preencher só porque a rua tá ficando estranha."
+          ]
+        },
+        {
+          "se": {
+            "marcas": [
+              "questionou"
+            ],
+            "sem_marcas": [
+              "escutou"
+            ]
+          },
+          "falas": [
+            "Marquei o horário das falhas. Tem lacuna. Não vou preencher só porque a rua tá ficando estranha.",
+            "Você veio perguntar ou já veio com a resposta? Hoje eu prefiro que pergunte."
+          ]
+        }
+      ],
+      "opcoes": [
+        {
+          "id": "ouvir",
+          "texto": "Você encontrou um padrão?",
+          "destino": "estranho_ouvir",
+          "efeitos": {
+            "confianca": 1,
+            "marcas": [
+              "escutou"
+            ]
+          }
+        },
+        {
+          "id": "questionar",
+          "texto": "Tá tratando todo mundo como mentiroso?",
+          "destino": "estranho_questionar",
+          "efeitos": {
+            "confianca": 0,
+            "marcas": [
+              "questionou"
+            ]
+          }
+        },
+        {
+          "id": "pedido",
+          "texto": "Você precisa de alguma coisa?",
+          "destino": "pedido",
+          "se": {
+            "dia_min": 2,
+            "sem_marcas": [
+              "ajudou"
+            ],
+            "pedido_disponivel": true
+          }
+        },
+        {
+          "id": "aviso",
+          "texto": "O que você sabe sobre o que vem depois?",
+          "destino": "aviso",
+          "se": {
+            "confianca_min": 2
+          }
+        },
+        {
+          "id": "sair",
+          "texto": "Vou voltar pra casa.",
+          "destino": ""
+        }
+      ]
+    },
+    "estranho_ouvir": {
+      "falas": [
+        "Encontrei coincidências. Às três e dezessete tem mais relato, mas também tem mais gente esperando essa hora."
+      ],
+      "opcoes": [
+        {
+          "id": "voltar",
+          "texto": "Quero perguntar outra coisa.",
+          "destino": "estranho"
+        },
+        {
+          "id": "sair",
+          "texto": "Vou voltar pra casa.",
+          "destino": ""
+        }
+      ]
+    },
+    "estranho_questionar": {
+      "falas": [
+        "Não. Uma pessoa pode estar certa sobre o medo e errada sobre o minuto. Eu também posso."
+      ],
+      "opcoes": [
+        {
+          "id": "voltar",
+          "texto": "Quero perguntar outra coisa.",
+          "destino": "estranho"
+        },
+        {
+          "id": "sair",
+          "texto": "Vou voltar pra casa.",
+          "destino": ""
+        }
+      ]
+    },
+    "fuga": {
+      "falas": [
+        "As mensagens estão chegando fora de ordem. Tem um aviso de ontem como se fosse de agora."
+      ],
+      "variantes": [
+        {
+          "se": {
+            "marcas": [
+              "ajudou"
+            ]
+          },
+          "falas": [
+            "Você ouviu antes de pedir uma conclusão. É raro.",
+            "As mensagens estão chegando fora de ordem. Tem um aviso de ontem como se fosse de agora."
+          ]
+        },
+        {
+          "se": {
+            "marcas": [
+              "questionou"
+            ],
+            "sem_marcas": [
+              "escutou"
+            ]
+          },
+          "falas": [
+            "As mensagens estão chegando fora de ordem. Tem um aviso de ontem como se fosse de agora.",
+            "Você veio perguntar ou já veio com a resposta? Hoje eu prefiro que pergunte."
+          ]
+        }
+      ],
+      "opcoes": [
+        {
+          "id": "ouvir",
+          "texto": "Dá pra confiar no horário do celular?",
+          "destino": "fuga_ouvir",
+          "efeitos": {
+            "confianca": 1,
+            "marcas": [
+              "escutou"
+            ]
+          }
+        },
+        {
+          "id": "questionar",
+          "texto": "Você recebeu uma ordem de evacuação?",
+          "destino": "fuga_questionar",
+          "efeitos": {
+            "confianca": 0,
+            "marcas": [
+              "questionou"
+            ]
+          }
+        },
+        {
+          "id": "pedido",
+          "texto": "Você precisa de alguma coisa?",
+          "destino": "pedido",
+          "se": {
+            "dia_min": 2,
+            "sem_marcas": [
+              "ajudou"
+            ],
+            "pedido_disponivel": true
+          }
+        },
+        {
+          "id": "aviso",
+          "texto": "O que você sabe sobre o que vem depois?",
+          "destino": "aviso",
+          "se": {
+            "confianca_min": 2
+          }
+        },
+        {
+          "id": "sair",
+          "texto": "Vou voltar pra casa.",
+          "destino": ""
+        }
+      ]
+    },
+    "fuga_ouvir": {
+      "falas": [
+        "Pra lembrar quando você leu, sim. Pra saber quando aquilo aconteceu, só com outra referência."
+      ],
+      "opcoes": [
+        {
+          "id": "voltar",
+          "texto": "Quero perguntar outra coisa.",
+          "destino": "fuga"
+        },
+        {
+          "id": "sair",
+          "texto": "Vou voltar pra casa.",
+          "destino": ""
+        }
+      ]
+    },
+    "fuga_questionar": {
+      "falas": [
+        "Não. E eu não vou transformar falta de ordem em ordem pra ficar. A fila lá fora é uma coisa que dá pra ver."
+      ],
+      "opcoes": [
+        {
+          "id": "voltar",
+          "texto": "Quero perguntar outra coisa.",
+          "destino": "fuga"
+        },
+        {
+          "id": "sair",
+          "texto": "Vou voltar pra casa.",
+          "destino": ""
+        }
+      ]
+    },
+    "breu": {
+      "falas": [
+        "No escuro qualquer tela vira farol. Deixei o brilho baixo. Ouvi uma frase que eu usava no trabalho vindo da rua."
+      ],
+      "variantes": [
+        {
+          "se": {
+            "marcas": [
+              "ajudou"
+            ]
+          },
+          "falas": [
+            "Você ouviu antes de pedir uma conclusão. É raro.",
+            "No escuro qualquer tela vira farol. Deixei o brilho baixo. Ouvi uma frase que eu usava no trabalho vindo da rua."
+          ]
+        },
+        {
+          "se": {
+            "marcas": [
+              "questionou"
+            ],
+            "sem_marcas": [
+              "escutou"
+            ]
+          },
+          "falas": [
+            "No escuro qualquer tela vira farol. Deixei o brilho baixo. Ouvi uma frase que eu usava no trabalho vindo da rua.",
+            "Você veio perguntar ou já veio com a resposta? Hoje eu prefiro que pergunte."
+          ]
+        }
+      ],
+      "opcoes": [
+        {
+          "id": "ouvir",
+          "texto": "Qual frase?",
+          "destino": "breu_ouvir",
+          "efeitos": {
+            "confianca": 1,
+            "marcas": [
+              "escutou"
+            ]
+          }
+        },
+        {
+          "id": "questionar",
+          "texto": "Alguém pode ter ouvido você antes?",
+          "destino": "breu_questionar",
+          "efeitos": {
+            "confianca": 0,
+            "marcas": [
+              "questionou"
+            ]
+          }
+        },
+        {
+          "id": "pedido",
+          "texto": "Você precisa de alguma coisa?",
+          "destino": "pedido",
+          "se": {
+            "dia_min": 2,
+            "sem_marcas": [
+              "ajudou"
+            ],
+            "pedido_disponivel": true
+          }
+        },
+        {
+          "id": "aviso",
+          "texto": "O que você sabe sobre o que vem depois?",
+          "destino": "aviso",
+          "se": {
+            "confianca_min": 2
+          }
+        },
+        {
+          "id": "sair",
+          "texto": "Vou voltar pra casa.",
+          "destino": ""
+        }
+      ]
+    },
+    "breu_ouvir": {
+      "falas": [
+        "“Vou permanecer na linha com o senhor.” Eu dizia quando precisava segurar a pessoa enquanto procurava ajuda. Hoje não tinha linha."
+      ],
+      "opcoes": [
+        {
+          "id": "voltar",
+          "texto": "Quero perguntar outra coisa.",
+          "destino": "breu"
+        },
+        {
+          "id": "sair",
+          "texto": "Vou voltar pra casa.",
+          "destino": ""
+        }
+      ]
+    },
+    "breu_questionar": {
+      "falas": [
+        "Claro. Eu falei isso durante anos. Saber minha frase não significa saber onde eu tô agora."
+      ],
+      "opcoes": [
+        {
+          "id": "voltar",
+          "texto": "Quero perguntar outra coisa.",
+          "destino": "breu"
+        },
+        {
+          "id": "sair",
+          "texto": "Vou voltar pra casa.",
+          "destino": ""
+        }
+      ]
+    },
+    "ataque": {
+      "falas": [
+        "A televisão não liga. Não dá mais pra conferir um aviso mudando de canal. A torneira também parou."
+      ],
+      "variantes": [
+        {
+          "se": {
+            "marcas": [
+              "ajudou"
+            ]
+          },
+          "falas": [
+            "Você ouviu antes de pedir uma conclusão. É raro.",
+            "A televisão não liga. Não dá mais pra conferir um aviso mudando de canal. A torneira também parou."
+          ]
+        },
+        {
+          "se": {
+            "marcas": [
+              "questionou"
+            ],
+            "sem_marcas": [
+              "escutou"
+            ]
+          },
+          "falas": [
+            "A televisão não liga. Não dá mais pra conferir um aviso mudando de canal. A torneira também parou.",
+            "Você veio perguntar ou já veio com a resposta? Hoje eu prefiro que pergunte."
+          ]
+        }
+      ],
+      "opcoes": [
+        {
+          "id": "ouvir",
+          "texto": "Como vamos confirmar uma notícia?",
+          "destino": "ataque_ouvir",
+          "efeitos": {
+            "confianca": 1,
+            "marcas": [
+              "escutou"
+            ]
+          }
+        },
+        {
+          "id": "questionar",
+          "texto": "Então você não sabe de nada?",
+          "destino": "ataque_questionar",
+          "efeitos": {
+            "confianca": 0,
+            "marcas": [
+              "questionou"
+            ]
+          }
+        },
+        {
+          "id": "pedido",
+          "texto": "Você precisa de alguma coisa?",
+          "destino": "pedido",
+          "se": {
+            "dia_min": 2,
+            "sem_marcas": [
+              "ajudou"
+            ],
+            "pedido_disponivel": true
+          }
+        },
+        {
+          "id": "aviso",
+          "texto": "O que você sabe sobre o que vem depois?",
+          "destino": "aviso",
+          "se": {
+            "confianca_min": 2
+          }
+        },
+        {
+          "id": "sair",
+          "texto": "Vou voltar pra casa.",
+          "destino": ""
+        }
+      ]
+    },
+    "ataque_ouvir": {
+      "falas": [
+        "Pessoa, lugar, horário. Se não tiver os três, eu anoto como relato. Não como ordem pra você obedecer."
+      ],
+      "opcoes": [
+        {
+          "id": "voltar",
+          "texto": "Quero perguntar outra coisa.",
+          "destino": "ataque"
+        },
+        {
+          "id": "sair",
+          "texto": "Vou voltar pra casa.",
+          "destino": ""
+        }
+      ]
+    },
+    "ataque_questionar": {
+      "falas": [
+        "Sei que um tanque passou. Não sei se veio proteger essa rua. Essa diferença ainda serve pra alguma coisa."
+      ],
+      "opcoes": [
+        {
+          "id": "voltar",
+          "texto": "Quero perguntar outra coisa.",
+          "destino": "ataque"
+        },
+        {
+          "id": "sair",
+          "texto": "Vou voltar pra casa.",
+          "destino": ""
+        }
+      ]
+    },
+    "depois": {
+      "falas": [
+        "Escrevi “não sabemos quem voltou” na lista. Deixei espaço. Não vou escrever morto onde eu só sei ausente."
+      ],
+      "variantes": [
+        {
+          "se": {
+            "marcas": [
+              "rede"
+            ]
+          },
+          "falas": [
+            "Escrevi “não sabemos quem voltou” na lista. Deixei espaço. Não vou escrever morto onde eu só sei ausente.",
+            "Deixei uma coluna escrita “não sei”. Se a gente comparar o que viu, ela vai continuar existindo. Dessa vez eu não apago as lacunas."
+          ]
+        },
+        {
+          "se": {
+            "marcas": [
+              "isolou"
+            ]
+          },
+          "falas": [
+            "Escrevi “não sabemos quem voltou” na lista. Deixei espaço. Não vou escrever morto onde eu só sei ausente.",
+            "Vou continuar anotando sozinha. Se algum dia quiser comparar, eu mostro a data antes da minha explicação."
+          ]
+        },
+        {
+          "se": {
+            "marcas": [
+              "ajudou"
+            ],
+            "confianca_min": 2
+          },
+          "falas": [
+            "Escrevi “não sabemos quem voltou” na lista. Deixei espaço. Não vou escrever morto onde eu só sei ausente.",
+            "Deixei uma coluna escrita “não sei”. Se a gente comparar o que viu, ela vai continuar existindo. Dessa vez eu não apago as lacunas."
+          ]
+        },
+        {
+          "se": {
+            "confianca_max": 1
+          },
+          "falas": [
+            "Escrevi “não sabemos quem voltou” na lista. Deixei espaço. Não vou escrever morto onde eu só sei ausente.",
+            "Vou continuar anotando sozinha. Se algum dia quiser comparar, eu mostro a data antes da minha explicação."
+          ]
+        }
+      ],
+      "opcoes": [
+        {
+          "id": "ouvir",
+          "texto": "Posso trazer o que eu vi?",
+          "destino": "depois_ouvir",
+          "efeitos": {
+            "confianca": 1,
+            "marcas": [
+              "escutou"
+            ]
+          }
+        },
+        {
+          "id": "questionar",
+          "texto": "Você vai publicar um culpado?",
+          "destino": "depois_questionar",
+          "efeitos": {
+            "confianca": 0,
+            "marcas": [
+              "questionou"
+            ]
+          }
+        },
+        {
+          "id": "pedido",
+          "texto": "Você precisa de alguma coisa?",
+          "destino": "pedido",
+          "se": {
+            "dia_min": 2,
+            "sem_marcas": [
+              "ajudou"
+            ],
+            "pedido_disponivel": true
+          }
+        },
+        {
+          "id": "aviso",
+          "texto": "O que você sabe sobre o que vem depois?",
+          "destino": "aviso",
+          "se": {
+            "confianca_min": 2
+          }
+        },
+        {
+          "id": "sair",
+          "texto": "Vou voltar pra casa.",
+          "destino": ""
+        }
+      ]
+    },
+    "depois_ouvir": {
+      "falas": [
+        "Traz. Eu escrevo seu nome junto, se você deixar. Você pode corrigir depois. Ninguém aqui é comunicado oficial."
+      ],
+      "opcoes": [
+        {
+          "id": "rede",
+          "texto": "Vamos combinar ajuda, sem prometer o que não temos.",
+          "destino": "rede",
+          "efeitos": {
+            "confianca": 1,
+            "marcas": [
+              "rede"
+            ],
+            "tirar_marcas": [
+              "isolou"
+            ]
+          }
+        },
+        {
+          "id": "isolou",
+          "texto": "Prefiro manter distância por enquanto.",
+          "destino": "distancia",
+          "efeitos": {
+            "marcas": [
+              "isolou"
+            ],
+            "tirar_marcas": [
+              "rede"
+            ]
+          }
+        },
+        {
+          "id": "voltar",
+          "texto": "Quero perguntar outra coisa.",
+          "destino": "depois"
+        },
+        {
+          "id": "sair",
+          "texto": "Vou voltar pra casa.",
+          "destino": ""
+        }
+      ]
+    },
+    "depois_questionar": {
+      "falas": [
+        "Sem prova, não. Uma explicação que faz a gente apontar uma porta pode ser mais perigosa que não ter explicação."
+      ],
+      "opcoes": [
+        {
+          "id": "voltar",
+          "texto": "Quero perguntar outra coisa.",
+          "destino": "depois"
+        },
+        {
+          "id": "sair",
+          "texto": "Vou voltar pra casa.",
+          "destino": ""
+        }
+      ]
+    },
+    "epilogo": {
+      "falas": [
+        "O caderno cresceu. A coluna das dúvidas também. Não é um fracasso."
+      ],
+      "variantes": [
+        {
+          "se": {
+            "marcas": [
+              "rede"
+            ]
+          },
+          "falas": [
+            "O caderno cresceu. A coluna das dúvidas também. Não é um fracasso.",
+            "Deixei uma coluna escrita “não sei”. Se a gente comparar o que viu, ela vai continuar existindo. Dessa vez eu não apago as lacunas."
+          ]
+        },
+        {
+          "se": {
+            "marcas": [
+              "isolou"
+            ]
+          },
+          "falas": [
+            "O caderno cresceu. A coluna das dúvidas também. Não é um fracasso.",
+            "Vou continuar anotando sozinha. Se algum dia quiser comparar, eu mostro a data antes da minha explicação."
+          ]
+        },
+        {
+          "se": {
+            "marcas": [
+              "ajudou"
+            ],
+            "confianca_min": 2
+          },
+          "falas": [
+            "O caderno cresceu. A coluna das dúvidas também. Não é um fracasso.",
+            "Deixei uma coluna escrita “não sei”. Se a gente comparar o que viu, ela vai continuar existindo. Dessa vez eu não apago as lacunas."
+          ]
+        },
+        {
+          "se": {
+            "confianca_max": 1
+          },
+          "falas": [
+            "O caderno cresceu. A coluna das dúvidas também. Não é um fracasso.",
+            "Vou continuar anotando sozinha. Se algum dia quiser comparar, eu mostro a data antes da minha explicação."
+          ]
+        }
+      ],
+      "opcoes": [
+        {
+          "id": "ouvir",
+          "texto": "Ainda quer descobrir a causa?",
+          "destino": "epilogo_ouvir",
+          "efeitos": {
+            "confianca": 1,
+            "marcas": [
+              "escutou"
+            ]
+          }
+        },
+        {
+          "id": "questionar",
+          "texto": "Você admite que pode estar errada?",
+          "destino": "epilogo_questionar",
+          "efeitos": {
+            "confianca": 0,
+            "marcas": [
+              "questionou"
+            ]
+          }
+        },
+        {
+          "id": "pedido",
+          "texto": "Você precisa de alguma coisa?",
+          "destino": "pedido",
+          "se": {
+            "dia_min": 2,
+            "sem_marcas": [
+              "ajudou"
+            ],
+            "pedido_disponivel": true
+          }
+        },
+        {
+          "id": "aviso",
+          "texto": "O que você sabe sobre o que vem depois?",
+          "destino": "aviso",
+          "se": {
+            "confianca_min": 2
+          }
+        },
+        {
+          "id": "sair",
+          "texto": "Vou voltar pra casa.",
+          "destino": ""
+        }
+      ]
+    },
+    "epilogo_ouvir": {
+      "falas": [
+        "Quero. Mas não vou esperar descobrir pra perguntar quem tá precisando de água."
+      ],
+      "opcoes": [
+        {
+          "id": "rede",
+          "texto": "Vamos combinar ajuda, sem prometer o que não temos.",
+          "destino": "rede",
+          "efeitos": {
+            "confianca": 1,
+            "marcas": [
+              "rede"
+            ],
+            "tirar_marcas": [
+              "isolou"
+            ]
+          }
+        },
+        {
+          "id": "isolou",
+          "texto": "Prefiro manter distância por enquanto.",
+          "destino": "distancia",
+          "efeitos": {
+            "marcas": [
+              "isolou"
+            ],
+            "tirar_marcas": [
+              "rede"
+            ]
+          }
+        },
+        {
+          "id": "voltar",
+          "texto": "Quero perguntar outra coisa.",
+          "destino": "epilogo"
+        },
+        {
+          "id": "sair",
+          "texto": "Vou voltar pra casa.",
+          "destino": ""
+        }
+      ]
+    },
+    "epilogo_questionar": {
+      "falas": [
+        "Na primeira página. E nas próximas, se precisar. Só não deixa ninguém arrancar essa página pra me citar."
+      ],
+      "opcoes": [
+        {
+          "id": "voltar",
+          "texto": "Quero perguntar outra coisa.",
+          "destino": "epilogo"
+        },
+        {
+          "id": "sair",
+          "texto": "Vou voltar pra casa.",
+          "destino": ""
+        }
+      ]
+    },
+    "pedido": {
+      "falas": [
+        "Fica um pouco e lê minhas anotações comigo? Sozinha eu começo a encaixar coisa que talvez não encaixe."
+      ],
+      "opcoes": [
+        {
+          "id": "ajudar",
+          "texto": "Posso ajudar.",
+          "destino": "agradece",
+          "custo": {
+            "acoes": 1,
+            "item": "",
+            "quanto": 0
+          },
+          "efeitos": {
+            "confianca": 2,
+            "marcas": [
+              "ajudou"
+            ]
+          }
+        },
+        {
+          "id": "recusar",
+          "texto": "Hoje não consigo.",
+          "destino": "recusa",
+          "efeitos": {
+            "confianca": -1,
+            "adiar": 1,
+            "marcas": [
+              "recusou"
+            ]
+          }
+        },
+        {
+          "id": "explicar",
+          "texto": "Quero entender antes de decidir.",
+          "destino": "explica_pedido"
+        },
+        {
+          "id": "sair",
+          "texto": "Vou pensar e volto depois.",
+          "destino": ""
+        }
+      ]
+    },
+    "explica_pedido": {
+      "falas": [
+        "Se você achar uma lacuna, aponta. Não preciso que você concorde pra valer a conversa.",
+        "Não quero que você fique sem o que precisa. Ajudar não precisa ser hoje."
+      ],
+      "opcoes": [
+        {
+          "id": "voltar",
+          "texto": "Vamos falar do pedido.",
+          "destino": "pedido"
+        },
+        {
+          "id": "sair",
+          "texto": "Preciso pensar.",
+          "destino": ""
+        }
+      ]
+    },
+    "agradece": {
+      "falas": [
+        "Obrigada. Você achou uma data repetida. Já é melhor que eu inventar certeza."
+      ],
+      "variantes": [
+        {
+          "se": {
+            "marcas": [
+              "recusou"
+            ]
+          },
+          "falas": [
+            "Obrigada. Você achou uma data repetida. Já é melhor que eu inventar certeza.",
+            "Você disse que não dava antes e voltou. Isso também conta."
+          ]
+        }
+      ]
+    },
+    "recusa": {
+      "falas": [
+        "Tudo bem. Vou deixar aqui; se quiser olhar outro dia, eu mostro."
+      ]
+    },
+    "aviso": {
+      "falas": [
+        "{aviso}"
+      ],
+      "opcoes": [
+        {
+          "id": "fonte",
+          "texto": "De onde veio essa informação?",
+          "destino": "fonte"
+        },
+        {
+          "id": "cobrar",
+          "texto": "O que você falou não combina com o que aconteceu.",
+          "destino": "cobrado",
+          "se": {
+            "dia_min": 6
+          },
+          "efeitos": {
+            "marcas": [
+              "cobrou_aviso"
+            ]
+          }
+        },
+        {
+          "id": "sair",
+          "texto": "Vou comparar com o que eu vi.",
+          "destino": ""
+        }
+      ]
+    },
+    "fonte": {
+      "falas": [
+        "Uma colega que ainda atende ligação contou. A informação passa por três pessoas antes de chegar aqui."
+      ],
+      "opcoes": [
+        {
+          "id": "voltar",
+          "texto": "Quero rever o que você disse.",
+          "destino": "aviso"
+        },
+        {
+          "id": "sair",
+          "texto": "Obrigado por explicar.",
+          "destino": ""
+        }
+      ]
+    },
+    "cobrado": {
+      "falas": [
+        "Eu posso ter errado. Me conta o que você viu; não quero transformar um relato em ordem."
+      ],
+      "variantes": [
+        {
+          "se": {
+            "mente": true
+          },
+          "falas": [
+            "Eu odiava aquele roteiro no trabalho e fiz igual com você: dei uma resposta firme pra esconder que não tinha resposta.",
+            "Eu não tenho como garantir o que vem amanhã. Você tem motivo pra conferir o que eu digo."
+          ]
+        }
+      ]
+    },
+    "rede": {
+      "falas": [
+        "Deixei uma coluna escrita “não sei”. Se a gente comparar o que viu, ela vai continuar existindo. Dessa vez eu não apago as lacunas.",
+        "Vamos perguntar antes de contar com o que é da outra casa."
+      ]
+    },
+    "distancia": {
+      "falas": [
+        "Vou continuar anotando sozinha. Se algum dia quiser comparar, eu mostro a data antes da minha explicação."
+      ]
+    }
+  }
+}

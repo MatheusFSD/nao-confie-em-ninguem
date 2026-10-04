@@ -1,0 +1,22 @@
+{
+  "costas": {
+    "rotacao": [-90, 0, 0],
+    "ossos": {
+      "head": [0, 25, 0],
+      "upperarm_L": [14, 0, 28], "forearm_L": [-12, 0, 10], "hand_L": [0, 0, -4],
+      "upperarm_R": [14, 0, -18], "forearm_R": [-12, 0, -22], "hand_R": [0, 0, 4],
+      "thigh_L": [4, 0, 9], "shin_L": [3, 0, 0], "foot_L": [0, 65, 0],
+      "thigh_R": [4, 0, -12], "shin_R": [3, 0, 0], "foot_R": [0, -65, 0]
+    }
+  },
+  "frente": {
+    "rotacao": [90, 0, 0],
+    "ossos": {
+      "head": [0, 78, 0],
+      "upperarm_L": [-22, 0, 28], "forearm_L": [17, 0, 48], "hand_L": [0, 0, -4],
+      "upperarm_R": [-22, 0, -38], "forearm_R": [17, 0, -8], "hand_R": [0, 0, 4],
+      "thigh_L": [-8, 0, 12], "shin_L": [0, 0, 0], "foot_L": [82, 0, 8],
+      "thigh_R": [-8, 0, -7], "shin_R": [0, 0, 0], "foot_R": [82, 0, -12]
+    }
+  }
+}

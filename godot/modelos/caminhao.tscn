@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://modelos/caminhao.gd" id="1_scr"]
+[ext_resource type="PackedScene" path="res://modelos/caminhao.glb" id="2_glb"]
+
+[node name="Caminhao" type="Node3D"]
+script = ExtResource("1_scr")
+
+[node name="Modelo" parent="." instance=ExtResource("2_glb")]

@@ -7,6 +7,8 @@ const COR := Color("f2ead2")
 const BORDA := Color("1a1d1b")
 var alvo: Node2D
 var ouvinte: Node2D
+## Onde o rabicho encosta, em pixels do próprio balão.
+var ponta := LARGURA / 2.0
 var _tempo := 0.0
 var _texto: Label
 
@@ -46,14 +48,14 @@ func _seguir() -> void:
 	size = Vector2(LARGURA, altura)
 	var tela := alvo.get_global_transform_with_canvas().origin
 	position = Vector2(tela.x - LARGURA / 2, tela.y - altura - 30)
+	ponta = tela.x - position.x
 	queue_redraw()
 
 func _na_tela() -> bool:
 	return get_viewport_rect().grow(-4).has_point(alvo.get_global_transform_with_canvas().origin)
 
 func _draw() -> void:
-	var tela := alvo.get_global_transform_with_canvas().origin - position if is_instance_valid(alvo) else Vector2(LARGURA / 2, size.y + 20)
-	var ponta_x := clampf(tela.x, 20, LARGURA - 20)
+	var ponta_x := clampf(ponta, 20, LARGURA - 20)
 	# Com o balão centrado na pessoa, o rabicho fica no meio, logo acima da cabeça.
 	var caixa := Rect2(Vector2.ZERO, size)
 	var estilo := StyleBoxFlat.new()

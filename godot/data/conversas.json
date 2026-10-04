@@ -1,53 +1,53 @@
 {
   "fases": [
-    {
-      "a_partir_do_dia": 1,
-      "tom": "ironia do cotidiano",
-      "frases": [
-        "Ônibus atrasado de novo. Pelo menos isso continua funcionando normal.",
-        "Dizem que o calor vai dar uma trégua. Dizem isso desde 1998.",
-        "Asfaltaram a rua ontem. Hoje abriram um buraco pra “ver o cano”.",
-        "Aqui ninguém confia em previsão do tempo. Nem em preço de mercado.",
-        "Meu vizinho jura que o poste pisca em código Morse. Eu acho que é só o poste mesmo.",
-        "Se faltar luz, pelo menos o som do vizinho para. Sempre tem um lado bom.",
+	{
+	  "a_partir_do_dia": 1,
+	  "tom": "ironia do cotidiano",
+	  "frases": [
+		"Ônibus atrasado de novo. Pelo menos isso continua funcionando normal.",
+		"Dizem que o calor vai dar uma trégua. Dizem isso desde 1998.",
+		"Asfaltaram a rua ontem. Hoje abriram um buraco pra “ver o cano”.",
+		"Aqui ninguém confia em previsão do tempo. Nem em preço de mercado.",
+		"Meu vizinho jura que o poste pisca em código Morse. Eu acho que é só o poste mesmo.",
+		"Se faltar luz, pelo menos o som do vizinho para. Sempre tem um lado bom.",
         "O Rio é lindo. De longe, de cima e com o ar-condicionado ligado."
-      ]
-    },
-    {
-      "a_partir_do_dia": 3,
-      "tom": "desconfiança",
-      "frases": [
-        "Três dias sem água e o boleto chegou certinho. Isso é que é eficiência.",
-        "O caminhão-pipa passou reto. Disse que o endereço “não consta no sistema”.",
-        "A luz pisca sempre às três da manhã. A rua toda acorda e ninguém comenta.",
-        "No jornal falaram “instabilidade pontual”. Pontual só se for o horário.",
-        "Meu rádio pegou uma estação que não existe. Só chiado e alguém contando números.",
+	  ]
+	},
+	{
+	  "a_partir_do_dia": 3,
+	  "tom": "desconfiança",
+	  "frases": [
+		"Três dias sem água e o boleto chegou certinho. Isso é que é eficiência.",
+		"O caminhão-pipa passou reto. Disse que o endereço “não consta no sistema”.",
+		"A luz pisca sempre às três da manhã. A rua toda acorda e ninguém comenta.",
+		"No jornal falaram “instabilidade pontual”. Pontual só se for o horário.",
+		"Meu rádio pegou uma estação que não existe. Só chiado e alguém contando números.",
         "Pergunta pro seu cachorro. O meu passa a noite latindo pro céu."
-      ]
-    },
-    {
-      "a_partir_do_dia": 5,
-      "tom": "mistério",
-      "frases": [
-        "O mercado tá vazio, mas o pátio dos fundos tá cheio de caminhão parado.",
-        "Vi uns homens de macacão medindo os bueiros. Sem logotipo. Sem pressa.",
-        "Minha bússola aponta pra caixa-d'água da esquina. Testa a sua.",
-        "A dona Cida saiu pra comprar pão na terça. O portão dela continua aberto.",
-        "Tem uma luz no morro que acende quando a da rua apaga. Já reparou?",
+	  ]
+	},
+	{
+	  "a_partir_do_dia": 5,
+	  "tom": "mistério",
+	  "frases": [
+		"O mercado tá vazio, mas o pátio dos fundos tá cheio de caminhão parado.",
+		"Vi uns homens de macacão medindo os bueiros. Sem logotipo. Sem pressa.",
+		"Minha bússola aponta pra caixa-d'água da esquina. Testa a sua.",
+		"A dona Cida saiu pra comprar pão na terça. O portão dela continua aberto.",
+		"Tem uma luz no morro que acende quando a da rua apaga. Já reparou?",
         "Perto do poste o celular trava sempre na mesma hora. Três e dezessete."
-      ]
-    },
-    {
-      "a_partir_do_dia": 7,
-      "tom": "paranoia",
-      "frases": [
-        "Não confia em ninguém que diga que tá tudo normal. Nem em mim.",
-        "Eles contam as casas com luz acesa. Apaga a sua cedo hoje.",
-        "Os passarinhos foram embora na mesma noite. Todos juntos, pro mesmo lado.",
-        "Se baterem aí dizendo que é da companhia de água, não abre o portão.",
-        "Anotei as placas dos carros que passam de madrugada. São sempre as mesmas.",
+	  ]
+	},
+	{
+	  "a_partir_do_dia": 7,
+	  "tom": "paranoia",
+	  "frases": [
+		"Não confia em ninguém que diga que tá tudo normal. Nem em mim.",
+		"Eles contam as casas com luz acesa. Apaga a sua cedo hoje.",
+		"Os passarinhos foram embora na mesma noite. Todos juntos, pro mesmo lado.",
+		"Se baterem aí dizendo que é da companhia de água, não abre o portão.",
+		"Anotei as placas dos carros que passam de madrugada. São sempre as mesmas.",
         "Você também sonhou com o barulho? Grave, lá embaixo da terra?"
-      ]
-    }
+	  ]
+	}
   ]
 }

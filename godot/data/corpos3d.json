@@ -1,0 +1,14 @@
+{
+  "corpos": [
+    {"id": "marquinhos", "cena": "res://scenes/corpos/marquinhos.tscn", "posicao": [6.2, -0.15, 25.6], "giro": 27},
+    {"id": "dona_celia", "cena": "res://scenes/corpos/dona_celia.tscn", "posicao": [-4.5, 0, 21.7], "giro": -18},
+    {"id": "seu_ze", "cena": "res://scenes/corpos/seu_ze.tscn", "posicao": [25.0, 0, 35.0], "giro": 62},
+    {"id": "vanessa", "cena": "res://scenes/corpos/vanessa.tscn", "posicao": [13.0, -0.15, 30.8], "giro": -38},
+    {"id": "tania", "cena": "res://scenes/corpos/tania.tscn", "posicao": [-21.0, 0, 34.6], "giro": 104},
+    {"id": "aline", "cena": "res://scenes/corpos/aline.tscn", "posicao": [33.0, 0, 21.7], "giro": -55},
+    {"id": "jessica", "cena": "res://scenes/corpos/jessica.tscn", "posicao": [-12.0, -0.15, 29.0], "giro": 138},
+    {"id": "rogerio", "cena": "res://scenes/corpos/rogerio.tscn", "posicao": [43.0, -0.15, 25.2], "giro": 78},
+    {"id": "anderson", "cena": "res://scenes/corpos/anderson.tscn", "posicao": [-32.0, 0, 21.7], "giro": -112},
+    {"id": "entregador", "cena": "res://scenes/corpos/entregador.tscn", "posicao": [52.0, 0, 35.0], "giro": 14}
+  ]
+}

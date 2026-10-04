@@ -1,0 +1,20 @@
+PROGRAMAS DE TV (Godot 4.3+)
+
+Coloque a pasta "tv" na raiz do projeto (res://tv). Os caminhos dos arquivos dependem disso.
+
+Cenas prontas:
+  res://tv/pronunciamento.tscn  -> presidente fictício, loop de 12 s
+  res://tv/telejornal.tscn      -> jornalista fictícia, loop de 16 s
+
+Cada cena renderiza em baixa resolução (tela dividida por 4) com filtro nearest,
+por isso fica pixelada como no PS1. Para mostrar dentro da TV do jogo, use o
+SubViewport da cena como textura da tela da TV (ViewportTexture).
+
+Textos: ficam no topo de programa_tv.gd (PRONUNCIAMENTO, TELEJORNAL e RODAPE),
+cada fala com tempo de início e fim em segundos. A boca do personagem mexe só
+enquanto houver fala.
+
+No nó "Programa" do Inspector dá para desligar a arte da TV, as legendas e mudar
+os quadros por segundo da animação.
+
+Fonte: Pixelify Sans, licença SIL Open Font License (OFL_PixelifySans.txt).

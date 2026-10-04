@@ -1,46 +1,173 @@
 {
   "0": {
-    "evento": "Sua irmã dormiu aqui e acordou reclamando da luz que piscou de madrugada. Não há comida em casa.",
-    "tv": [
-      {"fonte": "Governo", "texto": "Boa noite. Registramos oscilações rápidas em alguns bairros, sem risco à população."},
-      {"fonte": "Cientistas", "texto": "As oscilações começaram e terminaram no mesmo minuto em bairros distantes. Isso não costuma acontecer."}
-    ],
-    "radio": [{"fonte": "Conspiracionistas", "texto": "Três piscadas, sempre às três e dezessete. Anota aí e confere amanhã."}],
-    "celular": [{"fonte": "Cientistas", "texto": "Grupo do bairro: alguém mais ficou sem água na rua de cima ontem?"}]
+	"evento": "Sua irmã dormiu aqui e acordou reclamando da luz que piscou de madrugada. Não há comida em casa.",
+	"tv": [
+	  {
+		"fonte": "Governo",
+		"texto": "Boa noite. Registramos oscilações rápidas em alguns bairros, sem risco à população."
+	  },
+	  {
+		"fonte": "Cientistas",
+		"texto": "As oscilações começaram e terminaram no mesmo minuto em bairros distantes. Isso não costuma acontecer."
+	  }
+	],
+	"radio": [
+	  {
+		"fonte": "Conspiracionistas",
+		"texto": "Três piscadas, sempre às três e dezessete. Anota aí e confere amanhã."
+	  }
+	],
+	"celular": [
+	  {
+		"fonte": "Cientistas",
+		"texto": "Grupo do bairro: alguém mais ficou sem água na rua de cima ontem?"
+	  }
+	]
   },
   "1": {
-    "evento": "Tudo parece normal. Ainda há água na rede e produtos à venda.",
-    "tv": [
-      {"fonte": "Governo", "texto": "Não há motivo para preocupação. O abastecimento continuará funcionando normalmente."},
-      {"fonte": "Cientistas", "texto": "No jornal, pesquisadores dizem que os dados disponíveis ainda não explicam as falhas registradas no Rio."}
-    ],
-    "radio": [{"fonte": "Cientistas", "texto": "Estamos registrando perturbações eletromagnéticas incomuns."}],
-    "celular": [{"fonte": "Conspiracionistas", "texto": "Encha recipientes com água enquanto ainda pode."}]
+	"evento": "Tudo parece normal. Ainda há água na rede e produtos à venda.",
+	"tv": [
+	  {
+		"fonte": "Governo",
+		"texto": "Não há motivo para preocupação. O abastecimento continuará funcionando normalmente."
+	  },
+	  {
+		"fonte": "Cientistas",
+		"texto": "No jornal, pesquisadores dizem que os dados disponíveis ainda não explicam as falhas registradas no Rio."
+	  }
+	],
+	"radio": [
+	  {
+		"fonte": "Cientistas",
+		"texto": "Estamos registrando perturbações eletromagnéticas incomuns."
+	  }
+	],
+	"celular": [
+	  {
+		"fonte": "Conspiracionistas",
+		"texto": "Encha recipientes com água enquanto ainda pode."
+	  }
+	]
   },
   "2": {
-    "evento": "O jornal noticia problemas no abastecimento em bairros do Rio.",
-    "tv": [{"fonte": "Governo", "texto": "As interrupções são pontuais. A distribuição será normalizada ainda hoje."}],
-    "radio": [{"fonte": "Cientistas", "texto": "As falhas atingem várias estações ao mesmo tempo. Não temos previsão segura de normalização."}],
-    "celular": [{"fonte": "Conspiracionistas", "texto": "Disseram que era pontual ontem também. O caminhão não chegou ao mercado aqui do bairro."}]
+	"evento": "O jornal noticia problemas no abastecimento em bairros do Rio.",
+	"tv": [
+	  {
+		"fonte": "Governo",
+		"texto": "As interrupções são pontuais. A distribuição será normalizada ainda hoje."
+	  }
+	],
+	"radio": [
+	  {
+		"fonte": "Cientistas",
+		"texto": "As falhas atingem várias estações ao mesmo tempo. Não temos previsão segura de normalização."
+	  }
+	],
+	"celular": [
+	  {
+		"fonte": "Conspiracionistas",
+		"texto": "Disseram que era pontual ontem também. O caminhão não chegou ao mercado aqui do bairro."
+	  }
+	]
   },
   "3": {
-    "evento": "O abastecimento de água está instável. A torneira da casa parou de fornecer água.",
-    "agua_da_rede": false,
-    "tv": [{"fonte": "Governo", "texto": "O fornecimento segue um cronograma emergencial. Evitem armazenar além do necessário."}],
-    "radio": [{"fonte": "Conspiracionistas", "texto": "Tem rua sem água desde ontem. Esse cronograma não chegou a ninguém que eu conheça."}],
-    "celular": [{"fonte": "Conspiracionistas", "texto": "Ninguém vai avisar antes de cortar de vez. Guarde o que conseguir."}]
+	"evento": "As falhas continuam e a cidade parece estranha. A água da rede ainda chega, mas o abastecimento preocupa os moradores.",
+	"tv": [
+	  {
+		"fonte": "Governo",
+		"texto": "O fornecimento segue um cronograma preventivo. Não há previsão de suspensão geral."
+	  },
+	  {
+		"fonte": "Cientistas",
+		"texto": "As falhas simultâneas continuam sem explicação. A população deve manter uma reserva de água."
+	  }
+	],
+	"radio": [
+	  {
+		"fonte": "Conspiracionistas",
+		"texto": "A torneira ainda sai aqui. Eu tô enchendo os potes antes de acreditar em cronograma."
+	  }
+	],
+	"celular": [
+	  {
+		"fonte": "Conspiracionistas",
+		"texto": "Guarde o que conseguir enquanto a rede funciona. Ninguém sabe até quando."
+	  }
+	]
   },
   "4": {
-    "evento": "A instabilidade piorou. Depois de uma noite desgastante, sua energia caiu para 70.",
-    "energia": 70,
-    "tv": [{"fonte": "Governo", "texto": "Oscilações de energia não representam risco prolongado. As equipes estão trabalhando."}],
-    "radio": [{"fonte": "Cientistas", "texto": "As perturbações persistem. Ainda não conseguimos distinguir a causa das consequências."}],
-    "celular": [{"fonte": "Conspiracionistas", "texto": "A luz piscou na rua inteira, mas ninguém apareceu para consertar nada."}]
+	"evento": "A instabilidade piorou. A rua está mais vazia e os moradores relatam barulhos e oscilações de luz.",
+	"tv": [
+	  {
+		"fonte": "Governo",
+		"texto": "Oscilações de energia não representam risco prolongado. As equipes estão trabalhando."
+	  }
+	],
+	"radio": [
+	  {
+		"fonte": "Cientistas",
+		"texto": "As perturbações persistem. Ainda não conseguimos distinguir a causa das consequências."
+	  }
+	],
+	"celular": [
+	  {
+		"fonte": "Conspiracionistas",
+		"texto": "A luz piscou na rua inteira, mas ninguém apareceu para consertar nada."
+	  }
+	]
   },
   "5": {
-    "evento": "Os mercados estão ficando vazios.",
-    "tv": [{"fonte": "Governo", "texto": "Há reservas suficientes. As filas resultam de compras acima da média."}],
-    "radio": [{"fonte": "Cientistas", "texto": "Os dados de distribuição estão incompletos. Não é possível garantir que todos os bairros recebam reposição."}],
-    "celular": [{"fonte": "Conspiracionistas", "texto": "Prateleiras vazias por aqui. No noticiário, o mercado ainda está cheio."}]
+	"evento": "Os mercados estão ficando vazios e caros. A fuga dos moradores provoca um engarrafamento no bairro.",
+	"tv": [
+	  {
+		"fonte": "Governo",
+		"texto": "Há reservas suficientes. As filas resultam de compras acima da média."
+	  },
+	  {
+		"fonte": "Cientistas",
+		"texto": "O trânsito está congestionado nas saídas. Não há garantia de passagem ou reposição nos mercados."
+	  }
+	],
+	"radio": [
+	  {
+		"fonte": "Cientistas",
+		"texto": "Os dados de distribuição estão incompletos. Não é possível garantir que todos os bairros recebam reposição."
+	  }
+	],
+	"celular": [
+	  {
+		"fonte": "Conspiracionistas",
+		"texto": "Prateleiras vazias por aqui. No noticiário, o mercado ainda está cheio."
+	  }
+	]
+  },
+  "6": {
+	"evento": "Breu durante o dia inteiro. Dois caçadores percorrem a pista. A água ainda chega e os últimos ônibus continuam circulando.",
+	"tv": [],
+	"agua_da_rede": true,
+	"energia_da_rede": false,
+	"onibus": true
+  },
+  "7": {
+	"evento": "A cidade está sob ataque. Passa um comboio militar; a água e a energia da rede foram cortadas. Os ônibus pararam.",
+	"tv": [],
+	"agua_da_rede": false,
+	"energia_da_rede": false,
+	"onibus": false
+  },
+  "8": {
+	"evento": "Depois do ataque, restam ruínas e criaturas na rua. Sem água da rede, eletricidade ou ônibus, os moradores dependem das reservas.",
+	"tv": [],
+	"agua_da_rede": false,
+	"energia_da_rede": false,
+	"onibus": false
+  },
+  "9": {
+	"evento": "A cidade continua destruída. Quem ficou tenta manter contato entre as casas.",
+	"tv": []
+  },
+  "10": {
+	"evento": "Não há reposição nem transporte. As decisões entre vizinhos definem quem ainda conversa com quem.",
+	"tv": []
   }
 }
