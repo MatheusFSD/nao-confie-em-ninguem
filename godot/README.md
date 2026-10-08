@@ -4,9 +4,19 @@ O menu inicia `scenes/mundo3d.tscn`. O jogo 2D foi abandonado e os arquivos dele
 
 As histórias dos onze vizinhos e as conversas ramificadas ficam em `data/vizinhos/*.json`. Veja [o guia de edição](data/vizinhos/LEIA-ME.md) para lore, calendário, condições, custos e mensagens.
 
-Dia 5: engarrafamento. Dia 6: breu total, com água e últimos ônibus ainda disponíveis. Dia 7: ataque e corte definitivo de água, eletricidade e transporte. Dia 8 em diante: ruínas, com luz natural e serviços ainda cortados. O HUD continua contando disposição/pilhas separadamente da rede elétrica.
+Ajudar um vizinho e ter confiança ≥2 libera “Pedir abrigo e esperar aqui” nas opções da porta. Entrar espera um período por 1 ação, sem energia; você permanece na casa até escolher sair ou Esc. Sem ações, esperar até amanhã consome comida e água normalmente. O interior é representado por uma tela, sem modelo novo. O convite pode ser personalizado no JSON com `abrigo.convite`.
+
+Os becos são montados à mão em `scenes/casario.tscn`: os cinco modelos de `modelos/blocos/` ficam no nó `BlocosBecos` e vão para o jogo como estão. `data/becos3d.json` define o `piso` único por baixo do miolo do quarteirão (com cerca invisível nas laterais e no fundo), as `entradas` abertas na barreira da calçada e `rotas` curtas de conferência. Ao abrir ou fechar um vão na frente, ajuste `entradas` e `rotas`. `tests/becos3d_test.gd` verifica piso, entradas e apoio no bairro completo.
+
+Os caçadores são cegos: percebem o jogador dentro de 2,4 m, em qualquer direção, respeitando paredes. Perseguem enquanto ele está perto; ao perder contato, procuram o último ponto percebido por até 2 segundos e retomam a caminhada aleatória. Contornam obstáculos e colidem com o jogador, sem dano ou morte nesta etapa. Ajuste `raio_proximidade` e `memoria_proximidade` em `scripts/cacador3d.gd`; navegação em `scripts/caminho_cacador3d.gd`, teste em `tests/cacadores3d_test.gd`. Permanecem ausentes no dia 7 do ataque.
+
+Dia 5: engarrafamento e último dia com ônibus. Dia 6: único dia de breu total; ônibus e eletricidade param, água ainda disponível. Dia 7: ataque e corte definitivo de água. Dia 8 em diante: ruínas, com luz natural e serviços ainda cortados. O HUD continua contando disposição/pilhas separadamente da rede elétrica.
+
+O ponto mostra custos em ações/energia e recompensa antes de confirmar. No mercado, o preço é por embalagem e o benefício aparece antes de pegar: arroz rende 5 comidas, feijão e café 2, os outros alimentos 1. Edite `rende` em `data/mercado3d.json` para ajustar o balanceamento. O filtro preserva a baixa resolução PS1, com pontilhado e VHS mais suaves.
 
 Os corpos dos dez NPCs da rua aparecem no dia 6, de bruços ou de barriga para cima, com os membros apoiados no chão e poças de sangue. Corpos e poças permanecem no mesmo local nos dias seguintes. As cenas, os locais e os ângulos das poses são editáveis; veja [o guia dos corpos](scenes/corpos/LEIA-ME.md).
+
+Os pedestres contornam móveis, postes, o jogador e outras pessoas usando rotas curtas na calçada; depois voltam à linha de caminhada. Se a passagem inteira estiver fechada, seguem pelo trecho livre na direção contrária. O jogador colide com NPCs e veículos. Carros e comboio freiam diante de pessoas e retomam quando a faixa libera. Pedestres ocultos à noite ou no breu também retiram suas colisões. O alcance e a largura das rotas ficam em `scripts/caminho_pedestre3d.gd`; `tests/transito3d_test.gd` verifica movimento e colisões no bairro e em cenários de obstáculos.
 
 ---
 

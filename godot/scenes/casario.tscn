@@ -1,171 +1,246 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://b0qi541cesm26"]
 
-[ext_resource type="PackedScene" path="res://modelos/casas/casa_rosa_com_varanda.glb" id="1_3b3x8"]
-[ext_resource type="PackedScene" path="res://modelos/comercios/borracharia_aberto.glb" id="2_05a18"]
-[ext_resource type="PackedScene" path="res://modelos/casas/casa_com_puxadinho_de_tijolo.glb" id="3_kx3d1"]
-[ext_resource type="PackedScene" path="res://modelos/casas/sobrado_azul_com_escada.glb" id="4_fq151"]
-[ext_resource type="PackedScene" path="res://modelos/comercios/lanchonete_aberto.glb" id="5_n18o6"]
-[ext_resource type="PackedScene" path="res://modelos/casas/casas_de_vila_geminadas.glb" id="6_mc1nw"]
-[ext_resource type="PackedScene" path="res://modelos/casas/casa_amarela_de_telhado_colonial.glb" id="7_kghkm"]
-[ext_resource type="PackedScene" path="res://modelos/comercios/mercadinho_aberto.glb" id="8_bgskk"]
-[ext_resource type="PackedScene" path="res://modelos/casas/sobrado_com_sacada.glb" id="9_v6dwf"]
-[ext_resource type="PackedScene" path="res://modelos/comercios/padaria_aberto.glb" id="10_dwtot"]
-[ext_resource type="PackedScene" path="res://modelos/casas/casa_branca_com_garagem.glb" id="11_866vb"]
-[ext_resource type="PackedScene" path="res://modelos/comercios/bar_do_ze_aberto.glb" id="12_imhqa"]
-[ext_resource type="PackedScene" path="res://modelos/comercios/barbearia_aberto.glb" id="13_bft25"]
-[ext_resource type="PackedScene" path="res://modelos/comercios/bazar_1_99_aberto.glb" id="14_n3c2n"]
+[ext_resource type="PackedScene" uid="uid://c0rdxmbwitiad" path="res://modelos/casas/casa_rosa_com_varanda.glb" id="1_3b3x8"]
+[ext_resource type="PackedScene" uid="uid://cfdfudcx2lb0g" path="res://modelos/comercios/borracharia_aberto.glb" id="2_05a18"]
+[ext_resource type="PackedScene" uid="uid://cp7vh4xhsjb5t" path="res://modelos/casas/casa_com_puxadinho_de_tijolo.glb" id="3_kx3d1"]
+[ext_resource type="PackedScene" uid="uid://bkppqf1k73ysr" path="res://modelos/casas/sobrado_azul_com_escada.glb" id="4_fq151"]
+[ext_resource type="PackedScene" uid="uid://b3wrwle8or1jl" path="res://modelos/comercios/lanchonete_aberto.glb" id="5_n18o6"]
+[ext_resource type="PackedScene" uid="uid://k2n0rpq6r0p1" path="res://modelos/casas/casas_de_vila_geminadas.glb" id="6_mc1nw"]
+[ext_resource type="PackedScene" uid="uid://buvr5yf8trebl" path="res://modelos/casas/casa_amarela_de_telhado_colonial.glb" id="7_kghkm"]
+[ext_resource type="PackedScene" uid="uid://dviokikaq7fc6" path="res://modelos/comercios/mercadinho_aberto.glb" id="8_bgskk"]
+[ext_resource type="PackedScene" uid="uid://brd4prpai17i4" path="res://modelos/casas/sobrado_com_sacada.glb" id="9_v6dwf"]
+[ext_resource type="PackedScene" uid="uid://cews4fko65uo1" path="res://modelos/comercios/padaria_aberto.glb" id="10_dwtot"]
+[ext_resource type="PackedScene" uid="uid://dbdtwugq4wv6s" path="res://modelos/casas/casa_branca_com_garagem.glb" id="11_866vb"]
+[ext_resource type="PackedScene" uid="uid://cmstqwsss6we7" path="res://modelos/comercios/bar_do_ze_aberto.glb" id="12_imhqa"]
+[ext_resource type="PackedScene" uid="uid://bvsvyadif3jnd" path="res://modelos/comercios/barbearia_aberto.glb" id="13_bft25"]
+[ext_resource type="PackedScene" uid="uid://g88f3duev4uo" path="res://modelos/comercios/bazar_1_99_aberto.glb" id="14_n3c2n"]
 [ext_resource type="PackedScene" path="res://scenes/guia_rua.tscn" id="15_05a18"]
+[ext_resource type="PackedScene" uid="uid://dp8bdujxhgyt1" path="res://modelos/blocos/bloco_1_laje_amarela.glb" id="b1_bloco_1_laje_amarela"]
+[ext_resource type="PackedScene" uid="uid://ovv78lpfx51l" path="res://modelos/blocos/bloco_2_tijolo_fibro.glb" id="b2_bloco_2_tijolo_fibro"]
+[ext_resource type="PackedScene" uid="uid://cteboaajmknwf" path="res://modelos/blocos/bloco_3_chapisco_colonial.glb" id="b3_bloco_3_chapisco_colonial"]
+[ext_resource type="PackedScene" uid="uid://6bxsyerfaqg4" path="res://modelos/blocos/bloco_4_sobrado_puxadinho.glb" id="b4_bloco_4_sobrado_puxadinho"]
 
 [node name="Casario" type="Node3D" unique_id=796513787]
 
-[node name="casa_rosa_com_varanda" type="Node3D" parent="." unique_id=247606382 instance=ExtResource("1_3b3x8")]
+[node name="casa_rosa_com_varanda" parent="." unique_id=247606382 instance=ExtResource("1_3b3x8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -82.15, 0.004, 19.3)
 
-[node name="borracharia_aberto" type="Node3D" parent="." unique_id=1916722480 instance=ExtResource("2_05a18")]
+[node name="borracharia_aberto" parent="." unique_id=1916722480 instance=ExtResource("2_05a18")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -75.15, 0.004, 19.3)
 
-[node name="casa_com_puxadinho_de_tijolo" type="Node3D" parent="." unique_id=326301498 instance=ExtResource("3_kx3d1")]
+[node name="casa_com_puxadinho_de_tijolo" parent="." unique_id=326301498 instance=ExtResource("3_kx3d1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -68.15, 0.004, 19.3)
 
-[node name="sobrado_azul_com_escada" type="Node3D" parent="." unique_id=2067493400 instance=ExtResource("4_fq151")]
+[node name="sobrado_azul_com_escada" parent="." unique_id=2067493400 instance=ExtResource("4_fq151")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -61.15, 0.004, 19.3)
 
-[node name="lanchonete_aberto" type="Node3D" parent="." unique_id=826954450 instance=ExtResource("5_n18o6")]
+[node name="lanchonete_aberto" parent="." unique_id=826954450 instance=ExtResource("5_n18o6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -54.2, 0.004, 19.3)
 
-[node name="casas_de_vila_geminadas" type="Node3D" parent="." unique_id=657943538 instance=ExtResource("6_mc1nw")]
+[node name="casas_de_vila_geminadas" parent="." unique_id=1247505629 instance=ExtResource("6_mc1nw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.7, 0.004, 19.3)
 
-[node name="casa_amarela_de_telhado_colonial" type="Node3D" parent="." unique_id=973227359 instance=ExtResource("7_kghkm")]
+[node name="casa_amarela_de_telhado_colonial" parent="." unique_id=973227359 instance=ExtResource("7_kghkm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37.7, 0.004, 19.3)
 
-[node name="mercadinho_aberto" type="Node3D" parent="." unique_id=321217920 instance=ExtResource("8_bgskk")]
+[node name="mercadinho_aberto" parent="." unique_id=321217920 instance=ExtResource("8_bgskk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.5, 0.004, 19.3)
 
-[node name="sobrado_com_sacada" type="Node3D" parent="." unique_id=2102852635 instance=ExtResource("9_v6dwf")]
+[node name="sobrado_com_sacada" parent="." unique_id=2102852635 instance=ExtResource("9_v6dwf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.1, 0.004, 19.3)
 
-[node name="casa_com_puxadinho_de_tijolo2" type="Node3D" parent="." unique_id=571966160 instance=ExtResource("3_kx3d1")]
+[node name="casa_com_puxadinho_de_tijolo2" parent="." unique_id=571966160 instance=ExtResource("3_kx3d1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.9, 0.004, 19.3)
 
-[node name="padaria_aberto" type="Node3D" parent="." unique_id=803821226 instance=ExtResource("10_dwtot")]
+[node name="padaria_aberto" parent="." unique_id=803821226 instance=ExtResource("10_dwtot")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.650001, 0.004, 19.3)
 
-[node name="casa_branca_com_garagem" type="Node3D" parent="." unique_id=2127093728 instance=ExtResource("11_866vb")]
+[node name="casa_branca_com_garagem" parent="." unique_id=2127093728 instance=ExtResource("11_866vb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9500002, 0.004, 19.3)
 
-[node name="bar_do_ze_aberto" type="Node3D" parent="." unique_id=1792000349 instance=ExtResource("12_imhqa")]
+[node name="bar_do_ze_aberto" parent="." unique_id=1792000349 instance=ExtResource("12_imhqa")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.85, 0.004, 19.3)
 
-[node name="casa_rosa_com_varanda2" type="Node3D" parent="." unique_id=662077353 instance=ExtResource("1_3b3x8")]
+[node name="casa_rosa_com_varanda2" parent="." unique_id=662077353 instance=ExtResource("1_3b3x8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.6, 0.004, 19.3)
 
-[node name="sobrado_com_sacada2" type="Node3D" parent="." unique_id=1290272946 instance=ExtResource("9_v6dwf")]
+[node name="casa_rosa_com_varanda2" parent="casa_rosa_com_varanda2" unique_id=1504807253 instance=ExtResource("1_3b3x8")]
+transform = Transform3D(-0.9999999, 0, -0.00048813023, 0, 1, 0, 0.00048813023, 0, -0.9999999, 12.823572, 0.004, 17.96865)
+
+[node name="sobrado_com_sacada2" parent="." unique_id=1290272946 instance=ExtResource("9_v6dwf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.8, 0.004, 19.3)
 
-[node name="barbearia_aberto" type="Node3D" parent="." unique_id=2113148392 instance=ExtResource("13_bft25")]
+[node name="barbearia_aberto" parent="." unique_id=2113148392 instance=ExtResource("13_bft25")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42.45, 0.004, 19.3)
 
-[node name="sobrado_azul_com_escada2" type="Node3D" parent="." unique_id=62493396 instance=ExtResource("4_fq151")]
+[node name="sobrado_azul_com_escada2" parent="." unique_id=62493396 instance=ExtResource("4_fq151")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47.899998, 0.004, 19.3)
 
-[node name="casa_branca_com_garagem2" type="Node3D" parent="." unique_id=483216520 instance=ExtResource("11_866vb")]
+[node name="casa_branca_com_garagem2" parent="." unique_id=483216520 instance=ExtResource("11_866vb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 56.35, 0.004, 19.3)
 
-[node name="bazar_1_99_aberto" type="Node3D" parent="." unique_id=133853063 instance=ExtResource("14_n3c2n")]
+[node name="bazar_1_99_aberto" parent="." unique_id=133853063 instance=ExtResource("14_n3c2n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 63.05, 0.004, 19.3)
 
-[node name="casa_amarela_de_telhado_colonial2" type="Node3D" parent="." unique_id=1725890129 instance=ExtResource("7_kghkm")]
+[node name="casa_amarela_de_telhado_colonial2" parent="." unique_id=1725890129 instance=ExtResource("7_kghkm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 69.75, 0.004, 19.3)
 
-[node name="casa_rosa_com_varanda3" type="Node3D" parent="." unique_id=1358509032 instance=ExtResource("1_3b3x8")]
+[node name="casa_rosa_com_varanda3" parent="." unique_id=1358509032 instance=ExtResource("1_3b3x8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 77.75, 0.004, 19.3)
 
-[node name="borracharia_aberto2" type="Node3D" parent="." unique_id=162295372 instance=ExtResource("2_05a18")]
+[node name="borracharia_aberto2" parent="." unique_id=162295372 instance=ExtResource("2_05a18")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 84.75, 0.004, 19.3)
 
-[node name="casa_com_puxadinho_de_tijolo3" type="Node3D" parent="." unique_id=1401075245 instance=ExtResource("3_kx3d1")]
+[node name="casa_com_puxadinho_de_tijolo3" parent="." unique_id=1401075245 instance=ExtResource("3_kx3d1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 91.75, 0.004, 19.3)
 
-[node name="sobrado_azul_com_escada3" type="Node3D" parent="." unique_id=1389812825 instance=ExtResource("4_fq151")]
+[node name="sobrado_azul_com_escada3" parent="." unique_id=1389812825 instance=ExtResource("4_fq151")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 98.75, 0.004, 19.3)
 
-[node name="lanchonete_aberto2" type="Node3D" parent="." unique_id=1942931475 instance=ExtResource("5_n18o6")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -83.2, 0.004, 37.1)
+[node name="lanchonete_aberto2" parent="." unique_id=1942931475 instance=ExtResource("5_n18o6")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -87.367096, 0.004, 37.1)
 
-[node name="casas_de_vila_geminadas2" type="Node3D" parent="." unique_id=880335763 instance=ExtResource("6_mc1nw")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -75.7, 0.004, 37.1)
+[node name="casas_de_vila_geminadas2" parent="." unique_id=880335763 instance=ExtResource("6_mc1nw")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -79.54372, 0.004, 37.1)
 
-[node name="casa_amarela_de_telhado_colonial3" type="Node3D" parent="." unique_id=1387424891 instance=ExtResource("7_kghkm")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -66.7, 0.004, 37.1)
+[node name="casa_amarela_de_telhado_colonial3" parent="." unique_id=1387424891 instance=ExtResource("7_kghkm")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -69.25079, 0.004, 37.1)
 
-[node name="mercadinho_aberto2" type="Node3D" parent="." unique_id=1340185840 instance=ExtResource("8_bgskk")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -59.5, 0.004, 37.1)
+[node name="mercadinho_aberto2" parent="." unique_id=1340185840 instance=ExtResource("8_bgskk")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -61.985676, 0.004, 37.1)
 
-[node name="sobrado_com_sacada3" type="Node3D" parent="." unique_id=308984905 instance=ExtResource("9_v6dwf")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -53.1, 0.004, 37.1)
+[node name="sobrado_com_sacada3" parent="." unique_id=308984905 instance=ExtResource("9_v6dwf")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -55.585674, 0.004, 37.1)
 
-[node name="casa_com_puxadinho_de_tijolo4" type="Node3D" parent="." unique_id=378067840 instance=ExtResource("3_kx3d1")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -45.9, 0.004, 37.1)
+[node name="casa_com_puxadinho_de_tijolo4" parent="." unique_id=378067840 instance=ExtResource("3_kx3d1")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -48.385677, 0.004, 37.1)
 
-[node name="padaria_aberto2" type="Node3D" parent="." unique_id=1486972740 instance=ExtResource("10_dwtot")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -38.65, 0.004, 37.1)
+[node name="padaria_aberto2" parent="." unique_id=1486972740 instance=ExtResource("10_dwtot")]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, -35.953255, 0.004, 37.4528)
+metadata/beco = "casario_estreito"
 
-[node name="casa_branca_com_garagem3" type="Node3D" parent="." unique_id=1846500448 instance=ExtResource("11_866vb")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -30.95, 0.004, 37.1)
+[node name="casa_branca_com_garagem3" parent="." unique_id=1846500448 instance=ExtResource("11_866vb")]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, -28.156712, 0.004, 37.4528)
+metadata/beco = "casario_estreito"
 
-[node name="casas_de_vila_geminadas3" type="Node3D" parent="." unique_id=1764313624 instance=ExtResource("6_mc1nw")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -21.95, 0.004, 37.1)
+[node name="casas_de_vila_geminadas3" parent="." unique_id=1764313624 instance=ExtResource("6_mc1nw")]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, -21.95, 0.004, 55.755928)
+metadata/beco = "casario_estreito"
 
-[node name="bar_do_ze_aberto2" type="Node3D" parent="." unique_id=1241889625 instance=ExtResource("12_imhqa")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -14.2, 0.004, 37.1)
+[node name="bar_do_ze_aberto2" parent="." unique_id=1241889625 instance=ExtResource("12_imhqa")]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, -20.777702, 0.004, 37.461338)
+metadata/beco = "casario_estreito"
 
-[node name="casa_rosa_com_varanda4" type="Node3D" parent="." unique_id=667933334 instance=ExtResource("1_3b3x8")]
+[node name="casa_rosa_com_varanda4" parent="." unique_id=667933334 instance=ExtResource("1_3b3x8")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -7.4500003, 0.004, 37.1)
 
-[node name="sobrado_com_sacada4" type="Node3D" parent="." unique_id=123331786 instance=ExtResource("9_v6dwf")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.2500004, 0.004, 37.1)
+[node name="sobrado_com_sacada4" parent="." unique_id=123331786 instance=ExtResource("9_v6dwf")]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, -0.25, 0.004, 37.121223)
+metadata/beco = "casario_estreito"
 
-[node name="barbearia_aberto2" type="Node3D" parent="." unique_id=1751702743 instance=ExtResource("13_bft25")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 5.3999996, 0.004, 37.1)
+[node name="barbearia_aberto2" parent="." unique_id=1751702743 instance=ExtResource("13_bft25")]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 5.4, 0.004, 37.121223)
+metadata/beco = "casario_estreito"
 
-[node name="sobrado_azul_com_escada4" type="Node3D" parent="." unique_id=1001968280 instance=ExtResource("4_fq151")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 11.849999, 0.004, 37.1)
+[node name="sobrado_azul_com_escada4" parent="." unique_id=1001968280 instance=ExtResource("4_fq151")]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 13.549265, 0.004, 37.121223)
+metadata/beco = "casario_estreito"
 
-[node name="casa_branca_com_garagem4" type="Node3D" parent="." unique_id=891996197 instance=ExtResource("11_866vb")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 19.3, 0.004, 37.1)
+[node name="casa_branca_com_garagem4" parent="." unique_id=891996197 instance=ExtResource("11_866vb")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 20.999264, 0.004, 37.1)
 
-[node name="bazar_1_99_aberto2" type="Node3D" parent="." unique_id=1638097744 instance=ExtResource("14_n3c2n")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 26, 0.004, 37.1)
+[node name="bazar_1_99_aberto2" parent="." unique_id=1638097744 instance=ExtResource("14_n3c2n")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 27.699265, 0.004, 37.1)
 
-[node name="casa_amarela_de_telhado_colonial4" type="Node3D" parent="." unique_id=563327503 instance=ExtResource("7_kghkm")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 32.7, 0.004, 37.1)
+[node name="casa_amarela_de_telhado_colonial4" parent="." unique_id=563327503 instance=ExtResource("7_kghkm")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 34.399265, 0.004, 37.1)
 
-[node name="casa_rosa_com_varanda5" type="Node3D" parent="." unique_id=1172502742 instance=ExtResource("1_3b3x8")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 40.7, 0.004, 37.1)
+[node name="casa_rosa_com_varanda5" parent="." unique_id=1172502742 instance=ExtResource("1_3b3x8")]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 42.399265, 0.004, 53.81327)
+metadata/beco = "casario_estreito"
 
-[node name="borracharia_aberto3" type="Node3D" parent="." unique_id=1190863960 instance=ExtResource("2_05a18")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 47.7, 0.004, 37.1)
+[node name="borracharia_aberto3" parent="." unique_id=1190863960 instance=ExtResource("2_05a18")]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 49.399265, 0.004, 37.38543)
+metadata/beco = "casario_estreito"
 
-[node name="casa_com_puxadinho_de_tijolo5" type="Node3D" parent="." unique_id=1879428296 instance=ExtResource("3_kx3d1")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 54.7, 0.004, 37.1)
+[node name="casa_com_puxadinho_de_tijolo5" parent="." unique_id=1879428296 instance=ExtResource("3_kx3d1")]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 56.399265, 0.004, 57.017662)
+metadata/beco = "casario_estreito"
 
-[node name="sobrado_azul_com_escada5" type="Node3D" parent="." unique_id=234014982 instance=ExtResource("4_fq151")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 62.7, 0.004, 37.1)
+[node name="sobrado_azul_com_escada5" parent="." unique_id=234014982 instance=ExtResource("4_fq151")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 64.39926, 0.004, 37.1)
 
-[node name="lanchonete_aberto3" type="Node3D" parent="." unique_id=1357515109 instance=ExtResource("5_n18o6")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 68.65, 0.004, 37.1)
+[node name="lanchonete_aberto3" parent="." unique_id=1357515109 instance=ExtResource("5_n18o6")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 70.349266, 0.004, 37.1)
 
-[node name="casas_de_vila_geminadas4" type="Node3D" parent="." unique_id=1588566991 instance=ExtResource("6_mc1nw")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 76.15, 0.004, 37.1)
+[node name="casas_de_vila_geminadas4" parent="." unique_id=1588566991 instance=ExtResource("6_mc1nw")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 77.849266, 0.004, 37.1)
 
-[node name="casa_amarela_de_telhado_colonial5" type="Node3D" parent="." unique_id=658240026 instance=ExtResource("7_kghkm")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 85.15, 0.004, 37.1)
+[node name="casa_amarela_de_telhado_colonial5" parent="." unique_id=658240026 instance=ExtResource("7_kghkm")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 86.849266, 0.004, 37.1)
 
-[node name="mercadinho_aberto3" type="Node3D" parent="." unique_id=356342539 instance=ExtResource("8_bgskk")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 92.35, 0.004, 37.1)
+[node name="mercadinho_aberto3" parent="." unique_id=356342539 instance=ExtResource("8_bgskk")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 94.04926, 0.004, 37.1)
 
-[node name="sobrado_com_sacada5" type="Node3D" parent="." unique_id=1921624430 instance=ExtResource("9_v6dwf")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 98.75, 0.004, 37.1)
+[node name="sobrado_com_sacada5" parent="." unique_id=1921624430 instance=ExtResource("9_v6dwf")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 100.449265, 0.004, 37.1)
 
-[node name="GuiaRua" type="Node3D" parent="." unique_id=116769703 instance=ExtResource("15_05a18")]
+[node name="GuiaRua" parent="." unique_id=116769703 instance=ExtResource("15_05a18")]
+
+[node name="BlocosBecos" type="Node3D" parent="." unique_id=532804094]
+
+[node name="Garagens" type="Node3D" parent="BlocosBecos" unique_id=795387591]
+
+[node name="bloco_2_tijolo_fibro_1" parent="BlocosBecos/Garagens" unique_id=1578779678 instance=ExtResource("b2_bloco_2_tijolo_fibro")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.389845, 0, 60.180122)
+
+[node name="bloco_2_tijolo_fibro_1" parent="BlocosBecos/Garagens/bloco_2_tijolo_fibro_1" unique_id=586127895 instance=ExtResource("b2_bloco_2_tijolo_fibro")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.528055, 0, -17.940083)
+
+[node name="bloco_1_laje_amarela_2" parent="BlocosBecos/Garagens" unique_id=1904821446 instance=ExtResource("b1_bloco_1_laje_amarela")]
+transform = Transform3D(0.75, 0, 0, 0, 1, 0, 0, 0, 1.425, -42.185677, 0, 43.1)
+
+[node name="bloco_4_sobrado_puxadinho_3" parent="BlocosBecos/Garagens" unique_id=2061125363 instance=ExtResource("b4_bloco_4_sobrado_puxadinho")]
+transform = Transform3D(1.311111, 0, 0, 0, 1, 0, 0, 0, 0.95, -7.0157547, 0, 54.948532)
+
+[node name="bloco_3_chapisco_colonial_4" parent="BlocosBecos/Garagens" unique_id=1127363691 instance=ExtResource("b3_bloco_3_chapisco_colonial")]
+transform = Transform3D(1.114286, 0, 0, 0, 1, 0, 0, 0, 0.857143, -33.55, 0, 51.8)
+
+[node name="Chapisco" type="Node3D" parent="BlocosBecos" unique_id=764252038]
+
+[node name="bloco_3_chapisco_colonial_1" parent="BlocosBecos/Chapisco" unique_id=757129137 instance=ExtResource("b3_bloco_3_chapisco_colonial")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.437392, 0, 59.484367)
+
+[node name="bloco_1_laje_amarela_3" parent="BlocosBecos/Chapisco" unique_id=252747410 instance=ExtResource("b1_bloco_1_laje_amarela")]
+transform = Transform3D(1.633333, 0, 0, 0, 1, 0, 0, 0, 0.75, -17.555733, 0, 50.47132)
+
+[node name="Sobrado" type="Node3D" parent="BlocosBecos" unique_id=18341402]
+
+[node name="bloco_4_sobrado_puxadinho_1" parent="BlocosBecos/Sobrado" unique_id=1193140609 instance=ExtResource("b4_bloco_4_sobrado_puxadinho")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64.08344, 0, 54.595104)
+
+[node name="bloco_4_sobrado_puxadinho_4" parent="BlocosBecos/Sobrado/bloco_4_sobrado_puxadinho_1" unique_id=702056568 instance=ExtResource("b4_bloco_4_sobrado_puxadinho")]
+transform = Transform3D(1.955556, 0, 0, 0, 1, 0, 0, 0, 0.5, -63.543343, 0, 1.4304008)
+
+[node name="bloco_2_tijolo_fibro_2" parent="BlocosBecos/Sobrado" unique_id=467042679 instance=ExtResource("b2_bloco_2_tijolo_fibro")]
+transform = Transform3D(-0.00053561514, 0, 1.3399994, 0, 1, 0, -0.58999974, 0, -0.0012164819, 25.276365, 0, 54.27044)
+
+[node name="bloco_2_tijolo_fibro_2" parent="BlocosBecos/Sobrado/bloco_2_tijolo_fibro_2" unique_id=989098864 instance=ExtResource("b2_bloco_2_tijolo_fibro")]
+transform = Transform3D(-0.5899987, 0, -0.002781355, 0, 0.9999997, 0, 0.0012246269, 0, -1.339997, -0.073287964, 0, -12.604963)
+
+[node name="bloco_2_tijolo_fibro_4" parent="BlocosBecos/Sobrado" unique_id=940158900 instance=ExtResource("b2_bloco_2_tijolo_fibro")]
+transform = Transform3D(1.46, 0, 0, 0, 1, 0, 0, 0, 0.6, 34.93475, 0, 53.193016)
+
+[node name="bloco_2_tijolo_fibro_4" parent="BlocosBecos/Sobrado/bloco_2_tijolo_fibro_4" unique_id=1195522538 instance=ExtResource("b2_bloco_2_tijolo_fibro")]
+transform = Transform3D(1.4600003, 0, 0, 0, 1, 0, 0, 0, 0.6, 21.058794, 0, 15.423393)
+
+[node name="Laje" type="Node3D" parent="BlocosBecos" unique_id=703968287]
+
+[node name="bloco_1_laje_amarela_1" parent="BlocosBecos/Laje" unique_id=1456217112 instance=ExtResource("b1_bloco_1_laje_amarela")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 49.358257, 0, 61.02475)
+
+[node name="bloco_2_tijolo_fibro_3" parent="BlocosBecos/Laje" unique_id=234900366 instance=ExtResource("b2_bloco_2_tijolo_fibro")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.94, 56.699265, 0, 42.1)
+
+[node name="bloco_4_sobrado_puxadinho_4" parent="BlocosBecos/Laje" unique_id=1572436586 instance=ExtResource("b4_bloco_4_sobrado_puxadinho")]
+transform = Transform3D(1.955556, 0, 0, 0, 1, 0, 0, 0, 0.5, 55.9095, 0, 50.992405)

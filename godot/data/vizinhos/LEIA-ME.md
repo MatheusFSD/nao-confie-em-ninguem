@@ -26,8 +26,8 @@ As histórias preservam dúvidas: uma voz familiar ou um relato não confirma a 
 | 2 | Problemas de abastecimento; água ainda disponível. | `abastecimento` |
 | 3–4 | Cidade estranha, falhas elétricas, menos pessoas e carros. | `estranho` |
 | 5 | Engarrafamento e produtos caros/escassos. | `fuga` |
-| 6 | Breu total; caçadores na rua. Água e ônibus ainda disponíveis. | `breu` |
-| 7 | Ataque, comboio e cidade em chamas. Água e energia da rede cortadas; ônibus suspensos. | `ataque` |
+| 6 | Único dia de breu total; caçadores na rua. Água ainda disponível; ônibus suspensos definitivamente. | `breu` |
+| 7 | Ataque, comboio e cidade em chamas. Água cortada; energia da rede e ônibus continuam indisponíveis. | `ataque` |
 | 8–9 | Ruínas e retorno dos caçadores. A luz natural retorna; os serviços continuam cortados. | `depois` |
 | 10+ | Mesmo mundo destruído; consequências das relações. | `epilogo` |
 
@@ -108,6 +108,20 @@ Itens: `comida`, `agua`, `energia`, `dinheiro`, ou `""` para custar apenas tempo
 A primeira visita apresenta o vizinho e deixa o pedido para o dia seguinte. Recusar permite tentar amanhã. Ajudar registra `ajudou`; confiança ≥2 libera o número. Se a ajuda ainda não for suficiente, uma conversa posterior pode recuperar a relação. Os avisos exigem confiança ≥2, mas confiança não impede o mentiroso de mentir.
 
 `rede` e `isolou` guardam a decisão de cooperar ou manter distância depois do ataque e alteram visitas e SMS posteriores.
+
+## Esperar na casa amiga
+
+A marca `ajudou` e confiança ≥2 liberam uma opção genérica de abrigo na conversa da porta, sem acrescentar um ramo a cada história. A amizade é conferida novamente ao confirmar. Depois de um agradecimento que encerra a conversa, volte à porta para ver as opções.
+
+Entrar já espera um período: 1 ação e 0 energia. Você continua abrigado até escolher sair ou Esc, retornando à posição da mesma porta. Sem ações, esperar até amanhã consome 1 comida e 1 água das reservas, com as penalidades normais de escassez. O custo aparece antes de confirmar. O abrigo usa uma tela abstrata, sem interior modelado.
+
+Para personalizar apenas o convite, acrescente na raiz do JSON:
+
+```json
+"abrigo": {"convite": "Posso esperar aqui até a rua acalmar?"}
+```
+
+O texto padrão é “Pedir abrigo e esperar aqui”. A implementação fica em `scripts/abrigo3d.gd`, `mundo3d.gd` e `ciclo3d.gd`; o teste é `tests/abrigo3d_test.gd`.
 
 ## SMS e edição
 

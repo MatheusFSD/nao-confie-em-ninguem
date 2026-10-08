@@ -116,3 +116,11 @@ func escolher(id: String) -> bool:
 
 func pode_passar_numero() -> bool:
 	return historia.marcas.has("ajudou") and int(historia.confianca) >= 2
+
+## Abrigo usa a mesma amizade que libera o contato, sem depender do celular.
+func pode_abrigar() -> bool:
+	return pode_passar_numero()
+
+## Texto opcional por morador; a regra e o custo continuam no ciclo.
+func convite_de_abrigo() -> String:
+	return String(dados.get("abrigo", {}).get("convite", "Pedir abrigo e esperar aqui"))

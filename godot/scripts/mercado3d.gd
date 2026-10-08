@@ -29,8 +29,7 @@ const VALE := {
 	"pilhas": "energia",
 	"lanterna": "lanterna",
 }
-## Quanto um item rende em casa: comida e água contam por unidade, e um pacote
-## de pilhas devolve vinte de energia, como no jogo 2D.
+## Padrão para dados antigos. Cada produto pode definir `rende` no JSON.
 const RENDE := {"comida": 1, "agua": 1, "energia": 20, "lanterna": 1}
 ## Quanto o preço multiplica por dia que passa. Em onze dias fica quinze vezes
 ## mais caro: é o aperto que o jogo conta.
@@ -129,6 +128,16 @@ func montar_jogador() -> void:
 func preco(chave: String) -> int:
 	return int(round(float(_itens[chave].preco) * pow(CARESTIA, maxf(0.0, dia - 1))))
 
+func rendimento(chave: String) -> int:
+	return maxi(1, int(_itens[chave].get("rende", RENDE[VALE[chave]])))
+
+func beneficio(chave: String) -> String:
+	match String(VALE[chave]):
+		"comida": return "+%d de comida" % rendimento(chave)
+		"agua": return "+%d de água" % rendimento(chave)
+		"energia": return "+%d de energia" % rendimento(chave)
+	return "Lanterna reutilizável"
+
 func total_da_cesta() -> int:
 	var soma := 0
 	for chave: String in _cesta: soma += preco(chave) * int(_cesta[chave])
@@ -155,7 +164,7 @@ func ponto_perto() -> Dictionary:
 
 func rotulo(ponto: Dictionary) -> String:
 	match String(ponto.kind):
-		"item": return "Pegar %s · R$ %d" % [_itens[ponto.key].nome, preco(String(ponto.key))]
+		"item": return "Pegar %s · R$ %d · %s" % [_itens[ponto.key].nome, preco(String(ponto.key)), beneficio(String(ponto.key))]
 		"caixa": return "Pagar no caixa"
 		_: return "Sair do mercado"
 
@@ -168,7 +177,7 @@ func usar() -> void:
 			var sobra := dinheiro - total_da_cesta()
 			if sobra >= preco(chave):
 				_cesta[chave] = int(_cesta.get(chave, 0)) + 1
-				hud.avisar("+ %s" % _itens[chave].nome)
+				hud.avisar("Na cesta: %s · %s" % [_itens[chave].nome, beneficio(chave)])
 			else:
 				hud.avisar("Não dá: faltam R$ %d" % (preco(chave) - sobra))
 		"caixa":
@@ -179,7 +188,7 @@ func usar() -> void:
 				dinheiro -= conta
 				for chave: String in _cesta:
 					var alvo: String = VALE[chave]
-					comprou[alvo] += int(_cesta[chave]) * int(RENDE[alvo])
+					comprou[alvo] += int(_cesta[chave]) * rendimento(chave)
 				_cesta.clear()
 				hud.avisar("Pago: R$ %d" % conta)
 		"porta":

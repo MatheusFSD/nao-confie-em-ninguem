@@ -142,11 +142,11 @@
 	]
   },
   "6": {
-	"evento": "Breu durante o dia inteiro. Dois caçadores percorrem a pista. A água ainda chega e os últimos ônibus continuam circulando.",
+	"evento": "Breu durante o dia inteiro. Dois caçadores percorrem a pista. A água ainda chega, mas os ônibus já pararam.",
 	"tv": [],
 	"agua_da_rede": true,
 	"energia_da_rede": false,
-	"onibus": true
+	"onibus": false
   },
   "7": {
 	"evento": "A cidade está sob ataque. Passa um comboio militar; a água e a energia da rede foram cortadas. Os ônibus pararam.",

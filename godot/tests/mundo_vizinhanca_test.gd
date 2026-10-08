@@ -104,6 +104,30 @@ func rodar() -> void:
 	checar(jogo.ciclo.contatos.has(jogo.vizinhos[0].chave), "ajuda libera contato depois de ouvir")
 	fechar_falas()
 	checar(jogo.na_porta == -1, "agradecimento encerra sem repetir pedido")
+	# O menu anuncia o custo real e impede confirmar uma viagem indisponível.
+	jogo.ciclo.dia = 5
+	jogo.ciclo.acoes = 4
+	jogo.ciclo.energia = 100
+	jogo.abrir_menu_do_ponto()
+	checar(jogo.menu != null, "ônibus disponível no último dia antes do breu")
+	checar(jogo.menu._detalhe.text.contains("2 ações") and jogo.menu._detalhe.text.contains("10 de energia") and jogo.menu._detalhe.text.contains("R$ 40"), "menu anuncia custo e recompensa do trabalho")
+	jogo.menu.escolha = 1
+	jogo.menu.pintar()
+	checar(jogo.menu._detalhe.text.contains("1 ação") and jogo.menu._detalhe.text.contains("2 de energia") and jogo.menu._detalhe.text.contains("Compras cobradas à parte"), "menu anuncia custo do mercado e pagamento separado")
+	jogo.ciclo.acoes = 1
+	jogo.menu.escolha = 0
+	jogo.menu.pintar()
+	checar(not jogo.menu.pode_ir(0) and jogo.menu._detalhe.text.contains("faltam ações"), "trabalho indisponível explicado antes de confirmar")
+	jogo.menu._espera = 0
+	tecla(KEY_ENTER)
+	checar(jogo.menu != null and jogo.expediente == null and jogo.ciclo.acoes == 1, "confirmar sem ações mantém menu e reservas")
+	jogo.ciclo.acoes = 4
+	jogo.ciclo.energia = 1
+	jogo.menu.escolha = 1
+	jogo.menu.pintar()
+	checar(not jogo.menu.pode_ir(1) and jogo.menu._detalhe.text.contains("falta energia"), "mercado indisponível por energia")
+	jogo.ciclo.energia = 100
+	jogo.fechar_menu_do_ponto("")
 	for dia in [6, 7, 8]:
 		jogo.ciclo.dia = dia
 		jogo.ciclo.acoes = 0
@@ -117,13 +141,8 @@ func rodar() -> void:
 			checar(not poste.visible, "poste desligado")
 		jogo.ligar_a_tv()
 		checar(jogo.tv == null, "TV não abre sem energia")
-		if dia == 6:
-			jogo.abrir_menu_do_ponto()
-			checar(jogo.menu != null, "últimos ônibus no dia 6")
-			jogo.fechar_menu_do_ponto("")
-		else:
-			jogo.abrir_menu_do_ponto()
-			checar(jogo.menu == null and jogo.expediente == null, "ponto inativo depois do breu")
+		jogo.abrir_menu_do_ponto()
+		checar(jogo.menu == null and jogo.expediente == null, "ponto inativo no breu e nos dias seguintes")
 		checar((jogo.get_node("Tela/Render/Sol") as DirectionalLight3D).light_energy > 0.0 if dia > 6 else (jogo.get_node("Tela/Render/Sol") as DirectionalLight3D).light_energy == 0.0, "luz natural volta depois do breu")
 	jogo.ciclo.acoes = 4
 	jogo.bater_na_porta(0)

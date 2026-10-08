@@ -187,41 +187,49 @@
   "agua": {
    "nome": "Galão de água 5 L",
    "preco": 7,
+   "rende": 1,
    "cor": "#6fb2dd"
   },
   "cafe": {
    "nome": "Café 500 g",
    "preco": 12,
+   "rende": 2,
    "cor": "#8a2a22"
   },
   "arroz": {
    "nome": "Arroz 5 kg",
    "preco": 22,
+   "rende": 5,
    "cor": "#f3efe4"
   },
   "feijao": {
    "nome": "Feijão 1 kg",
    "preco": 8,
+   "rende": 2,
    "cor": "#6b3b22"
   },
   "sardinha": {
    "nome": "Sardinha em lata",
    "preco": 6,
+   "rende": 1,
    "cor": "#c7362f"
   },
   "macarrao": {
    "nome": "Macarrão",
    "preco": 5,
+   "rende": 1,
    "cor": "#e9d33c"
   },
   "lanterna": {
    "nome": "Lanterna",
    "preco": 25,
+   "rende": 1,
    "cor": "#e8c235"
   },
   "pilhas": {
    "nome": "Pilhas (4 un.)",
    "preco": 12,
+   "rende": 20,
    "cor": "#2f7fd0"
   },
   "velas": {
@@ -237,6 +245,7 @@
   "pao": {
    "nome": "Pão francês",
    "preco": 6,
+   "rende": 1,
    "cor": "#d9a45a"
   }
  }

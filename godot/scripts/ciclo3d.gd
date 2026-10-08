@@ -58,7 +58,7 @@ func tem_agua_da_rede() -> bool:
 	return dia < DIA_DO_CORTE
 
 func onibus_funciona() -> bool:
-	return dia < DIA_DO_CORTE
+	return dia < DIA_DO_BREU
 
 func guardar_agua() -> bool:
 	if not tem_agua_da_rede():
@@ -224,6 +224,19 @@ func guardar(quanta_comida: int, quanta_agua: int, quanto_sobrou: int, quanta_en
 	dinheiro = RIQUEZA if modo_deus else quanto_sobrou
 	if quanta_energia > 0: energia = mini(ENERGIA_CHEIA, energia + quanta_energia)
 	mudou.emit()
+
+## Esperar protegido cobra tempo, nunca energia ou comida extra.
+func esperar_no_abrigo() -> String:
+	if acoes > 0:
+		gastar(1, 0)
+		# Mesmo no modo de teste, esperar deve mover o relógio.
+		if modo_deus:
+			acoes = maxi(0, acoes - 1)
+			mudou.emit()
+		return "Você continua abrigado. O período avançou; nenhuma energia foi gasta."
+	# As reservas acompanham o jogador no abrigo. Portas da própria casa não
+	# causam um roubo implícito aqui; a regra de dormir em casa continua igual.
+	return dormir([])
 
 ## Fecha o dia. `portas_abertas` são as portas para a rua que ficaram sem
 ## tranca — por elas alguém entra de madrugada. Devolve o resumo da noite.

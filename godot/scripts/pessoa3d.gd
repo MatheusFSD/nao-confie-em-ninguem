@@ -25,6 +25,9 @@ const ELENCO := {
 }
 ## Quem pode aparecer andando na rua.
 const DA_RUA := ["marquinhos", "dona_celia", "seu_ze", "vanessa", "tania", "aline", "jessica", "rogerio", "anderson", "entregador"]
+const CAMINHOS := preload("res://scripts/caminho_pedestre3d.gd")
+const MASCARA := 1 | 2 | 4 | 32
+const GRAVIDADE := 18.0
 
 ## Qual dos moradores é este. Vazio sorteia um da rua.
 var quem := ""
@@ -46,11 +49,16 @@ var _corpo: Node3D
 ## Quanto tempo ainda fica parado conversando, e para onde olha enquanto isso.
 var _pausa := 0.0
 var _olhar := Vector3.ZERO
+var _guia := CAMINHOS.new()
+var _caminho := PackedVector3Array()
+var _tempo_rota := 0.0
+var _sem_avanco := 0.0
 
 func _ready() -> void:
 	add_to_group("pessoas3d")
 	collision_layer = 4
-	collision_mask = 1
+	collision_mask = MASCARA
+	platform_floor_layers = 1
 	if not ELENCO.has(quem): quem = DA_RUA.pick_random()
 	passo = float(ELENCO[quem].passo)
 	var forma := CollisionShape3D.new()
@@ -92,21 +100,83 @@ func conversar(onde: Vector3, segundos: float) -> void:
 	_olhar = onde
 	if _animacao != null: _animacao.play("parado")
 
+## Pedestres que somem à noite ou no breu deixam também de bloquear o bairro.
+func aparecer(ativo: bool) -> void:
+	visible = ativo
+	set_physics_process(ativo)
+	collision_layer = 4 if ativo else 0
+	collision_mask = MASCARA if ativo else 0
+	if ativo:
+		_caminho.clear()
+		_tempo_rota = 0.0
+		_sem_avanco = 0.0
+
+func animar(andando: bool) -> void:
+	if _animacao == null: return
+	var nome := "andar" if andando else "parado"
+	if _animacao.current_animation != nome: _animacao.play(nome)
+
+func seguir_caminho(delta: float) -> Vector3:
+	_tempo_rota -= delta
+	if global_position.x >= limites.y - 0.2 and sentido > 0.0 or global_position.x <= limites.x + 0.2 and sentido < 0.0:
+		sentido *= -1.0
+		_caminho.clear()
+		_tempo_rota = 0.0
+	while not _caminho.is_empty() and Vector2(_caminho[0].x - global_position.x, _caminho[0].z - global_position.z).length() < 0.20:
+		_caminho.remove_at(0)
+	var barrado := false
+	if not _caminho.is_empty():
+		var rumo := _caminho[0] - global_position
+		rumo.y = 0.0
+		var adiante := global_position + rumo.normalized() * minf(rumo.length(), 0.8)
+		barrado = not _guia.livre(self, global_position, adiante)
+	if _tempo_rota <= 0.0 and (_caminho.is_empty() or barrado or _sem_avanco > 0.6):
+		_caminho = _guia.calcular(self, sentido, linha_z, limites)
+		_tempo_rota = 0.4
+	if _caminho.is_empty(): return Vector3.ZERO
+	# Encurta a escada da grade com varreduras da cápsula, sem cortar quinas.
+	for i in range(_caminho.size() - 1, 0, -1):
+		if _guia.livre(self, global_position, Vector3(_caminho[i].x, global_position.y, _caminho[i].z)):
+			for j in i: _caminho.remove_at(0)
+			break
+	var rumo := _caminho[0] - global_position
+	rumo.y = 0.0
+	return rumo.normalized()
+
 func _physics_process(delta: float) -> void:
+	velocity.y -= GRAVIDADE * delta
 	if parada:
-		velocity = Vector3.ZERO
+		velocity.x = 0.0
+		velocity.z = 0.0
+		move_and_slide()
+		if is_on_floor(): velocity.y = 0.0
+		animar(false)
 		return
 	if _pausa > 0.0:
 		_pausa -= delta
-		velocity = Vector3.ZERO
+		velocity.x = 0.0
+		velocity.z = 0.0
+		_sem_avanco = 0.0
 		# O modelo olha para o seu +Z: é esse nariz que se aponta para o ouvinte.
 		var rumo := _olhar - global_position
 		if Vector2(rumo.x, rumo.z).length() > 0.05: rotation.y = atan2(rumo.x, rumo.z)
-		if _pausa <= 0.0 and _animacao != null: _animacao.play("andar")
 		move_and_slide()
+		if is_on_floor(): velocity.y = 0.0
+		animar(false)
 		return
-	if position.x > limites.y: sentido = -1.0
-	elif position.x < limites.x: sentido = 1.0
-	velocity = Vector3(sentido * passo, 0.0, (linha_z - position.z) * 2.0)
-	rotation.y = PI / 2.0 if sentido > 0 else -PI / 2.0
+	var rumo := seguir_caminho(delta)
+	velocity.x = rumo.x * passo
+	velocity.z = rumo.z * passo
+	if rumo.length_squared() > 0.1: rotation.y = lerp_angle(rotation.y, atan2(rumo.x, rumo.z), 1.0 - exp(-delta * 10.0))
+	var antes := global_position
 	move_and_slide()
+	if is_on_floor(): velocity.y = 0.0
+	var avancou := Vector2(global_position.x - antes.x, global_position.z - antes.z).length()
+	animar(avancou > passo * delta * 0.15)
+	_sem_avanco = _sem_avanco + delta if avancou < passo * delta * 0.15 else 0.0
+	# Se a calçada inteira estiver fechada, volta a caminhar pelo trecho livre.
+	if _sem_avanco > 2.5:
+		sentido *= -1.0
+		_caminho.clear()
+		_tempo_rota = 0.0
+		_sem_avanco = 0.0

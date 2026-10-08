@@ -28,15 +28,16 @@ var comprimento := 7.0
 var velocidade_alvo := 5.0
 
 var _modelo: Node3D
+var _volume: BoxShape3D
+var _centro := Vector3.ZERO
 
 func _ready() -> void:
 	add_to_group("militares3d")
 	add_to_group("carros3d")
 	sync_to_physics = false
-	# Fora da camada do morador, como os carros: um blindado empurrando o
-	# jogador seria pior ainda.
+	# Usa as mesmas colisões e a frenagem dos carros civis.
 	collision_layer = 32
-	collision_mask = 0
+	collision_mask = 2 | 4 | 32
 	position.y = altura_da_pista
 	position.z = linha_z
 	# A frente destes modelos é o +Z, como a dos carros.
@@ -52,8 +53,10 @@ func _ready() -> void:
 	var forma := CollisionShape3D.new()
 	var volume := BoxShape3D.new()
 	volume.size = Vector3(caixa.size.x, caixa.size.y, caixa.size.z)
+	_volume = volume
+	_centro = caixa.position + caixa.size / 2.0
 	forma.shape = volume
-	forma.position = caixa.position + caixa.size / 2.0
+	forma.position = _centro
 	add_child(forma)
 
 ## O tamanho do modelo, lido dele mesmo.
@@ -73,15 +76,28 @@ func medir(no: Node3D) -> AABB:
 func _physics_process(delta: float) -> void:
 	# O comboio também guarda distância: blindado na frente, caminhões atrás.
 	var folga := Carro3D.espaco_livre(self, comprimento, get_tree().get_nodes_in_group("carros3d"))
+	var adiante := maxf(Carro3D.RESPIRO + 10.0, velocidade * velocidade / (2.0 * Carro3D.FREIO) + Carro3D.RESPIRO + 2.0)
+	var espaco := get_world_3d().direct_space_state
+	var consulta := Carro3D.consultar_corpo(self, _volume, _centro, global_transform)
+	consulta.motion = Vector3(sentido * adiante, 0.0, 0.0)
+	folga = minf(folga, espaco.cast_motion(consulta)[0] * adiante)
+	if not espaco.intersect_shape(Carro3D.consultar_corpo(self, _volume, _centro, global_transform), 1).is_empty(): folga = 0.0
 	var alvo := velocidade_alvo
 	if folga < Carro3D.RESPIRO + 1.0: alvo = 0.0
 	elif folga < Carro3D.RESPIRO + 8.0: alvo = velocidade_alvo * (folga - Carro3D.RESPIRO - 1.0) / 7.0
 	velocidade = move_toward(velocidade, alvo, (Carro3D.FREIO if alvo < velocidade else Carro3D.ACELERACAO) * delta)
-	position.x += sentido * velocidade * delta
+	var passo := minf(velocidade * delta, maxf(0.0, folga - 0.06))
+	if passo < velocidade * delta: velocidade = 0.0
+	position.x += sentido * passo
 	# O modelo gira roda e esteira conforme o que anda de verdade.
 	if _modelo != null and "velocidade" in _modelo: _modelo.velocidade = velocidade
-	if sentido > 0.0 and position.x > limites.y: position.x = limites.x
-	elif sentido < 0.0 and position.x < limites.x: position.x = limites.y
+	if sentido > 0.0 and position.x > limites.y or sentido < 0.0 and position.x < limites.x:
+		var chegada := global_transform
+		chegada.origin.x = limites.x if sentido > 0.0 else limites.y
+		if espaco.intersect_shape(Carro3D.consultar_corpo(self, _volume, _centro, chegada), 1).is_empty():
+			global_transform = chegada
+		else:
+			velocidade = 0.0
 
 ## Os faróis do comboio acompanham a noite, como os dos carros.
 func acender(_ligado: bool) -> void:

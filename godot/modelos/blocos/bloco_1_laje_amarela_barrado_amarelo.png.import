@@ -1,0 +1,44 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://bddnedqkomiqp"
+path.s3tc="res://.godot/imported/bloco_1_laje_amarela_barrado_amarelo.png-57dd7e45856d6d9d1cc75c5cced83002.s3tc.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "432fd536807eb31b6d49ca82165ff8f1"
+}
+
+[deps]
+
+source_file="res://modelos/blocos/bloco_1_laje_amarela_barrado_amarelo.png"
+dest_files=["res://.godot/imported/bloco_1_laje_amarela_barrado_amarelo.png-57dd7e45856d6d9d1cc75c5cced83002.s3tc.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/uastc_level=0
+compress/rdo_quality_loss=0.0
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
+process/channel_remap/red=0
+process/channel_remap/green=1
+process/channel_remap/blue=2
+process/channel_remap/alpha=3
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0

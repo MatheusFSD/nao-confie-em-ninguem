@@ -1,0 +1,15 @@
+BLOCOS DE CASA PARA BECOS (Godot 4)
+
+Coloque a pasta "blocos" em res://modelos/blocos (ou onde preferir).
+Só muros altos e telhados: sem portas, janelas ou muros baixos.
+
+  bloco_1_laje_amarela        6 x 8 m, 3,2 m  - reboco amarelo, laje com mureta e caixa d'água
+  bloco_2_tijolo_fibro        5 x 10 m, 4,2 m - tijolo aparente, fibrocimento de uma água
+  bloco_3_chapisco_colonial   7 x 7 m, 3,0 m  - chapisco cinza, telha colonial em duas águas
+  bloco_4_sobrado_puxadinho   4,5 x 12 m, 5,6 m - azul descascado, laje com puxadinho e antena
+  bloco_5_verde_quatro_aguas  6 x 6 m, 3,6 m  - verde pichado, telhado de quatro águas
+
+O centro de cada bloco fica no meio da base, no chão (y = 0). Largura no eixo X, fundo no Z.
+Encoste um bloco no outro pela borda para formar o paredão do beco (deixe 2 a 3 m de vão).
+As paredes se chamam "paredes-col" (e "puxadinho-col"): o Godot cria a colisão sozinho.
+As texturas repetem a cada 2 m, com filtro nearest, então dá para escalar os blocos sem esticar o desenho.

@@ -81,12 +81,15 @@ func rodar() -> void:
 		ciclo.dia = dia
 		checar(ciclo.tem_agua_da_rede() == (dia < 7), "água dia " + str(dia))
 		checar(ciclo.tem_energia_da_rede() == (dia < 6), "eletricidade dia " + str(dia))
-		checar(ciclo.onibus_funciona() == (dia < 7), "ônibus dia " + str(dia))
+		checar(ciclo.onibus_funciona() == (dia < 6), "ônibus dia " + str(dia))
 	ciclo.dia = 6
 	var acoes := ciclo.acoes
 	var agua := ciclo.agua
 	checar(ciclo.guardar_agua() and ciclo.agua == agua + 2, "água disponível no breu")
 	checar(ciclo.acoes == acoes - 1, "guardar água custa ação")
+	var reservas_do_breu := [ciclo.acoes, ciclo.agua, ciclo.energia, ciclo.dinheiro]
+	checar(not ciclo.trabalhar() and not ciclo.ir_ao_mercado(), "viagens bloqueadas já no dia do breu")
+	checar([ciclo.acoes, ciclo.agua, ciclo.energia, ciclo.dinheiro] == reservas_do_breu, "viagens no breu não gastam reservas")
 	ciclo.dia = 7
 	acoes = ciclo.acoes
 	agua = ciclo.agua

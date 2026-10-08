@@ -28,6 +28,12 @@ var mouse_preso := true
 
 func _ready() -> void:
 	configurar_controles()
+	# Cenário = 1, jogador = 2, pedestres = 4, veículos = 32, caçadores = 64.
+	collision_layer = 2
+	collision_mask = 1 | 4 | 32 | 64
+	# Encostar em um veículo não transporta o jogador como numa plataforma.
+	platform_floor_layers = 1
+	platform_wall_layers = 0
 	var forma := CollisionShape3D.new()
 	var capsula := CapsuleShape3D.new()
 	capsula.radius = 0.28

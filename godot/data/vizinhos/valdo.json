@@ -76,11 +76,11 @@
       "mentira": "O mercado vai receber tudo amanhã e baixar os preços. Espera."
     },
     "5": {
-      "verdade": "A luz tá falhando em vários lugares. Compra uma lanterna enquanto o ônibus ainda passa.",
+      "verdade": "Amanhã a luz some e os ônibus param. Compra uma lanterna hoje, enquanto ainda dá.",
       "mentira": "Não vai ter apagão. Compra outra coisa, lanterna é dinheiro perdido."
     },
     "6": {
-      "verdade": "Ouvi movimento pesado fora do bairro. Se a água ainda sair, guarda. Não conta com ônibus amanhã.",
+      "verdade": "Os ônibus já pararam. A água ainda sai; guarda. Ouvi movimento pesado fora do bairro.",
       "mentira": "Amanhã o ônibus volta normal e a água melhora. Pode deixar pra depois."
     },
     "7": {
@@ -113,7 +113,7 @@
       "se": {
         "mente": false
       },
-      "texto": "se der, confere a lanterna hoje. a luz tá falhando e o ônibus ainda passa"
+      "texto": "confere a lanterna hoje. amanhã a luz some e os ônibus param"
     },
     {
       "id": "breu_falso",
@@ -131,7 +131,7 @@
       "se": {
         "mente": false
       },
-      "texto": "a água ainda sai hoje. guarda enquanto dá. ouvi movimento pesado, não conta com ônibus amanhã"
+      "texto": "os ônibus já pararam. a água ainda sai hoje, guarda enquanto dá. ouvi movimento pesado"
     },
     {
       "id": "corte_falso",

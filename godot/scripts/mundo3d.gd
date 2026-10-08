@@ -17,6 +17,8 @@ const ATLAS := preload("res://sprites/atlas3d.png")
 const CASARIO := preload("res://scenes/casario.tscn")
 const PONTO := preload("res://modelos/objetos/ponto_de_onibus.glb")
 const Pessoa3D := preload("res://scripts/pessoa3d.gd")
+const Abrigo3D := preload("res://scripts/abrigo3d.gd")
+const Becos := preload("res://scripts/becos3d.gd")
 ## Onde a rua do modelo entra: eixo da pista, meio do trecho e altura.
 ## Com -0,15 o topo da calçada do modelo fica no nível 0, igual ao chão do lote.
 const RUA_EIXO_Z := 28.2
@@ -90,6 +92,7 @@ var mundo: Node3D
 var jogador: CharacterBody3D
 var camera: Camera3D
 var rua_modelo: Node3D
+var becos: Dictionary = {}
 var casa: Casa3D
 var cidade: Cidade3D
 var dica: Dica3D
@@ -109,6 +112,11 @@ var dialogo: Control
 ## Com quem se está falando na porta agora, e o menu de ajudar ou não.
 var na_porta := -1
 var escolha: MenuEscolha
+var abrigo: Abrigo3D
+var abrigado_em := -1
+var _volta_do_abrigo := Transform3D.IDENTITY
+var _processo_antes_do_abrigo := Node.PROCESS_MODE_INHERIT
+var _mundo_visivel_antes_do_abrigo := true
 var fresta: Fresta3D
 var camera_da_fresta: Camera3D
 ## A mochila, o celular e o que chega nele.
@@ -173,6 +181,9 @@ func medir_a_tela() -> void:
 	RESOLUCAO = (janela / float(encolhe)).floor()
 
 func construir() -> void:
+	# Mundo novo: o mapa de rotas dos caçadores da partida anterior não vale mais.
+	Cacador3D.CAMINHO.esquecer()
+	Pessoa3D.CAMINHOS.esquecer()
 	construir_terreno()
 	construir_fundo()
 	aplicar_malha()
@@ -192,6 +203,7 @@ func construir() -> void:
 	RuaModelo.tirar_casario(rua_modelo, faixa)
 	for continuacao: Node3D in continuacoes:
 		RuaModelo.tirar_casario(continuacao, faixa)
+	becos = Becos.construir(mundo, RESOLUCAO)
 	por_os_vizinhos()
 	construir_limites()
 	povoar()
@@ -334,6 +346,9 @@ func preparar_predio(predio: Node3D) -> void:
 ## já de pé: é assim que a noite e o apocalipse fecham a rua.
 func fechar_comercio(fechado: bool) -> int:
 	comercio_aberto = not fechado
+	# As portas de aço mudam o cenário: os caçadores refazem o mapa de rotas.
+	Cacador3D.CAMINHO.esquecer()
+	Pessoa3D.CAMINHOS.esquecer()
 	var casario := mundo.get_node_or_null("Casario") as Node3D
 	if casario == null: return 0
 	var de := "_aberto" if fechado else "_fechado"
@@ -372,6 +387,10 @@ func construir_ponto() -> void:
 	# lugar da parada, sem ter que mirar no poste.
 	var chamada := StaticBody3D.new()
 	chamada.name = "ChamadaDoOnibus"
+	# Volume de interação, como as portas e pias. O abrigo já tem seus próprios
+	# colisores; esta caixa invisível não deve barrar a calçada.
+	chamada.collision_layer = 16
+	chamada.collision_mask = 0
 	chamada.position = PONTO_LUGAR + Vector3(0.0, 1.0, 0.9)
 	chamada.set_meta("ponto", true)
 	var forma := CollisionShape3D.new()
@@ -391,10 +410,9 @@ func construir_limites() -> void:
 	var pontas := [RUA_LIMITE.x, RUA_LIMITE.y]
 	for meio: float in pontas:
 		barreira(corpo, Vector3(meio, 3.0, RUA_EIXO_Z), Vector3(0.6, 6.0, 19.0))
-	var comprimento: float = pontas[1] - pontas[0]
-	var meio_x: float = (pontas[0] + pontas[1]) / 2.0
-	# Fundo da calçada oposta, atrás das fachadas do modelo.
-	barreira(corpo, Vector3(meio_x, 3.0, RUA_EIXO_Z + 9.4), Vector3(comprimento, 6.0, 0.4))
+	# Fecha as fachadas, preservando as duas entradas de cada beco.
+	for faixa: Vector2 in Becos.segmentos_fechados(RUA_LIMITE, becos.get("entradas", [])):
+		barreira(corpo, Vector3((faixa.x + faixa.y) / 2.0, 3.0, RUA_EIXO_Z + 9.4), Vector3(faixa.y - faixa.x, 6.0, 0.4))
 	# Fundo da calçada de casa, só fora do lote: no meio fica o portão.
 	for faixa: Vector2 in [Vector2(pontas[0], LOTE.position.x), Vector2(LOTE.end.x, pontas[1])]:
 		if faixa.y - faixa.x < 0.5: continue
@@ -413,6 +431,9 @@ func barreira(corpo: StaticBody3D, centro: Vector3, tamanho: Vector3) -> void:
 func _physics_process(_delta: float) -> void:
 	if dica == null or casa == null: return
 	destravar()
+	if abrigo != null:
+		dica.esconder()
+		return
 	if fresta != null:
 		# Na janela, o que muda é o que se vê: a nota acompanha a rua.
 		fresta.notar(o_que_se_ve(de_qual_janela))
@@ -469,6 +490,7 @@ func _physics_process(_delta: float) -> void:
 ## para andar e olhar. Qualquer caminho que esqueça de devolver o controle é
 ## corrigido no quadro seguinte, em vez de travar o jogo.
 func destravar() -> void:
+	if abrigo != null: return
 	if menu != null or expediente != null or tv != null or fresta != null or escolha != null: return
 	if mochila != null or celular != null: return
 	if mochila != null or celular != null: return
@@ -532,6 +554,7 @@ func virar_deus() -> void:
 
 ## A tecla da tranca: só faz sentido na porta que se está olhando.
 func trancar_o_que_estiver_na_mira() -> void:
+	if abrigo != null: return
 	if menu != null or expediente != null or tv != null or fresta != null or escolha != null: return
 	if mochila != null or celular != null: return
 	if dialogo != null and dialogo.visible: return
@@ -554,6 +577,7 @@ func porta_na_mira() -> int:
 	return alvo["qual"] if alvo.get("o_que", "") == "porta" else -1
 
 func usar_o_que_estiver_na_mira() -> void:
+	if abrigo != null: return
 	if menu != null or expediente != null or tv != null or fresta != null or escolha != null: return
 	if mochila != null or celular != null: return
 	if dialogo != null and dialogo.visible: return
@@ -585,6 +609,7 @@ func puxar_conversa(quem: Node3D) -> void:
 ## o celular está sempre no bolso, e avisa quantas mensagens ainda não foram
 ## lidas. Comida, água e dinheiro entram como conta, não como uso.
 func abrir_a_mochila() -> void:
+	if abrigo != null: return
 	if mochila != null:
 		fechar_a_mochila()
 		return
@@ -783,6 +808,7 @@ func porta_de_vizinho(caixa: AABB, qual: int) -> StaticBody3D:
 
 ## Bater na porta de um vizinho: ele atende com o retrato e a fala do dia.
 func bater_na_porta(qual: int) -> void:
+	if abrigo != null: return
 	if qual < 0 or qual >= vizinhos.size(): return
 	var morador: Vizinho3D = vizinhos[qual]
 	na_porta = qual
@@ -821,6 +847,9 @@ func sair_da_porta(aviso := "") -> void:
 		var custo: Dictionary = opcao.get("custo", {})
 		lista.append({"chave": opcao.id, "texto": opcao.texto,
 			"abaixo": custo_do_pedido(String(custo.get("item", "")), int(custo.get("quanto", 0)), int(custo.get("acoes", 0))) if not custo.is_empty() else String(opcao.get("abaixo", ""))})
+	if morador.pode_abrigar():
+		lista.append({"chave": "__abrigo", "texto": morador.convite_de_abrigo(),
+			"abaixo": "Esperar até amanhã: consome 1 comida e 1 água das suas reservas; faltas reduzem as ações de amanhã. Não recupera energia." if ciclo.acoes == 0 else "1 ação de tempo · 0 energia · permanecer abrigado até escolher sair"})
 	escolha.perguntar(aviso, lista)
 	dialogo.mostrar_respostas(escolha)
 
@@ -853,6 +882,13 @@ func responder_ao_vizinho(resposta: String) -> void:
 	if morador == null or resposta.is_empty():
 		encerrar_conversa()
 		return
+	if resposta == "__abrigo":
+		# A amizade pode mudar enquanto a opção está na tela: confirme de novo.
+		if not morador.pode_abrigar():
+			sair_da_porta("Só um amigo que você ajudou pode oferecer abrigo.")
+			return
+		entrar_no_abrigo(na_porta)
+		return
 	var valida := false
 	for opcao: Dictionary in morador.opcoes():
 		if String(opcao.id) != resposta: continue
@@ -869,6 +905,56 @@ func responder_ao_vizinho(resposta: String) -> void:
 		dica.avisar("%s te passou o número." % morador.nome)
 	mensagens.caixa(ciclo.dia, ciclo.contatos, "Irmã", vizinhos)
 	mostrar_fala_do_vizinho()
+
+## Sem interior novo: a posição acessível da conversa é a saída da mesma porta.
+## A rua fica suspensa enquanto o jogador está dentro, sem alterar caçadores.
+func entrar_no_abrigo(qual: int) -> void:
+	if abrigo != null or qual < 0 or qual >= vizinhos.size(): return
+	var morador: Vizinho3D = vizinhos[qual]
+	if not morador.pode_abrigar(): return
+	abrigado_em = qual
+	_volta_do_abrigo = jogador.global_transform
+	_processo_antes_do_abrigo = mundo.process_mode
+	_mundo_visivel_antes_do_abrigo = mundo.visible
+	encerrar_conversa()
+	prender_o_jogo(true)
+	jogador.velocity = Vector3.ZERO
+	dica.esconder()
+	balao.hide()
+	mundo.process_mode = Node.PROCESS_MODE_DISABLED
+	mundo.visible = false
+	abrigo = Abrigo3D.new()
+	abrigo.name = "AbrigoDoVizinho"
+	abrigo.escolheu.connect(responder_no_abrigo)
+	add_child(abrigo)
+	var resumo := ciclo.esperar_no_abrigo()
+	abrigo.mostrar(morador.nome, ciclo, resumo)
+
+func responder_no_abrigo(resposta: String) -> void:
+	if abrigo == null: return
+	if resposta != "esperar":
+		sair_do_abrigo()
+		return
+	var morador: Vizinho3D = vizinhos[abrigado_em]
+	if not morador.pode_abrigar():
+		# Nunca cobrar uma espera recusada nem prender o jogador sem saída.
+		abrigo.mostrar(morador.nome, ciclo, "A amizade mudou. Você pode sair pela mesma porta.")
+		return
+	var resumo := ciclo.esperar_no_abrigo()
+	abrigo.mostrar(morador.nome, ciclo, resumo)
+
+func sair_do_abrigo() -> void:
+	if abrigo == null: return
+	abrigo.hide()
+	abrigo.queue_free()
+	abrigo = null
+	abrigado_em = -1
+	mundo.process_mode = _processo_antes_do_abrigo
+	mundo.visible = _mundo_visivel_antes_do_abrigo
+	jogador.global_transform = _volta_do_abrigo
+	jogador.velocity = Vector3.ZERO
+	camera.make_current()
+	prender_o_jogo(false)
 
 ## A TV da sala: os programas do artefato com a notícia do dia por dentro, e o
 ## jogador trocando de canal. Ver TV cansa, então quem cobra é o ciclo.
@@ -972,8 +1058,7 @@ func esvaziar_a_rua(noite: bool) -> void:
 		# A irmã é de casa: ela não conta como gente na rua.
 		if String(quem.name) == "Irma": continue
 		na_rua += 1
-		quem.visible = na_rua <= quantos
-		quem.set_physics_process(quem.visible)
+		quem.aparecer(na_rua <= quantos)
 
 ## Uma lâmpada amarelada sob o braço de cada poste da rua, acesa só à noite.
 func acender_a_rua() -> void:
@@ -996,6 +1081,7 @@ func acender_a_rua() -> void:
 
 ## Dormir: fecha o dia, aplica as contas da noite e devolve a manhã seguinte.
 func dormir() -> void:
+	if abrigo != null: return
 	if dormindo or expediente != null: return
 	dormindo = true
 	dica.esconder()
@@ -1054,10 +1140,11 @@ func escurecer(titulo: String, resumo: String) -> void:
 func abrir_menu_do_ponto() -> void:
 	if menu != null: return
 	if not ciclo.onibus_funciona():
-		dica.avisar("Os ônibus pararam depois do breu. O ponto está fora de serviço.")
+		dica.avisar("Os ônibus pararam no breu. O ponto está fora de serviço.")
 		return
 	prender_o_jogo(true)
 	menu = MenuPonto.new()
+	menu.configurar(ciclo)
 	menu.escolheu.connect(fechar_menu_do_ponto)
 	add_child(menu)
 
@@ -1203,7 +1290,9 @@ func ajustar_cacadores() -> void:
 		var bicho := Cacador3D.new()
 		bicho.name = "Cacador%d" % (i + 1)
 		bicho.resolucao = RESOLUCAO
-		# Eles andam pela pista, que é por onde dá para vê-los de longe.
+		bicho.jogador = jogador
+		bicho.area_caminhada = Rect2(RUA_LIMITE.x, 19.0, RUA_LIMITE.y - RUA_LIMITE.x, 50.0)
+		# Nascem na pista, mas vagam pelo piso livre da rua e dos becos.
 		bicho.linha_z = FAIXA_DE_CA if i % 2 == 0 else FAIXA_DE_LA
 		bicho.sentido = 1.0 if i % 2 == 0 else -1.0
 		bicho.limites = Vector2(RUA_LIMITE.x + 2.0, RUA_LIMITE.y - 2.0)
