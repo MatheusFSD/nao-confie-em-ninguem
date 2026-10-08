@@ -7,3 +7,6 @@ output/
 # Sistema
 Thumbs.db
 desktop.ini
+
+# Pacotes de origem dos modelos (o jogo usa as cópias importadas em godot/)
+*.zip
