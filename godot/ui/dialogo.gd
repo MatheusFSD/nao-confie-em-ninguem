@@ -100,7 +100,8 @@ func mostrar_respostas(respostas: Control) -> void:
 	_respostas = respostas
 	_coluna.add_child(respostas)
 	_coluna.move_child(respostas, 2)
-	_aviso.text = "Clique ou use 1–5 · ↑ ↓ escolher · Enter responder · Esc encerrar"
+	var quantas: int = mini(9, respostas.opcoes.size()) if "opcoes" in respostas else 5
+	_aviso.text = "Clique ou use 1–%d · ↑ ↓ escolher · Enter responder · Esc encerrar" % quantas
 	_ajustar_layout()
 	call_deferred("_ajustar_layout")
 

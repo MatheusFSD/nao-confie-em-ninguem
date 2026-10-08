@@ -1,7 +1,8 @@
 ﻿class_name Cacador3D
 extends CharacterBody3D
 
-# Cego: contato próximo omnidirecional, sem visão, audição, dano ou combate.
+# Cego: contato próximo omnidirecional, sem visão, dano ou combate. Ouve barulho
+# alto (um arrombamento que dá errado) e corre até lá para procurar.
 const CENA := "res://modelos/cacador.tscn"
 const CAMINHO := preload("res://scripts/caminho_cacador3d.gd")
 const PASSO := 1.4
@@ -10,6 +11,8 @@ const RAIO_CORPO := 0.32
 const GRAVIDADE := 18.0
 @export_range(0.5, 8.0, 0.1) var raio_proximidade := 2.4
 @export_range(0.1, 10.0, 0.1) var memoria_proximidade := 2.0
+## Quanto tempo fica procurando em volta de onde veio o barulho.
+@export_range(1.0, 60.0, 0.5) var memoria_barulho := 14.0
 var resolucao := Vector2(320, 213)
 var linha_z := 26.0
 var limites := Vector2(-44.0, 60.0)
@@ -27,6 +30,8 @@ var _sem_contato := 0.0
 var _tempo_rota := 0.0
 var _pausa := 0.0
 var _sem_avanco := 0.0
+## Correndo atrás de um barulho, até chegar ou desistir de procurar.
+var _ao_barulho := false
 
 func _ready() -> void:
 	add_to_group("cacadores3d")
@@ -72,6 +77,7 @@ func atualizar_percepcao(delta: float) -> void:
 		_estado = "buscar"
 		if not jogador_disponivel() or _sem_contato >= memoria_proximidade:
 			_estado = "vagar"
+			_ao_barulho = false
 			_caminho.clear()
 			_pausa = _sorte.randf_range(0.6, 1.6)
 			_tempo_rota = 0.0
@@ -148,7 +154,7 @@ func vencer_degrau(passo: Vector3) -> void:
 func _physics_process(delta: float) -> void:
 	atualizar_percepcao(delta)
 	var rumo := seguir_caminho(delta)
-	var velocidade := CORRIDA if _estado == "perseguir" else PASSO
+	var velocidade := CORRIDA if _estado == "perseguir" or _ao_barulho else PASSO
 	var antes := global_position
 	velocity = Vector3(rumo.x * velocidade, velocity.y - GRAVIDADE * delta, rumo.z * velocidade)
 	if rumo.length_squared() > 0.1:
@@ -161,3 +167,16 @@ func _physics_process(delta: float) -> void:
 	var animacao := "parado" if avancou < velocidade * delta * 0.15 else ("correr" if _estado == "perseguir" else "andar")
 	if _modelo != null and "estado" in _modelo and _modelo.estado != animacao:
 		_modelo.estado = animacao
+
+## Um barulho alto em `ponto`: larga o que estava fazendo, corre até lá e
+## procura em volta por memoria_barulho segundos, como se tivesse perdido o
+## contato com alguém ali. Se encontrar o jogador no caminho, persegue.
+func ouvir(ponto: Vector3) -> void:
+	if _estado == "perseguir": return
+	_estado = "buscar"
+	_ao_barulho = true
+	_ultima_proximidade = ponto
+	_sem_contato = memoria_proximidade - memoria_barulho
+	_caminho.clear()
+	_pausa = 0.0
+	_tempo_rota = 0.0

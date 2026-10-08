@@ -111,9 +111,8 @@ func rodar() -> void:
 	jogo.abrir_menu_do_ponto()
 	checar(jogo.menu != null, "ônibus disponível no último dia antes do breu")
 	checar(jogo.menu._detalhe.text.contains("2 ações") and jogo.menu._detalhe.text.contains("10 de energia") and jogo.menu._detalhe.text.contains("R$ 40"), "menu anuncia custo e recompensa do trabalho")
-	jogo.menu.escolha = 1
-	jogo.menu.pintar()
-	checar(jogo.menu._detalhe.text.contains("1 ação") and jogo.menu._detalhe.text.contains("2 de energia") and jogo.menu._detalhe.text.contains("Compras cobradas à parte"), "menu anuncia custo do mercado e pagamento separado")
+	var chaves := MenuPonto.OPCOES.map(func(o): return String(o.chave))
+	checar(not chaves.has("mercado") and chaves.size() == 2, "ponto não leva mais ao mercado")
 	jogo.ciclo.acoes = 1
 	jogo.menu.escolha = 0
 	jogo.menu.pintar()
@@ -123,9 +122,9 @@ func rodar() -> void:
 	checar(jogo.menu != null and jogo.expediente == null and jogo.ciclo.acoes == 1, "confirmar sem ações mantém menu e reservas")
 	jogo.ciclo.acoes = 4
 	jogo.ciclo.energia = 1
-	jogo.menu.escolha = 1
+	jogo.menu.escolha = 0
 	jogo.menu.pintar()
-	checar(not jogo.menu.pode_ir(1) and jogo.menu._detalhe.text.contains("falta energia"), "mercado indisponível por energia")
+	checar(not jogo.menu.pode_ir(0) and jogo.menu._detalhe.text.contains("falta energia"), "trabalho indisponível por energia")
 	jogo.ciclo.energia = 100
 	jogo.fechar_menu_do_ponto("")
 	for dia in [6, 7, 8]:

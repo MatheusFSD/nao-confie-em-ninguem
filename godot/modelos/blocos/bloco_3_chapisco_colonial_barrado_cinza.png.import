@@ -2,24 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c7mupyfb5hur5"
-path.s3tc="res://.godot/imported/bloco_3_chapisco_colonial_barrado_cinza.png-b57ff1ccd4867904e656c24809793974.s3tc.ctex"
+uid="uid://cf4xhnsu3ytie"
+path="res://.godot/imported/bloco_3_chapisco_colonial_barrado_cinza.png-b57ff1ccd4867904e656c24809793974.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
-}
-generator_parameters={
-"md5": "a6cd8e4bcccea7dda54ca75c04034228"
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://modelos/blocos/bloco_3_chapisco_colonial_barrado_cinza.png"
-dest_files=["res://.godot/imported/bloco_3_chapisco_colonial_barrado_cinza.png-b57ff1ccd4867904e656c24809793974.s3tc.ctex"]
+dest_files=["res://.godot/imported/bloco_3_chapisco_colonial_barrado_cinza.png-b57ff1ccd4867904e656c24809793974.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
@@ -27,7 +23,7 @@ compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
@@ -41,4 +37,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1

@@ -1,7 +1,8 @@
 class_name MenuPonto
 extends CanvasLayer
 
-# O menu do ponto de ônibus: trabalhar, ir ao mercado ou deixar para depois.
+# O menu do ponto de ônibus: trabalhar ou deixar para depois. As compras agora
+# são feitas no comércio da rua (mercadinho, padaria e bar), sem ônibus.
 # Desenhado na tela pequena do jogo, com as setas para escolher e E ou Enter
 # para confirmar — as mesmas teclas que abrem a porta, para não inventar
 # controle novo no meio do caminho.
@@ -9,7 +10,6 @@ signal escolheu(destino: String)
 
 const OPCOES := [
 	{"chave": "trabalho", "texto": "Ir trabalhar", "abaixo": "Linha 950 · Centro"},
-	{"chave": "mercado", "texto": "Ir ao mercado", "abaixo": "Linha 950 · Madureira"},
 	{"chave": "", "texto": "Ficar por aqui", "abaixo": ""},
 ]
 

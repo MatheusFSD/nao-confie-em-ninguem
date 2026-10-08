@@ -83,6 +83,8 @@ const ENCAIXE := 0.15
 var comercio_aberto := true
 ## Até onde o jogador enxerga uma porta para abrir.
 const ALCANCE_DA_MAO := 2.6
+## Até onde o estalo de um arrombamento que dá errado chega aos caçadores.
+const RAIO_DO_BARULHO := 45.0
 ## Os cinco raios da mira: o do meio e quatro em volta.
 const DESVIOS := [Vector2.ZERO, Vector2(0.11, 0.0), Vector2(-0.11, 0.0), Vector2(0.0, 0.11), Vector2(0.0, -0.11)]
 var malha_cenario := MalhaLowPoly.new()
@@ -111,6 +113,14 @@ var vizinhos: Array = []
 var dialogo: Control
 ## Com quem se está falando na porta agora, e o menu de ajudar ou não.
 var na_porta := -1
+## Loja de compras em atendimento (tipo), vazia quando não há.
+var na_loja := ""
+## O comércio que vende, com donos, preços e o que já foi arrombado.
+var lojas := Lojas3D.new()
+## A porta de cada loja de compras, para mirar e para o barulho sair dali.
+var portas_das_lojas := {}
+## O minigame de arrombar, enquanto está na tela.
+var arrombando: Arrombar3D
 var escolha: MenuEscolha
 var abrigo: Abrigo3D
 var abrigado_em := -1
@@ -205,6 +215,7 @@ func construir() -> void:
 		RuaModelo.tirar_casario(continuacao, faixa)
 	becos = Becos.construir(mundo, RESOLUCAO)
 	por_os_vizinhos()
+	por_as_lojas()
 	construir_limites()
 	povoar()
 	ajustar_transito()
@@ -351,26 +362,47 @@ func fechar_comercio(fechado: bool) -> int:
 	Pessoa3D.CAMINHOS.esquecer()
 	var casario := mundo.get_node_or_null("Casario") as Node3D
 	if casario == null: return 0
-	var de := "_aberto" if fechado else "_fechado"
-	var para := "_fechado" if fechado else "_aberto"
 	var trocados := 0
 	for predio in casario.get_children():
-		var nome := String(predio.name)
-		# O nome pode ter número no fim, quando há mais de um do mesmo modelo.
-		var corte := nome.find(de)
-		if corte < 0: continue
-		var loja := nome.substr(0, corte)
-		var cena: PackedScene = load("res://modelos/comercios/%s%s.glb" % [loja, para])
-		if cena == null: continue
-		var novo: Node3D = cena.instantiate()
-		novo.name = loja + para
-		novo.transform = (predio as Node3D).transform
-		casario.add_child(novo, true)
-		preparar_predio(novo)
-		casario.remove_child(predio)
-		predio.queue_free()
-		trocados += 1
+		if trocar_porta_de_aco(casario, predio, fechado): trocados += 1
 	return trocados
+
+## Cada prédio do comércio na hora certa: fechado de noite e, de dia, aberto
+## só até o dia em que aquele comércio baixa a porta de vez.
+func ajustar_comercio(noite: bool) -> void:
+	var casario := mundo.get_node_or_null("Casario") as Node3D
+	if casario == null: return
+	var mudou := false
+	for predio in casario.get_children():
+		var nome := String(predio.name)
+		if nome.find("_aberto") < 0 and nome.find("_fechado") < 0: continue
+		var fechar := noite or dia_de_hoje() >= lojas.dia_que_fecha(nome, DIA_DO_BREU)
+		if trocar_porta_de_aco(casario, predio, fechar): mudou = true
+	comercio_aberto = not noite and dia_de_hoje() < DIA_DO_BREU
+	if mudou:
+		Cacador3D.CAMINHO.esquecer()
+		Pessoa3D.CAMINHOS.esquecer()
+
+## Troca um prédio do comércio pelo par de porta aberta ou baixada, no mesmo
+## lugar. Devolve falso quando ele já está assim ou não é comércio.
+func trocar_porta_de_aco(casario: Node3D, predio: Node, fechado: bool) -> bool:
+	var nome := String(predio.name)
+	var de := "_aberto" if fechado else "_fechado"
+	var para := "_fechado" if fechado else "_aberto"
+	# O nome pode ter número no fim, quando há mais de um do mesmo modelo.
+	var corte := nome.find(de)
+	if corte < 0: return false
+	var loja := nome.substr(0, corte)
+	var cena: PackedScene = load("res://modelos/comercios/%s%s.glb" % [loja, para])
+	if cena == null: return false
+	var novo: Node3D = cena.instantiate()
+	novo.name = loja + para
+	novo.transform = (predio as Node3D).transform
+	casario.add_child(novo, true)
+	preparar_predio(novo)
+	casario.remove_child(predio)
+	predio.queue_free()
+	return true
 
 ## O abrigo do ponto de ônibus, na calçada. Ele ganha um corpo marcado, que é o
 ## que o olhar do jogador encontra para oferecer a viagem.
@@ -442,7 +474,7 @@ func _physics_process(_delta: float) -> void:
 	if escolha != null or mochila != null or celular != null:
 		dica.esconder()
 		return
-	if menu != null or expediente != null or tv != null or (dialogo != null and dialogo.visible):
+	if menu != null or arrombando != null or expediente != null or tv != null or (dialogo != null and dialogo.visible):
 		dica.esconder()
 		return
 	var alvo := na_mira()
@@ -468,6 +500,9 @@ func _physics_process(_delta: float) -> void:
 	if alvo["o_que"] == "janela":
 		dica.mostrar("Olhar pela fresta")
 		return
+	if alvo["o_que"] == "loja":
+		dica.mostrar(dica_da_loja(alvo["tipo"]))
+		return
 	if alvo["o_que"] == "vizinho":
 		var morador: Vizinho3D = vizinhos[alvo["quem"]]
 		dica.mostrar("Bater na porta" if morador.conversas == 0 else "Falar com %s" % morador.nome)
@@ -491,7 +526,7 @@ func _physics_process(_delta: float) -> void:
 ## corrigido no quadro seguinte, em vez de travar o jogo.
 func destravar() -> void:
 	if abrigo != null: return
-	if menu != null or expediente != null or tv != null or fresta != null or escolha != null: return
+	if menu != null or arrombando != null or expediente != null or tv != null or fresta != null or escolha != null: return
 	if mochila != null or celular != null: return
 	if mochila != null or celular != null: return
 	if dialogo != null and dialogo.visible: return
@@ -517,7 +552,7 @@ func na_mira() -> Dictionary:
 		if achado == null: continue
 		colisor = achado
 		if colisor.has_meta("ponto") or colisor.has_meta("cama") or colisor.has_meta("tv") or colisor.has_meta("torneira") \
-			or colisor.has_meta("janela") or colisor.has_meta("vizinho") or casa.porta_de(colisor) >= 0 \
+			or colisor.has_meta("janela") or colisor.has_meta("vizinho") or colisor.has_meta("loja") or casa.porta_de(colisor) >= 0 \
 			or (colisor is Node and (colisor as Node).is_in_group("pessoas3d")):
 			break
 	if colisor == null: return {}
@@ -529,6 +564,8 @@ func na_mira() -> Dictionary:
 		return {"o_que": "janela", "qual": int(colisor.get_meta("janela"))}
 	if colisor != null and colisor.has_meta("vizinho"):
 		return {"o_que": "vizinho", "quem": int(colisor.get_meta("vizinho"))}
+	if colisor != null and colisor.has_meta("loja"):
+		return {"o_que": "loja", "tipo": String(colisor.get_meta("loja"))}
 	if colisor is Node and (colisor as Node).is_in_group("pessoas3d") and colisor.conversa_livre:
 		return {"o_que": "pessoa", "quem": colisor}
 	var porta := casa.porta_de(colisor)
@@ -555,7 +592,7 @@ func virar_deus() -> void:
 ## A tecla da tranca: só faz sentido na porta que se está olhando.
 func trancar_o_que_estiver_na_mira() -> void:
 	if abrigo != null: return
-	if menu != null or expediente != null or tv != null or fresta != null or escolha != null: return
+	if menu != null or arrombando != null or expediente != null or tv != null or fresta != null or escolha != null: return
 	if mochila != null or celular != null: return
 	if dialogo != null and dialogo.visible: return
 	var alvo := na_mira()
@@ -578,7 +615,7 @@ func porta_na_mira() -> int:
 
 func usar_o_que_estiver_na_mira() -> void:
 	if abrigo != null: return
-	if menu != null or expediente != null or tv != null or fresta != null or escolha != null: return
+	if menu != null or arrombando != null or expediente != null or tv != null or fresta != null or escolha != null: return
 	if mochila != null or celular != null: return
 	if dialogo != null and dialogo.visible: return
 	var alvo := na_mira()
@@ -594,6 +631,7 @@ func usar_o_que_estiver_na_mira() -> void:
 		"tv": ligar_a_tv()
 		"torneira": ciclo.guardar_agua()
 		"vizinho": bater_na_porta(alvo["quem"])
+		"loja": entrar_na_loja(alvo["tipo"])
 		"janela": olhar_pela_fresta(alvo["qual"])
 
 ## Conversa de calçada: a pessoa para, olha para quem chegou e diz a frase que
@@ -613,7 +651,7 @@ func abrir_a_mochila() -> void:
 	if mochila != null:
 		fechar_a_mochila()
 		return
-	if menu != null or expediente != null or tv != null or fresta != null or escolha != null or celular != null: return
+	if menu != null or arrombando != null or expediente != null or tv != null or fresta != null or escolha != null or celular != null: return
 	if dialogo != null and dialogo.visible: return
 	if dormindo: return
 	dica.esconder()
@@ -806,6 +844,197 @@ func porta_de_vizinho(caixa: AABB, qual: int) -> StaticBody3D:
 	mundo.add_child(corpo)
 	return corpo
 
+# ------------------------------------------------------------------ comércio
+
+## Uma porta marcada em cada loja de compras do nosso lado da rua (mercadinho,
+## padaria e bar). As cópias do outro lado e de fora do trecho jogável ficam só
+## de cenário.
+func por_as_lojas() -> void:
+	portas_das_lojas.clear()
+	var casario := mundo.get_node_or_null("Casario")
+	if casario == null: return
+	for predio in casario.get_children():
+		if not (predio is Node3D): continue
+		var tipo := lojas.tipo_do_predio(String(predio.name))
+		if tipo.is_empty() or portas_das_lojas.has(tipo): continue
+		var lugar := (predio as Node3D).global_position
+		if lugar.z > RUA_EIXO_Z or lugar.x < RUA_LIMITE.x or lugar.x > RUA_LIMITE.y: continue
+		var corpo := StaticBody3D.new()
+		corpo.name = "PortaDaLoja_" + tipo
+		# A fachada fica na origem do modelo; a porta, logo à frente dela.
+		corpo.transform = (predio as Node3D).global_transform.translated_local(Vector3(0.0, 0.0, 0.25))
+		corpo.set_meta("loja", tipo)
+		corpo.collision_layer = 16
+		corpo.collision_mask = 0
+		var forma := CollisionShape3D.new()
+		var porta := BoxShape3D.new()
+		porta.size = Vector3(3.4, 2.6, 0.3)
+		forma.shape = porta
+		forma.position.y = 1.3
+		corpo.add_child(forma)
+		mundo.add_child(corpo)
+		portas_das_lojas[tipo] = corpo
+
+## "o mercadinho" → "no mercadinho"; "a padaria" → "da padaria".
+static func contrair(preposicao: String, nome: String) -> String:
+	if nome.begins_with("o "): return preposicao + "o " + nome.substr(2)
+	if nome.begins_with("a "): return preposicao + "a " + nome.substr(2)
+	return preposicao + "e " + nome
+
+## O que a dica diz ao olhar para a porta da loja, conforme a hora e o dia.
+func dica_da_loja(tipo: String) -> String:
+	var nome := String(lojas.loja(tipo).get("nome", tipo))
+	if lojas.aberta(tipo, dia_de_hoje(), ciclo.e_noite()):
+		var custo := lojas.custo_visita()
+		return "Entrar %s · %d ação" % [contrair("n", nome), int(custo.acoes)]
+	if not lojas.fechada_de_vez(tipo, dia_de_hoje()):
+		return "Fechad%s · abre de manhã" % ("a" if nome.begins_with("a ") else "o")
+	if lojas.saqueadas.has(tipo): return "Já levaram tudo " + contrair("d", nome)
+	return "Arrombar a porta %s · faz barulho se errar" % contrair("d", nome)
+
+## Na porta da loja: aberta, o dono atende no balcão; fechada de vez, dá para
+## arrombar. De noite (antes de fechar de vez) só resta voltar de manhã.
+func entrar_na_loja(tipo: String) -> void:
+	if abrigo != null or not lojas.existe(tipo): return
+	var dia_agora := dia_de_hoje()
+	if lojas.aberta(tipo, dia_agora, ciclo.e_noite()):
+		var custo := lojas.custo_visita()
+		if not ciclo.gastar(int(custo.acoes), int(custo.energia)):
+			dica.avisar(ciclo.recado)
+			return
+		var loja := lojas.loja(tipo)
+		na_loja = tipo
+		dica.esconder()
+		balao.hide()
+		prender_o_jogo(true)
+		dialogo.caminho_do_retrato = String(loja.get("retrato", ""))
+		dialogo.respostas_ao_final = true
+		var falas := lojas.falas(tipo, dia_agora)
+		dialogo.mostrar(String(loja.get("dono", "")), falas if not falas.is_empty() else ["Pois não?"])
+		return
+	if not lojas.fechada_de_vez(tipo, dia_agora) or lojas.saqueadas.has(tipo):
+		dica.avisar(dica_da_loja(tipo))
+		return
+	comecar_arrombamento(tipo)
+
+## O balcão: o que o dono vende hoje, com preço e rendimento, até ir embora.
+func abrir_o_balcao(aviso := "") -> void:
+	var loja := lojas.loja(na_loja)
+	if loja.is_empty():
+		encerrar_conversa()
+		return
+	escolha = MenuEscolha.new()
+	escolha.name = "Balcao"
+	escolha.escolheu.connect(responder_no_balcao)
+	var lista := []
+	for produto: Dictionary in loja.get("produtos", []):
+		var vale := String(produto.get("vale", ""))
+		if vale == "lanterna" and ciclo.tem_lanterna: continue
+		var preco := lojas.preco(produto, dia_de_hoje())
+		var abaixo := "Rende " + Lojas3D.rendimento(vale, int(produto.get("rende", 1)))
+		if not ciclo.modo_deus and ciclo.dinheiro < preco: abaixo += " · faltam R$ %d" % (preco - ciclo.dinheiro)
+		lista.append({"chave": String(produto.get("id", "")), "texto": "%s · R$ %d" % [produto.get("nome", ""), preco], "abaixo": abaixo})
+	lista.append({"chave": "", "texto": "Ir embora", "abaixo": ""})
+	escolha.perguntar(aviso if not aviso.is_empty() else "Você tem R$ %d." % ciclo.dinheiro, lista)
+	dialogo.mostrar_respostas(escolha)
+
+## Comprar uma embalagem: o dinheiro sai, o que ela rende entra em casa, e o
+## balcão volta com o saldo novo.
+func responder_no_balcao(chave: String) -> void:
+	if escolha != null:
+		escolha.hide()
+		escolha.queue_free()
+		escolha = null
+	if chave.is_empty():
+		encerrar_conversa()
+		return
+	var produto := {}
+	for item: Dictionary in lojas.loja(na_loja).get("produtos", []):
+		if String(item.get("id", "")) == chave: produto = item
+	if produto.is_empty():
+		encerrar_conversa()
+		return
+	var preco := lojas.preco(produto, dia_de_hoje())
+	if not ciclo.modo_deus and ciclo.dinheiro < preco:
+		abrir_o_balcao("Não dá: faltam R$ %d." % (preco - ciclo.dinheiro))
+		return
+	var rende := int(produto.get("rende", 1))
+	var sobra := ciclo.dinheiro - preco
+	match String(produto.get("vale", "")):
+		"comida": ciclo.guardar(rende, 0, sobra)
+		"agua": ciclo.guardar(0, rende, sobra)
+		"energia": ciclo.guardar(0, 0, sobra, rende)
+		"lanterna":
+			ciclo.guardar(0, 0, sobra)
+			ciclo.tem_lanterna = true
+	abrir_o_balcao("Levou %s. Sobrou R$ %d." % [produto.get("nome", ""), ciclo.dinheiro])
+
+## Arrombar custa tempo e força antes do primeiro golpe, dê certo ou não.
+func comecar_arrombamento(tipo: String) -> void:
+	var custo := lojas.custo_arrombar()
+	if not ciclo.gastar(int(custo.acoes), int(custo.energia)):
+		dica.avisar(ciclo.recado)
+		return
+	na_loja = tipo
+	dica.esconder()
+	balao.hide()
+	prender_o_jogo(true)
+	arrombando = Arrombar3D.new()
+	arrombando.name = "Arrombando"
+	arrombando.titulo = ("Arrombando a porta " + contrair("d", String(lojas.loja(tipo).get("nome", tipo)))).to_upper()
+	arrombando.terminou.connect(fim_do_arrombamento)
+	add_child(arrombando)
+
+func fim_do_arrombamento(resultado: String) -> void:
+	var tipo := na_loja
+	na_loja = ""
+	if arrombando != null:
+		arrombando.queue_free()
+		arrombando = null
+	prender_o_jogo(false)
+	match resultado:
+		"abriu": saquear(tipo)
+		"falhou":
+			fazer_barulho(onde_fica_a_porta(tipo))
+			dica.avisar("O cadeado estalou alto. A rua inteira ouviu.")
+		_: dica.avisar("Você largou o pé de cabra. A porta continua fechada.")
+
+## A porta cedeu: o que sobrou nas prateleiras vai para casa, uma vez só.
+func saquear(tipo: String) -> void:
+	lojas.saqueadas[tipo] = true
+	var saque: Dictionary = lojas.loja(tipo).get("saque", {})
+	var comida := int(saque.get("comida", 0))
+	var agua := int(saque.get("agua", 0))
+	var energia := int(saque.get("energia", 0))
+	ciclo.guardar(comida, agua, ciclo.dinheiro, energia)
+	var levou: Array[String] = []
+	if comida > 0: levou.append("+%d comida" % comida)
+	if agua > 0: levou.append("+%d água" % agua)
+	if energia > 0: levou.append("+%d energia" % energia)
+	if int(saque.get("lanterna", 0)) > 0 and not ciclo.tem_lanterna:
+		ciclo.tem_lanterna = true
+		levou.append("uma lanterna")
+	if levou.is_empty(): dica.avisar("A porta cedeu, mas as prateleiras estavam vazias.")
+	else: dica.avisar("A porta cedeu. Você levou: %s." % ", ".join(levou))
+
+## Calçada em frente à porta da loja: é dali que o barulho sai.
+func onde_fica_a_porta(tipo: String) -> Vector3:
+	var porta: Node3D = portas_das_lojas.get(tipo)
+	if porta == null: return jogador.global_position
+	var lugar := porta.global_transform.translated_local(Vector3(0.0, 0.0, 1.2)).origin
+	return Vector3(lugar.x, 0.0, lugar.z)
+
+## Um estalo alto em `onde`: todo caçador ao alcance corre para lá procurar.
+## Devolve quantos ouviram.
+func fazer_barulho(onde: Vector3) -> int:
+	var ouviram := 0
+	for bicho in get_tree().get_nodes_in_group("cacadores3d"):
+		if not bicho.has_method("ouvir"): continue
+		if (bicho as Node3D).global_position.distance_to(onde) > RAIO_DO_BARULHO: continue
+		bicho.ouvir(onde)
+		ouviram += 1
+	return ouviram
+
 ## Bater na porta de um vizinho: ele atende com o retrato e a fala do dia.
 func bater_na_porta(qual: int) -> void:
 	if abrigo != null: return
@@ -831,6 +1060,9 @@ func mostrar_fala_do_vizinho() -> void:
 ## Acabou a fala. Se ele estava pedindo alguma coisa, agora é a hora de
 ## responder; senão, o morador volta a andar.
 func sair_da_porta(aviso := "") -> void:
+	if not na_loja.is_empty():
+		abrir_o_balcao(aviso)
+		return
 	var morador: Vizinho3D = vizinhos[na_porta] if na_porta >= 0 and na_porta < vizinhos.size() else null
 	if morador == null:
 		encerrar_conversa()
@@ -859,6 +1091,7 @@ func encerrar_conversa() -> void:
 		escolha.queue_free()
 		escolha = null
 	na_porta = -1
+	na_loja = ""
 	dialogo.fechar()
 	prender_o_jogo(false)
 
@@ -1016,9 +1249,9 @@ func aplicar_hora_do_dia() -> void:
 	# ele fica desligado, que é o normal para este jogo.
 	ambiente_do_bairro.glow_enabled = quantos_cacadores_hoje() > 0
 	esvaziar_a_rua(noite)
-	# De noite o comércio fecha; depois do ataque não abre mais, nem de dia.
-	var fechar := noite or dia_de_hoje() >= DIA_DO_BREU
-	if fechar == comercio_aberto: fechar_comercio(fechar)
+	# De noite o comércio fecha; cada loja de compras baixa a porta de vez no
+	# seu dia (data/lojas3d.json), o resto do comércio no breu.
+	ajustar_comercio(noite)
 	# O breu: um dia inteiro sem luz nenhuma. Nem sol, nem poste, nem lâmpada de
 	# casa — só a lanterna de quem teve a ideia de comprar uma.
 	if e_dia_de_breu():

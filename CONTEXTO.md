@@ -20,15 +20,16 @@ Prompt para um novo chat:
 - Lore e diálogos devem continuar editáveis em JSON, com escolhas que alteram respostas e relações.
 - Corpos de bruços/barriga para cima, membros apoiados no solo e sangue no chão; posição fixa nos dias seguintes.
 - Jogador deve colidir com NPCs e veículos; pedestres devem contornar obstáculos.
+- **Compras só no comércio da rua** (mercadinho, padaria, bar do nosso lado): balcão com o dono. O ponto de ônibus não leva mais ao mercado; o mercado 3D (`mercado3d.gd`/`expediente3d.gd`) continua no código, sem acesso, até decidir removê-lo de vez. Fechada de vez, a loja pode ser arrombada (minigame); falhar faz barulho que atrai caçadores.
 
 ## Calendário atual
 
 | Dia | O que acontece |
 | --- | --- |
 | 1–2 | Normalidade aparente; falhas e notícias de abastecimento. |
-| 3–4 | Cidade estranha, falhas elétricas e menos movimento. |
-| 5 | Fuga, engarrafamento e mercado caro/escasso. |
-| 6 | **Único breu total**. Dois caçadores, corpos; pedestres/carros civis desaparecem. Ônibus para definitivamente; água ainda funciona. |
+| 3–4 | Cidade estranha, falhas elétricas e menos movimento. Padaria fecha de vez no dia 4. |
+| 5 | Fuga, engarrafamento e comércio caro/escasso. Bar fecha de vez. |
+| 6 | **Único breu total**. Mercadinho fecha de vez. Dois caçadores, corpos; pedestres/carros civis desaparecem. Ônibus para definitivamente; água ainda funciona. |
 | 7 | Ataque, chamas, comboio militar. Água para; eletricidade e ônibus continuam cortados. Caçadores ausentes. |
 | 8+ | Luz natural, ruínas, três caçadores; serviços cortados. Epílogo das conversas no dia 10+. |
 
@@ -43,6 +44,7 @@ Caminhos abaixo relativos a `godot/`:
 | `scripts/mundo3d.gd` | Construção do bairro, interação, calendário visual, população, corpos e trânsito. |
 | `scripts/ciclo3d.gd` | Dias, ações, recursos, custos e disponibilidade dos serviços. |
 | `scripts/abrigo3d.gd` | Tela de espera na casa amiga; integração em `mundo3d.gd`. |
+| `data/lojas3d.json`, `scripts/lojas3d.gd`, `scripts/arrombar3d.gd`, `sprites/lojas/` | Lojas de compras: dono, retrato, falas por dia, produtos/preço/rendimento, dia em que fecham de vez, saque; minigame de arrombar. Integração (portas, balcão, barulho) na seção "comércio" de `mundo3d.gd`. |
 | `scenes/casario.tscn` (nó `BlocosBecos`), `data/becos3d.json`, `scripts/becos3d.gd`, `modelos/blocos/` | Casas reais e blocos dos becos, editados à mão em casario.tscn. JSON: `piso` único, `entradas` na barreira e `rotas` de conferência. |
 | `scripts/cacador3d.gd`, `scripts/caminho_cacador3d.gd` | Proximidade, estados e navegação local dos caçadores; valores exportados ajustam alcance/memória. |
 | `data/dias.json`, `data/mensagens.json`, `scripts/mensagens3d.gd` | Notícias/eventos, SMS da irmã e entrega de mensagens. |
@@ -58,11 +60,13 @@ Caminhos abaixo relativos a `godot/`:
 
 **Abrigo:** marca `ajudou` + confiança ≥2 libera convite genérico na conversa da porta (revalidado ao confirmar). Entrar já espera um período: 1 ação, 0 energia. Tela opaca, sem interior novo; rua suspensa enquanto abrigado. Sem ações, esperar vira o dia, consome 1 comida/água e mantém penalidades normais; reservas acompanham o jogador, sem roubo por portas da própria casa. Permanece até escolher sair/Esc; retorna ao transform salvo na mesma porta. Texto opcional `abrigo.convite` no JSON do vizinho.
 
-**Becos:** layout feito pelo usuário no editor: blocos do ZIP em `casario.tscn/BlocosBecos` (ficam no jogo; colisão `paredes-col` dos GLBs) e casas reposicionadas no lado oposto da rua. `becos3d.gd` cria um piso único x −46..62, z 37,4..68,4 (cimentado com a textura da calçada `modelos/rua_penha_3.png`, placa de 1,6 m, malha picada por causa da textura afim) sob tudo e uma cerca invisível nas laterais/fundo. GLBs `sobrado_azul_com_escada` e `casa_amarela_de_telhado_colonial` receberam fecho no fundo do muro lateral; o muro de `casa_branca_com_garagem` foi aparado até o fundo da casa (Blender 5.2 em `C:/Program Files/Blender Foundation/Blender 5.2`, por script; originais no git). Bocas na barreira Z37,6 em `entradas` (hoje x −17,75..−14,1; 7,7..9,25; 45,85..46,75; 52,85..54,1). Ao mover casas/blocos na frente, recalcular as bocas (scripts de apoio `output/godot-validation/_bocas_becos.gd` e `_alcance_becos.gd`, que gera `alcance-becos.png`). `modelos/blocos/LEIAME.txt` descreve dimensões e colisões.
+**Becos:** layout feito pelo usuário no editor: blocos do ZIP em `casario.tscn/BlocosBecos` (ficam no jogo; colisão `paredes-col` dos GLBs) e casas reposicionadas no lado oposto da rua. `becos3d.gd` cria um piso único x −46..62, z 37,4..68,4 (cimentado com a textura da calçada `modelos/rua_penha_3.png`, placa de 1,6 m, malha picada por causa da textura afim) sob tudo e uma cerca invisível nas laterais/fundo. GLBs `sobrado_azul_com_escada` e `casa_amarela_de_telhado_colonial` receberam fecho no fundo do muro lateral; o muro de `casa_branca_com_garagem` foi aparado até o fundo da casa (Blender 5.2 em `C:/Program Files/Blender Foundation/Blender 5.2`, por script; originais no git). Bocas na barreira Z37,6 em `entradas` (hoje x −17,75..−16,3; 7,7..9,25; 52,75..54,2 — a de x≈46 foi fechada pelo layout do usuário). Ao mover casas/blocos na frente, recalcular as bocas (scripts de apoio `output/godot-validation/_bocas_becos.gd` e `_alcance_becos.gd`, que gera `alcance-becos.png`). `modelos/blocos/LEIAME.txt` descreve dimensões e colisões.
 
 **Caçadores:** cegos; percepção próxima de 2,4 m em todas as direções, bloqueada fisicamente por paredes. Correm para o jogador enquanto há contato; ao perdê-lo, procuram somente o último ponto percebido por até 2 s e voltam a vagar/pausar. Destinos aleatórios alcançáveis sobre piso; AStar local + cápsula/gravidade para contornar obstáculos, sem navmesh. Desempenho: grade presa ao mundo (0,35 m) com cache estático das células (`_cenario`, vence em 600 quadros; `esquecer()` em `construir` e `fechar_comercio`), corpos móveis só conferidos se houver algum na faixa; `escolher_destino` faz no máximo uma rota por quadro. Área de caminhada z 19..69 (cobre os becos). Cápsula raio 0,32 m; colisão com jogador e mundo. Rua/IA suspensas no abrigo. Sem dano/morte. Calendário 6:2, 7:0, 8+:3.
 
-**Menus/economia/visual:** ônibus mostra ações, energia, recompensa e indisponibilidade antes de confirmar. Mercado mostra preço/benefício; `rende` em `data/mercado3d.json` define rendimento por embalagem: arroz 5 comidas, feijão/café 2, outros alimentos 1. Preço é por embalagem. Filtro PS1 suavizado: 16 tons, pontilhado 0,55 e VHS 0,18; baixa resolução mantida.
+**Comércio:** portas marcadas (camada 16) só nas lojas do nosso lado: mercadinho x≈−30, padaria x≈−10, bar x≈23 (z 19,3). Aberta (de dia, antes de `fecha_no_dia`: padaria 4, bar 5, mercadinho 6): entrar custa 1 ação, o dono fala e o balcão (`MenuEscolha` na caixa de diálogo) lista produtos com preço por embalagem × carestia 1,32^(dia−1) e rendimento (`vale`/`rende`); compra uma embalagem por escolha, até "Ir embora". Noite antes do fechamento: só aviso. Fechada de vez: "Arrombar" custa 1 ação + 5 energia e abre o minigame (ponteiro e faixa; 3 acertos, faixa ×0,72 e velocidade ×1,3 por acerto; Esc desiste). Abrir dá o `saque` uma vez (`lojas.saqueadas`, só na partida); errar chama `fazer_barulho` na calçada da porta: caçadores a até 45 m recebem `ouvir()` e correm até lá, procurando por `memoria_barulho` 14 s. Prédios do comércio trocam aberto/fechado individualmente em `ajustar_comercio` (outros comércios fecham no breu).
+
+**Menus/economia/visual:** ônibus só oferece trabalho (mostra ações, energia, recompensa e indisponibilidade antes de confirmar). Filtro PS1 suavizado: 16 tons, pontilhado 0,55 e VHS 0,18; baixa resolução mantida.
 
 **Corpos:** dez modelos originais, malhas estáticas criadas uma vez no dia 6; pose/posição/poças fixas. Irmã e vizinhos de diálogo não viram esses corpos. Poses: `costas`/`frente`. Reinicie após editar dados; reabra o projeto para atualizar prévias em cache.
 
@@ -72,9 +76,9 @@ Camadas (valores de máscara): mundo `1`, jogador `2`, NPC `4`, interação `16`
 
 ## Validação e estado de trabalho
 
-Há alterações não commitadas de IA/colisões, menus/economia/calendário/filtro, abrigo, becos e assets do ZIP; preserve esse trabalho.
+Trabalho no branch `becos-e-desempenho` (push feito até os becos/desempenho; comércio ainda não commitado). Zips de pacotes ficam fora do git (`*.zip` no .gitignore). Retratos originais dos donos estão na raiz (PNGs grandes, fora do jogo).
 
-Últimos registros (08/10, após piso texturizado e cache de rotas): caçadores **64**, becos **23**, abrigo **27**, trânsito **43**, integração **186**, sem falhas. Ramos **2509**, mercado **10**, corpos **520** são resultados anteriores. Testes em `godot/tests/`. Logs/capturas: `output/godot-validation/` (ignorado). Erros de certificados/material podem aparecer no headless apesar das verificações aprovadas.
+Últimos registros (08/10, após comércio/arrombamento): lojas **29**, caçadores **61**, becos **19**, abrigo **27**, trânsito **43**, integração **186**, ramos **2509**, mercado **10**, sem falhas. corpos **520** são resultados anteriores. Testes em `godot/tests/`. Logs/capturas: `output/godot-validation/` (ignorado). Erros de certificados/material podem aparecer no headless apesar das verificações aprovadas.
 
 Capturas OpenGL conferidas: becos ZIP `beco-estreito-N-entrada/curva.png`; menus/mercado/filtro `ajustes-*.png` e abrigo `abrigo-amigo-*.png`.
 
