@@ -41,7 +41,7 @@ func _init() -> void:
 
 func mostrar(nome: String, ciclo: Ciclo3D, resumo := "") -> void:
 	_titulo.text = "Casa de %s · Dia %d · %s" % [nome, ciclo.dia, ciclo.periodo()]
-	_estado.text = "Você está abrigado. A rua fica do lado de fora.\nComida: %d · Água: %d · Energia: %d · Ações: %d" % [ciclo.comida, ciclo.agua, ciclo.energia, ciclo.acoes]
+	_estado.text = "Você está abrigado. A rua fica do lado de fora.\nSuprimentos: %d · %s · %s" % [ciclo.suprimentos, ciclo.texto_da_hora(), ciclo.periodo()]
 	if not resumo.is_empty(): _estado.text += "\n\n" + resumo
 	if menu != null:
 		menu.hide()
@@ -50,9 +50,9 @@ func mostrar(nome: String, ciclo: Ciclo3D, resumo := "") -> void:
 	menu = MenuEscolha.new()
 	menu.escolheu.connect(func(chave: String): escolheu.emit(chave))
 	_coluna.add_child(menu)
-	var noite := ciclo.acoes == 0
+	var noite := ciclo.horas == 0
 	menu.perguntar("", [
 		{"chave": "esperar", "texto": "Esperar até amanhã" if noite else "Esperar mais um período",
-		"abaixo": "Consome 1 comida e 1 água das suas reservas; faltas reduzem as ações de amanhã. Não recupera energia." if noite else "1 ação de tempo · 0 energia · continuar abrigado"},
+		"abaixo": "A noite consome %d suprimento%s das suas reservas; faltas enfraquecem." % [ciclo.consumo_da_noite(), "" if ciclo.consumo_da_noite() == 1 else "s"] if noite else "Até o próximo período · continuar abrigado"},
 		{"chave": "sair", "texto": "Sair para a rua", "abaixo": "Voltar à mesma porta · sem custo · Esc também sai"}
 	])

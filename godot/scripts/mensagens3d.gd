@@ -14,6 +14,8 @@ var dos_vizinhos := {}
 var recebidas := {}
 ## Quais já foram lidas: "quem:indice".
 var lidas := {}
+## A irmã já mora com você: as mensagens marcadas "so_longe" não chegam.
+var irma_em_casa := false
 
 func _init() -> void:
 	var lido = JSON.parse_string(FileAccess.get_file_as_string(ARQUIVO))
@@ -29,6 +31,7 @@ func caixa(dia: int, contatos: Dictionary, nome_da_irma := "Irmã", vizinhos: Ar
 	for i in da_irma.size():
 		var m: Dictionary = da_irma[i]
 		if int(m.get("dia", 1)) > dia: continue
+		if irma_em_casa and bool(m.get("so_longe", false)): continue
 		tudo.append({"de": nome_da_irma, "chave": "irma:%d" % i, "dia": int(m.get("dia", 1)), "texto": String(m.get("texto", ""))})
 	for morador: Vizinho3D in vizinhos:
 		if not contatos.has(morador.chave): continue

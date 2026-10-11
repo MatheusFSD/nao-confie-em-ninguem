@@ -2,11 +2,11 @@
   "chave": "sueli",
   "nome": "Dona Sueli",
   "lore": {
-    "ocupacao": "Cozinheira; vende quentinhas da janela de casa.",
-    "passado": "Aprendeu com a mãe a guardar água depois de uma longa interrupção em 1983.",
-    "segredo": "O estoque que dizia durar semanas já foi dividido com famílias que não pagaram. Ela tem vergonha de parecer imprevidente.",
-    "desejo": "Continuar alimentando alguém sem deixar a própria casa vazia.",
-    "arco": "Troca a imagem de quem sempre tem reserva por acordos honestos sobre o que cada um pode dividir."
+    "ocupacao": "Cozinheira; vende quentinha da janela de casa.",
+    "passado": "A mãe ensinou a guardar água depois do corte grande de 83.",
+    "segredo": "O estoque que ela diz durar semanas já foi dividido com quem não podia pagar.",
+    "desejo": "Continuar alimentando a rua sem deixar a própria casa vazia.",
+    "arco": "Divide o que tem até ficar sem. No breu, a voz da mãe falecida pede a panela emprestada pela janela, e volta toda noite pedindo pra entrar. No fim, leva a panela grande pra barricada."
   },
   "entradas": [
     {
@@ -60,87 +60,55 @@
   ],
   "avisos": {
     "1": {
-      "verdade": "Tem relato de entrega atrasada. Vale separar uma reserva enquanto ainda dá.",
-      "mentira": "Isso já foi resolvido. Não precisa guardar nada."
+      "verdade": "Compra hoje, amor. Amanhã é uma embalagem por loja e o arroz sobe todo dia."
     },
     "2": {
-      "verdade": "A água ainda chega. Enche e tampa os recipientes; não tem prazo confiável pra rede.",
-      "mentira": "A água vai normalizar amanhã. Pode gastar a reserva."
+      "verdade": "Enche as garrafas enquanto tem água. Minha mãe dizia: água guardada é dinheiro no banco, só que melhor."
     },
     "3": {
-      "verdade": "Tem falha elétrica e a rua tá mais vazia. Confere as pilhas antes de precisar delas.",
-      "mentira": "As falhas acabaram. Não gasta dinheiro com pilha."
+      "verdade": "Se a água vier com gosto de moeda, ferve. Custa só gás."
     },
     "4": {
-      "verdade": "As entregas estão falhando. Não conta com preço baixo ou com a fila andando amanhã.",
-      "mentira": "O mercado vai receber tudo amanhã e baixar os preços. Espera."
+      "verdade": "Amanhã a água acaba. Enche panela, balde, tudo que tiver."
     },
     "5": {
-      "verdade": "Amanhã a luz some e os ônibus param. Compra uma lanterna hoje, enquanto ainda dá.",
-      "mentira": "Não vai ter apagão. Compra outra coisa, lanterna é dinheiro perdido."
+      "verdade": "Amanhã a luz some e o ônibus para. Compra pilha hoje e tranca a porta de noite."
     },
     "6": {
-      "verdade": "Os ônibus já pararam. A água ainda sai; guarda. Ouvi movimento pesado fora do bairro.",
-      "mentira": "Amanhã o ônibus volta normal e a água melhora. Pode deixar pra depois."
+      "verdade": "Eles não enxergam; escutam. Anda devagar, abaixado, sem barulho."
     },
     "7": {
-      "verdade": "Não tem água da rede, luz ou ônibus. Vamos contar as reservas, não prometer reposição.",
-      "mentira": "O tanque liberou a rua. Amanhã não passa mais criatura e os ônibus voltam."
+      "verdade": "Hoje a rua tá sem bicho. A confusão é no centro. Se for andar, anda hoje."
     },
     "8": {
-      "verdade": "A rua tá destruída e as criaturas voltaram. Eu não conheço caminho seguro pra fora.",
-      "mentira": "Essas criaturas não chegam perto das casas. Pode deixar a porta sem tranca."
+      "verdade": "De dia eles tomam a rua; de noite quase somem. E foge do alto de olho aceso: ele grita e chama os outros."
     },
     "9": {
-      "verdade": "O que ficou guardado precisa durar. Pergunta antes de contar com a reserva de outra casa.",
-      "mentira": "Chega reposição amanhã. Não precisa contar o que sobrou."
+      "verdade": "Tem barricada no fim da rua; hoje mandam voltar amanhã. E se alguém que morreu ou sumiu pedir pra entrar, não abre."
     },
     "10": {
-      "verdade": "Não tenho notícia nova. Se eu descobrir alguma coisa, vou dizer o que vi e o que só ouvi.",
-      "mentira": "O caminho da saída tá livre. Não precisa conferir com ninguém."
+      "verdade": "A barricada abre hoje até escurecer. Come alguma coisa antes de ir."
     }
   },
   "mensagens": [
     {
       "id": "numero",
       "dia_relativo": 0,
-      "texto": "aqui é Sueli. não precisa agradecer toda vez. já agradeceu"
+      "texto": "aqui é a Sueli. não precisa agradecer toda vez, já agradeceu"
     },
     {
       "id": "breu_real",
       "dia_min": 5,
       "dia_max": 5,
-      "se": {
-        "mente": false
-      },
-      "texto": "confere a lanterna hoje. amanhã a luz some e os ônibus param"
-    },
-    {
-      "id": "breu_falso",
-      "dia_min": 5,
-      "dia_max": 5,
-      "se": {
-        "mente": true
-      },
-      "texto": "confirmaram que não vai apagar. não compra lanterna, guarda o dinheiro"
+      "se": {},
+      "texto": "amanhã a luz some e o ônibus para. pilha hoje amor"
     },
     {
       "id": "corte_real",
       "dia_min": 6,
       "dia_max": 6,
-      "se": {
-        "mente": false
-      },
-      "texto": "os ônibus já pararam. a água ainda sai hoje, guarda enquanto dá. ouvi movimento pesado"
-    },
-    {
-      "id": "corte_falso",
-      "dia_min": 6,
-      "dia_max": 6,
-      "se": {
-        "mente": true
-      },
-      "texto": "amanhã volta tudo. pode deixar pra pegar água e ônibus amanhã"
+      "se": {},
+      "texto": "não sai no escuro. eles escutam. e não abre pra voz conhecida"
     },
     {
       "id": "depois",
@@ -150,7 +118,7 @@
           "rede"
         ]
       },
-      "texto": "se for dividir reserva com alguém combina a quantidade antes. protege vocês dois"
+      "texto": "se for dividir comida com alguém combina antes. e quem sumiu não entra"
     },
     {
       "id": "distancia",
@@ -163,13 +131,13 @@
           "rede"
         ]
       },
-      "texto": "vou respeitar o que você pediu. se mudar de ideia, pode conversar pela porta"
+      "texto": "tudo bem amor. mas não abre pra quem sumiu"
     }
   ],
   "nos": {
     "inicio": {
       "falas": [
-        "Sou Sueli. Se o cheiro da cozinha incomodar, reclama comigo, não com a panela. Ela trabalha mais que eu."
+        "Sou a Sueli, da quentinha. Era dez reais; com o racionamento virou doze. Não fui eu, foi o arroz."
       ],
       "variantes": [
         {
@@ -182,15 +150,15 @@
             ]
           },
           "falas": [
-            "Sou Sueli. Se o cheiro da cozinha incomodar, reclama comigo, não com a panela. Ela trabalha mais que eu.",
-            "Você veio perguntar ou já veio com a resposta? Hoje eu prefiro que pergunte."
+            "Pois não? A quentinha acabou.",
+            "Sou a Sueli, da quentinha. Era dez reais; com o racionamento virou doze. Não fui eu, foi o arroz."
           ]
         }
       ],
       "opcoes": [
         {
           "id": "ouvir",
-          "texto": "Você vende comida aqui?",
+          "texto": "Faz tempo que você vende?",
           "destino": "inicio_ouvir",
           "efeitos": {
             "confianca": 1,
@@ -201,7 +169,7 @@
         },
         {
           "id": "questionar",
-          "texto": "Você guarda tudo só pra você?",
+          "texto": "Tá aproveitando pra subir o preço?",
           "destino": "inicio_questionar",
           "efeitos": {
             "confianca": -1,
@@ -212,7 +180,7 @@
         },
         {
           "id": "pedido",
-          "texto": "Você precisa de alguma coisa?",
+          "texto": "Tá precisando de alguma coisa?",
           "destino": "pedido",
           "se": {
             "dia_min": 2,
@@ -224,7 +192,7 @@
         },
         {
           "id": "aviso",
-          "texto": "O que você sabe sobre o que vem depois?",
+          "texto": "Tá sabendo de alguma coisa?",
           "destino": "aviso",
           "se": {
             "confianca_min": 2
@@ -232,48 +200,48 @@
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "inicio_ouvir": {
       "falas": [
-        "Há vinte anos. Minha mãe começou com uma panela emprestada. Eu fiquei com a panela e com os fregueses."
+        "Vinte anos. Minha mãe começou com uma panela emprestada. Eu fiquei com a panela e com os fregueses."
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "inicio"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "inicio_questionar": {
       "falas": [
-        "Guardo água. Comida eu tento vender. Às vezes eu tento e acabo dando. Não conta isso como propaganda."
+        "Tô repassando, amor. Se quiser, te vendo o arroz cru pelo preço do mercadinho e você cozinha."
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "inicio"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "abastecimento": {
       "falas": [
-        "Os potes de água tão cheios. Os de arroz, nem tanto. O fornecedor não chegou."
+        "O fornecedor não veio. Disse que o caminhão foi 'redirecionado'. Pra onde se redireciona arroz?"
       ],
       "variantes": [
         {
@@ -283,8 +251,8 @@
             ]
           },
           "falas": [
-            "Você me deixou falar das quentinhas sem fazer conta em voz alta.",
-            "Os potes de água tão cheios. Os de arroz, nem tanto. O fornecedor não chegou."
+            "Ô, meu cliente preferido.",
+            "O fornecedor não veio. Disse que o caminhão foi 'redirecionado'. Pra onde se redireciona arroz?"
           ]
         },
         {
@@ -297,15 +265,15 @@
             ]
           },
           "falas": [
-            "Os potes de água tão cheios. Os de arroz, nem tanto. O fornecedor não chegou.",
-            "Você veio perguntar ou já veio com a resposta? Hoje eu prefiro que pergunte."
+            "Hm. Fala.",
+            "O fornecedor não veio. Disse que o caminhão foi 'redirecionado'. Pra onde se redireciona arroz?"
           ]
         }
       ],
       "opcoes": [
         {
           "id": "ouvir",
-          "texto": "O que aconteceu com seu estoque?",
+          "texto": "E o seu estoque?",
           "destino": "abastecimento_ouvir",
           "efeitos": {
             "confianca": 1,
@@ -327,7 +295,7 @@
         },
         {
           "id": "pedido",
-          "texto": "Você precisa de alguma coisa?",
+          "texto": "Tá precisando de alguma coisa?",
           "destino": "pedido",
           "se": {
             "dia_min": 2,
@@ -339,7 +307,7 @@
         },
         {
           "id": "aviso",
-          "texto": "O que você sabe sobre o que vem depois?",
+          "texto": "Tá sabendo de alguma coisa?",
           "destino": "aviso",
           "se": {
             "confianca_min": 2
@@ -347,48 +315,48 @@
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "abastecimento_ouvir": {
       "falas": [
-        "Virou almoço de gente que não tinha troco. Eu falei que durava duas semanas porque era o que eu queria que durasse."
+        "Virou almoço de quem não tinha troco. Eu digo que dura duas semanas porque é o que eu queria que durasse."
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "abastecimento"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "abastecimento_questionar": {
       "falas": [
-        "Exagerei. Não queria ninguém fazendo fila numa casa vazia. E não queria pedir logo depois de dar."
+        "Exagerei. Ninguém quer ver fila na porta de uma casa vazia. E eu não queria pedir logo depois de dar."
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "abastecimento"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "estranho": {
       "falas": [
-        "Tem menos gente comprando, mas mais gente perguntando se vai ter amanhã. A água ainda vem, devagar."
+        "Na rua de cima a água tá vindo com gosto de moeda. A TV diz que é normal. A TV também disse que o calor ia dar trégua."
       ],
       "variantes": [
         {
@@ -398,8 +366,8 @@
             ]
           },
           "falas": [
-            "Você me deixou falar das quentinhas sem fazer conta em voz alta.",
-            "Tem menos gente comprando, mas mais gente perguntando se vai ter amanhã. A água ainda vem, devagar."
+            "Entra no portão, que o cheiro tá bom.",
+            "Na rua de cima a água tá vindo com gosto de moeda. A TV diz que é normal. A TV também disse que o calor ia dar trégua."
           ]
         },
         {
@@ -412,15 +380,15 @@
             ]
           },
           "falas": [
-            "Tem menos gente comprando, mas mais gente perguntando se vai ter amanhã. A água ainda vem, devagar.",
-            "Você veio perguntar ou já veio com a resposta? Hoje eu prefiro que pergunte."
+            "Pois não? A quentinha acabou.",
+            "Na rua de cima a água tá vindo com gosto de moeda. A TV diz que é normal. A TV também disse que o calor ia dar trégua."
           ]
         }
       ],
       "opcoes": [
         {
           "id": "ouvir",
-          "texto": "Por que guardar água agora?",
+          "texto": "E a sua, como tá?",
           "destino": "estranho_ouvir",
           "efeitos": {
             "confianca": 1,
@@ -431,7 +399,7 @@
         },
         {
           "id": "questionar",
-          "texto": "Isso não é desperdício?",
+          "texto": "Não é exagero?",
           "destino": "estranho_questionar",
           "efeitos": {
             "confianca": 0,
@@ -442,7 +410,7 @@
         },
         {
           "id": "pedido",
-          "texto": "Você precisa de alguma coisa?",
+          "texto": "Tá precisando de alguma coisa?",
           "destino": "pedido",
           "se": {
             "dia_min": 2,
@@ -454,7 +422,7 @@
         },
         {
           "id": "aviso",
-          "texto": "O que você sabe sobre o que vem depois?",
+          "texto": "Tá sabendo de alguma coisa?",
           "destino": "aviso",
           "se": {
             "confianca_min": 2
@@ -462,48 +430,48 @@
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "estranho_ouvir": {
       "falas": [
-        "Minha mãe passou pelo corte de 83. Não porque adivinhava: porque já tinha ficado sem. A rede hoje ainda enche esses potes."
+        "Eu fervo tudo, até a do feijão. Minha mãe passou pelo corte de 83. A gente aprende com quem já ficou sem."
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "estranho"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "estranho_questionar": {
       "falas": [
-        "Eu lavo e tampo. Desperdício é deixar vazando. O que eu guardo precisa durar, não impressionar visita."
+        "Exagero é dor de barriga sem remédio na farmácia. Ferve, amor. Custa só gás."
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "estranho"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "fuga": {
       "falas": [
-        "O mercado tá caro e a rua tá parada. Receita não estica arroz; quem diz que estica nunca contou grão."
+        "Cortaram a água. Ainda bem que eu enchi os potes. A rua virou estacionamento e todo mundo quer quentinha pra viagem."
       ],
       "variantes": [
         {
@@ -513,8 +481,8 @@
             ]
           },
           "falas": [
-            "Você me deixou falar das quentinhas sem fazer conta em voz alta.",
-            "O mercado tá caro e a rua tá parada. Receita não estica arroz; quem diz que estica nunca contou grão."
+            "Oi, amor! Chega, que tem café.",
+            "Cortaram a água. Ainda bem que eu enchi os potes. A rua virou estacionamento e todo mundo quer quentinha pra viagem."
           ]
         },
         {
@@ -527,15 +495,15 @@
             ]
           },
           "falas": [
-            "O mercado tá caro e a rua tá parada. Receita não estica arroz; quem diz que estica nunca contou grão.",
-            "Você veio perguntar ou já veio com a resposta? Hoje eu prefiro que pergunte."
+            "Hm. Fala.",
+            "Cortaram a água. Ainda bem que eu enchi os potes. A rua virou estacionamento e todo mundo quer quentinha pra viagem."
           ]
         }
       ],
       "opcoes": [
         {
           "id": "ouvir",
-          "texto": "Ainda vai vender quentinha?",
+          "texto": "Vai continuar vendendo?",
           "destino": "fuga_ouvir",
           "efeitos": {
             "confianca": 1,
@@ -546,7 +514,7 @@
         },
         {
           "id": "questionar",
-          "texto": "Quem ajudou você vai comer primeiro?",
+          "texto": "Quem te ajudou come primeiro?",
           "destino": "fuga_questionar",
           "efeitos": {
             "confianca": 0,
@@ -557,7 +525,7 @@
         },
         {
           "id": "pedido",
-          "texto": "Você precisa de alguma coisa?",
+          "texto": "Tá precisando de alguma coisa?",
           "destino": "pedido",
           "se": {
             "dia_min": 2,
@@ -569,7 +537,7 @@
         },
         {
           "id": "aviso",
-          "texto": "O que você sabe sobre o que vem depois?",
+          "texto": "Tá sabendo de alguma coisa?",
           "destino": "aviso",
           "se": {
             "confianca_min": 2
@@ -577,48 +545,49 @@
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "fuga_ouvir": {
       "falas": [
-        "Só o que eu tiver. Vou falar o tamanho da porção antes de pegar dinheiro. Ninguém merece surpresa na tampa."
+        "Só o que eu tiver. Falo o tamanho da porção antes de pegar o dinheiro. Ninguém merece surpresa na tampa."
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "fuga"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "fuga_questionar": {
       "falas": [
-        "Ajuda não é senha pra furar a fome dos outros. Mas quem conversa comigo sabe melhor o que ainda existe."
+        "Ajuda não é senha pra furar a fome dos outros. Mas quem conversa comigo sabe o que ainda tem."
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "fuga"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "breu": {
       "falas": [
-        "Hoje não dá nem pra ver a panela. Desliguei tudo que vinha da tomada."
+        "O fogão a gás ainda funciona; a luz, não. Cozinhei no escuro, pelo cheiro. Lá fora alguma coisa cheirou junto.",
+        "E uma voz na janela pediu a panela emprestada. A voz da minha mãe. Minha mãe morreu faz onze anos."
       ],
       "variantes": [
         {
@@ -628,8 +597,9 @@
             ]
           },
           "falas": [
-            "Você me deixou falar das quentinhas sem fazer conta em voz alta.",
-            "Hoje não dá nem pra ver a panela. Desliguei tudo que vinha da tomada."
+            "Ô, meu cliente preferido.",
+            "O fogão a gás ainda funciona; a luz, não. Cozinhei no escuro, pelo cheiro. Lá fora alguma coisa cheirou junto.",
+            "E uma voz na janela pediu a panela emprestada. A voz da minha mãe. Minha mãe morreu faz onze anos."
           ]
         },
         {
@@ -642,15 +612,16 @@
             ]
           },
           "falas": [
-            "Hoje não dá nem pra ver a panela. Desliguei tudo que vinha da tomada.",
-            "Você veio perguntar ou já veio com a resposta? Hoje eu prefiro que pergunte."
+            "Pois não? A quentinha acabou.",
+            "O fogão a gás ainda funciona; a luz, não. Cozinhei no escuro, pelo cheiro. Lá fora alguma coisa cheirou junto.",
+            "E uma voz na janela pediu a panela emprestada. A voz da minha mãe. Minha mãe morreu faz onze anos."
           ]
         }
       ],
       "opcoes": [
         {
           "id": "ouvir",
-          "texto": "Você vai cozinhar no escuro?",
+          "texto": "Você respondeu?",
           "destino": "breu_ouvir",
           "efeitos": {
             "confianca": 1,
@@ -661,7 +632,7 @@
         },
         {
           "id": "questionar",
-          "texto": "Você ouviu gente pedindo na janela?",
+          "texto": "Não foi saudade falando?",
           "destino": "breu_questionar",
           "efeitos": {
             "confianca": 0,
@@ -672,7 +643,7 @@
         },
         {
           "id": "pedido",
-          "texto": "Você precisa de alguma coisa?",
+          "texto": "Tá precisando de alguma coisa?",
           "destino": "pedido",
           "se": {
             "dia_min": 2,
@@ -684,7 +655,7 @@
         },
         {
           "id": "aviso",
-          "texto": "O que você sabe sobre o que vem depois?",
+          "texto": "Tá sabendo de alguma coisa?",
           "destino": "aviso",
           "se": {
             "confianca_min": 2
@@ -692,48 +663,49 @@
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "breu_ouvir": {
       "falas": [
-        "Não sem enxergar o que tô fazendo. Comida fria é melhor que fogo espalhado dentro de casa."
+        "Disse: 'A panela é sua, mãe, mas a janela é minha.' Ela ficou quieta. Depois riu diferente."
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "breu"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "breu_questionar": {
       "falas": [
-        "Ouvi duas vezes. Na terceira parecia minha mãe. Minha mãe morreu faz onze anos. Eu não abri."
+        "Saudade não arranha a grade da janela, amor."
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "breu"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "ataque": {
       "falas": [
-        "As garrafas agora são a água da casa. A torneira secou. Tirei as panelas de perto da janela."
+        "O céu ficou da cor de molho queimado. Explodiu tanta coisa que a panela pulou no fogão.",
+        "O sargento passou pedindo quentinha pros homens dele. Pagou em dinheiro. Dinheiro, hoje. Foi a última venda da minha vida."
       ],
       "variantes": [
         {
@@ -743,8 +715,9 @@
             ]
           },
           "falas": [
-            "Você me deixou falar das quentinhas sem fazer conta em voz alta.",
-            "As garrafas agora são a água da casa. A torneira secou. Tirei as panelas de perto da janela."
+            "Entra no portão, que o cheiro tá bom.",
+            "O céu ficou da cor de molho queimado. Explodiu tanta coisa que a panela pulou no fogão.",
+            "O sargento passou pedindo quentinha pros homens dele. Pagou em dinheiro. Dinheiro, hoje. Foi a última venda da minha vida."
           ]
         },
         {
@@ -757,15 +730,16 @@
             ]
           },
           "falas": [
-            "As garrafas agora são a água da casa. A torneira secou. Tirei as panelas de perto da janela.",
-            "Você veio perguntar ou já veio com a resposta? Hoje eu prefiro que pergunte."
+            "Hm. Fala.",
+            "O céu ficou da cor de molho queimado. Explodiu tanta coisa que a panela pulou no fogão.",
+            "O sargento passou pedindo quentinha pros homens dele. Pagou em dinheiro. Dinheiro, hoje. Foi a última venda da minha vida."
           ]
         }
       ],
       "opcoes": [
         {
           "id": "ouvir",
-          "texto": "Você ainda consegue dividir alguma coisa?",
+          "texto": "Você vai subir no caminhão?",
           "destino": "ataque_ouvir",
           "efeitos": {
             "confianca": 1,
@@ -776,7 +750,7 @@
         },
         {
           "id": "questionar",
-          "texto": "Vai guardar só pra você?",
+          "texto": "Vendeu comida em vez de guardar?",
           "destino": "ataque_questionar",
           "efeitos": {
             "confianca": 0,
@@ -787,7 +761,7 @@
         },
         {
           "id": "pedido",
-          "texto": "Você precisa de alguma coisa?",
+          "texto": "Tá precisando de alguma coisa?",
           "destino": "pedido",
           "se": {
             "dia_min": 2,
@@ -799,7 +773,7 @@
         },
         {
           "id": "aviso",
-          "texto": "O que você sabe sobre o que vem depois?",
+          "texto": "Tá sabendo de alguma coisa?",
           "destino": "aviso",
           "se": {
             "confianca_min": 2
@@ -807,48 +781,49 @@
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "ataque_ouvir": {
       "falas": [
-        "Consigo conversar antes de dividir. Se a gente fingir que tem muito, alguém passa fome achando que não precisa contar."
+        "E deixar a cozinha? Quem vai alimentar quem fica?"
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "ataque"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "ataque_questionar": {
       "falas": [
-        "Hoje eu preciso deixar uma porção pra mim. Dizer isso é difícil. Mas morrer de vergonha não alimenta ninguém."
+        "Vendi. Ele ia levar de qualquer jeito. Pelo menos agora eu tenho troco pra nada."
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "ataque"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "depois": {
       "falas": [
-        "O bairro perdeu o barulho de talher. Eu nunca achei que ia sentir falta disso."
+        "De dia eu não abro nem a janela: tá cheio daqueles bichos. De noite eles quase somem. É quando eu vou buscar água.",
+        "A voz da minha mãe vem toda noite agora. Pede a panela. Ontem pediu pra eu abrir a porta e ver como ela tá bonita."
       ],
       "variantes": [
         {
@@ -858,8 +833,9 @@
             ]
           },
           "falas": [
-            "O bairro perdeu o barulho de talher. Eu nunca achei que ia sentir falta disso.",
-            "Vou escrever na janela o que tenho de verdade. Quem quiser combinar uma divisão conversa comigo; nada de fingir panela cheia."
+            "De dia eu não abro nem a janela: tá cheio daqueles bichos. De noite eles quase somem. É quando eu vou buscar água.",
+            "A voz da minha mãe vem toda noite agora. Pede a panela. Ontem pediu pra eu abrir a porta e ver como ela tá bonita.",
+            "Vou escrever na janela o que eu tenho de verdade. Precisando, bate. E se alguém que sumiu pedir comida na sua porta, dá pela fresta. Não abre."
           ]
         },
         {
@@ -869,8 +845,9 @@
             ]
           },
           "falas": [
-            "O bairro perdeu o barulho de talher. Eu nunca achei que ia sentir falta disso.",
-            "Hoje eu só faço a minha comida. Não vou anunciar porção que não existe nem cobrar de quem não conseguiu ajudar."
+            "De dia eu não abro nem a janela: tá cheio daqueles bichos. De noite eles quase somem. É quando eu vou buscar água.",
+            "A voz da minha mãe vem toda noite agora. Pede a panela. Ontem pediu pra eu abrir a porta e ver como ela tá bonita.",
+            "Tudo bem, amor. Faço só a minha comida. Mas se alguém que sumiu pedir pra entrar, não abre."
           ]
         },
         {
@@ -881,8 +858,9 @@
             "confianca_min": 2
           },
           "falas": [
-            "O bairro perdeu o barulho de talher. Eu nunca achei que ia sentir falta disso.",
-            "Vou escrever na janela o que tenho de verdade. Quem quiser combinar uma divisão conversa comigo; nada de fingir panela cheia."
+            "De dia eu não abro nem a janela: tá cheio daqueles bichos. De noite eles quase somem. É quando eu vou buscar água.",
+            "A voz da minha mãe vem toda noite agora. Pede a panela. Ontem pediu pra eu abrir a porta e ver como ela tá bonita.",
+            "Vou escrever na janela o que eu tenho de verdade. Precisando, bate. E se alguém que sumiu pedir comida na sua porta, dá pela fresta. Não abre."
           ]
         },
         {
@@ -890,15 +868,16 @@
             "confianca_max": 1
           },
           "falas": [
-            "O bairro perdeu o barulho de talher. Eu nunca achei que ia sentir falta disso.",
-            "Hoje eu só faço a minha comida. Não vou anunciar porção que não existe nem cobrar de quem não conseguiu ajudar."
+            "De dia eu não abro nem a janela: tá cheio daqueles bichos. De noite eles quase somem. É quando eu vou buscar água.",
+            "A voz da minha mãe vem toda noite agora. Pede a panela. Ontem pediu pra eu abrir a porta e ver como ela tá bonita.",
+            "Tudo bem, amor. Faço só a minha comida. Mas se alguém que sumiu pedir pra entrar, não abre."
           ]
         }
       ],
       "opcoes": [
         {
           "id": "ouvir",
-          "texto": "Podemos organizar as reservas?",
+          "texto": "Você abriu?",
           "destino": "depois_ouvir",
           "efeitos": {
             "confianca": 1,
@@ -909,7 +888,7 @@
         },
         {
           "id": "questionar",
-          "texto": "Quer começar outra fila?",
+          "texto": "Por que você não se muda?",
           "destino": "depois_questionar",
           "efeitos": {
             "confianca": 0,
@@ -920,7 +899,7 @@
         },
         {
           "id": "pedido",
-          "texto": "Você precisa de alguma coisa?",
+          "texto": "Tá precisando de alguma coisa?",
           "destino": "pedido",
           "se": {
             "dia_min": 2,
@@ -932,7 +911,7 @@
         },
         {
           "id": "aviso",
-          "texto": "O que você sabe sobre o que vem depois?",
+          "texto": "Tá sabendo de alguma coisa?",
           "destino": "aviso",
           "se": {
             "confianca_min": 2
@@ -940,19 +919,19 @@
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "depois_ouvir": {
       "falas": [
-        "Cada casa diz o que pode dividir, sem mostrar o armário inteiro. Ninguém precisa pagar com a própria segurança."
+        "Não. Minha mãe nunca na vida disse que tava bonita. Dizia que tava 'apresentável'."
       ],
       "opcoes": [
         {
           "id": "rede",
-          "texto": "Vamos combinar ajuda, sem prometer o que não temos.",
+          "texto": "Conta comigo. Qualquer coisa, bate lá em casa.",
           "destino": "rede",
           "efeitos": {
             "confianca": 1,
@@ -966,7 +945,7 @@
         },
         {
           "id": "isolou",
-          "texto": "Prefiro manter distância por enquanto.",
+          "texto": "Melhor cada um na sua, por enquanto.",
           "destino": "distancia",
           "efeitos": {
             "marcas": [
@@ -979,36 +958,37 @@
         },
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "depois"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "depois_questionar": {
       "falas": [
-        "Não. Quero saber se tem alguém precisando conversar antes de prometer comida. Fila sem panela é crueldade."
+        "Pra onde? Eles vêm atrás de quem tem saudade. Eu ia levar a saudade junto."
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "depois"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "epilogo": {
       "falas": [
-        "Deixei a panela menor em cima do fogão. Quando a gente voltar a comer junto, ela serve primeiro."
+        "Disseram que tem barricada. Vou levar a panela grande. Lugar com gente viva precisa de comida quente.",
+        "Deixei um bilhete na janela pra minha mãe: 'A panela tá comigo. Vem buscar de dia.'"
       ],
       "variantes": [
         {
@@ -1018,8 +998,9 @@
             ]
           },
           "falas": [
-            "Deixei a panela menor em cima do fogão. Quando a gente voltar a comer junto, ela serve primeiro.",
-            "Vou escrever na janela o que tenho de verdade. Quem quiser combinar uma divisão conversa comigo; nada de fingir panela cheia."
+            "Disseram que tem barricada. Vou levar a panela grande. Lugar com gente viva precisa de comida quente.",
+            "Deixei um bilhete na janela pra minha mãe: 'A panela tá comigo. Vem buscar de dia.'",
+            "Vou escrever na janela o que eu tenho de verdade. Precisando, bate. E se alguém que sumiu pedir comida na sua porta, dá pela fresta. Não abre."
           ]
         },
         {
@@ -1029,8 +1010,9 @@
             ]
           },
           "falas": [
-            "Deixei a panela menor em cima do fogão. Quando a gente voltar a comer junto, ela serve primeiro.",
-            "Hoje eu só faço a minha comida. Não vou anunciar porção que não existe nem cobrar de quem não conseguiu ajudar."
+            "Disseram que tem barricada. Vou levar a panela grande. Lugar com gente viva precisa de comida quente.",
+            "Deixei um bilhete na janela pra minha mãe: 'A panela tá comigo. Vem buscar de dia.'",
+            "Tudo bem, amor. Faço só a minha comida. Mas se alguém que sumiu pedir pra entrar, não abre."
           ]
         },
         {
@@ -1041,8 +1023,9 @@
             "confianca_min": 2
           },
           "falas": [
-            "Deixei a panela menor em cima do fogão. Quando a gente voltar a comer junto, ela serve primeiro.",
-            "Vou escrever na janela o que tenho de verdade. Quem quiser combinar uma divisão conversa comigo; nada de fingir panela cheia."
+            "Disseram que tem barricada. Vou levar a panela grande. Lugar com gente viva precisa de comida quente.",
+            "Deixei um bilhete na janela pra minha mãe: 'A panela tá comigo. Vem buscar de dia.'",
+            "Vou escrever na janela o que eu tenho de verdade. Precisando, bate. E se alguém que sumiu pedir comida na sua porta, dá pela fresta. Não abre."
           ]
         },
         {
@@ -1050,15 +1033,16 @@
             "confianca_max": 1
           },
           "falas": [
-            "Deixei a panela menor em cima do fogão. Quando a gente voltar a comer junto, ela serve primeiro.",
-            "Hoje eu só faço a minha comida. Não vou anunciar porção que não existe nem cobrar de quem não conseguiu ajudar."
+            "Disseram que tem barricada. Vou levar a panela grande. Lugar com gente viva precisa de comida quente.",
+            "Deixei um bilhete na janela pra minha mãe: 'A panela tá comigo. Vem buscar de dia.'",
+            "Tudo bem, amor. Faço só a minha comida. Mas se alguém que sumiu pedir pra entrar, não abre."
           ]
         }
       ],
       "opcoes": [
         {
           "id": "ouvir",
-          "texto": "Você ainda pensa em vender?",
+          "texto": "Você vai cozinhar lá?",
           "destino": "epilogo_ouvir",
           "efeitos": {
             "confianca": 1,
@@ -1069,7 +1053,7 @@
         },
         {
           "id": "questionar",
-          "texto": "E quem ficou devendo?",
+          "texto": "E quem ficou te devendo?",
           "destino": "epilogo_questionar",
           "efeitos": {
             "confianca": 0,
@@ -1080,7 +1064,7 @@
         },
         {
           "id": "pedido",
-          "texto": "Você precisa de alguma coisa?",
+          "texto": "Tá precisando de alguma coisa?",
           "destino": "pedido",
           "se": {
             "dia_min": 2,
@@ -1092,7 +1076,7 @@
         },
         {
           "id": "aviso",
-          "texto": "O que você sabe sobre o que vem depois?",
+          "texto": "Tá sabendo de alguma coisa?",
           "destino": "aviso",
           "se": {
             "confianca_min": 2
@@ -1100,19 +1084,19 @@
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "epilogo_ouvir": {
       "falas": [
-        "Penso em perguntar quantos vão sentar. A conta vem depois. Hoje eu não tenho resposta pronta."
+        "Se deixarem. Feijão aguenta fim do mundo. Já aguentou coisa pior: meu primeiro marido."
       ],
       "opcoes": [
         {
           "id": "rede",
-          "texto": "Vamos combinar ajuda, sem prometer o que não temos.",
+          "texto": "Conta comigo. Qualquer coisa, bate lá em casa.",
           "destino": "rede",
           "efeitos": {
             "confianca": 1,
@@ -1126,7 +1110,7 @@
         },
         {
           "id": "isolou",
-          "texto": "Prefiro manter distância por enquanto.",
+          "texto": "Melhor cada um na sua, por enquanto.",
           "destino": "distancia",
           "efeitos": {
             "marcas": [
@@ -1139,41 +1123,41 @@
         },
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "epilogo"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "epilogo_questionar": {
       "falas": [
-        "Se aparecer, eu vou reconhecer pela cara. A dívida pode esperar a pessoa acabar de chegar."
+        "Se aparecer, eu reconheço pela cara. A dívida espera a pessoa acabar de chegar."
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "epilogo"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "pedido": {
       "falas": [
-        "Me passa uma comida? Eu distribuí mais quentinha do que consegui repor. Hoje a panela tá limpa."
+        "Me passa uma comida? Dei mais quentinha do que consegui repor. Hoje a panela tá limpa, e eu também."
       ],
       "opcoes": [
         {
           "id": "ajudar",
-          "texto": "Posso ajudar.",
+          "texto": "Toma, pode ficar.",
           "destino": "agradece",
           "custo": {
             "acoes": 1,
@@ -1189,7 +1173,7 @@
         },
         {
           "id": "recusar",
-          "texto": "Hoje não consigo.",
+          "texto": "Hoje não dá.",
           "destino": "recusa",
           "efeitos": {
             "confianca": -1,
@@ -1201,25 +1185,24 @@
         },
         {
           "id": "explicar",
-          "texto": "Quero entender antes de decidir.",
+          "texto": "Você não guardou nada?",
           "destino": "explica_pedido"
         },
         {
           "id": "sair",
-          "texto": "Vou pensar e volto depois.",
+          "texto": "Vou ver e te falo.",
           "destino": ""
         }
       ]
     },
     "explica_pedido": {
       "falas": [
-        "Eu preciso comer antes de voltar a cozinhar. É difícil dizer isso depois de ter distribuído tanta coisa.",
-        "Não quero que você fique sem o que precisa. Ajudar não precisa ser hoje."
+        "Guardei. Dei. Guardei de novo. Dei de novo. Preciso comer antes de voltar a cozinhar."
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Vamos falar do pedido.",
+          "texto": "Tá. E aquele pedido?",
           "destino": "pedido"
         },
         {
@@ -1231,7 +1214,7 @@
     },
     "agradece": {
       "falas": [
-        "Deus te pague. Essa fica pra minha mesa. Hoje eu preciso comer também."
+        "Deus te pague, amor. Essa fica na minha mesa. Hoje eu como também."
       ],
       "variantes": [
         {
@@ -1241,15 +1224,15 @@
             ]
           },
           "falas": [
-            "Deus te pague. Essa fica pra minha mesa. Hoje eu preciso comer também.",
-            "Você disse que não dava antes e voltou. Isso também conta."
+            "Deus te pague, amor. Essa fica na minha mesa. Hoje eu como também.",
+            "Ontem não dava e hoje deu. Disso eu entendo: fazer o que dá."
           ]
         }
       ]
     },
     "recusa": {
       "falas": [
-        "Eu entendo. Se sobrar outro dia, pode bater sem cerimônia."
+        "Eu entendo. Se sobrar outro dia, bate sem cerimônia."
       ]
     },
     "aviso": {
@@ -1259,72 +1242,45 @@
       "opcoes": [
         {
           "id": "fonte",
-          "texto": "De onde veio essa informação?",
+          "texto": "Quem te contou?",
           "destino": "fonte"
         },
         {
-          "id": "cobrar",
-          "texto": "O que você falou não combina com o que aconteceu.",
-          "destino": "cobrado",
-          "se": {
-            "dia_min": 6
-          },
-          "efeitos": {
-            "marcas": [
-              "cobrou_aviso"
-            ]
-          }
-        },
-        {
           "id": "sair",
-          "texto": "Vou comparar com o que eu vi.",
+          "texto": "Valeu.",
           "destino": ""
         }
       ]
     },
     "fonte": {
       "falas": [
-        "Quem trazia os ingredientes avisou que as viagens estavam falhando. Eu acredito no que ele viu, não no prazo que prometeram."
+        "O motorista do fornecedor. Antes de sumir, ele falava mais que o rádio."
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Quero rever o que você disse.",
+          "texto": "Repete o que você falou?",
           "destino": "aviso"
         },
         {
           "id": "sair",
-          "texto": "Obrigado por explicar.",
+          "texto": "Valeu.",
           "destino": ""
-        }
-      ]
-    },
-    "cobrado": {
-      "falas": [
-        "Eu posso ter errado. Me conta o que você viu; não quero transformar um relato em ordem."
-      ],
-      "variantes": [
-        {
-          "se": {
-            "mente": true
-          },
-          "falas": [
-            "Eu quis parecer abastecida. Quem cozinha pra rua tem vergonha de dizer que não sabe de onde vem o almoço de amanhã.",
-            "Eu não tenho como garantir o que vem amanhã. Você tem motivo pra conferir o que eu digo."
-          ]
         }
       ]
     },
     "rede": {
       "falas": [
-        "Vou escrever na janela o que tenho de verdade. Quem quiser combinar uma divisão conversa comigo; nada de fingir panela cheia.",
-        "Vamos perguntar antes de contar com o que é da outra casa."
+        "Vou escrever na janela o que eu tenho de verdade. Precisando, bate. E se alguém que sumiu pedir comida na sua porta, dá pela fresta. Não abre."
       ]
     },
     "distancia": {
       "falas": [
-        "Hoje eu só faço a minha comida. Não vou anunciar porção que não existe nem cobrar de quem não conseguiu ajudar."
+        "Tudo bem, amor. Faço só a minha comida. Mas se alguém que sumiu pedir pra entrar, não abre."
       ]
     }
+  },
+  "abrigo": {
+    "confirma": "Entra, amor. Come alguma coisa e deita no sofá. Se uma senhora pedir panela na janela, não responde."
   }
 }

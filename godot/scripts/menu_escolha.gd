@@ -14,6 +14,9 @@ var _lista: VBoxContainer
 var _rolagem: ScrollContainer
 var _espera := 0.18
 var _confirmada := false
+## Nas conversas, as respostas vêm sem a linha cinza de consequência: o que
+## acontece se descobre jogando. O balcão das lojas continua mostrando preço.
+var sem_detalhes := false
 var altura_maxima := 280.0:
 	set(valor):
 		altura_maxima = maxf(80.0, valor)
@@ -93,7 +96,7 @@ func perguntar(aviso: String, lista: Array) -> void:
 		texto.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		conteudo.add_child(texto)
 		_textos.append(texto)
-		var detalhe := String(opcao.get("abaixo", ""))
+		var detalhe := "" if sem_detalhes else String(opcao.get("abaixo", ""))
 		if not detalhe.is_empty():
 			var custo := escrever(detalhe, 12, Color("aaa48c"))
 			custo.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART

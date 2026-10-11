@@ -1,0 +1,196 @@
+{
+  "morte": {
+    "titulo": "FINAL: SÓ MAIS UM",
+    "subtitulo": "Você não sobreviveu.",
+    "cartoes": [
+      {
+        "cena": "corpo_rua",
+        "duracao": 11,
+        "linhas": [
+          "Ninguém veio te buscar.",
+          "A rua que você atravessou a vida inteira ficou em silêncio."
+        ]
+      },
+      {
+        "cena": "sala_vazia",
+        "duracao": 10,
+        "linhas": [
+          "Na TV, ninguém falou o seu nome.",
+          "A notícia seguinte já estava pronta."
+        ]
+      },
+      {
+        "cena": "lista",
+        "duracao": 12,
+        "linhas": [
+          "Na lista, você virou um sobrenome comum.",
+          "Um Silva entre milhares, que ninguém procurou."
+        ]
+      },
+      {
+        "cena": "preto",
+        "duracao": 13,
+        "linhas": [
+          "A vida já era difícil antes do fim do mundo.",
+          "Acordar cedo. Ônibus lotado. Conta atrasada.",
+          "Você aguentou tudo isso.",
+          "Isso, não."
+        ]
+      }
+    ],
+    "lista": [
+      "SILVA, ANTÔNIO C.  54  PENHA",
+      "SILVA, CLÁUDIA R.  38  OLARIA",
+      "SILVA, EDSON J.  61  RAMOS",
+      "SILVA, FERNANDA M.  22  PENHA",
+      "SILVA, GILBERTO A.  47  BRÁS DE PINA",
+      "SILVA, IVONE S.  70  VILA DA PENHA",
+      "SILVA, JOSÉ R.  33  OLARIA",
+      "SILVA, LUCIANA P.  29  PENHA",
+      "SILVA, M.  ??  PENHA",
+      "SILVA, MÁRCIO D.  41  RAMOS",
+      "SILVA, NEUSA F.  66  PENHA CIRCULAR",
+      "SILVA, PAULO H.  18  OLARIA",
+      "SILVA, ROSÂNGELA T.  52  PENHA",
+      "SILVA, SEBASTIÃO L.  73  RAMOS",
+      "SILVA, TATIANE B.  31  PENHA"
+    ],
+    "destaque": "SILVA, M.  ??  PENHA"
+  },
+  "sobrevivencia": {
+    "titulo": "FINAL: ATÉ QUANDO?",
+    "subtitulo": "Você sobreviveu.",
+    "cartoes": [
+      {
+        "cena": "laje_amanhecer",
+        "duracao": 11,
+        "linhas": [
+          "O dia amanheceu do mesmo jeito.",
+          "Você ainda está aqui."
+        ]
+      },
+      {
+        "cena": "cidade_chamas",
+        "duracao": 11,
+        "linhas": [
+          "Lá longe, alguma coisa ainda se move.",
+          "Ninguém explicou o que ela é."
+        ]
+      },
+      {
+        "cena": "radio_chiando",
+        "duracao": 10,
+        "linhas": [
+          "O rádio só chia. A TV não volta.",
+          "O celular continua sem sinal."
+        ]
+      },
+      {
+        "cena": "cidade_final",
+        "duracao": 13,
+        "linhas": [
+          "Você sobreviveu.",
+          "Até quando?",
+          "Ninguém sabe nem o que está acontecendo."
+        ]
+      }
+    ]
+  },
+  "abrigo": {
+    "titulo": "FINAL: O ABRIGO",
+    "subtitulo": "Você foi escolhido.",
+    "cartoes": [
+      {
+        "cena": "comboio",
+        "duracao": 11,
+        "linhas": [
+          "Os soldados bateram de porta em porta.",
+          "Disseram que havia um abrigo seguro, longe de tudo."
+        ]
+      },
+      {
+        "cena": "abrigo_portao",
+        "duracao": 11,
+        "linhas": [
+          "No abrigo tinha luz, água e comida quente.",
+          "Pela primeira vez em dias, alguém sorriu para você."
+        ]
+      },
+      {
+        "cena": "fila",
+        "duracao": 12,
+        "linhas": [
+          "À noite, chamaram os nomes da lista, um de cada vez.",
+          "Ninguém estranhou que a fila só andasse para um lado."
+        ]
+      },
+      {
+        "cena": "oferenda",
+        "duracao": 13,
+        "linhas": [
+          "Lá fora, no escuro, alguma coisa muito grande esperava.",
+          "Ninguém precisou explicar o caminho. As luzes iam na frente."
+        ]
+      },
+      {
+        "cena": "preto",
+        "duracao": 14,
+        "linhas": [
+          "Na manhã seguinte, a cidade acordou em silêncio.",
+          "Pela primeira vez em muitos dias, nada atacou.",
+          "Dizem que a paz sempre tem um preço.",
+          "O seu nome estava na lista."
+        ]
+      }
+    ]
+  },
+  "confiar": {
+    "titulo": "FINAL: CONFIAR",
+    "subtitulo": "Você chegou.",
+    "cartoes": [
+      {
+        "cena": "mensagem",
+        "duracao": 15,
+        "linhas": [
+          "O rádio chiou a noite inteira. De madrugada, uma voz:",
+          "“Se alguém estiver ouvindo, ainda dá tempo. Viaduto da Avenida Brasil, cinco da manhã. Vamos para o interior.”",
+          "Tudo dizia para não ir. Você foi."
+        ]
+      },
+      {
+        "cena": "encontro",
+        "duracao": 12,
+        "linhas": [
+          "No viaduto, ao amanhecer, havia mais gente esperando.",
+          "Ninguém sabia se podia confiar em ninguém. Confiaram mesmo assim."
+        ]
+      },
+      {
+        "cena": "estrada",
+        "duracao": 12,
+        "linhas": [
+          "Seguiram para o interior, longe de qualquer cidade.",
+          "Dividiram a água, o medo e o silêncio da estrada."
+        ]
+      },
+      {
+        "cena": "interior",
+        "duracao": 13,
+        "linhas": [
+          "No interior, o céu ainda era azul.",
+          "Ninguém sabe o que aconteceu com o resto do mundo. Mas ali, deu para recomeçar."
+        ]
+      },
+      {
+        "cena": "preto",
+        "duracao": 14,
+        "linhas": [
+          "Você passou dias sem confiar em ninguém.",
+          "E estava certo, quase sempre.",
+          "Mas foi a única vez que você confiou",
+          "que salvou a sua vida."
+        ]
+      }
+    ]
+  }
+}

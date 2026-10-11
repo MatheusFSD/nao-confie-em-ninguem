@@ -147,6 +147,15 @@ func esconder() -> void:
 
 ## Um recado que aparece e some sozinho: quanto recebeu, que faltou energia,
 ## o que a noite cobrou. Nao para o jogo.
+## O recado ainda está na tela (aparecendo ou esperando para sumir)?
+func recado_na_tela() -> bool:
+	return _apagar != null and _apagar.is_running()
+
+## Some com o recado na hora, sem esperar o tempo dele.
+func calar_recado() -> void:
+	if _apagar != null and _apagar.is_valid(): _apagar.kill()
+	recado.modulate.a = 0.0
+
 func avisar(o_que: String) -> void:
 	if o_que.is_empty(): return
 	recado.text = o_que

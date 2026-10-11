@@ -1,61 +1,374 @@
 {
-  "carestia": 1.32,
-  "custo_visita": {"acoes": 1, "energia": 0},
-  "custo_arrombar": {"acoes": 1, "energia": 5},
+  "carestia": 1.3,
+  "custo_visita": {
+    "horas": 1
+  },
+  "custo_arrombar": {
+    "horas": 2
+  },
   "lojas": {
     "mercadinho": {
       "nome": "o mercadinho",
       "dono": "Seu Toninho",
-      "retrato": "res://sprites/lojas/mercadinho.png",
+      "retrato": "res://ui/retratos/lojas/mercadinho.webp",
       "fecha_no_dia": 6,
       "produtos": [
-        {"id": "agua", "nome": "Galão de água 5 L", "preco": 7, "vale": "agua", "rende": 1},
-        {"id": "arroz", "nome": "Arroz 5 kg", "preco": 22, "vale": "comida", "rende": 5},
-        {"id": "feijao", "nome": "Feijão 1 kg", "preco": 8, "vale": "comida", "rende": 2},
-        {"id": "sardinha", "nome": "Sardinha em lata", "preco": 6, "vale": "comida", "rende": 1},
-        {"id": "pilhas", "nome": "Pilhas (4 un.)", "preco": 12, "vale": "energia", "rende": 20},
-        {"id": "lanterna", "nome": "Lanterna", "preco": 25, "vale": "lanterna", "rende": 1}
+        {
+          "id": "agua",
+          "nome": "Galão de água 5 L",
+          "preco": 8,
+          "vale": "suprimentos",
+          "rende": 1
+        },
+        {
+          "id": "arroz",
+          "nome": "Arroz 5 kg",
+          "preco": 26,
+          "vale": "suprimentos",
+          "rende": 3
+        },
+        {
+          "id": "feijao",
+          "nome": "Feijão 1 kg",
+          "preco": 9,
+          "vale": "suprimentos",
+          "rende": 1
+        },
+        {
+          "id": "sardinha",
+          "nome": "Sardinha em lata",
+          "preco": 7,
+          "vale": "suprimentos",
+          "rende": 1
+        },
+        {
+          "id": "pilhas",
+          "nome": "Pilhas e velas",
+          "preco": 10,
+          "vale": "suprimentos",
+          "rende": 1
+        },
+        {
+          "id": "lanterna",
+          "nome": "Lanterna",
+          "preco": 25,
+          "vale": "lanterna",
+          "rende": 1
+        }
       ],
       "falas": [
-        {"a_partir_do_dia": 1, "texto": ["Bom dia. Arroz chegou ontem, mas o caminhão da água atrasou de novo.", "Pega o que precisar. Só não leva tudo, que tem mais gente."]},
-        {"a_partir_do_dia": 3, "texto": ["Tá todo mundo levando de cinco em cinco.", "Eu anoto quem leva demais, viu? Anoto tudo."]},
-        {"a_partir_do_dia": 5, "texto": ["Último carregamento. Depois disso, não sei.", "Escolhe rápido. Eu fecho a porta antes de escurecer."]}
+        {
+          "a_partir_do_dia": 0,
+          "texto": [
+            "Bom dia. Arroz chegou ontem, mas o caminhão da água atrasou de novo.",
+            "Pega o que precisar. Só não leva tudo, que tem mais gente."
+          ]
+        },
+        {
+          "a_partir_do_dia": 3,
+          "texto": [
+            "Tá todo mundo levando de cinco em cinco.",
+            "Eu anoto quem leva demais, viu? Anoto tudo."
+          ]
+        },
+        {
+          "a_partir_do_dia": 5,
+          "texto": [
+            "Último carregamento. Depois disso, não sei.",
+            "Escolhe rápido. Eu fecho a porta antes de escurecer."
+          ]
+        }
       ],
-      "saque": {"comida": 8, "agua": 4, "energia": 20, "lanterna": 1}
+      "saque": {
+        "suprimentos": [
+          1,
+          4
+        ],
+        "chance_vazia": 0.35,
+        "lanterna": 1
+      }
     },
     "padaria": {
-      "nome": "a padaria",
+      "nome": "a padaria do Lúcio",
       "dono": "Lúcio",
-      "retrato": "res://sprites/lojas/padaria.png",
+      "retrato": "res://ui/retratos/lojas/padaria.webp",
       "fecha_no_dia": 4,
       "produtos": [
-        {"id": "pao", "nome": "Pão francês (6 un.)", "preco": 6, "vale": "comida", "rende": 1},
-        {"id": "bolo", "nome": "Bolo de fubá", "preco": 14, "vale": "comida", "rende": 2},
-        {"id": "cafe", "nome": "Café 500 g", "preco": 12, "vale": "comida", "rende": 2},
-        {"id": "agua", "nome": "Água mineral 1,5 L", "preco": 4, "vale": "agua", "rende": 1}
+        {
+          "id": "pao",
+          "nome": "Pão francês (6 un.)",
+          "preco": 6,
+          "vale": "suprimentos",
+          "rende": 1
+        },
+        {
+          "id": "bolo",
+          "nome": "Bolo de fubá",
+          "preco": 14,
+          "vale": "suprimentos",
+          "rende": 2
+        },
+        {
+          "id": "cafe",
+          "nome": "Café 500 g",
+          "preco": 9,
+          "vale": "suprimentos",
+          "rende": 1
+        },
+        {
+          "id": "agua",
+          "nome": "Água mineral 1,5 L",
+          "preco": 5,
+          "vale": "suprimentos",
+          "rende": 1
+        }
       ],
       "falas": [
-        {"a_partir_do_dia": 1, "texto": ["Pão saindo agora... Dormi duas horas.", "O forno fica fazendo um barulho estranho de noite. Igual alguém batendo."]},
-        {"a_partir_do_dia": 3, "texto": ["A farinha tá vindo pela metade.", "E tem gente parada lá fora, olhando pra dentro. Não entra. Só olha."]}
+        {
+          "a_partir_do_dia": 0,
+          "texto": [
+            "Pão saindo agora. Dormi duas horas.",
+            "Se for na padaria do meu irmão, ali do outro lado, olha a data do pão. O Lauro vende o de ontem como se fosse de hoje."
+          ]
+        },
+        {
+          "a_partir_do_dia": 2,
+          "texto": [
+            "Somos gêmeos, mas eu nasci primeiro. Sete minutos. O Pão Quentinho original é este aqui.",
+            "Ele copiou até a placa. Copiava o bigode também, se eu deixasse."
+          ]
+        },
+        {
+          "a_partir_do_dia": 3,
+          "texto": [
+            "A farinha tá vindo pela metade.",
+            "E tem gente parada lá fora, olhando pra dentro. Não entra. Só olha. Na do Lauro também: ele me ligou. Primeira vez em dez anos."
+          ]
+        }
       ],
-      "saque": {"comida": 4, "agua": 2}
+      "saque": {
+        "suprimentos": [
+          1,
+          2
+        ],
+        "chance_vazia": 0.5
+      }
     },
     "bar_do_ze": {
       "nome": "o bar do Zé",
       "dono": "Seu Zé",
-      "retrato": "res://sprites/lojas/bar_do_ze.png",
+      "retrato": "res://ui/retratos/lojas/bar_do_ze.webp",
       "fecha_no_dia": 5,
       "produtos": [
-        {"id": "agua", "nome": "Água mineral 1,5 L", "preco": 5, "vale": "agua", "rende": 1},
-        {"id": "salgado", "nome": "Salgado da estufa", "preco": 7, "vale": "comida", "rende": 1},
-        {"id": "pilhas", "nome": "Pilhas (4 un.)", "preco": 14, "vale": "energia", "rende": 20}
+        {
+          "id": "agua",
+          "nome": "Água mineral 1,5 L",
+          "preco": 6,
+          "vale": "suprimentos",
+          "rende": 1
+        },
+        {
+          "id": "salgado",
+          "nome": "Salgado da estufa",
+          "preco": 7,
+          "vale": "suprimentos",
+          "rende": 1
+        },
+        {
+          "id": "pilhas",
+          "nome": "Pilhas e velas",
+          "preco": 11,
+          "vale": "suprimentos",
+          "rende": 1
+        }
       ],
       "falas": [
-        {"a_partir_do_dia": 1, "texto": ["Senta aí. A TV só fala de abastecimento, eu desliguei.", "Quer alguma coisa ou veio só olhar a rua?"]},
-        {"a_partir_do_dia": 3, "texto": ["Ninguém mais vem jogar sinuca.", "O pessoal tá com medo da rua de noite. Eu também, pra ser sincero."]},
-        {"a_partir_do_dia": 4, "texto": ["Amanhã eu baixo a porta e não abro mais.", "Leva o que precisar. O que ficar aqui, alguém vai levar de qualquer jeito."]}
+        {
+          "a_partir_do_dia": 0,
+          "texto": [
+            "Senta aí. A TV só fala de abastecimento, eu desliguei.",
+            "Aqui é o único bar decente da rua. O do Tião, lá do outro lado, é criadouro de rato com mesa de sinuca."
+          ]
+        },
+        {
+          "a_partir_do_dia": 2,
+          "texto": [
+            "O Tião anda dizendo que minha cerveja é quente. Quente é a cabeça dele, vascaíno desde o berço.",
+            "Rubro-negro não abandona o balcão. Pode pedir."
+          ]
+        },
+        {
+          "a_partir_do_dia": 3,
+          "texto": [
+            "Ninguém mais vem jogar sinuca. Nem o pessoal do Tião, que vinha escondido.",
+            "O povo tá com medo da rua de noite. Eu também, pra ser sincero. Não conta pro Tião."
+          ]
+        },
+        {
+          "a_partir_do_dia": 4,
+          "texto": [
+            "Amanhã eu baixo a porta e não abro mais.",
+            "Se o Tião ficar aberto depois de mim, é porque fez acordo com essas coisas aí. Escreve o que eu tô dizendo."
+          ]
+        }
       ],
-      "saque": {"agua": 4, "comida": 2, "energia": 20}
+      "saque": {
+        "suprimentos": [
+          1,
+          3
+        ],
+        "chance_vazia": 0.4
+      }
+    },
+    "bar_do_tiao": {
+      "nome": "o bar do Tião",
+      "dono": "Seu Tião",
+      "retrato": "res://ui/retratos/lojas/bar_do_tiao.webp",
+      "fecha_no_dia": 6,
+      "produtos": [
+        {
+          "id": "agua",
+          "nome": "Água mineral 1,5 L",
+          "preco": 6,
+          "vale": "suprimentos",
+          "rende": 1
+        },
+        {
+          "id": "torresmo",
+          "nome": "Torresmo da estufa",
+          "preco": 8,
+          "vale": "suprimentos",
+          "rende": 1
+        },
+        {
+          "id": "polvilho",
+          "nome": "Biscoito de polvilho",
+          "preco": 5,
+          "vale": "suprimentos",
+          "rende": 1
+        },
+        {
+          "id": "pilhas",
+          "nome": "Pilhas e velas",
+          "preco": 12,
+          "vale": "suprimentos",
+          "rende": 1
+        }
+      ],
+      "falas": [
+        {
+          "a_partir_do_dia": 0,
+          "texto": [
+            "Bem-vindo ao bar de verdade. O do Zé, ali do outro lado, tem mais rato do que cliente.",
+            "Aqui é Vasco, é gelada e é honesto. O Zé só acerta uma das três, e não é a primeira."
+          ]
+        },
+        {
+          "a_partir_do_dia": 2,
+          "texto": [
+            "O Zé disse que eu faço gato na luz? Gato quem tem é ele, no estoque, comendo os salgados.",
+            "Se for flamenguista, eu vendo assim mesmo. Com dor no coração, mas vendo."
+          ]
+        },
+        {
+          "a_partir_do_dia": 3,
+          "texto": [
+            "A luz pisca, a TV mente e o Zé continua me devendo a aposta do último clássico.",
+            "Se o mundo acabar, pelo menos acaba antes de eu pagar a revanche."
+          ]
+        },
+        {
+          "a_partir_do_dia": 5,
+          "texto": [
+            "O Zé fechou. Fechou primeiro, como sempre: nem pra fechar ele ganha de mim.",
+            "Amanhã eu também baixo. Leva o que der, e não conta pro Zé que eu fiquei com medo."
+          ]
+        }
+      ],
+      "saque": {
+        "suprimentos": [
+          1,
+          2
+        ],
+        "chance_vazia": 0.45
+      }
+    },
+    "padaria_gemea": {
+      "nome": "a padaria do Lauro",
+      "dono": "Lauro",
+      "retrato": "res://ui/retratos/lojas/padaria.webp",
+      "fecha_no_dia": 5,
+      "produtos": [
+        {
+          "id": "pao",
+          "nome": "Pão francês (6 un.)",
+          "preco": 7,
+          "vale": "suprimentos",
+          "rende": 1
+        },
+        {
+          "id": "rosca",
+          "nome": "Rosca doce",
+          "preco": 12,
+          "vale": "suprimentos",
+          "rende": 2
+        },
+        {
+          "id": "cafe",
+          "nome": "Café 500 g",
+          "preco": 10,
+          "vale": "suprimentos",
+          "rende": 1
+        },
+        {
+          "id": "agua",
+          "nome": "Água mineral 1,5 L",
+          "preco": 5,
+          "vale": "suprimentos",
+          "rende": 1
+        }
+      ],
+      "falas": [
+        {
+          "a_partir_do_dia": 0,
+          "texto": [
+            "Bom dia! Pão quentinho de verdade. O do outro lado é do meu irmão, o Lúcio. Esquenta pão de ontem no micro-ondas.",
+            "Pode olhar a placa: igual à dele. O nome fui eu que inventei; ele que correu pra registrar."
+          ]
+        },
+        {
+          "a_partir_do_dia": 2,
+          "texto": [
+            "O Lúcio diz que nasceu primeiro. Sete minutos. Até hoje se acha o mais velho por causa disso.",
+            "Mamãe sempre preferiu o meu sonho de padaria. O doce, não o outro."
+          ]
+        },
+        {
+          "a_partir_do_dia": 4,
+          "texto": [
+            "O Lúcio fechou. Me ligou chorando, pedindo farinha emprestada. Não tenho nem pra mim.",
+            "Amanhã é a minha vez de baixar a porta. Pelo menos dessa vez a gente fecha quase junto."
+          ]
+        }
+      ],
+      "saque": {
+        "suprimentos": [
+          1,
+          2
+        ],
+        "chance_vazia": 0.5
+      }
     }
-  }
+  },
+  "_racionamento": "Quantas embalagens cada dono vende por cliente, por dia: [a partir do dia, quantas].",
+  "racionamento": [
+    [
+      1,
+      2
+    ],
+    [
+      2,
+      1
+    ]
+  ]
 }

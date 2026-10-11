@@ -44,7 +44,7 @@ func _ready() -> void:
 	_ponteiro_hora = cena.find_child("PonteiroHora", true, false)
 	_ponteiro_minuto = cena.find_child("PonteiroMinuto", true, false)
 	# O supervisor é o mesmo modelo de gente da rua, em silhueta, andando.
-	_supervisor = load("res://modelos/marquinhos_ps1.glb").instantiate()
+	_supervisor = load("res://modelos/personagens/marquinhos_ps1.glb").instantiate()
 	add_child(_supervisor)
 	RuaModelo.silhueta(_supervisor, Color("2a2330"))
 	var animacao: AnimationPlayer = _supervisor.find_child("AnimationPlayer", true, false)

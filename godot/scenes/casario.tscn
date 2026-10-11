@@ -19,6 +19,8 @@
 [ext_resource type="PackedScene" uid="uid://ovv78lpfx51l" path="res://modelos/blocos/bloco_2_tijolo_fibro.glb" id="b2_bloco_2_tijolo_fibro"]
 [ext_resource type="PackedScene" uid="uid://cteboaajmknwf" path="res://modelos/blocos/bloco_3_chapisco_colonial.glb" id="b3_bloco_3_chapisco_colonial"]
 [ext_resource type="PackedScene" uid="uid://6bxsyerfaqg4" path="res://modelos/blocos/bloco_4_sobrado_puxadinho.glb" id="b4_bloco_4_sobrado_puxadinho"]
+[ext_resource type="PackedScene" uid="uid://cigtmwsv3budn" path="res://modelos/comercios/bar_do_tiao_aberto.glb" id="40_tiao"]
+[ext_resource type="PackedScene" uid="uid://uwfchn3oh84l" path="res://modelos/comercios/padaria_gemea_aberto.glb" id="41_gemea"]
 
 [node name="Casario" type="Node3D" unique_id=796513787]
 
@@ -115,7 +117,7 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -55.
 [node name="casa_com_puxadinho_de_tijolo4" parent="." unique_id=378067840 instance=ExtResource("3_kx3d1")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -48.385677, 0.004, 37.1)
 
-[node name="padaria_aberto2" parent="." unique_id=1486972740 instance=ExtResource("10_dwtot")]
+[node name="padaria_gemea_aberto" parent="." unique_id=1486972740 instance=ExtResource("41_gemea")]
 transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, -35.953255, 0.004, 37.4528)
 metadata/beco = "casario_estreito"
 
@@ -127,7 +129,7 @@ metadata/beco = "casario_estreito"
 transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, -21.95, 0.004, 55.755928)
 metadata/beco = "casario_estreito"
 
-[node name="bar_do_ze_aberto2" parent="." unique_id=1241889625 instance=ExtResource("12_imhqa")]
+[node name="bar_do_tiao_aberto" parent="." unique_id=1241889625 instance=ExtResource("40_tiao")]
 transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, -20.777702, 0.004, 37.461338)
 metadata/beco = "casario_estreito"
 
@@ -227,6 +229,9 @@ transform = Transform3D(-0.00053561514, 0, 1.3399994, 0, 1, 0, -0.58999974, 0, -
 
 [node name="bloco_2_tijolo_fibro_2" parent="BlocosBecos/Sobrado/bloco_2_tijolo_fibro_2" unique_id=989098864 instance=ExtResource("b2_bloco_2_tijolo_fibro")]
 transform = Transform3D(-0.5899987, 0, -0.002781355, 0, 0.9999997, 0, 0.0012246269, 0, -1.339997, -0.073287964, 0, -12.604963)
+
+[node name="bloco_2_tijolo_fibro_2" parent="BlocosBecos/Sobrado/bloco_2_tijolo_fibro_2/bloco_2_tijolo_fibro_2" unique_id=1363473399 instance=ExtResource("b2_bloco_2_tijolo_fibro")]
+transform = Transform3D(-0.5899987, 0, -0.0027813558, 0, 0.99999946, 0, 0.001224627, 0, -1.3399975, -0.31556702, 0, -5.1678166)
 
 [node name="bloco_2_tijolo_fibro_4" parent="BlocosBecos/Sobrado" unique_id=940158900 instance=ExtResource("b2_bloco_2_tijolo_fibro")]
 transform = Transform3D(1.46, 0, 0, 0, 1, 0, 0, 0, 0.6, 34.93475, 0, 53.193016)

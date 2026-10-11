@@ -6,9 +6,12 @@ extends Node3D
 # congela os vértices em uma malha estática. Não há animação nem física móvel.
 const PESSOA := preload("res://scripts/pessoa3d.gd")
 const POSES := "res://data/poses_mortos.json"
+## Quem não anda na rua mas pode cair morto nela: o bandido do beco (mesmo
+## esqueleto do Anderson, outra roupa).
+const OUTROS := {"bandido": "res://modelos/personagens/bandido.glb"}
 static var _malhas := {}
 
-@export_enum("marquinhos", "dona_celia", "seu_ze", "vanessa", "tania", "aline", "jessica", "rogerio", "anderson", "entregador") var personagem := "marquinhos":
+@export_enum("marquinhos", "dona_celia", "seu_ze", "vanessa", "tania", "aline", "jessica", "rogerio", "anderson", "entregador", "bandido") var personagem := "marquinhos":
 	set(valor):
 		personagem = valor
 		if is_inside_tree(): montar()
@@ -38,10 +41,11 @@ func montar() -> void:
 	var chave := personagem + ":" + pose
 	if not _malhas.has(chave):
 		var dados = JSON.parse_string(FileAccess.get_file_as_string(POSES))
-		if not (dados is Dictionary) or not dados.has(pose) or not PESSOA.DA_RUA.has(personagem):
+		if not (dados is Dictionary) or not dados.has(pose) or not (PESSOA.DA_RUA.has(personagem) or OUTROS.has(personagem)):
 			push_error("Personagem ou pose de corpo inválidos: " + chave)
 			return
-		var modelo := (load(String(PESSOA.ELENCO[personagem].arquivo)) as PackedScene).instantiate()
+		var arquivo := String(OUTROS[personagem]) if OUTROS.has(personagem) else String(PESSOA.ELENCO[personagem].arquivo)
+		var modelo := (load(arquivo) as PackedScene).instantiate()
 		_malhas[chave] = congelar(modelo, dados[pose], personagem)
 		modelo.free()
 	for malha: ArrayMesh in _malhas[chave]:

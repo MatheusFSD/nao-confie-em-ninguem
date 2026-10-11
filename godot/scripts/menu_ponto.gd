@@ -59,28 +59,26 @@ func custo_da_opcao(indice: int) -> Dictionary:
 	match String(OPCOES[indice].chave):
 		"trabalho": return Ciclo3D.TRABALHO
 		"mercado": return Ciclo3D.MERCADO
-	return {"acoes": 0, "energia": 0}
+	return {"horas": 0}
 
 func pode_ir(indice: int) -> bool:
 	if ciclo == null or String(OPCOES[indice].chave).is_empty(): return true
 	if not ciclo.onibus_funciona(): return false
 	if ciclo.modo_deus: return true
 	var custo := custo_da_opcao(indice)
-	return ciclo.acoes >= int(custo.acoes) and ciclo.energia >= int(custo.energia)
+	return ciclo.horas >= int(custo.horas)
 
 func descricao_opcao(indice: int) -> String:
 	var destino := String(OPCOES[indice].chave)
-	if destino.is_empty(): return "Sem custo de ações ou energia."
+	if destino.is_empty(): return "Sem custo de tempo."
 	var custo := custo_da_opcao(indice)
-	var tempo := "%d %s" % [custo.acoes, "ação" if int(custo.acoes) == 1 else "ações"]
-	var descricao := "%s\n%s · %d de energia" % [OPCOES[indice].abaixo, tempo, custo.energia]
+	var descricao := "%s\n%d horas fora de casa" % [OPCOES[indice].abaixo, int(custo.horas)]
 	if ciclo != null and ciclo.modo_deus:
-		descricao = String(OPCOES[indice].abaixo) + "\nModo deus: sem custo de ações ou energia"
+		descricao = String(OPCOES[indice].abaixo) + "\nModo deus: sem custo de tempo"
 	descricao += "\nRecebe R$ %d" % Ciclo3D.TRABALHO.paga if destino == "trabalho" else "\nCompras cobradas à parte, no caixa."
 	if ciclo != null and not pode_ir(indice):
 		if not ciclo.onibus_funciona(): descricao += "\nIndisponível: ônibus fora de serviço."
-		elif ciclo.acoes < int(custo.acoes): descricao += "\nIndisponível: faltam ações."
-		else: descricao += "\nIndisponível: falta energia."
+		else: descricao += "\nIndisponível: não dá mais tempo hoje."
 	return descricao
 
 func escrever(pai: Node, texto: String, tamanho: int, cor: Color) -> Label:
@@ -95,7 +93,7 @@ func escrever(pai: Node, texto: String, tamanho: int, cor: Color) -> Label:
 	return rotulo
 
 func pintar() -> void:
-	_saldo.text = "Hoje: %d ações · %d de energia · R$ %d" % [ciclo.acoes, ciclo.energia, ciclo.dinheiro] if ciclo != null else ""
+	_saldo.text = "Agora: %s · R$ %d" % [ciclo.texto_da_hora(), ciclo.dinheiro] if ciclo != null else ""
 	for i in _linhas.size():
 		var marcada := i == escolha
 		_linhas[i].text = ("› %s ‹" % OPCOES[i].texto) if marcada else String(OPCOES[i].texto)

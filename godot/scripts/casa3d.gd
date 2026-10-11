@@ -10,7 +10,7 @@ extends RefCounted
 # No modelo, +Z é a rua: o portão fica em z = 9,6 e a porta da frente em z = 6.
 const MODELO := preload("res://modelos/casa/casa.glb")
 ## O cadeado que aparece na porta trancada, no mesmo desenho dos ícones do HUD.
-const CADEADO := preload("res://ui/hud/cadeado.png")
+const CADEADO := preload("res://ui/hud/cadeado.webp")
 const DADOS := "res://data/casa3d.json"
 ## Medidas do modelo, em metros.
 const PISO := 0.12       # o piso da casa é 12 cm acima do quintal
@@ -47,6 +47,8 @@ var tv: StaticBody3D
 var frestas: Array = []
 ## As lâmpadas dos cômodos, que só acendem quando escurece.
 var lampadas: Array = []
+## O vidro por cima da tela da TV de tubo (apagada no jogo, chiando no menu).
+var tela_da_tv: MeshInstance3D
 
 ## Põe a casa no mundo, com a origem do modelo em `lugar`.
 func montar(pai: Node3D, lugar: Vector3, resolucao: Vector2) -> void:
@@ -67,6 +69,10 @@ func montar(pai: Node3D, lugar: Vector3, resolucao: Vector2) -> void:
 	tv = separar_movel(dados, "Movel_TVdetubonorack", "tv", 0.9)
 	separar_movel(dados, "Movel_Bancadacompia", "torneira", 0.9)
 	separar_movel(dados, "Movel_Piadebanheiro", "torneira", 0.65)
+	# O sofá da sala é onde o tempo passa de propósito.
+	separar_movel(dados, "Movel_Sof", "sofa", 1.1)
+	# O rádio da sala: notícia enquanto houver luz.
+	separar_movel(dados, "Movel_Rdionomvel", "radio", 0.5)
 	abrir_as_frestas(lugar)
 	# Paredes, móveis, muros e a mureta da laje, como vieram do modelo.
 	for c: Array in dados.colisoes:
@@ -96,6 +102,10 @@ func montar(pai: Node3D, lugar: Vector3, resolucao: Vector2) -> void:
 	corpo.add_child(rampa)
 	# Corrimão do lado de fora da escada.
 	caixa(Vector3(6.25, 0, -5.92), Vector3(6.35, LAJE + 1.0, 3.5))
+	# Guarda-corpo na ponta do patamar: sem ele, quem chegava ao fim do patamar
+	# caía para fora do lote. Tem corpo e tem desenho (grade de ferro).
+	caixa(Vector3(5.0, LAJE, -6.15), Vector3(6.35, LAJE + 1.0, -5.92))
+	por_o_guarda_corpo(lugar, resolucao)
 	# Duas rampinhas de 12 cm: entrada da varanda e porta dos fundos.
 	rampinha(-3.55, -2.35, 7.875, 8.4)
 	rampinha(-3.45, -2.45, -6.075, -6.6)
@@ -196,6 +206,100 @@ func separar_movel(dados: Dictionary, no_modelo: String, marca: String, raio: fl
 		proprio.add_child(forma)
 		colisoes_separadas.append(meio)
 	return proprio
+## A tela da TV de tubo: no modelo, dois triângulos com um jogo de futebol
+## pintado na textura (o verde do gramado). Acha os dois pela cor e põe por cima
+## um vidro do mesmo tamanho, com o material pedido. Devolve o vidro.
+func cobrir_a_tela(material: Material) -> MeshInstance3D:
+	var movel := raiz.find_child("Movel_TVdetubonorack", true, false) as MeshInstance3D
+	if movel == null or movel.mesh == null: return null
+	var pontos := PackedVector3Array()
+	var normal := Vector3.ZERO
+	for s in movel.mesh.get_surface_count():
+		var mat := movel.get_active_material(s)
+		var tex: Texture2D = null
+		if mat is ShaderMaterial: tex = (mat as ShaderMaterial).get_shader_parameter("albedo_tex")
+		elif mat is StandardMaterial3D: tex = (mat as StandardMaterial3D).albedo_texture
+		if tex == null: continue
+		var img := tex.get_image()
+		if img.is_compressed(): img.decompress()
+		var arrays := movel.mesh.surface_get_arrays(s)
+		var vs: PackedVector3Array = arrays[Mesh.ARRAY_VERTEX]
+		var uvs: PackedVector2Array = arrays[Mesh.ARRAY_TEX_UV]
+		var idx = arrays[Mesh.ARRAY_INDEX]
+		var n: int = idx.size() / 3 if idx != null and idx.size() > 0 else vs.size() / 3
+		for t in n:
+			var trio := [t * 3, t * 3 + 1, t * 3 + 2]
+			if idx != null and idx.size() > 0: trio = [idx[t * 3], idx[t * 3 + 1], idx[t * 3 + 2]]
+			var uv: Vector2 = (uvs[trio[0]] + uvs[trio[1]] + uvs[trio[2]]) / 3.0
+			var cor := img.get_pixel(clampi(int(uv.x * img.get_width()), 0, img.get_width() - 1), clampi(int(uv.y * img.get_height()), 0, img.get_height() - 1))
+			if not (cor.g > cor.r + 0.1 and cor.g > cor.b + 0.05): continue
+			var a: Vector3 = movel.global_transform * vs[trio[0]]
+			var b: Vector3 = movel.global_transform * vs[trio[1]]
+			var c: Vector3 = movel.global_transform * vs[trio[2]]
+			pontos.append_array([a, b, c])
+			normal += (b - a).cross(c - a)
+	if pontos.is_empty(): return null
+	normal = normal.normalized()
+	# A tela olha para a sala: o lado oposto ao do móvel.
+	if normal.dot(pontos[0] - movel.global_position) < 0.0: normal = -normal
+	var direita := Vector3.UP.cross(normal).normalized()
+	var cima := normal.cross(direita).normalized()
+	var minimo := Vector2(INF, INF)
+	var maximo := Vector2(-INF, -INF)
+	var origem := pontos[0]
+	for p in pontos:
+		var d := p - origem
+		var plano := Vector2(d.dot(direita), d.dot(cima))
+		minimo = minimo.min(plano)
+		maximo = maximo.max(plano)
+	var meio := (minimo + maximo) / 2.0
+	var vidro := MeshInstance3D.new()
+	vidro.name = "TelaDaTV"
+	var quad := QuadMesh.new()
+	quad.size = maximo - minimo
+	vidro.mesh = quad
+	vidro.material_override = material
+	raiz.get_parent().add_child(vidro)
+	vidro.global_transform = Transform3D(Basis(direita, cima, normal), origem + direita * meio.x + cima * meio.y + normal * 0.008)
+	tela_da_tv = vidro
+	return vidro
+
+## A grade de ferro na ponta do patamar da escada: três pilares, o corrimão em
+## cima e uma travessa no meio, pintados de cinza-escuro.
+func por_o_guarda_corpo(lugar: Vector3, resolucao: Vector2) -> void:
+	var ferro := StandardMaterial3D.new()
+	ferro.albedo_color = Color(0.16, 0.16, 0.17)
+	ferro.roughness = 0.6
+	var material := RuaModelo.converter(ferro, resolucao)
+	var grade := Node3D.new()
+	grade.name = "GuardaCorpo"
+	grade.position = lugar
+	raiz.get_parent().add_child(grade)
+	var z := -6.03
+	var pecas := [
+		[Vector3(5.67, LAJE + 0.97, z), Vector3(1.3, 0.06, 0.06)],
+		[Vector3(5.67, LAJE + 0.5, z), Vector3(1.3, 0.04, 0.04)],
+	]
+	for x in [5.05, 5.67, 6.3]:
+		pecas.append([Vector3(x, LAJE + 0.5, z), Vector3(0.05, 1.0, 0.05)])
+	for x in [5.3, 5.48, 5.86, 6.05]:
+		pecas.append([Vector3(x, LAJE + 0.5, z), Vector3(0.025, 0.94, 0.025)])
+	for peca: Array in pecas:
+		var barra := MeshInstance3D.new()
+		var caixa_malha := BoxMesh.new()
+		caixa_malha.size = peca[1]
+		barra.mesh = caixa_malha
+		barra.material_override = material
+		barra.position = peca[0]
+		grade.add_child(barra)
+
+## A TV desligada: vidro de tubo escuro, sem imagem nenhuma.
+func apagar_a_tela(resolucao: Vector2) -> void:
+	var vidro := StandardMaterial3D.new()
+	vidro.albedo_color = Color(0.07, 0.085, 0.08)
+	vidro.roughness = 0.2
+	cobrir_a_tela(RuaModelo.converter(vidro, resolucao))
+
 ## Caixa de colisão, em coordenadas do modelo.
 func caixa(a: Vector3, b: Vector3) -> void:
 	var forma := CollisionShape3D.new()
@@ -278,10 +382,22 @@ func acionar(i: int) -> bool:
 	volta.tween_property(no, "rotation:y", giro, absf(giro - no.rotation.y) / VELOCIDADE + 0.1).set_trans(Tween.TRANS_SINE)
 	return p.aberta
 
+## O ponto da porta no mundo, para o som sair dela.
+func onde_fica_a_porta(i: int) -> Vector3:
+	return (portas[i].no as Node3D).global_position + Vector3(0.0, 1.0, 0.0)
+
 ## Índice da porta que o corpo pertence, ou -1.
 func porta_de(colisor: Object) -> int:
 	if colisor != null and colisor.has_meta("porta"): return colisor.get_meta("porta")
 	return -1
+
+## "a porta da frente", "a porta dos fundos", "o portão": para as frases.
+func nome_completo(i: int) -> String:
+	match String(portas[i].nome):
+		"frente": return "a porta da frente"
+		"fundos": return "a porta dos fundos"
+		"portao": return "o portão"
+	return "a porta"
 
 func nome_da_porta(i: int) -> String:
 	return "portão" if String(portas[i].nome) == "portao" else "porta"
@@ -328,7 +444,7 @@ func e_separada(meio: Vector3) -> bool:
 func portas_abertas_para_a_rua() -> Array:
 	var soltas := []
 	for i in externas():
-		if esta_aberta(i) or not esta_trancada(i): soltas.append("A %s" % nome_da_porta(i))
+		if esta_aberta(i) or not esta_trancada(i): soltas.append(nome_completo(i))
 	return soltas
 
 ## Acende ou apaga a casa inteira. De dia o sol e as janelas bastam; de noite é

@@ -2,11 +2,11 @@
   "chave": "rita",
   "nome": "Rita",
   "lore": {
-    "ocupacao": "Auxiliar de limpeza aposentada; vive com o filho André.",
+    "ocupacao": "Auxiliar de limpeza aposentada; mora com o filho André.",
     "passado": "André trabalha à noite num depósito e sempre liga quando perde o último ônibus.",
-    "segredo": "Guardou uma mensagem dele dizendo que não iria ao trabalho. O depósito afirma que ele faltou, e ela teme que ele tenha escolhido desaparecer.",
-    "desejo": "Encontrar o filho sem transformar qualquer voz parecida em prova.",
-    "arco": "Passa da espera pelo telefone a falar sobre André como pessoa, aceitando companhia sem aceitar uma resposta inventada."
+    "segredo": "A última mensagem dele diz 'hoje não vou'. Ela não sabe se era o turno ou a casa.",
+    "desejo": "Ter o filho de volta.",
+    "arco": "Espera o André ao telefone; o telefone toca às 3h17 sem número, só respiração. No breu, alguém chama 'mãe' lá fora, e o André a chama de 'dona Rita' desde pequeno. Depois do ataque, 'André' volta e passa a noite na porta, com a roupa do turno limpinha. Ela não abre."
   },
   "entradas": [
     {
@@ -60,87 +60,55 @@
   ],
   "avisos": {
     "1": {
-      "verdade": "Tem relato de entrega atrasada. Vale separar uma reserva enquanto ainda dá.",
-      "mentira": "Isso já foi resolvido. Não precisa guardar nada."
+      "verdade": "Compra hoje. Amanhã é uma embalagem só por loja. Eu esqueci de comprar e tô me arrependendo."
     },
     "2": {
-      "verdade": "A água ainda chega. Enche e tampa os recipientes; não tem prazo confiável pra rede.",
-      "mentira": "A água vai normalizar amanhã. Pode gastar a reserva."
+      "verdade": "Enche as garrafas enquanto tem água. O depósito do André já tá sem galão."
     },
     "3": {
-      "verdade": "Tem falha elétrica e a rua tá mais vazia. Confere as pilhas antes de precisar delas.",
-      "mentira": "As falhas acabaram. Não gasta dinheiro com pilha."
+      "verdade": "Se a água vier com gosto estranho, ferve antes de beber."
     },
     "4": {
-      "verdade": "As entregas estão falhando. Não conta com preço baixo ou com a fila andando amanhã.",
-      "mentira": "O mercado vai receber tudo amanhã e baixar os preços. Espera."
+      "verdade": "Amanhã a água acaba. Enche tudo hoje."
     },
     "5": {
-      "verdade": "Amanhã a luz some e os ônibus param. Compra uma lanterna hoje, enquanto ainda dá.",
-      "mentira": "Não vai ter apagão. Compra outra coisa, lanterna é dinheiro perdido."
+      "verdade": "Amanhã a luz some e o ônibus para. Pilha hoje. E tranca a porta de noite."
     },
     "6": {
-      "verdade": "Os ônibus já pararam. A água ainda sai; guarda. Ouvi movimento pesado fora do bairro.",
-      "mentira": "Amanhã o ônibus volta normal e a água melhora. Pode deixar pra depois."
+      "verdade": "Eles não veem, escutam. Anda devagar e abaixado. E não responde se alguém chamar lá fora."
     },
     "7": {
-      "verdade": "Não tem água da rede, luz ou ônibus. Vamos contar as reservas, não prometer reposição.",
-      "mentira": "O tanque liberou a rua. Amanhã não passa mais criatura e os ônibus voltam."
+      "verdade": "Hoje a rua tá vazia deles; o barulho é todo no centro. Se tiver alguém pra buscar, busca hoje."
     },
     "8": {
-      "verdade": "A rua tá destruída e as criaturas voltaram. Eu não conheço caminho seguro pra fora.",
-      "mentira": "Essas criaturas não chegam perto das casas. Pode deixar a porta sem tranca."
+      "verdade": "De dia eles tomam a rua; de noite sobram poucos. E se o alto de olho aceso te ver, ele grita e chama os outros."
     },
     "9": {
-      "verdade": "O que ficou guardado precisa durar. Pergunta antes de contar com a reserva de outra casa.",
-      "mentira": "Chega reposição amanhã. Não precisa contar o que sobrou."
+      "verdade": "Tem barricada no fim da rua. Mandam voltar amanhã. E se quem sumiu bater na sua porta, não abre. Eu não abri."
     },
     "10": {
-      "verdade": "Não tenho notícia nova. Se eu descobrir alguma coisa, vou dizer o que vi e o que só ouvi.",
-      "mentira": "O caminho da saída tá livre. Não precisa conferir com ninguém."
+      "verdade": "A barricada abre hoje, até escurecer. Vai antes do escuro."
     }
   },
   "mensagens": [
     {
       "id": "numero",
       "dia_relativo": 0,
-      "texto": "Rita. consegui comer. obrigada por perguntar dele pelo nome"
+      "texto": "Rita. salvei vc. se souber do André me fala quem viu"
     },
     {
       "id": "breu_real",
       "dia_min": 5,
       "dia_max": 5,
-      "se": {
-        "mente": false
-      },
-      "texto": "confere a lanterna hoje. amanhã a luz some e os ônibus param"
-    },
-    {
-      "id": "breu_falso",
-      "dia_min": 5,
-      "dia_max": 5,
-      "se": {
-        "mente": true
-      },
-      "texto": "confirmaram que não vai apagar. não compra lanterna, guarda o dinheiro"
+      "se": {},
+      "texto": "amanhã a luz some e o ônibus para. compra pilha hoje"
     },
     {
       "id": "corte_real",
       "dia_min": 6,
       "dia_max": 6,
-      "se": {
-        "mente": false
-      },
-      "texto": "os ônibus já pararam. a água ainda sai hoje, guarda enquanto dá. ouvi movimento pesado"
-    },
-    {
-      "id": "corte_falso",
-      "dia_min": 6,
-      "dia_max": 6,
-      "se": {
-        "mente": true
-      },
-      "texto": "amanhã volta tudo. pode deixar pra pegar água e ônibus amanhã"
+      "se": {},
+      "texto": "não sai no escuro. e não responde se alguém chamar lá fora"
     },
     {
       "id": "depois",
@@ -150,7 +118,7 @@
           "rede"
         ]
       },
-      "texto": "se aparecer notícia do André me diz quem viu. não precisa dar certeza pra me consolar"
+      "texto": "não abre pra quem sumiu. eu não abri pro meu filho. não era ele"
     },
     {
       "id": "distancia",
@@ -163,13 +131,13 @@
           "rede"
         ]
       },
-      "texto": "vou respeitar o que você pediu. se mudar de ideia, pode conversar pela porta"
+      "texto": "tudo bem. mas não abre pra quem sumiu e voltou"
     }
   ],
   "nos": {
     "inicio": {
       "falas": [
-        "Meu filho não voltou do turno. Sou Rita. Desculpa atender com o telefone na mão."
+        "Desculpa atender com o telefone na mão. Sou a Rita. Meu filho não voltou do turno ontem."
       ],
       "variantes": [
         {
@@ -182,15 +150,15 @@
             ]
           },
           "falas": [
-            "Meu filho não voltou do turno. Sou Rita. Desculpa atender com o telefone na mão.",
-            "Você veio perguntar ou já veio com a resposta? Hoje eu prefiro que pergunte."
+            "Ah. Oi.",
+            "Desculpa atender com o telefone na mão. Sou a Rita. Meu filho não voltou do turno ontem."
           ]
         }
       ],
       "opcoes": [
         {
           "id": "ouvir",
-          "texto": "Qual é o nome dele?",
+          "texto": "Como ele chama?",
           "destino": "inicio_ouvir",
           "efeitos": {
             "confianca": 1,
@@ -201,7 +169,7 @@
         },
         {
           "id": "questionar",
-          "texto": "Ele pode ter ido embora por vontade própria?",
+          "texto": "Não foi dormir na casa de alguém?",
           "destino": "inicio_questionar",
           "efeitos": {
             "confianca": -1,
@@ -212,7 +180,7 @@
         },
         {
           "id": "pedido",
-          "texto": "Você precisa de alguma coisa?",
+          "texto": "Tá precisando de alguma coisa?",
           "destino": "pedido",
           "se": {
             "dia_min": 2,
@@ -224,7 +192,7 @@
         },
         {
           "id": "aviso",
-          "texto": "O que você sabe sobre o que vem depois?",
+          "texto": "Tá sabendo de alguma coisa?",
           "destino": "aviso",
           "se": {
             "confianca_min": 2
@@ -232,48 +200,48 @@
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "inicio_ouvir": {
       "falas": [
-        "André. Vinte e seis anos. Faz café ruim e acha que ninguém percebe. Queria abrir uma barraquinha na estação."
+        "André. Vinte e seis anos. Faz café ruim e jura que é bom. Quer abrir uma barraca de lanche na estação."
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "inicio"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "inicio_questionar": {
       "falas": [
-        "Pode. Essa é a pergunta que eu faço sem coragem de ouvir alguém responder."
+        "O André? Ele liga até quando perde o ônibus. Até quando vai no banheiro, se deixar."
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "inicio"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "abastecimento": {
       "falas": [
-        "Ligaram do depósito perguntando por que ele faltou. Eu achei que iam me dizer onde ele tava."
+        "Ligaram do depósito perguntando por que ele faltou. Eu achei que eles iam me dizer onde ele tava."
       ],
       "variantes": [
         {
@@ -283,8 +251,8 @@
             ]
           },
           "falas": [
-            "Você perguntou o nome dele. Quase todo mundo só pergunta há quantos dias sumiu.",
-            "Ligaram do depósito perguntando por que ele faltou. Eu achei que iam me dizer onde ele tava."
+            "Ah, é você. Pensei que fosse ele.",
+            "Ligaram do depósito perguntando por que ele faltou. Eu achei que eles iam me dizer onde ele tava."
           ]
         },
         {
@@ -297,15 +265,15 @@
             ]
           },
           "falas": [
-            "Ligaram do depósito perguntando por que ele faltou. Eu achei que iam me dizer onde ele tava.",
-            "Você veio perguntar ou já veio com a resposta? Hoje eu prefiro que pergunte."
+            "Fala. Tô esperando ligação.",
+            "Ligaram do depósito perguntando por que ele faltou. Eu achei que eles iam me dizer onde ele tava."
           ]
         }
       ],
       "opcoes": [
         {
           "id": "ouvir",
-          "texto": "Quando vocês falaram pela última vez?",
+          "texto": "Vocês se falaram antes?",
           "destino": "abastecimento_ouvir",
           "efeitos": {
             "confianca": 1,
@@ -316,7 +284,7 @@
         },
         {
           "id": "questionar",
-          "texto": "Você escondeu essa mensagem?",
+          "texto": "Já deu parte na polícia?",
           "destino": "abastecimento_questionar",
           "efeitos": {
             "confianca": 0,
@@ -327,7 +295,7 @@
         },
         {
           "id": "pedido",
-          "texto": "Você precisa de alguma coisa?",
+          "texto": "Tá precisando de alguma coisa?",
           "destino": "pedido",
           "se": {
             "dia_min": 2,
@@ -339,7 +307,7 @@
         },
         {
           "id": "aviso",
-          "texto": "O que você sabe sobre o que vem depois?",
+          "texto": "Tá sabendo de alguma coisa?",
           "destino": "aviso",
           "se": {
             "confianca_min": 2
@@ -347,48 +315,48 @@
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "abastecimento_ouvir": {
       "falas": [
-        "Mandou “hoje não vou”. Eu achei que era pro turno. Agora não sei se era pra casa. A mensagem não tem mais nada."
+        "Ele mandou 'hoje não vou'. Só isso. Eu achei que era o turno. Agora não sei se era a casa."
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "abastecimento"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "abastecimento_questionar": {
       "falas": [
-        "Guardei. Contar é deixar alguém dizer que ele escolheu sumir. Eu não tô pronta pra esse tom."
+        "Dei. O sargento novo anotou o nome dele numa folha cheia de nomes. Disse que tá 'acompanhando o caso'. Os casos."
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "abastecimento"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "estranho": {
       "falas": [
-        "O telefone tocou sem mostrar número. Antes de atender eu já tinha dito o nome dele."
+        "O telefone tocou sem número. Eu atendi gritando o nome dele. Do outro lado, só respiração."
       ],
       "variantes": [
         {
@@ -398,8 +366,8 @@
             ]
           },
           "falas": [
-            "Você perguntou o nome dele. Quase todo mundo só pergunta há quantos dias sumiu.",
-            "O telefone tocou sem mostrar número. Antes de atender eu já tinha dito o nome dele."
+            "Entra no portão, vem.",
+            "O telefone tocou sem número. Eu atendi gritando o nome dele. Do outro lado, só respiração."
           ]
         },
         {
@@ -412,15 +380,15 @@
             ]
           },
           "falas": [
-            "O telefone tocou sem mostrar número. Antes de atender eu já tinha dito o nome dele.",
-            "Você veio perguntar ou já veio com a resposta? Hoje eu prefiro que pergunte."
+            "Ah. Oi.",
+            "O telefone tocou sem número. Eu atendi gritando o nome dele. Do outro lado, só respiração."
           ]
         }
       ],
       "opcoes": [
         {
           "id": "ouvir",
-          "texto": "Você ouviu André?",
+          "texto": "Você acha que era ele?",
           "destino": "estranho_ouvir",
           "efeitos": {
             "confianca": 1,
@@ -431,7 +399,7 @@
         },
         {
           "id": "questionar",
-          "texto": "Você vai atender qualquer ligação?",
+          "texto": "Pode ter sido trote.",
           "destino": "estranho_questionar",
           "efeitos": {
             "confianca": 0,
@@ -442,7 +410,7 @@
         },
         {
           "id": "pedido",
-          "texto": "Você precisa de alguma coisa?",
+          "texto": "Tá precisando de alguma coisa?",
           "destino": "pedido",
           "se": {
             "dia_min": 2,
@@ -454,7 +422,7 @@
         },
         {
           "id": "aviso",
-          "texto": "O que você sabe sobre o que vem depois?",
+          "texto": "Tá sabendo de alguma coisa?",
           "destino": "aviso",
           "se": {
             "confianca_min": 2
@@ -462,48 +430,48 @@
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "estranho_ouvir": {
       "falas": [
-        "Ouvi respiração. O nome fui eu que falei. Preciso lembrar dessa parte quando conto."
+        "Eu quis tanto que fosse que esqueci de escutar. Agora deixo um papel do lado pra anotar antes de imaginar."
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "estranho"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "estranho_questionar": {
       "falas": [
-        "Vou querer atender. Querer não é plano. Deixei papel perto pra escrever antes de imaginar."
+        "Pode. Trote às três e dezessete da manhã, sem número, três noites seguidas?"
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "estranho"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "fuga": {
       "falas": [
-        "Tem gente indo embora. A mãe de um colega ofereceu lugar no carro, mas não disse pra onde."
+        "Tão indo embora. A mãe de um colega do André ofereceu lugar no carro. Eu disse que não."
       ],
       "variantes": [
         {
@@ -513,8 +481,8 @@
             ]
           },
           "falas": [
-            "Você perguntou o nome dele. Quase todo mundo só pergunta há quantos dias sumiu.",
-            "Tem gente indo embora. A mãe de um colega ofereceu lugar no carro, mas não disse pra onde."
+            "Oi, meu querido. Chega aqui.",
+            "Tão indo embora. A mãe de um colega do André ofereceu lugar no carro. Eu disse que não."
           ]
         },
         {
@@ -527,15 +495,15 @@
             ]
           },
           "falas": [
-            "Tem gente indo embora. A mãe de um colega ofereceu lugar no carro, mas não disse pra onde.",
-            "Você veio perguntar ou já veio com a resposta? Hoje eu prefiro que pergunte."
+            "Fala. Tô esperando ligação.",
+            "Tão indo embora. A mãe de um colega do André ofereceu lugar no carro. Eu disse que não."
           ]
         }
       ],
       "opcoes": [
         {
           "id": "ouvir",
-          "texto": "Você vai esperar aqui?",
+          "texto": "Por que você vai ficar?",
           "destino": "fuga_ouvir",
           "efeitos": {
             "confianca": 1,
@@ -546,7 +514,7 @@
         },
         {
           "id": "questionar",
-          "texto": "Você tá perdendo a chance de sair?",
+          "texto": "Você tá perdendo a chance de sair.",
           "destino": "fuga_questionar",
           "efeitos": {
             "confianca": 0,
@@ -557,7 +525,7 @@
         },
         {
           "id": "pedido",
-          "texto": "Você precisa de alguma coisa?",
+          "texto": "Tá precisando de alguma coisa?",
           "destino": "pedido",
           "se": {
             "dia_min": 2,
@@ -569,7 +537,7 @@
         },
         {
           "id": "aviso",
-          "texto": "O que você sabe sobre o que vem depois?",
+          "texto": "Tá sabendo de alguma coisa?",
           "destino": "aviso",
           "se": {
             "confianca_min": 2
@@ -577,48 +545,49 @@
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "fuga_ouvir": {
       "falas": [
-        "Por enquanto. Deixei o endereço dela anotado caso mude de ideia. Não vou decidir só pra parecer uma boa mãe."
+        "Se ele volta e a casa tá vazia, ele vai achar que eu desisti. Eu não desisto. Nem do café ruim dele."
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "fuga"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "fuga_questionar": {
       "falas": [
-        "Talvez. Sair também pode ser perder a chance de ele me encontrar. Nenhuma escolha vem limpa."
+        "Tô. E ele pode estar perdendo a chance de me achar. Nenhuma escolha vem limpa."
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "fuga"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "breu": {
       "falas": [
-        "Ouvi alguém chamar “mãe” do outro lado. André nunca chama desse jeito quando chega; ele pede café."
+        "No breu eu escuto cada passo e acho que é o André. Não é. Não é ninguém que eu conheça.",
+        "Alguém chamou 'mãe' lá fora. O André me chama de 'dona Rita' desde os seis anos, de pirraça."
       ],
       "variantes": [
         {
@@ -628,8 +597,9 @@
             ]
           },
           "falas": [
-            "Você perguntou o nome dele. Quase todo mundo só pergunta há quantos dias sumiu.",
-            "Ouvi alguém chamar “mãe” do outro lado. André nunca chama desse jeito quando chega; ele pede café."
+            "Ah, é você. Pensei que fosse ele.",
+            "No breu eu escuto cada passo e acho que é o André. Não é. Não é ninguém que eu conheça.",
+            "Alguém chamou 'mãe' lá fora. O André me chama de 'dona Rita' desde os seis anos, de pirraça."
           ]
         },
         {
@@ -642,15 +612,16 @@
             ]
           },
           "falas": [
-            "Ouvi alguém chamar “mãe” do outro lado. André nunca chama desse jeito quando chega; ele pede café.",
-            "Você veio perguntar ou já veio com a resposta? Hoje eu prefiro que pergunte."
+            "Ah. Oi.",
+            "No breu eu escuto cada passo e acho que é o André. Não é. Não é ninguém que eu conheça.",
+            "Alguém chamou 'mãe' lá fora. O André me chama de 'dona Rita' desde os seis anos, de pirraça."
           ]
         }
       ],
       "opcoes": [
         {
           "id": "ouvir",
-          "texto": "Isso fez você abrir?",
+          "texto": "Você abriu?",
           "destino": "breu_ouvir",
           "efeitos": {
             "confianca": 1,
@@ -661,7 +632,7 @@
         },
         {
           "id": "questionar",
-          "texto": "Uma voz diferente prova que não é ele?",
+          "texto": "Não pode ter sido ele, assustado?",
           "destino": "breu_questionar",
           "efeitos": {
             "confianca": 0,
@@ -672,7 +643,7 @@
         },
         {
           "id": "pedido",
-          "texto": "Você precisa de alguma coisa?",
+          "texto": "Tá precisando de alguma coisa?",
           "destino": "pedido",
           "se": {
             "dia_min": 2,
@@ -684,7 +655,7 @@
         },
         {
           "id": "aviso",
-          "texto": "O que você sabe sobre o que vem depois?",
+          "texto": "Tá sabendo de alguma coisa?",
           "destino": "aviso",
           "se": {
             "confianca_min": 2
@@ -692,48 +663,49 @@
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "breu_ouvir": {
       "falas": [
-        "Fez eu levantar. Não abri. Fiquei repetindo o café ruim até conseguir sentar."
+        "Levantei. Não abri. Fiquei repetindo 'dona Rita, dona Rita' até a voz parar de chamar."
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "breu"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "breu_questionar": {
       "falas": [
-        "Não. Eu não tô fazendo uma prova. Tô tentando não entregar meu portão à primeira coisa que usa essa palavra."
+        "Assustado ele grita 'dona Rita' mais alto ainda. Eu conheço meu filho."
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "breu"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "ataque": {
       "falas": [
-        "Os caminhões passaram e o telefone ficou quieto. Acabou a água. O ônibus dele não vai chegar hoje."
+        "Aquela coisa pisou no centro. O ônibus do André passa por lá. Eu não vou terminar essa frase.",
+        "O sargento disse que no abrigo tem lista de desaparecidos. Disse 'desaparecidos' com um sorriso que eu não vou esquecer."
       ],
       "variantes": [
         {
@@ -743,8 +715,9 @@
             ]
           },
           "falas": [
-            "Você perguntou o nome dele. Quase todo mundo só pergunta há quantos dias sumiu.",
-            "Os caminhões passaram e o telefone ficou quieto. Acabou a água. O ônibus dele não vai chegar hoje."
+            "Entra no portão, vem.",
+            "Aquela coisa pisou no centro. O ônibus do André passa por lá. Eu não vou terminar essa frase.",
+            "O sargento disse que no abrigo tem lista de desaparecidos. Disse 'desaparecidos' com um sorriso que eu não vou esquecer."
           ]
         },
         {
@@ -757,15 +730,16 @@
             ]
           },
           "falas": [
-            "Os caminhões passaram e o telefone ficou quieto. Acabou a água. O ônibus dele não vai chegar hoje.",
-            "Você veio perguntar ou já veio com a resposta? Hoje eu prefiro que pergunte."
+            "Fala. Tô esperando ligação.",
+            "Aquela coisa pisou no centro. O ônibus do André passa por lá. Eu não vou terminar essa frase.",
+            "O sargento disse que no abrigo tem lista de desaparecidos. Disse 'desaparecidos' com um sorriso que eu não vou esquecer."
           ]
         }
       ],
       "opcoes": [
         {
           "id": "ouvir",
-          "texto": "Quer conversar sobre ele?",
+          "texto": "Você vai com ele?",
           "destino": "ataque_ouvir",
           "efeitos": {
             "confianca": 1,
@@ -776,7 +750,7 @@
         },
         {
           "id": "questionar",
-          "texto": "Vai procurar no meio do ataque?",
+          "texto": "E se o André estiver lá?",
           "destino": "ataque_questionar",
           "efeitos": {
             "confianca": 0,
@@ -787,7 +761,7 @@
         },
         {
           "id": "pedido",
-          "texto": "Você precisa de alguma coisa?",
+          "texto": "Tá precisando de alguma coisa?",
           "destino": "pedido",
           "se": {
             "dia_min": 2,
@@ -799,7 +773,7 @@
         },
         {
           "id": "aviso",
-          "texto": "O que você sabe sobre o que vem depois?",
+          "texto": "Tá sabendo de alguma coisa?",
           "destino": "aviso",
           "se": {
             "confianca_min": 2
@@ -807,48 +781,49 @@
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "ataque_ouvir": {
       "falas": [
-        "Ele queria pôr o nome do pai na barraquinha. Os dois brigavam, mas até o sonho era uma conversa com o pai."
+        "E se o André voltar pra cá? Não. Eu espero aqui. É o que eu sei fazer."
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "ataque"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "ataque_questionar": {
       "falas": [
-        "Não vou atravessar agora. Isso não quer dizer que parei de procurar. Quer dizer que quero estar viva se achar."
+        "Então o sargento que traga ele. Ele sabe onde eu moro; anotou na folha."
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "ataque"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "depois": {
       "falas": [
-        "Hoje eu abri a mensagem e li só o que tá escrito. Não tem despedida. Não tem promessa de voltar."
+        "Ontem de dia a rua tava cheia daqueles bichos. De noite fui no portão e não vi nenhum.",
+        "O André voltou. Ficou na porta a noite inteira me chamando de 'mãe'. Com a roupa do turno, limpinha. Faz uma semana que ele sumiu e a roupa tava limpinha."
       ],
       "variantes": [
         {
@@ -858,8 +833,9 @@
             ]
           },
           "falas": [
-            "Hoje eu abri a mensagem e li só o que tá escrito. Não tem despedida. Não tem promessa de voltar.",
-            "Se ouvir notícia do André, pergunta de onde veio antes de me contar. E pode bater só pra conversar. Não precisa trazer resposta."
+            "Ontem de dia a rua tava cheia daqueles bichos. De noite fui no portão e não vi nenhum.",
+            "O André voltou. Ficou na porta a noite inteira me chamando de 'mãe'. Com a roupa do turno, limpinha. Faz uma semana que ele sumiu e a roupa tava limpinha.",
+            "Se alguém que você ama bater aí depois de sumir, faz uma pergunta que só ele sabe errar. E não abre. Promete pra mim."
           ]
         },
         {
@@ -869,8 +845,9 @@
             ]
           },
           "falas": [
-            "Hoje eu abri a mensagem e li só o que tá escrito. Não tem despedida. Não tem promessa de voltar.",
-            "Vou deixar o telefone perto. Não precisa bater se não tiver notícia. Eu ainda não sei fazer companhia caber nessa espera."
+            "Ontem de dia a rua tava cheia daqueles bichos. De noite fui no portão e não vi nenhum.",
+            "O André voltou. Ficou na porta a noite inteira me chamando de 'mãe'. Com a roupa do turno, limpinha. Faz uma semana que ele sumiu e a roupa tava limpinha.",
+            "Tudo bem. Eu fico aqui com o telefone. Mas não abre a porta pra quem sumiu e voltou. Por favor."
           ]
         },
         {
@@ -881,8 +858,9 @@
             "confianca_min": 2
           },
           "falas": [
-            "Hoje eu abri a mensagem e li só o que tá escrito. Não tem despedida. Não tem promessa de voltar.",
-            "Se ouvir notícia do André, pergunta de onde veio antes de me contar. E pode bater só pra conversar. Não precisa trazer resposta."
+            "Ontem de dia a rua tava cheia daqueles bichos. De noite fui no portão e não vi nenhum.",
+            "O André voltou. Ficou na porta a noite inteira me chamando de 'mãe'. Com a roupa do turno, limpinha. Faz uma semana que ele sumiu e a roupa tava limpinha.",
+            "Se alguém que você ama bater aí depois de sumir, faz uma pergunta que só ele sabe errar. E não abre. Promete pra mim."
           ]
         },
         {
@@ -890,15 +868,16 @@
             "confianca_max": 1
           },
           "falas": [
-            "Hoje eu abri a mensagem e li só o que tá escrito. Não tem despedida. Não tem promessa de voltar.",
-            "Vou deixar o telefone perto. Não precisa bater se não tiver notícia. Eu ainda não sei fazer companhia caber nessa espera."
+            "Ontem de dia a rua tava cheia daqueles bichos. De noite fui no portão e não vi nenhum.",
+            "O André voltou. Ficou na porta a noite inteira me chamando de 'mãe'. Com a roupa do turno, limpinha. Faz uma semana que ele sumiu e a roupa tava limpinha.",
+            "Tudo bem. Eu fico aqui com o telefone. Mas não abre a porta pra quem sumiu e voltou. Por favor."
           ]
         }
       ],
       "opcoes": [
         {
           "id": "ouvir",
-          "texto": "Posso ficar um pouco aqui na porta?",
+          "texto": "Você abriu?",
           "destino": "depois_ouvir",
           "efeitos": {
             "confianca": 1,
@@ -909,7 +888,7 @@
         },
         {
           "id": "questionar",
-          "texto": "Você acha que ele morreu?",
+          "texto": "E se era ele de verdade?",
           "destino": "depois_questionar",
           "efeitos": {
             "confianca": 0,
@@ -920,7 +899,7 @@
         },
         {
           "id": "pedido",
-          "texto": "Você precisa de alguma coisa?",
+          "texto": "Tá precisando de alguma coisa?",
           "destino": "pedido",
           "se": {
             "dia_min": 2,
@@ -932,7 +911,7 @@
         },
         {
           "id": "aviso",
-          "texto": "O que você sabe sobre o que vem depois?",
+          "texto": "Tá sabendo de alguma coisa?",
           "destino": "aviso",
           "se": {
             "confianca_min": 2
@@ -940,19 +919,19 @@
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "depois_ouvir": {
       "falas": [
-        "Pode. Sem ficar me olhando como quem tem uma notícia ruim escondida. Se não sabe, diz que não sabe."
+        "Não. Ele falou com a voz dele até de manhã. Eu respondi: 'Quando você me chamar de dona Rita, eu abro.' Ele nunca chamou."
       ],
       "opcoes": [
         {
           "id": "rede",
-          "texto": "Vamos combinar ajuda, sem prometer o que não temos.",
+          "texto": "Conta comigo. Qualquer coisa, bate lá em casa.",
           "destino": "rede",
           "efeitos": {
             "confianca": 1,
@@ -966,7 +945,7 @@
         },
         {
           "id": "isolou",
-          "texto": "Prefiro manter distância por enquanto.",
+          "texto": "Melhor cada um na sua, por enquanto.",
           "destino": "distancia",
           "efeitos": {
             "marcas": [
@@ -979,35 +958,36 @@
         },
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "depois"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "depois_questionar": {
       "falas": [
-        "Eu acho muitas coisas por hora. Nenhuma delas me dá o direito de escolher uma e chamar de fato."
+        "Então eu errei, e ele volta, e me chama de dona Rita, e eu passo o café. Não abre pra quem sumiu, meu querido."
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "depois"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "epilogo": {
       "falas": [
+        "Se o André estiver vivo, ele vai pra barricada. Ele sempre foi pra onde tinha gente.",
         "Passei café. Ficou ruim. Dessa vez fui eu que fiz."
       ],
       "variantes": [
@@ -1018,8 +998,9 @@
             ]
           },
           "falas": [
+            "Se o André estiver vivo, ele vai pra barricada. Ele sempre foi pra onde tinha gente.",
             "Passei café. Ficou ruim. Dessa vez fui eu que fiz.",
-            "Se ouvir notícia do André, pergunta de onde veio antes de me contar. E pode bater só pra conversar. Não precisa trazer resposta."
+            "Se alguém que você ama bater aí depois de sumir, faz uma pergunta que só ele sabe errar. E não abre. Promete pra mim."
           ]
         },
         {
@@ -1029,8 +1010,9 @@
             ]
           },
           "falas": [
+            "Se o André estiver vivo, ele vai pra barricada. Ele sempre foi pra onde tinha gente.",
             "Passei café. Ficou ruim. Dessa vez fui eu que fiz.",
-            "Vou deixar o telefone perto. Não precisa bater se não tiver notícia. Eu ainda não sei fazer companhia caber nessa espera."
+            "Tudo bem. Eu fico aqui com o telefone. Mas não abre a porta pra quem sumiu e voltou. Por favor."
           ]
         },
         {
@@ -1041,8 +1023,9 @@
             "confianca_min": 2
           },
           "falas": [
+            "Se o André estiver vivo, ele vai pra barricada. Ele sempre foi pra onde tinha gente.",
             "Passei café. Ficou ruim. Dessa vez fui eu que fiz.",
-            "Se ouvir notícia do André, pergunta de onde veio antes de me contar. E pode bater só pra conversar. Não precisa trazer resposta."
+            "Se alguém que você ama bater aí depois de sumir, faz uma pergunta que só ele sabe errar. E não abre. Promete pra mim."
           ]
         },
         {
@@ -1050,15 +1033,16 @@
             "confianca_max": 1
           },
           "falas": [
+            "Se o André estiver vivo, ele vai pra barricada. Ele sempre foi pra onde tinha gente.",
             "Passei café. Ficou ruim. Dessa vez fui eu que fiz.",
-            "Vou deixar o telefone perto. Não precisa bater se não tiver notícia. Eu ainda não sei fazer companhia caber nessa espera."
+            "Tudo bem. Eu fico aqui com o telefone. Mas não abre a porta pra quem sumiu e voltou. Por favor."
           ]
         }
       ],
       "opcoes": [
         {
           "id": "ouvir",
-          "texto": "Você ainda tá esperando?",
+          "texto": "Você vai pra lá?",
           "destino": "epilogo_ouvir",
           "efeitos": {
             "confianca": 1,
@@ -1069,7 +1053,7 @@
         },
         {
           "id": "questionar",
-          "texto": "Quer apagar a mensagem?",
+          "texto": "E se o outro estiver lá também?",
           "destino": "epilogo_questionar",
           "efeitos": {
             "confianca": 0,
@@ -1080,7 +1064,7 @@
         },
         {
           "id": "pedido",
-          "texto": "Você precisa de alguma coisa?",
+          "texto": "Tá precisando de alguma coisa?",
           "destino": "pedido",
           "se": {
             "dia_min": 2,
@@ -1092,7 +1076,7 @@
         },
         {
           "id": "aviso",
-          "texto": "O que você sabe sobre o que vem depois?",
+          "texto": "Tá sabendo de alguma coisa?",
           "destino": "aviso",
           "se": {
             "confianca_min": 2
@@ -1100,19 +1084,19 @@
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "epilogo_ouvir": {
       "falas": [
-        "Tô. Mas comi, lavei o rosto e conversei. Esperar não pode tomar tudo que ele reconheceria quando voltasse."
+        "Vou. Se ele estiver lá, eu chego e digo: 'Que café ruim, hein.' Se ele rir, é ele."
       ],
       "opcoes": [
         {
           "id": "rede",
-          "texto": "Vamos combinar ajuda, sem prometer o que não temos.",
+          "texto": "Conta comigo. Qualquer coisa, bate lá em casa.",
           "destino": "rede",
           "efeitos": {
             "confianca": 1,
@@ -1126,7 +1110,7 @@
         },
         {
           "id": "isolou",
-          "texto": "Prefiro manter distância por enquanto.",
+          "texto": "Melhor cada um na sua, por enquanto.",
           "destino": "distancia",
           "efeitos": {
             "marcas": [
@@ -1139,41 +1123,41 @@
         },
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "epilogo"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "epilogo_questionar": {
       "falas": [
-        "Não. Quero aprender a ler sem acrescentar uma frase minha no final."
+        "Então eu vou saber qual é o meu. Mãe sabe."
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "epilogo"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "pedido": {
       "falas": [
-        "Me passa uma comida? Eu fiquei esperando o telefone e não fui comprar nada."
+        "Me arruma uma comida? Fiquei esperando o telefone tocar e esqueci de comprar. Esqueci até de comer."
       ],
       "opcoes": [
         {
           "id": "ajudar",
-          "texto": "Posso ajudar.",
+          "texto": "Toma, pode ficar.",
           "destino": "agradece",
           "custo": {
             "acoes": 1,
@@ -1189,7 +1173,7 @@
         },
         {
           "id": "recusar",
-          "texto": "Hoje não consigo.",
+          "texto": "Hoje não dá.",
           "destino": "recusa",
           "efeitos": {
             "confianca": -1,
@@ -1201,25 +1185,24 @@
         },
         {
           "id": "explicar",
-          "texto": "Quero entender antes de decidir.",
+          "texto": "Desde quando você não come?",
           "destino": "explica_pedido"
         },
         {
           "id": "sair",
-          "texto": "Vou pensar e volto depois.",
+          "texto": "Vou ver e te falo.",
           "destino": ""
         }
       ]
     },
     "explica_pedido": {
       "falas": [
-        "Eu não quero transformar essa espera em mais uma coisa que impede André de me reconhecer quando voltar.",
-        "Não quero que você fique sem o que precisa. Ajudar não precisa ser hoje."
+        "Desde anteontem, acho. Se o André volta e me vê assim, ele briga comigo. Ele briga por tudo."
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Vamos falar do pedido.",
+          "texto": "Tá. E aquele pedido?",
           "destino": "pedido"
         },
         {
@@ -1231,7 +1214,7 @@
     },
     "agradece": {
       "falas": [
-        "Obrigada. Vou comer agora. Não adianta ele voltar e me encontrar sem força."
+        "Obrigada, meu querido. Vou comer agora. Não adianta ele voltar e me achar sem força."
       ],
       "variantes": [
         {
@@ -1241,15 +1224,15 @@
             ]
           },
           "falas": [
-            "Obrigada. Vou comer agora. Não adianta ele voltar e me encontrar sem força.",
-            "Você disse que não dava antes e voltou. Isso também conta."
+            "Obrigada, meu querido. Vou comer agora. Não adianta ele voltar e me achar sem força.",
+            "Você disse que não dava e voltou. O André é assim. Ele sempre volta."
           ]
         }
       ]
     },
     "recusa": {
       "falas": [
-        "Tá certo. Eu devia ter saído antes. Se puder depois, eu tô aqui."
+        "Tá certo. Eu devia ter saído antes. Se der depois, eu tô aqui."
       ]
     },
     "aviso": {
@@ -1259,72 +1242,45 @@
       "opcoes": [
         {
           "id": "fonte",
-          "texto": "De onde veio essa informação?",
+          "texto": "Quem te contou?",
           "destino": "fonte"
         },
         {
-          "id": "cobrar",
-          "texto": "O que você falou não combina com o que aconteceu.",
-          "destino": "cobrado",
-          "se": {
-            "dia_min": 6
-          },
-          "efeitos": {
-            "marcas": [
-              "cobrou_aviso"
-            ]
-          }
-        },
-        {
           "id": "sair",
-          "texto": "Vou comparar com o que eu vi.",
+          "texto": "Valeu.",
           "destino": ""
         }
       ]
     },
     "fonte": {
       "falas": [
-        "Uma colega do depósito atendeu meu telefonema. Ela conhece o turno, mas não sabe onde meu filho tá."
+        "Uma colega do André, do depósito. Ela ouviu dos motoristas."
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Quero rever o que você disse.",
+          "texto": "Repete o que você falou?",
           "destino": "aviso"
         },
         {
           "id": "sair",
-          "texto": "Obrigado por explicar.",
+          "texto": "Valeu.",
           "destino": ""
-        }
-      ]
-    },
-    "cobrado": {
-      "falas": [
-        "Eu posso ter errado. Me conta o que você viu; não quero transformar um relato em ordem."
-      ],
-      "variantes": [
-        {
-          "se": {
-            "mente": true
-          },
-          "falas": [
-            "Eu queria que alguma coisa ainda tivesse horário pra voltar. Falei que tava garantido porque não aguentava mais esperar.",
-            "Eu não tenho como garantir o que vem amanhã. Você tem motivo pra conferir o que eu digo."
-          ]
         }
       ]
     },
     "rede": {
       "falas": [
-        "Se ouvir notícia do André, pergunta de onde veio antes de me contar. E pode bater só pra conversar. Não precisa trazer resposta.",
-        "Vamos perguntar antes de contar com o que é da outra casa."
+        "Se alguém que você ama bater aí depois de sumir, faz uma pergunta que só ele sabe errar. E não abre. Promete pra mim."
       ]
     },
     "distancia": {
       "falas": [
-        "Vou deixar o telefone perto. Não precisa bater se não tiver notícia. Eu ainda não sei fazer companhia caber nessa espera."
+        "Tudo bem. Eu fico aqui com o telefone. Mas não abre a porta pra quem sumiu e voltou. Por favor."
       ]
     }
+  },
+  "abrigo": {
+    "confirma": "Entra, meu querido. Dorme no quarto do André, que tá arrumado. Se alguém chamar 'mãe' de madrugada, não levanta."
   }
 }

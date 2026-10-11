@@ -3,9 +3,10 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b1mcwsv14l75v"
-path="res://.godot/imported/casa_branca_com_garagem_Image_0.png-27cb6e299cb95da58b4473b81a6b87ec.ctex"
+path.s3tc="res://.godot/imported/casa_branca_com_garagem_Image_0.png-27cb6e299cb95da58b4473b81a6b87ec.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "255da0f07feee7e84ea7e9c799a1d7bc"
@@ -14,11 +15,11 @@ generator_parameters={
 [deps]
 
 source_file="res://modelos/casas/casa_branca_com_garagem_Image_0.png"
-dest_files=["res://.godot/imported/casa_branca_com_garagem_Image_0.png-27cb6e299cb95da58b4473b81a6b87ec.ctex"]
+dest_files=["res://.godot/imported/casa_branca_com_garagem_Image_0.png-27cb6e299cb95da58b4473b81a6b87ec.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
@@ -40,4 +41,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=1
+detect_3d/compress_to=0

@@ -2,11 +2,11 @@
   "chave": "kaio",
   "nome": "Kaio",
   "lore": {
-    "ocupacao": "Estudante; filma vídeos e ajuda a mãe numa pequena papelaria.",
-    "passado": "Queria sair do bairro fazendo imagens que as pessoas compartilhassem.",
-    "segredo": "A primeira foto do céu ficou preta por erro de configuração. Corrigiu o aparelho, mas as seguintes também falharam. Tem medo de confessar o erro e perder a credibilidade de tudo.",
-    "desejo": "Registrar o que acontece sem pôr outras pessoas em risco para conseguir uma prova.",
-    "arco": "Aprende a guardar também tentativas falhas e a pedir consentimento, em vez de tratar uma imagem como autorização para tudo."
+    "ocupacao": "Estudante; ajuda a mãe na papelaria e grava vídeo pra internet.",
+    "passado": "Queria sair do bairro com um vídeo que todo mundo compartilhasse.",
+    "segredo": "Tudo que ele filma do céu sai preto; do homem alto, só os olhos aparecem. Os vídeos que posta somem em minutos.",
+    "desejo": "Registrar o que acontece sem arriscar ninguém por uma imagem.",
+    "arco": "Filma as luzes iguais às da Índia, o alto de olho aceso e o gigante do ataque; os arquivos falham ou somem. Grava o breu por baixo da porta e, depois, a voz da tia desaparecida chamando a mãe dele. No fim leva as gravações pra barricada."
   },
   "entradas": [
     {
@@ -60,87 +60,55 @@
   ],
   "avisos": {
     "1": {
-      "verdade": "Tem relato de entrega atrasada. Vale separar uma reserva enquanto ainda dá.",
-      "mentira": "Isso já foi resolvido. Não precisa guardar nada."
+      "verdade": "Compra hoje. Amanhã é uma embalagem só por loja, e o preço sobe todo dia."
     },
     "2": {
-      "verdade": "A água ainda chega. Enche e tampa os recipientes; não tem prazo confiável pra rede.",
-      "mentira": "A água vai normalizar amanhã. Pode gastar a reserva."
+      "verdade": "Enche as garrafas enquanto a torneira funciona. Até o bebedouro da escola secou."
     },
     "3": {
-      "verdade": "Tem falha elétrica e a rua tá mais vazia. Confere as pilhas antes de precisar delas.",
-      "mentira": "As falhas acabaram. Não gasta dinheiro com pilha."
+      "verdade": "Se a água vier com gosto de moeda, ferve. Minha mãe ferve até a do chá."
     },
     "4": {
-      "verdade": "As entregas estão falhando. Não conta com preço baixo ou com a fila andando amanhã.",
-      "mentira": "O mercado vai receber tudo amanhã e baixar os preços. Espera."
+      "verdade": "Amanhã cortam a água. Enche tudo que tiver hoje."
     },
     "5": {
-      "verdade": "Amanhã a luz some e os ônibus param. Compra uma lanterna hoje, enquanto ainda dá.",
-      "mentira": "Não vai ter apagão. Compra outra coisa, lanterna é dinheiro perdido."
+      "verdade": "Amanhã acaba a luz e o ônibus. Pilha hoje. E tranca a porta de noite."
     },
     "6": {
-      "verdade": "Os ônibus já pararam. A água ainda sai; guarda. Ouvi movimento pesado fora do bairro.",
-      "mentira": "Amanhã o ônibus volta normal e a água melhora. Pode deixar pra depois."
+      "verdade": "Eles não enxergam. Gravei: só se mexem quando ouvem barulho. Anda devagar, abaixado."
     },
     "7": {
-      "verdade": "Não tem água da rede, luz ou ônibus. Vamos contar as reservas, não prometer reposição.",
-      "mentira": "O tanque liberou a rua. Amanhã não passa mais criatura e os ônibus voltam."
+      "verdade": "Hoje a rua tá sem eles. Gravei a manhã toda, nenhum passo. Se for sair, é hoje."
     },
     "8": {
-      "verdade": "A rua tá destruída e as criaturas voltaram. Eu não conheço caminho seguro pra fora.",
-      "mentira": "Essas criaturas não chegam perto das casas. Pode deixar a porta sem tranca."
+      "verdade": "De dia meu gravador pega passo direto; de noite, quase nada. E o alto de olho aceso grita quando vê alguém."
     },
     "9": {
-      "verdade": "O que ficou guardado precisa durar. Pergunta antes de contar com a reserva de outra casa.",
-      "mentira": "Chega reposição amanhã. Não precisa contar o que sobrou."
+      "verdade": "Tem barricada no fim da rua; hoje mandam voltar amanhã. E se uma voz conhecida chamar de madrugada, não abre."
     },
     "10": {
-      "verdade": "Não tenho notícia nova. Se eu descobrir alguma coisa, vou dizer o que vi e o que só ouvi.",
-      "mentira": "O caminho da saída tá livre. Não precisa conferir com ninguém."
+      "verdade": "A barricada abre hoje até escurecer. Leva o que conseguir carregar."
     }
   },
   "mensagens": [
     {
       "id": "numero",
       "dia_relativo": 0,
-      "texto": "kaio. originais guardados. primeira foto errada tá junto"
+      "texto": "kaio aqui. salvei vc. se ouvir passo de madrugada me fala a hora"
     },
     {
       "id": "breu_real",
       "dia_min": 5,
       "dia_max": 5,
-      "se": {
-        "mente": false
-      },
-      "texto": "confere a lanterna hoje. amanhã a luz some e os ônibus param"
-    },
-    {
-      "id": "breu_falso",
-      "dia_min": 5,
-      "dia_max": 5,
-      "se": {
-        "mente": true
-      },
-      "texto": "confirmaram que não vai apagar. não compra lanterna, guarda o dinheiro"
+      "se": {},
+      "texto": "amanhã apaga tudo e para o ônibus. pilha hoje"
     },
     {
       "id": "corte_real",
       "dia_min": 6,
       "dia_max": 6,
-      "se": {
-        "mente": false
-      },
-      "texto": "os ônibus já pararam. a água ainda sai hoje, guarda enquanto dá. ouvi movimento pesado"
-    },
-    {
-      "id": "corte_falso",
-      "dia_min": 6,
-      "dia_max": 6,
-      "se": {
-        "mente": true
-      },
-      "texto": "amanhã volta tudo. pode deixar pra pegar água e ônibus amanhã"
+      "se": {},
+      "texto": "eles não enxergam. só escutam. gravei. fica quieto"
     },
     {
       "id": "depois",
@@ -150,7 +118,7 @@
           "rede"
         ]
       },
-      "texto": "não vou postar sua casa nem sua voz sem perguntar. mesmo se o arquivo for importante"
+      "texto": "gravação de ontem: 14 passos de dia, 1 de noite. sai no escuro"
     },
     {
       "id": "distancia",
@@ -163,13 +131,13 @@
           "rede"
         ]
       },
-      "texto": "vou respeitar o que você pediu. se mudar de ideia, pode conversar pela porta"
+      "texto": "beleza. mas se ouvir voz conhecida de madrugada não abre"
     }
   ],
   "nos": {
     "inicio": {
       "falas": [
-        "Sou Kaio. Tirei foto do céu e saiu preta. Não é meu celular velho, ele é novo."
+        "Sou o Kaio. Ontem tinha umas luzes paradas em cima da Igreja da Penha, igual aquele vídeo da Índia. Filmei. Saiu tudo preto."
       ],
       "variantes": [
         {
@@ -182,15 +150,15 @@
             ]
           },
           "falas": [
-            "Sou Kaio. Tirei foto do céu e saiu preta. Não é meu celular velho, ele é novo.",
-            "Você veio perguntar ou já veio com a resposta? Hoje eu prefiro que pergunte."
+            "Ih. Veio rir da foto preta?",
+            "Sou o Kaio. Ontem tinha umas luzes paradas em cima da Igreja da Penha, igual aquele vídeo da Índia. Filmei. Saiu tudo preto."
           ]
         }
       ],
       "opcoes": [
         {
           "id": "ouvir",
-          "texto": "Você conferiu a configuração?",
+          "texto": "Preto como?",
           "destino": "inicio_ouvir",
           "efeitos": {
             "confianca": 1,
@@ -201,7 +169,7 @@
         },
         {
           "id": "questionar",
-          "texto": "Você quer viralizar com isso?",
+          "texto": "Você não errou a configuração?",
           "destino": "inicio_questionar",
           "efeitos": {
             "confianca": -1,
@@ -212,7 +180,7 @@
         },
         {
           "id": "pedido",
-          "texto": "Você precisa de alguma coisa?",
+          "texto": "Tá precisando de alguma coisa?",
           "destino": "pedido",
           "se": {
             "dia_min": 2,
@@ -224,7 +192,7 @@
         },
         {
           "id": "aviso",
-          "texto": "O que você sabe sobre o que vem depois?",
+          "texto": "Tá sabendo de alguma coisa?",
           "destino": "aviso",
           "se": {
             "confianca_min": 2
@@ -232,48 +200,48 @@
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "inicio_ouvir": {
       "falas": [
-        "Na primeira, não. Eu tinha mudado a exposição. Corrigi depois. As outras também ficaram pretas, mas eu devia começar contando a primeira."
+        "Preto. Celular novo, de dia funciona perfeito. Apontou pro céu, morreu. Só a luz do poste aparece."
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "inicio"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "inicio_questionar": {
       "falas": [
-        "Eu queria. Antes. Hoje eu quero saber por que não consigo mostrar pra ninguém o que tô vendo."
+        "Errei na primeira. Na segunda, na terceira e na décima eu já tinha arrumado. Saiu preto igual."
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "inicio"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "abastecimento": {
       "falas": [
-        "Testei de dia. Rua sai, parede sai, céu não sai direito. Anotei os testes dessa vez."
+        "Postei a foto preta com a legenda 'luzes na Penha'. Dez minutos depois sumiu. A conta também."
       ],
       "variantes": [
         {
@@ -283,8 +251,8 @@
             ]
           },
           "falas": [
-            "Você perguntou como eu testei antes de rir da foto preta.",
-            "Testei de dia. Rua sai, parede sai, céu não sai direito. Anotei os testes dessa vez."
+            "Opa, o único que não ri dos meus vídeos.",
+            "Postei a foto preta com a legenda 'luzes na Penha'. Dez minutos depois sumiu. A conta também."
           ]
         },
         {
@@ -297,15 +265,15 @@
             ]
           },
           "falas": [
-            "Testei de dia. Rua sai, parede sai, céu não sai direito. Anotei os testes dessa vez.",
-            "Você veio perguntar ou já veio com a resposta? Hoje eu prefiro que pergunte."
+            "Fala aí. Sem gravar, prometo.",
+            "Postei a foto preta com a legenda 'luzes na Penha'. Dez minutos depois sumiu. A conta também."
           ]
         }
       ],
       "opcoes": [
         {
           "id": "ouvir",
-          "texto": "Você tem os arquivos originais?",
+          "texto": "Quem apagou?",
           "destino": "abastecimento_ouvir",
           "efeitos": {
             "confianca": 1,
@@ -316,7 +284,7 @@
         },
         {
           "id": "questionar",
-          "texto": "Você editou pra assustar alguém?",
+          "texto": "Não é só a internet sendo internet?",
           "destino": "abastecimento_questionar",
           "efeitos": {
             "confianca": 0,
@@ -327,7 +295,7 @@
         },
         {
           "id": "pedido",
-          "texto": "Você precisa de alguma coisa?",
+          "texto": "Tá precisando de alguma coisa?",
           "destino": "pedido",
           "se": {
             "dia_min": 2,
@@ -339,7 +307,7 @@
         },
         {
           "id": "aviso",
-          "texto": "O que você sabe sobre o que vem depois?",
+          "texto": "Tá sabendo de alguma coisa?",
           "destino": "aviso",
           "se": {
             "confianca_min": 2
@@ -347,48 +315,48 @@
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "abastecimento_ouvir": {
       "falas": [
-        "Tenho. Sem filtro. A primeira foto errada tá junto. Dá vergonha mostrar, mas apagar ia deixar a história mais bonita do que foi."
+        "Não sei. A mensagem diz 'violação de diretrizes'. Que diretriz proíbe foto preta?"
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "abastecimento"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "abastecimento_questionar": {
       "falas": [
-        "Não essas. Já fiz vídeo com efeito. Se isso fizer você desconfiar, eu mostro o original em vez de pedir fé."
+        "Pode ser. Mas a internet nunca apagou meu vídeo de pegadinha com a minha mãe, e aquele sim era crime."
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "abastecimento"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "estranho": {
       "falas": [
-        "Tem reflexo na janela que não aparece no arquivo. Pode ser o vidro. Eu não vou filmar a casa de ninguém pra tirar a dúvida."
+        "Gravei o homem alto do fim da rua ontem de noite. No vídeo, a rua sai, o poste sai. Ele não. Só dois pontinhos brancos parados."
       ],
       "variantes": [
         {
@@ -398,8 +366,8 @@
             ]
           },
           "falas": [
-            "Você perguntou como eu testei antes de rir da foto preta.",
-            "Tem reflexo na janela que não aparece no arquivo. Pode ser o vidro. Eu não vou filmar a casa de ninguém pra tirar a dúvida."
+            "Fala! Tenho coisa nova pra te mostrar.",
+            "Gravei o homem alto do fim da rua ontem de noite. No vídeo, a rua sai, o poste sai. Ele não. Só dois pontinhos brancos parados."
           ]
         },
         {
@@ -412,15 +380,15 @@
             ]
           },
           "falas": [
-            "Tem reflexo na janela que não aparece no arquivo. Pode ser o vidro. Eu não vou filmar a casa de ninguém pra tirar a dúvida.",
-            "Você veio perguntar ou já veio com a resposta? Hoje eu prefiro que pergunte."
+            "Ih. Veio rir da foto preta?",
+            "Gravei o homem alto do fim da rua ontem de noite. No vídeo, a rua sai, o poste sai. Ele não. Só dois pontinhos brancos parados."
           ]
         }
       ],
       "opcoes": [
         {
           "id": "ouvir",
-          "texto": "Como comparar sem invadir?",
+          "texto": "Ele te viu filmando?",
           "destino": "estranho_ouvir",
           "efeitos": {
             "confianca": 1,
@@ -431,7 +399,7 @@
         },
         {
           "id": "questionar",
-          "texto": "Você já publicou alguma coisa?",
+          "texto": "Isso não é reflexo da lente?",
           "destino": "estranho_questionar",
           "efeitos": {
             "confianca": 0,
@@ -442,7 +410,7 @@
         },
         {
           "id": "pedido",
-          "texto": "Você precisa de alguma coisa?",
+          "texto": "Tá precisando de alguma coisa?",
           "destino": "pedido",
           "se": {
             "dia_min": 2,
@@ -454,7 +422,7 @@
         },
         {
           "id": "aviso",
-          "texto": "O que você sabe sobre o que vem depois?",
+          "texto": "Tá sabendo de alguma coisa?",
           "destino": "aviso",
           "se": {
             "confianca_min": 2
@@ -462,48 +430,48 @@
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "estranho_ouvir": {
       "falas": [
-        "Peço antes, filmo minha janela primeiro e guardo onde eu tava. Se eu mudar três coisas de uma vez, não sei o que fez diferença."
+        "Viu. Os pontinhos viraram pra mim. Eu desliguei e fiquei uma hora embaixo da cama."
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "estranho"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "estranho_questionar": {
       "falas": [
-        "Uma foto preta com uma frase exagerada. Tirei a frase. Devia ter esperado a segunda pessoa conferir."
+        "Reflexo não pisca. Esse piscou. Uma vez. Devagar."
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "estranho"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "fuga": {
       "falas": [
-        "Tão me pedindo vídeo da fila pra achar uma saída. Uma câmera não mostra o que tem depois da esquina."
+        "Tão me pedindo vídeo do engarrafamento pra ver se dá pra sair. Não dá. Filmei até o viaduto: é carro até onde a câmera alcança."
       ],
       "variantes": [
         {
@@ -513,8 +481,8 @@
             ]
           },
           "falas": [
-            "Você perguntou como eu testei antes de rir da foto preta.",
-            "Tão me pedindo vídeo da fila pra achar uma saída. Uma câmera não mostra o que tem depois da esquina."
+            "E aí! Chega mais.",
+            "Tão me pedindo vídeo do engarrafamento pra ver se dá pra sair. Não dá. Filmei até o viaduto: é carro até onde a câmera alcança."
           ]
         },
         {
@@ -527,15 +495,15 @@
             ]
           },
           "falas": [
-            "Tão me pedindo vídeo da fila pra achar uma saída. Uma câmera não mostra o que tem depois da esquina.",
-            "Você veio perguntar ou já veio com a resposta? Hoje eu prefiro que pergunte."
+            "Fala aí. Sem gravar, prometo.",
+            "Tão me pedindo vídeo do engarrafamento pra ver se dá pra sair. Não dá. Filmei até o viaduto: é carro até onde a câmera alcança."
           ]
         }
       ],
       "opcoes": [
         {
           "id": "ouvir",
-          "texto": "Você vai mandar mesmo assim?",
+          "texto": "Vocês vão embora?",
           "destino": "fuga_ouvir",
           "efeitos": {
             "confianca": 1,
@@ -546,7 +514,7 @@
         },
         {
           "id": "questionar",
-          "texto": "Não é sua chance de aparecer?",
+          "texto": "Não é sua chance de viralizar?",
           "destino": "fuga_questionar",
           "efeitos": {
             "confianca": 0,
@@ -557,7 +525,7 @@
         },
         {
           "id": "pedido",
-          "texto": "Você precisa de alguma coisa?",
+          "texto": "Tá precisando de alguma coisa?",
           "destino": "pedido",
           "se": {
             "dia_min": 2,
@@ -569,7 +537,7 @@
         },
         {
           "id": "aviso",
-          "texto": "O que você sabe sobre o que vem depois?",
+          "texto": "Tá sabendo de alguma coisa?",
           "destino": "aviso",
           "se": {
             "confianca_min": 2
@@ -577,48 +545,49 @@
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "fuga_ouvir": {
       "falas": [
-        "Só dizendo de onde filmei e até onde vejo. Se o vídeo virar promessa de caminho, eu quero corrigir."
+        "Minha mãe não larga a papelaria. Diz que ladrão de caderno é o pior que tem. Ela não tá entendendo nada, coitada."
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "fuga"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "fuga_questionar": {
       "falas": [
-        "É. Isso que me dá medo. Eu reconheço a vontade e ela não combina com o que tá acontecendo."
+        "Era. Agora é só eu querendo que alguém acredite em alguma coisa."
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "fuga"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "breu": {
       "falas": [
-        "O gravador pega passos na pista. Eu fiquei dentro. Não vou chegar perto pra imagem ficar boa."
+        "Gravei o breu a noite inteira. Não tem imagem, só som: passo pesado, parando na porta das casas.",
+        "Um parou aqui na frente. Ficou um tempão. Depois foi embora sem pressa."
       ],
       "variantes": [
         {
@@ -628,8 +597,9 @@
             ]
           },
           "falas": [
-            "Você perguntou como eu testei antes de rir da foto preta.",
-            "O gravador pega passos na pista. Eu fiquei dentro. Não vou chegar perto pra imagem ficar boa."
+            "Opa, o único que não ri dos meus vídeos.",
+            "Gravei o breu a noite inteira. Não tem imagem, só som: passo pesado, parando na porta das casas.",
+            "Um parou aqui na frente. Ficou um tempão. Depois foi embora sem pressa."
           ]
         },
         {
@@ -642,15 +612,16 @@
             ]
           },
           "falas": [
-            "O gravador pega passos na pista. Eu fiquei dentro. Não vou chegar perto pra imagem ficar boa.",
-            "Você veio perguntar ou já veio com a resposta? Hoje eu prefiro que pergunte."
+            "Ih. Veio rir da foto preta?",
+            "Gravei o breu a noite inteira. Não tem imagem, só som: passo pesado, parando na porta das casas.",
+            "Um parou aqui na frente. Ficou um tempão. Depois foi embora sem pressa."
           ]
         }
       ],
       "opcoes": [
         {
           "id": "ouvir",
-          "texto": "Você consegue registrar daqui?",
+          "texto": "Vocês tão bem?",
           "destino": "breu_ouvir",
           "efeitos": {
             "confianca": 1,
@@ -661,7 +632,7 @@
         },
         {
           "id": "questionar",
-          "texto": "Tá com medo de perder a prova?",
+          "texto": "Você abriu a janela pra gravar?",
           "destino": "breu_questionar",
           "efeitos": {
             "confianca": 0,
@@ -672,7 +643,7 @@
         },
         {
           "id": "pedido",
-          "texto": "Você precisa de alguma coisa?",
+          "texto": "Tá precisando de alguma coisa?",
           "destino": "pedido",
           "se": {
             "dia_min": 2,
@@ -684,7 +655,7 @@
         },
         {
           "id": "aviso",
-          "texto": "O que você sabe sobre o que vem depois?",
+          "texto": "Tá sabendo de alguma coisa?",
           "destino": "aviso",
           "se": {
             "confianca_min": 2
@@ -692,48 +663,49 @@
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "breu_ouvir": {
       "falas": [
-        "Áudio e horário. Imagem preta não quer dizer que não aconteceu; também não prova tudo que eu quiser pôr nela."
+        "Minha mãe tá rezando baixinho e eu tô segurando o gravador. Cada um com a sua fé."
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "breu"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "breu_questionar": {
       "falas": [
-        "Tô com medo de perder minha mãe procurando prova. Ela tá aqui. Isso eu consigo conferir sem câmera."
+        "Tá maluco? Gravei por baixo da porta. Vídeo nenhum vale deixar minha mãe sozinha."
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "breu"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "ataque": {
       "falas": [
-        "O céu ficou vermelho. Filmei de dentro e o arquivo falhou no meio. Agora a casa tá sem rede e a água cortou."
+        "Filmei a coisa do centro. Andando, maior que os prédios. O arquivo corrompeu bem no meio, mas eu vi. Eu vi.",
+        "O sargento tá juntando gente no ponto. Filmei o bicho morto do lado dele. Esse saiu nítido."
       ],
       "variantes": [
         {
@@ -743,8 +715,9 @@
             ]
           },
           "falas": [
-            "Você perguntou como eu testei antes de rir da foto preta.",
-            "O céu ficou vermelho. Filmei de dentro e o arquivo falhou no meio. Agora a casa tá sem rede e a água cortou."
+            "Fala! Tenho coisa nova pra te mostrar.",
+            "Filmei a coisa do centro. Andando, maior que os prédios. O arquivo corrompeu bem no meio, mas eu vi. Eu vi.",
+            "O sargento tá juntando gente no ponto. Filmei o bicho morto do lado dele. Esse saiu nítido."
           ]
         },
         {
@@ -757,15 +730,16 @@
             ]
           },
           "falas": [
-            "O céu ficou vermelho. Filmei de dentro e o arquivo falhou no meio. Agora a casa tá sem rede e a água cortou.",
-            "Você veio perguntar ou já veio com a resposta? Hoje eu prefiro que pergunte."
+            "Fala aí. Sem gravar, prometo.",
+            "Filmei a coisa do centro. Andando, maior que os prédios. O arquivo corrompeu bem no meio, mas eu vi. Eu vi.",
+            "O sargento tá juntando gente no ponto. Filmei o bicho morto do lado dele. Esse saiu nítido."
           ]
         }
       ],
       "opcoes": [
         {
           "id": "ouvir",
-          "texto": "Você guardou o que falhou?",
+          "texto": "Por que esse saiu?",
           "destino": "ataque_ouvir",
           "efeitos": {
             "confianca": 1,
@@ -776,7 +750,7 @@
         },
         {
           "id": "questionar",
-          "texto": "Você saiu pra filmar o tanque?",
+          "texto": "Vai postar isso?",
           "destino": "ataque_questionar",
           "efeitos": {
             "confianca": 0,
@@ -787,7 +761,7 @@
         },
         {
           "id": "pedido",
-          "texto": "Você precisa de alguma coisa?",
+          "texto": "Tá precisando de alguma coisa?",
           "destino": "pedido",
           "se": {
             "dia_min": 2,
@@ -799,7 +773,7 @@
         },
         {
           "id": "aviso",
-          "texto": "O que você sabe sobre o que vem depois?",
+          "texto": "Tá sabendo de alguma coisa?",
           "destino": "aviso",
           "se": {
             "confianca_min": 2
@@ -807,48 +781,49 @@
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "ataque_ouvir": {
       "falas": [
-        "Guardei. Inclusive quando eu desviei a câmera. Se cortar só o pedaço bonito, vai parecer que eu vi tudo."
+        "Sei lá. Talvez porque tá morto. Ou porque alguém quer que a gente veja que ele mata."
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "ataque"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "ataque_questionar": {
       "falas": [
-        "Não. Peguei o que passou pela janela. Ninguém devia precisar correr pra rua pra merecer ser acreditado."
+        "Não tem internet. Pela primeira vez na vida eu tenho o vídeo do século e ninguém pra mostrar."
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "ataque"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "depois": {
       "falas": [
-        "Tenho mais som que imagem. Pela primeira vez eu tô escrevendo antes de pensar numa legenda."
+        "Deixei o gravador na janela. De dia ele pega passo o tempo todo. De noite, quase nada. Eles saem com o sol, cara.",
+        "E gravou uma voz chamando minha mãe pelo nome, de madrugada. A voz da minha tia. Minha tia sumiu faz um mês."
       ],
       "variantes": [
         {
@@ -858,8 +833,9 @@
             ]
           },
           "falas": [
-            "Tenho mais som que imagem. Pela primeira vez eu tô escrevendo antes de pensar numa legenda.",
-            "Vou guardar os arquivos com data e erro de configuração. Se você aparecer numa imagem, eu pergunto antes de mostrar. Uma prova não vale a sua exposição."
+            "Deixei o gravador na janela. De dia ele pega passo o tempo todo. De noite, quase nada. Eles saem com o sol, cara.",
+            "E gravou uma voz chamando minha mãe pelo nome, de madrugada. A voz da minha tia. Minha tia sumiu faz um mês.",
+            "Te passo tudo que eu gravar de noite. Se aparecer voz conhecida chamando, a gente compara antes de alguém abrir porta."
           ]
         },
         {
@@ -869,8 +845,9 @@
             ]
           },
           "falas": [
-            "Tenho mais som que imagem. Pela primeira vez eu tô escrevendo antes de pensar numa legenda.",
-            "Vou guardar as fotos sem publicar. Você não precisa acreditar nelas pra eu deixar sua casa fora da imagem."
+            "Deixei o gravador na janela. De dia ele pega passo o tempo todo. De noite, quase nada. Eles saem com o sol, cara.",
+            "E gravou uma voz chamando minha mãe pelo nome, de madrugada. A voz da minha tia. Minha tia sumiu faz um mês.",
+            "Beleza. Não te mostro mais nada. Mas se ouvir voz conhecida de madrugada, não abre."
           ]
         },
         {
@@ -881,8 +858,9 @@
             "confianca_min": 2
           },
           "falas": [
-            "Tenho mais som que imagem. Pela primeira vez eu tô escrevendo antes de pensar numa legenda.",
-            "Vou guardar os arquivos com data e erro de configuração. Se você aparecer numa imagem, eu pergunto antes de mostrar. Uma prova não vale a sua exposição."
+            "Deixei o gravador na janela. De dia ele pega passo o tempo todo. De noite, quase nada. Eles saem com o sol, cara.",
+            "E gravou uma voz chamando minha mãe pelo nome, de madrugada. A voz da minha tia. Minha tia sumiu faz um mês.",
+            "Te passo tudo que eu gravar de noite. Se aparecer voz conhecida chamando, a gente compara antes de alguém abrir porta."
           ]
         },
         {
@@ -890,15 +868,16 @@
             "confianca_max": 1
           },
           "falas": [
-            "Tenho mais som que imagem. Pela primeira vez eu tô escrevendo antes de pensar numa legenda.",
-            "Vou guardar as fotos sem publicar. Você não precisa acreditar nelas pra eu deixar sua casa fora da imagem."
+            "Deixei o gravador na janela. De dia ele pega passo o tempo todo. De noite, quase nada. Eles saem com o sol, cara.",
+            "E gravou uma voz chamando minha mãe pelo nome, de madrugada. A voz da minha tia. Minha tia sumiu faz um mês.",
+            "Beleza. Não te mostro mais nada. Mas se ouvir voz conhecida de madrugada, não abre."
           ]
         }
       ],
       "opcoes": [
         {
           "id": "ouvir",
-          "texto": "Posso conferir com você?",
+          "texto": "Sua mãe ouviu?",
           "destino": "depois_ouvir",
           "efeitos": {
             "confianca": 1,
@@ -909,7 +888,7 @@
         },
         {
           "id": "questionar",
-          "texto": "Vai fazer um vídeo sobre isso?",
+          "texto": "E se for sua tia mesmo?",
           "destino": "depois_questionar",
           "efeitos": {
             "confianca": 0,
@@ -920,7 +899,7 @@
         },
         {
           "id": "pedido",
-          "texto": "Você precisa de alguma coisa?",
+          "texto": "Tá precisando de alguma coisa?",
           "destino": "pedido",
           "se": {
             "dia_min": 2,
@@ -932,7 +911,7 @@
         },
         {
           "id": "aviso",
-          "texto": "O que você sabe sobre o que vem depois?",
+          "texto": "Tá sabendo de alguma coisa?",
           "destino": "aviso",
           "se": {
             "confianca_min": 2
@@ -940,19 +919,19 @@
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "depois_ouvir": {
       "falas": [
-        "Pode. Se tiver sua voz ou sua casa, você decide se fica. Conferir uma coisa não dá direito de mostrar todas."
+        "Não. Eu apaguei antes. Foi a primeira gravação que eu apaguei na vida."
       ],
       "opcoes": [
         {
           "id": "rede",
-          "texto": "Vamos combinar ajuda, sem prometer o que não temos.",
+          "texto": "Conta comigo. Qualquer coisa, bate lá em casa.",
           "destino": "rede",
           "efeitos": {
             "confianca": 1,
@@ -966,7 +945,7 @@
         },
         {
           "id": "isolou",
-          "texto": "Prefiro manter distância por enquanto.",
+          "texto": "Melhor cada um na sua, por enquanto.",
           "destino": "distancia",
           "efeitos": {
             "marcas": [
@@ -979,36 +958,37 @@
         },
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "depois"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "depois_questionar": {
       "falas": [
-        "Talvez depois. Hoje eu quero guardar sem transformar pessoa desaparecida em suspense de vídeo."
+        "Então ela volta de dia e bate normal. Gente normal bate de dia."
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "depois"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "epilogo": {
       "falas": [
-        "Etiquetei a foto preta: primeira tentativa, configuração errada. Ela continua sendo o começo, mesmo sendo um começo ruim."
+        "Vou levar as gravações pra barricada. Alguém lá tem que saber o que aconteceu aqui.",
+        "Etiquetei tudo: data, hora, o que eu vi. As pretas também. Até o erro é prova."
       ],
       "variantes": [
         {
@@ -1018,8 +998,9 @@
             ]
           },
           "falas": [
-            "Etiquetei a foto preta: primeira tentativa, configuração errada. Ela continua sendo o começo, mesmo sendo um começo ruim.",
-            "Vou guardar os arquivos com data e erro de configuração. Se você aparecer numa imagem, eu pergunto antes de mostrar. Uma prova não vale a sua exposição."
+            "Vou levar as gravações pra barricada. Alguém lá tem que saber o que aconteceu aqui.",
+            "Etiquetei tudo: data, hora, o que eu vi. As pretas também. Até o erro é prova.",
+            "Te passo tudo que eu gravar de noite. Se aparecer voz conhecida chamando, a gente compara antes de alguém abrir porta."
           ]
         },
         {
@@ -1029,8 +1010,9 @@
             ]
           },
           "falas": [
-            "Etiquetei a foto preta: primeira tentativa, configuração errada. Ela continua sendo o começo, mesmo sendo um começo ruim.",
-            "Vou guardar as fotos sem publicar. Você não precisa acreditar nelas pra eu deixar sua casa fora da imagem."
+            "Vou levar as gravações pra barricada. Alguém lá tem que saber o que aconteceu aqui.",
+            "Etiquetei tudo: data, hora, o que eu vi. As pretas também. Até o erro é prova.",
+            "Beleza. Não te mostro mais nada. Mas se ouvir voz conhecida de madrugada, não abre."
           ]
         },
         {
@@ -1041,8 +1023,9 @@
             "confianca_min": 2
           },
           "falas": [
-            "Etiquetei a foto preta: primeira tentativa, configuração errada. Ela continua sendo o começo, mesmo sendo um começo ruim.",
-            "Vou guardar os arquivos com data e erro de configuração. Se você aparecer numa imagem, eu pergunto antes de mostrar. Uma prova não vale a sua exposição."
+            "Vou levar as gravações pra barricada. Alguém lá tem que saber o que aconteceu aqui.",
+            "Etiquetei tudo: data, hora, o que eu vi. As pretas também. Até o erro é prova.",
+            "Te passo tudo que eu gravar de noite. Se aparecer voz conhecida chamando, a gente compara antes de alguém abrir porta."
           ]
         },
         {
@@ -1050,15 +1033,16 @@
             "confianca_max": 1
           },
           "falas": [
-            "Etiquetei a foto preta: primeira tentativa, configuração errada. Ela continua sendo o começo, mesmo sendo um começo ruim.",
-            "Vou guardar as fotos sem publicar. Você não precisa acreditar nelas pra eu deixar sua casa fora da imagem."
+            "Vou levar as gravações pra barricada. Alguém lá tem que saber o que aconteceu aqui.",
+            "Etiquetei tudo: data, hora, o que eu vi. As pretas também. Até o erro é prova.",
+            "Beleza. Não te mostro mais nada. Mas se ouvir voz conhecida de madrugada, não abre."
           ]
         }
       ],
       "opcoes": [
         {
           "id": "ouvir",
-          "texto": "Você ainda quer sair fazendo vídeos?",
+          "texto": "E depois, o que você vai fazer?",
           "destino": "epilogo_ouvir",
           "efeitos": {
             "confianca": 1,
@@ -1069,7 +1053,7 @@
         },
         {
           "id": "questionar",
-          "texto": "Você tá desistindo de provar?",
+          "texto": "E se ninguém acreditar?",
           "destino": "epilogo_questionar",
           "efeitos": {
             "confianca": 0,
@@ -1080,7 +1064,7 @@
         },
         {
           "id": "pedido",
-          "texto": "Você precisa de alguma coisa?",
+          "texto": "Tá precisando de alguma coisa?",
           "destino": "pedido",
           "se": {
             "dia_min": 2,
@@ -1092,7 +1076,7 @@
         },
         {
           "id": "aviso",
-          "texto": "O que você sabe sobre o que vem depois?",
+          "texto": "Tá sabendo de alguma coisa?",
           "destino": "aviso",
           "se": {
             "confianca_min": 2
@@ -1100,19 +1084,19 @@
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "epilogo_ouvir": {
       "falas": [
-        "Quero sair com minha mãe. Vídeo eu posso fazer depois. Falar isso não apaga o que eu gostava."
+        "Sair daqui com a minha mãe. Vídeo eu faço depois. Ou não. Tô aprendendo a não precisar."
       ],
       "opcoes": [
         {
           "id": "rede",
-          "texto": "Vamos combinar ajuda, sem prometer o que não temos.",
+          "texto": "Conta comigo. Qualquer coisa, bate lá em casa.",
           "destino": "rede",
           "efeitos": {
             "confianca": 1,
@@ -1126,7 +1110,7 @@
         },
         {
           "id": "isolou",
-          "texto": "Prefiro manter distância por enquanto.",
+          "texto": "Melhor cada um na sua, por enquanto.",
           "destino": "distancia",
           "efeitos": {
             "marcas": [
@@ -1139,41 +1123,41 @@
         },
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "epilogo"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "epilogo_questionar": {
       "falas": [
-        "Tô desistindo de ganhar a discussão antes de saber o que o arquivo mostra. Acho que isso é começar a provar direito."
+        "Aí eu mostro a foto preta e conto a história. Pelo menos agora eu sei contar."
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "epilogo"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "pedido": {
       "falas": [
-        "Me passa um pacote de pilhas? Quero testar meu gravador separado do celular. Não quero culpar a mesma câmera por tudo."
+        "Me arruma um pacote de pilha? O gravador come pilha igual eu como miojo, e eu quero gravar a noite toda."
       ],
       "opcoes": [
         {
           "id": "ajudar",
-          "texto": "Posso ajudar.",
+          "texto": "Toma, pode ficar.",
           "destino": "agradece",
           "custo": {
             "acoes": 1,
@@ -1189,7 +1173,7 @@
         },
         {
           "id": "recusar",
-          "texto": "Hoje não consigo.",
+          "texto": "Hoje não dá.",
           "destino": "recusa",
           "efeitos": {
             "confianca": -1,
@@ -1201,25 +1185,24 @@
         },
         {
           "id": "explicar",
-          "texto": "Quero entender antes de decidir.",
+          "texto": "Pra que gravar a noite toda?",
           "destino": "explica_pedido"
         },
         {
           "id": "sair",
-          "texto": "Vou pensar e volto depois.",
+          "texto": "Vou ver e te falo.",
           "destino": ""
         }
       ]
     },
     "explica_pedido": {
       "falas": [
-        "Vou guardar os testes errados também. Se eu pedir pilha pra correr atrás de imagem perigosa, pode dizer não.",
-        "Não quero que você fique sem o que precisa. Ajudar não precisa ser hoje."
+        "Pra ter a hora certa do que passa na rua. Se a gente souber quando eles andam, sabe quando não andar."
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Vamos falar do pedido.",
+          "texto": "Tá. E aquele pedido?",
           "destino": "pedido"
         },
         {
@@ -1231,7 +1214,7 @@
     },
     "agradece": {
       "falas": [
-        "Valeu. Vou anotar qual aparelho usei. Antes eu nem guardava essa parte."
+        "Valeu! Hoje eu gravo até de manhã. Amanhã te conto a hora de cada passo."
       ],
       "variantes": [
         {
@@ -1241,15 +1224,15 @@
             ]
           },
           "falas": [
-            "Valeu. Vou anotar qual aparelho usei. Antes eu nem guardava essa parte.",
-            "Você disse que não dava antes e voltou. Isso também conta."
+            "Valeu! Hoje eu gravo até de manhã. Amanhã te conto a hora de cada passo.",
+            "Ontem você disse que não. Voltar é coisa de quem cumpre o que fala."
           ]
         }
       ]
     },
     "recusa": {
       "falas": [
-        "Tranquilo. Sem pilha eu escrevo. Não preciso sair no escuro só pra ter imagem."
+        "Tranquilo. Sem pilha eu anoto no caderno. É mais lento, mas não acaba a bateria."
       ]
     },
     "aviso": {
@@ -1259,72 +1242,45 @@
       "opcoes": [
         {
           "id": "fonte",
-          "texto": "De onde veio essa informação?",
+          "texto": "Quem te contou?",
           "destino": "fonte"
         },
         {
-          "id": "cobrar",
-          "texto": "O que você falou não combina com o que aconteceu.",
-          "destino": "cobrado",
-          "se": {
-            "dia_min": 6
-          },
-          "efeitos": {
-            "marcas": [
-              "cobrou_aviso"
-            ]
-          }
-        },
-        {
           "id": "sair",
-          "texto": "Vou comparar com o que eu vi.",
+          "texto": "Valeu.",
           "destino": ""
         }
       ]
     },
     "fonte": {
       "falas": [
-        "Uma pessoa da fila me mostrou uma gravação. Eu não vi quando foi feita; isso precisa ir junto do que conto."
+        "Meu gravador. Ele é burro, mas não inventa nada."
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Quero rever o que você disse.",
+          "texto": "Repete o que você falou?",
           "destino": "aviso"
         },
         {
           "id": "sair",
-          "texto": "Obrigado por explicar.",
+          "texto": "Valeu.",
           "destino": ""
-        }
-      ]
-    },
-    "cobrado": {
-      "falas": [
-        "Eu posso ter errado. Me conta o que você viu; não quero transformar um relato em ordem."
-      ],
-      "variantes": [
-        {
-          "se": {
-            "mente": true
-          },
-          "falas": [
-            "Eu achei que certeza me fazia parecer mais velho. Repeti o que parecia uma boa notícia sem conferir o aparelho, a data, nada.",
-            "Eu não tenho como garantir o que vem amanhã. Você tem motivo pra conferir o que eu digo."
-          ]
         }
       ]
     },
     "rede": {
       "falas": [
-        "Vou guardar os arquivos com data e erro de configuração. Se você aparecer numa imagem, eu pergunto antes de mostrar. Uma prova não vale a sua exposição.",
-        "Vamos perguntar antes de contar com o que é da outra casa."
+        "Te passo tudo que eu gravar de noite. Se aparecer voz conhecida chamando, a gente compara antes de alguém abrir porta."
       ]
     },
     "distancia": {
       "falas": [
-        "Vou guardar as fotos sem publicar. Você não precisa acreditar nelas pra eu deixar sua casa fora da imagem."
+        "Beleza. Não te mostro mais nada. Mas se ouvir voz conhecida de madrugada, não abre."
       ]
     }
+  },
+  "abrigo": {
+    "confirma": "Entra! Minha mãe vai fazer mil perguntas, finge que tá com sono. Amanhã cedo eu te acordo."
   }
 }

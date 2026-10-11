@@ -5,9 +5,9 @@ extends Node3D
 # eles passam de vez em quando por cima da rua: é o barulho da guerra chegando
 # perto sem precisar descer.
 #
-# O modelo é o mesmo que acompanha a criatura (res://monstro/helicoptero.glb),
+# O modelo é o mesmo que acompanha a criatura (res://modelos/monstro/helicoptero.glb),
 # de frente para o próprio −Z, com os rotores em nós separados.
-const MODELO := preload("res://monstro/helicoptero.glb")
+const MODELO := preload("res://modelos/monstro/helicoptero.glb")
 ## A que altura passam, e quanto do bairro cada passagem cobre.
 const ALTURA := Vector2(28.0, 54.0)
 const TRECHO := 320.0
@@ -30,6 +30,17 @@ func _ready() -> void:
 	var corpo: Node3D = MODELO.instantiate()
 	add_child(corpo)
 	RuaModelo.aplicar_ps1(corpo, resolucao)
+	# As pás batendo no ar, ouvidas de longe.
+	var helice := AudioStreamPlayer3D.new()
+	helice.name = "Helice"
+	helice.stream = Sons3D.helicoptero()
+	helice.unit_size = 40.0
+	helice.max_distance = 400.0
+	helice.volume_db = -2.0
+	helice.pitch_scale = randf_range(0.9, 1.1)
+	add_child(helice)
+	helice.play()
+	visibility_changed.connect(func(): helice.stream_paused = not is_visible_in_tree())
 	_rotor = corpo.find_child("rotor", true, false)
 	_cauda = corpo.find_child("rotor_cauda", true, false)
 	_andado = fase * TRECHO

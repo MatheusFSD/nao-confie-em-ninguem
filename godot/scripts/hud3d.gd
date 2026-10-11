@@ -26,6 +26,9 @@ func _init() -> void:
 		add_child(tarja)
 	tomada = escrever(Vector2(26, 16), 17, Color(1, 1, 1, 0.7))
 	relogio = escrever(Vector2(26, 572), 21, Color("f3e6c8"))
+	# O relógio da cena não bate com o do jogo (que conta em horas inteiras):
+	# fica escondido para não contradizer o HUD.
+	relogio.visible = false
 	linha = escrever(Vector2(0, 578), 17, Color("f0b541"))
 	linha.anchor_left = 1.0
 	linha.anchor_right = 1.0

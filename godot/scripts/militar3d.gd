@@ -11,8 +11,8 @@ extends AnimatableBody3D
 enum Tipo { TANQUE, CAMINHAO }
 
 const CENAS := {
-	Tipo.TANQUE: "res://modelos/tanque.tscn",
-	Tipo.CAMINHAO: "res://modelos/caminhao.tscn",
+	Tipo.TANQUE: "res://modelos/veiculos/tanque.tscn",
+	Tipo.CAMINHAO: "res://modelos/veiculos/caminhao.tscn",
 }
 
 ## Preenchidos por quem cria.
@@ -44,6 +44,17 @@ func _ready() -> void:
 	rotation.y = PI / 2.0 if sentido > 0.0 else -PI / 2.0
 	_modelo = (load(String(CENAS[tipo])) as PackedScene).instantiate()
 	add_child(_modelo)
+	# O ronco de cada um: o tanque com a esteira, o caminhão com o diesel.
+	var motor := AudioStreamPlayer3D.new()
+	motor.name = "Motor"
+	motor.stream = Sons3D.motor_tanque() if tipo == Tipo.TANQUE else Sons3D.motor_caminhao()
+	motor.unit_size = 10.0
+	motor.max_distance = 80.0
+	motor.volume_db = 2.0 if tipo == Tipo.TANQUE else 0.0
+	motor.pitch_scale = randf_range(0.92, 1.06)
+	motor.doppler_tracking = AudioStreamPlayer3D.DOPPLER_TRACKING_PHYSICS_STEP
+	add_child(motor)
+	motor.play()
 	RuaModelo.aplicar_ps1(_modelo, resolucao)
 	# A torre varre a rua enquanto o comboio passa.
 	if tipo == Tipo.TANQUE and "torre_varrendo" in _modelo: _modelo.torre_varrendo = true

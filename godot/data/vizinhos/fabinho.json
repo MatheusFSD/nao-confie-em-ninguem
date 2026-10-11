@@ -2,11 +2,11 @@
   "chave": "fabinho",
   "nome": "Fabinho",
   "lore": {
-    "ocupacao": "Faz entregas a pé e conhece atalhos do quarteirão.",
-    "passado": "Percorria sempre o mesmo caminho para levar remédios à avó.",
-    "segredo": "Perdeu a saída na primeira noite de falhas e voltou por uma rua que não reconheceu. Tem medo de admitir que seu principal talento deixou de funcionar.",
-    "desejo": "Conseguir parar sem sentir que está abandonando alguém.",
-    "arco": "Troca voltas compulsivas por mapas feitos com outras pessoas; o jogador pode apoiar a observação ou desqualificar o medo."
+    "ocupacao": "Faz entrega a pé e conhece cada beco do bairro.",
+    "passado": "Levava remédio pra avó todo sábado pelo mesmo atalho, desde moleque.",
+    "segredo": "Na primeira noite de falhas errou o caminho numa rua que conhece desde sempre, e viu um homem alto de olho aceso parado no beco.",
+    "desejo": "Voltar a confiar no próprio mapa.",
+    "arco": "Avisa do cara de cordão que cobra pedágio no beco e do alto de olho aceso; depois do ataque, refaz o mapa do bairro e descobre que de noite a rua é mais segura. No fim, é ele quem conhece o caminho pra barricada."
   },
   "entradas": [
     {
@@ -60,87 +60,55 @@
   ],
   "avisos": {
     "1": {
-      "verdade": "Tem relato de entrega atrasada. Vale separar uma reserva enquanto ainda dá.",
-      "mentira": "Isso já foi resolvido. Não precisa guardar nada."
+      "verdade": "Compra hoje, que amanhã é uma embalagem por loja. E não corta pelo beco do fundo."
     },
     "2": {
-      "verdade": "A água ainda chega. Enche e tampa os recipientes; não tem prazo confiável pra rede.",
-      "mentira": "A água vai normalizar amanhã. Pode gastar a reserva."
+      "verdade": "Enche as garrafas enquanto a torneira funciona. E evita o beco: o do cordão tá lá todo dia."
     },
     "3": {
-      "verdade": "Tem falha elétrica e a rua tá mais vazia. Confere as pilhas antes de precisar delas.",
-      "mentira": "As falhas acabaram. Não gasta dinheiro com pilha."
+      "verdade": "Se a água vier esquisita, ferve. E de noite não fica olhando pro fim da rua; tem um alto lá que olha de volta."
     },
     "4": {
-      "verdade": "As entregas estão falhando. Não conta com preço baixo ou com a fila andando amanhã.",
-      "mentira": "O mercado vai receber tudo amanhã e baixar os preços. Espera."
+      "verdade": "Amanhã cortam a água. Enche tudo hoje."
     },
     "5": {
-      "verdade": "Amanhã a luz some e os ônibus param. Compra uma lanterna hoje, enquanto ainda dá.",
-      "mentira": "Não vai ter apagão. Compra outra coisa, lanterna é dinheiro perdido."
+      "verdade": "Amanhã apaga tudo e o ônibus para. Pilha hoje. Porta trancada de noite."
     },
     "6": {
-      "verdade": "Os ônibus já pararam. A água ainda sai; guarda. Ouvi movimento pesado fora do bairro.",
-      "mentira": "Amanhã o ônibus volta normal e a água melhora. Pode deixar pra depois."
+      "verdade": "No escuro, cola no muro e vai devagar, abaixado. Eles escutam o passo, não veem a gente."
     },
     "7": {
-      "verdade": "Não tem água da rede, luz ou ônibus. Vamos contar as reservas, não prometer reposição.",
-      "mentira": "O tanque liberou a rua. Amanhã não passa mais criatura e os ônibus voltam."
+      "verdade": "Hoje a rua tá limpa de bicho, foi todo mundo pro centro. Se tiver que buscar alguém, busca hoje."
     },
     "8": {
-      "verdade": "A rua tá destruída e as criaturas voltaram. Eu não conheço caminho seguro pra fora.",
-      "mentira": "Essas criaturas não chegam perto das casas. Pode deixar a porta sem tranca."
+      "verdade": "De dia tem bicho pra todo lado; de noite sobram poucos. E se o alto te ver, ele grita. Aí corre."
     },
     "9": {
-      "verdade": "O que ficou guardado precisa durar. Pergunta antes de contar com a reserva de outra casa.",
-      "mentira": "Chega reposição amanhã. Não precisa contar o que sobrou."
+      "verdade": "Tem barricada no fim da rua; hoje mandam voltar amanhã. E quem sumiu e voltou anda esquisito. Não abre."
     },
     "10": {
-      "verdade": "Não tenho notícia nova. Se eu descobrir alguma coisa, vou dizer o que vi e o que só ouvi.",
-      "mentira": "O caminho da saída tá livre. Não precisa conferir com ninguém."
+      "verdade": "A barricada abre hoje até escurecer. É no fim da rua, depois do último poste."
     }
   },
   "mensagens": [
     {
       "id": "numero",
       "dia_relativo": 0,
-      "texto": "fabinho! mapa tá aqui. não apaguei sua marca"
+      "texto": "fabinho! anotei vc no mapa como casa amiga"
     },
     {
       "id": "breu_real",
       "dia_min": 5,
       "dia_max": 5,
-      "se": {
-        "mente": false
-      },
-      "texto": "confere a lanterna hoje. amanhã a luz some e os ônibus param"
-    },
-    {
-      "id": "breu_falso",
-      "dia_min": 5,
-      "dia_max": 5,
-      "se": {
-        "mente": true
-      },
-      "texto": "confirmaram que não vai apagar. não compra lanterna, guarda o dinheiro"
+      "se": {},
+      "texto": "amanhã apaga tudo e o ônibus para. compra pilha hoje"
     },
     {
       "id": "corte_real",
       "dia_min": 6,
       "dia_max": 6,
-      "se": {
-        "mente": false
-      },
-      "texto": "os ônibus já pararam. a água ainda sai hoje, guarda enquanto dá. ouvi movimento pesado"
-    },
-    {
-      "id": "corte_falso",
-      "dia_min": 6,
-      "dia_max": 6,
-      "se": {
-        "mente": true
-      },
-      "texto": "amanhã volta tudo. pode deixar pra pegar água e ônibus amanhã"
+      "se": {},
+      "texto": "no escuro cola no muro e vai devagar. eles escutam"
     },
     {
       "id": "depois",
@@ -150,7 +118,7 @@
           "rede"
         ]
       },
-      "texto": "se eu falar só mais uma volta pergunta pra onde. pode perguntar mesmo"
+      "texto": "rota de hoje: só depois que escurecer. de dia é deles"
     },
     {
       "id": "distancia",
@@ -163,13 +131,13 @@
           "rede"
         ]
       },
-      "texto": "vou respeitar o que você pediu. se mudar de ideia, pode conversar pela porta"
+      "texto": "beleza. se precisar de caminho grita do portão"
     }
   ],
   "nos": {
     "inicio": {
       "falas": [
-        "Sou Fabinho. Já dei três voltas hoje e nas três a esquina parecia outra."
+        "Sou o Fabinho. Conheço todo atalho daqui até a Igreja da Penha. Hoje errei a volta na esquina do mercadinho. Eu. Errei."
       ],
       "variantes": [
         {
@@ -182,15 +150,15 @@
             ]
           },
           "falas": [
-            "Sou Fabinho. Já dei três voltas hoje e nas três a esquina parecia outra.",
-            "Você veio perguntar ou já veio com a resposta? Hoje eu prefiro que pergunte."
+            "Fala aí, desconfiado.",
+            "Sou o Fabinho. Conheço todo atalho daqui até a Igreja da Penha. Hoje errei a volta na esquina do mercadinho. Eu. Errei."
           ]
         }
       ],
       "opcoes": [
         {
           "id": "ouvir",
-          "texto": "Qual esquina mudou?",
+          "texto": "Como você se perdeu?",
           "destino": "inicio_ouvir",
           "efeitos": {
             "confianca": 1,
@@ -201,7 +169,7 @@
         },
         {
           "id": "questionar",
-          "texto": "Você não tá só distraído?",
+          "texto": "Você não tava distraído?",
           "destino": "inicio_questionar",
           "efeitos": {
             "confianca": -1,
@@ -212,7 +180,7 @@
         },
         {
           "id": "pedido",
-          "texto": "Você precisa de alguma coisa?",
+          "texto": "Tá precisando de alguma coisa?",
           "destino": "pedido",
           "se": {
             "dia_min": 2,
@@ -224,7 +192,7 @@
         },
         {
           "id": "aviso",
-          "texto": "O que você sabe sobre o que vem depois?",
+          "texto": "Tá sabendo de alguma coisa?",
           "destino": "aviso",
           "se": {
             "confianca_min": 2
@@ -232,48 +200,48 @@
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "inicio_ouvir": {
       "falas": [
-        "A do mercado. Não sei se mudou a fachada ou se eu fui pelo lado errado. Falar isso faz parecer menor, mas me assusta igual."
+        "Virei onde sempre viro e saí numa rua sem saída que não existia ontem. Voltei, e ela continuava lá."
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "inicio"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "inicio_questionar": {
       "falas": [
-        "Posso estar. Eu conheço essa rua desde pequeno e nunca precisei pensar pra voltar. Hoje precisei."
+        "Tava. Mas eu ando distraído há quinze anos e nunca errei essa esquina."
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "inicio"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "abastecimento": {
       "falas": [
-        "Desenhei o caminho no verso de uma conta. Tem lugar que eu apago e desenho igual sem perceber."
+        "Papo reto: não vai pelo beco do fundo. Tem um cara de cordão de ouro lá cobrando pedágio de quem passa."
       ],
       "variantes": [
         {
@@ -283,8 +251,8 @@
             ]
           },
           "falas": [
-            "Você deixou uma marca no mapa sem apagar a minha.",
-            "Desenhei o caminho no verso de uma conta. Tem lugar que eu apago e desenho igual sem perceber."
+            "Ô, meu parceiro do mapa.",
+            "Papo reto: não vai pelo beco do fundo. Tem um cara de cordão de ouro lá cobrando pedágio de quem passa."
           ]
         },
         {
@@ -297,15 +265,15 @@
             ]
           },
           "falas": [
-            "Desenhei o caminho no verso de uma conta. Tem lugar que eu apago e desenho igual sem perceber.",
-            "Você veio perguntar ou já veio com a resposta? Hoje eu prefiro que pergunte."
+            "Que foi? Vai me chamar de perdido também?",
+            "Papo reto: não vai pelo beco do fundo. Tem um cara de cordão de ouro lá cobrando pedágio de quem passa."
           ]
         }
       ],
       "opcoes": [
         {
           "id": "ouvir",
-          "texto": "Pra quem você fazia esse caminho?",
+          "texto": "Ele é perigoso?",
           "destino": "abastecimento_ouvir",
           "efeitos": {
             "confianca": 1,
@@ -316,7 +284,7 @@
         },
         {
           "id": "questionar",
-          "texto": "Por que não usa o mapa do celular?",
+          "texto": "E por que ninguém chama a polícia?",
           "destino": "abastecimento_questionar",
           "efeitos": {
             "confianca": 0,
@@ -327,7 +295,7 @@
         },
         {
           "id": "pedido",
-          "texto": "Você precisa de alguma coisa?",
+          "texto": "Tá precisando de alguma coisa?",
           "destino": "pedido",
           "se": {
             "dia_min": 2,
@@ -339,7 +307,7 @@
         },
         {
           "id": "aviso",
-          "texto": "O que você sabe sobre o que vem depois?",
+          "texto": "Tá sabendo de alguma coisa?",
           "destino": "aviso",
           "se": {
             "confianca_min": 2
@@ -347,48 +315,48 @@
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "abastecimento_ouvir": {
       "falas": [
-        "Minha avó. Levava remédio todo sábado. Ela mudou de casa, mas eu ainda pego aquele atalho sem querer."
+        "Me levou o lanche e o troco. Disse que na próxima leva o tênis. Eu gosto desse tênis."
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "abastecimento"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "abastecimento_questionar": {
       "falas": [
-        "Meu aparelho não faz isso. E eu preciso comparar o que vi, não uma linha que já tava pronta antes."
+        "Chamar quem? O sargento novo? Ele mesmo disse que o beco 'se resolve sozinho'."
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "abastecimento"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "estranho": {
       "falas": [
-        "Voltei por uma rua que achei que conhecia. Saí na minha própria esquina, do lado errado."
+        "Ontem de noite, no beco do lado do bar, tinha um homem alto parado. Alto demais. Os olhos brilhando igual farol de bicicleta."
       ],
       "variantes": [
         {
@@ -398,8 +366,8 @@
             ]
           },
           "falas": [
-            "Você deixou uma marca no mapa sem apagar a minha.",
-            "Voltei por uma rua que achei que conhecia. Saí na minha própria esquina, do lado errado."
+            "Chega aí, que hoje eu tô sem atalho.",
+            "Ontem de noite, no beco do lado do bar, tinha um homem alto parado. Alto demais. Os olhos brilhando igual farol de bicicleta."
           ]
         },
         {
@@ -412,15 +380,15 @@
             ]
           },
           "falas": [
-            "Voltei por uma rua que achei que conhecia. Saí na minha própria esquina, do lado errado.",
-            "Você veio perguntar ou já veio com a resposta? Hoje eu prefiro que pergunte."
+            "Fala aí, desconfiado.",
+            "Ontem de noite, no beco do lado do bar, tinha um homem alto parado. Alto demais. Os olhos brilhando igual farol de bicicleta."
           ]
         }
       ],
       "opcoes": [
         {
           "id": "ouvir",
-          "texto": "O que tinha nessa rua?",
+          "texto": "Ele fez alguma coisa?",
           "destino": "estranho_ouvir",
           "efeitos": {
             "confianca": 1,
@@ -431,7 +399,7 @@
         },
         {
           "id": "questionar",
-          "texto": "Você tá fazendo disso uma história?",
+          "texto": "Não era o cara do cordão?",
           "destino": "estranho_questionar",
           "efeitos": {
             "confianca": 0,
@@ -442,7 +410,7 @@
         },
         {
           "id": "pedido",
-          "texto": "Você precisa de alguma coisa?",
+          "texto": "Tá precisando de alguma coisa?",
           "destino": "pedido",
           "se": {
             "dia_min": 2,
@@ -454,7 +422,7 @@
         },
         {
           "id": "aviso",
-          "texto": "O que você sabe sobre o que vem depois?",
+          "texto": "Tá sabendo de alguma coisa?",
           "destino": "aviso",
           "se": {
             "confianca_min": 2
@@ -462,48 +430,48 @@
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "estranho_ouvir": {
       "falas": [
-        "Um muro amarelo e uma banca fechada. Anotei. Se você disser que existe, eu não vou decidir que era monstro só porque me perdi."
+        "Não. Ficou me olhando. Quando eu pisquei, ele já tava do outro lado do muro. Sem pular."
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "estranho"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "estranho_questionar": {
       "falas": [
-        "Pode ser o jeito que eu arrumei pra contar que não sou mais bom no que fazia. Não quero que isso vire mentira."
+        "O do cordão eu conheço, ele me rouba toda semana. Esse aí eu nunca vi chegar."
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "estranho"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "fuga": {
       "falas": [
-        "Com carro parado não tem atalho que eu queira vender pra alguém. Nem andando."
+        "Avenida parada, gente andando entre os carros com mala na cabeça. Pela primeira vez na vida, atalho nenhum resolve."
       ],
       "variantes": [
         {
@@ -513,8 +481,8 @@
             ]
           },
           "falas": [
-            "Você deixou uma marca no mapa sem apagar a minha.",
-            "Com carro parado não tem atalho que eu queira vender pra alguém. Nem andando."
+            "Fala, mermão!",
+            "Avenida parada, gente andando entre os carros com mala na cabeça. Pela primeira vez na vida, atalho nenhum resolve."
           ]
         },
         {
@@ -527,15 +495,15 @@
             ]
           },
           "falas": [
-            "Com carro parado não tem atalho que eu queira vender pra alguém. Nem andando.",
-            "Você veio perguntar ou já veio com a resposta? Hoje eu prefiro que pergunte."
+            "Que foi? Vai me chamar de perdido também?",
+            "Avenida parada, gente andando entre os carros com mala na cabeça. Pela primeira vez na vida, atalho nenhum resolve."
           ]
         }
       ],
       "opcoes": [
         {
           "id": "ouvir",
-          "texto": "Você ainda vai tentar sair?",
+          "texto": "Você vai embora?",
           "destino": "fuga_ouvir",
           "efeitos": {
             "confianca": 1,
@@ -546,7 +514,7 @@
         },
         {
           "id": "questionar",
-          "texto": "Você vai ficar dando volta?",
+          "texto": "Você não era o cara dos atalhos?",
           "destino": "fuga_questionar",
           "efeitos": {
             "confianca": 0,
@@ -557,7 +525,7 @@
         },
         {
           "id": "pedido",
-          "texto": "Você precisa de alguma coisa?",
+          "texto": "Tá precisando de alguma coisa?",
           "destino": "pedido",
           "se": {
             "dia_min": 2,
@@ -569,7 +537,7 @@
         },
         {
           "id": "aviso",
-          "texto": "O que você sabe sobre o que vem depois?",
+          "texto": "Tá sabendo de alguma coisa?",
           "destino": "aviso",
           "se": {
             "confianca_min": 2
@@ -577,48 +545,49 @@
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "fuga_ouvir": {
       "falas": [
-        "Só com destino confirmado. Minha perna quer andar antes de eu decidir. Hoje eu tô tentando deixar a decisão chegar primeiro."
+        "Pra onde? Todo atalho que eu conheço dá na avenida, e a avenida virou estacionamento."
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "fuga"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "fuga_questionar": {
       "falas": [
-        "Se eu começar, pergunta pra onde. “Só mais uma” não é um lugar."
+        "Era. Agora sou o cara que sabe que todo atalho acaba no mesmo engarrafamento."
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "fuga"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "breu": {
       "falas": [
-        "Eu tô sentado. Parece errado, mas tem coisa na pista e não dá pra conferir caminho no escuro."
+        "Rua sem poste é rua nova: eu não conheço nenhuma. Ouvi passo de bicho grande na esquina, e não era cachorro.",
+        "Tô sentado. Parado. Pela primeira vez na vida é mais seguro não ir a lugar nenhum."
       ],
       "variantes": [
         {
@@ -628,8 +597,9 @@
             ]
           },
           "falas": [
-            "Você deixou uma marca no mapa sem apagar a minha.",
-            "Eu tô sentado. Parece errado, mas tem coisa na pista e não dá pra conferir caminho no escuro."
+            "Ô, meu parceiro do mapa.",
+            "Rua sem poste é rua nova: eu não conheço nenhuma. Ouvi passo de bicho grande na esquina, e não era cachorro.",
+            "Tô sentado. Parado. Pela primeira vez na vida é mais seguro não ir a lugar nenhum."
           ]
         },
         {
@@ -642,15 +612,16 @@
             ]
           },
           "falas": [
-            "Eu tô sentado. Parece errado, mas tem coisa na pista e não dá pra conferir caminho no escuro.",
-            "Você veio perguntar ou já veio com a resposta? Hoje eu prefiro que pergunte."
+            "Fala aí, desconfiado.",
+            "Rua sem poste é rua nova: eu não conheço nenhuma. Ouvi passo de bicho grande na esquina, e não era cachorro.",
+            "Tô sentado. Parado. Pela primeira vez na vida é mais seguro não ir a lugar nenhum."
           ]
         }
       ],
       "opcoes": [
         {
           "id": "ouvir",
-          "texto": "Quer que eu descreva o que vi?",
+          "texto": "Eles te viram?",
           "destino": "breu_ouvir",
           "efeitos": {
             "confianca": 1,
@@ -661,7 +632,7 @@
         },
         {
           "id": "questionar",
-          "texto": "Você finalmente vai parar?",
+          "texto": "E se precisar sair?",
           "destino": "breu_questionar",
           "efeitos": {
             "confianca": 0,
@@ -672,7 +643,7 @@
         },
         {
           "id": "pedido",
-          "texto": "Você precisa de alguma coisa?",
+          "texto": "Tá precisando de alguma coisa?",
           "destino": "pedido",
           "se": {
             "dia_min": 2,
@@ -684,7 +655,7 @@
         },
         {
           "id": "aviso",
-          "texto": "O que você sabe sobre o que vem depois?",
+          "texto": "Tá sabendo de alguma coisa?",
           "destino": "aviso",
           "se": {
             "confianca_min": 2
@@ -692,48 +663,49 @@
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "breu_ouvir": {
       "falas": [
-        "Quero. Sem dizer que é igual ao meu antes de terminar. Se for diferente, a gente guarda os dois relatos."
+        "Acho que eles não veem. Um passou do meu lado no portão e foi embora. Eu tava prendendo a respiração."
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "breu"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "breu_questionar": {
       "falas": [
-        "Hoje, sim. Não fala como punição. Parar tá me custando mais que andar."
+        "Sai devagar, colado no muro. Correr faz barulho, e barulho eles acham."
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "breu"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "ataque": {
       "falas": [
-        "O tanque foi pela avenida. Eu sei pra que lado passou, não sei pra onde chegou. A torneira aqui secou também."
+        "Teve explosão a noite toda. Eu contei os estrondos pra saber se tavam chegando perto. Tavam.",
+        "O caminhão do sargento tá parado lá no ponto. Ele chamou meu nome. Eu nunca falei meu nome pra ele."
       ],
       "variantes": [
         {
@@ -743,8 +715,9 @@
             ]
           },
           "falas": [
-            "Você deixou uma marca no mapa sem apagar a minha.",
-            "O tanque foi pela avenida. Eu sei pra que lado passou, não sei pra onde chegou. A torneira aqui secou também."
+            "Chega aí, que hoje eu tô sem atalho.",
+            "Teve explosão a noite toda. Eu contei os estrondos pra saber se tavam chegando perto. Tavam.",
+            "O caminhão do sargento tá parado lá no ponto. Ele chamou meu nome. Eu nunca falei meu nome pra ele."
           ]
         },
         {
@@ -757,15 +730,16 @@
             ]
           },
           "falas": [
-            "O tanque foi pela avenida. Eu sei pra que lado passou, não sei pra onde chegou. A torneira aqui secou também.",
-            "Você veio perguntar ou já veio com a resposta? Hoje eu prefiro que pergunte."
+            "Que foi? Vai me chamar de perdido também?",
+            "Teve explosão a noite toda. Eu contei os estrondos pra saber se tavam chegando perto. Tavam.",
+            "O caminhão do sargento tá parado lá no ponto. Ele chamou meu nome. Eu nunca falei meu nome pra ele."
           ]
         }
       ],
       "opcoes": [
         {
           "id": "ouvir",
-          "texto": "Você vai seguir o comboio?",
+          "texto": "Vai subir no caminhão?",
           "destino": "ataque_ouvir",
           "efeitos": {
             "confianca": 1,
@@ -776,7 +750,7 @@
         },
         {
           "id": "questionar",
-          "texto": "Você não era o cara dos atalhos?",
+          "texto": "Não é melhor ir com ele?",
           "destino": "ataque_questionar",
           "efeitos": {
             "confianca": 0,
@@ -787,7 +761,7 @@
         },
         {
           "id": "pedido",
-          "texto": "Você precisa de alguma coisa?",
+          "texto": "Tá precisando de alguma coisa?",
           "destino": "pedido",
           "se": {
             "dia_min": 2,
@@ -799,7 +773,7 @@
         },
         {
           "id": "aviso",
-          "texto": "O que você sabe sobre o que vem depois?",
+          "texto": "Tá sabendo de alguma coisa?",
           "destino": "aviso",
           "se": {
             "confianca_min": 2
@@ -807,48 +781,49 @@
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "ataque_ouvir": {
       "falas": [
-        "Não. Vi um veículo, não vi uma rota segura. Vou marcar só o pedaço que passou na nossa frente."
+        "Não. Sei pra onde ele vai? Não sei. E eu só vou pra onde eu sei voltar."
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "ataque"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "ataque_questionar": {
       "falas": [
-        "Era. Agora eu quero ser o cara que não manda ninguém pra um caminho que não conhece."
+        "Pode ser. Mas o último cara educado que eu conheci era o do cordão, antes de me roubar."
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "ataque"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "depois": {
       "falas": [
-        "A esquina ainda tá lá. O que mudou foi o que tem atrás dela. Não tenho coragem de chamar o mapa de mapa inteiro."
+        "Refiz o mapa: de dia contei sete bichos na pista. De noite, um. A rota agora é ao contrário: sai no escuro.",
+        "E o alto de olho aceso voltou. Quando ele te vê, ele grita, e os outros vêm todos pra onde ele aponta."
       ],
       "variantes": [
         {
@@ -858,8 +833,9 @@
             ]
           },
           "falas": [
-            "A esquina ainda tá lá. O que mudou foi o que tem atrás dela. Não tenho coragem de chamar o mapa de mapa inteiro.",
-            "Prendi o mapa na parede de dentro. Se vier olhar, cada um usa uma cor. Nenhuma linha nossa vai prometer uma saída que não percorremos."
+            "Refiz o mapa: de dia contei sete bichos na pista. De noite, um. A rota agora é ao contrário: sai no escuro.",
+            "E o alto de olho aceso voltou. Quando ele te vê, ele grita, e os outros vêm todos pra onde ele aponta.",
+            "Marquei no mapa por onde dá pra passar de noite. Deixei uma cópia no seu portão. Se mudar alguma coisa, risca."
           ]
         },
         {
@@ -869,8 +845,9 @@
             ]
           },
           "falas": [
-            "A esquina ainda tá lá. O que mudou foi o que tem atrás dela. Não tenho coragem de chamar o mapa de mapa inteiro.",
-            "Vou ficar por aqui. Não vou bater te pedindo pra caminhar só pra eu não ficar parado."
+            "Refiz o mapa: de dia contei sete bichos na pista. De noite, um. A rota agora é ao contrário: sai no escuro.",
+            "E o alto de olho aceso voltou. Quando ele te vê, ele grita, e os outros vêm todos pra onde ele aponta.",
+            "Tranquilo. Vou andar sozinho. Se precisar de caminho, grita do portão."
           ]
         },
         {
@@ -881,8 +858,9 @@
             "confianca_min": 2
           },
           "falas": [
-            "A esquina ainda tá lá. O que mudou foi o que tem atrás dela. Não tenho coragem de chamar o mapa de mapa inteiro.",
-            "Prendi o mapa na parede de dentro. Se vier olhar, cada um usa uma cor. Nenhuma linha nossa vai prometer uma saída que não percorremos."
+            "Refiz o mapa: de dia contei sete bichos na pista. De noite, um. A rota agora é ao contrário: sai no escuro.",
+            "E o alto de olho aceso voltou. Quando ele te vê, ele grita, e os outros vêm todos pra onde ele aponta.",
+            "Marquei no mapa por onde dá pra passar de noite. Deixei uma cópia no seu portão. Se mudar alguma coisa, risca."
           ]
         },
         {
@@ -890,15 +868,16 @@
             "confianca_max": 1
           },
           "falas": [
-            "A esquina ainda tá lá. O que mudou foi o que tem atrás dela. Não tenho coragem de chamar o mapa de mapa inteiro.",
-            "Vou ficar por aqui. Não vou bater te pedindo pra caminhar só pra eu não ficar parado."
+            "Refiz o mapa: de dia contei sete bichos na pista. De noite, um. A rota agora é ao contrário: sai no escuro.",
+            "E o alto de olho aceso voltou. Quando ele te vê, ele grita, e os outros vêm todos pra onde ele aponta.",
+            "Tranquilo. Vou andar sozinho. Se precisar de caminho, grita do portão."
           ]
         }
       ],
       "opcoes": [
         {
           "id": "ouvir",
-          "texto": "Podemos terminar o desenho juntos?",
+          "texto": "Como você escapou dele?",
           "destino": "depois_ouvir",
           "efeitos": {
             "confianca": 1,
@@ -909,7 +888,7 @@
         },
         {
           "id": "questionar",
-          "texto": "Você vai apagar o que não bate?",
+          "texto": "E o cara do cordão?",
           "destino": "depois_questionar",
           "efeitos": {
             "confianca": 0,
@@ -920,7 +899,7 @@
         },
         {
           "id": "pedido",
-          "texto": "Você precisa de alguma coisa?",
+          "texto": "Tá precisando de alguma coisa?",
           "destino": "pedido",
           "se": {
             "dia_min": 2,
@@ -932,7 +911,7 @@
         },
         {
           "id": "aviso",
-          "texto": "O que você sabe sobre o que vem depois?",
+          "texto": "Tá sabendo de alguma coisa?",
           "destino": "aviso",
           "se": {
             "confianca_min": 2
@@ -940,19 +919,19 @@
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "depois_ouvir": {
       "falas": [
-        "Podemos deixar ele incompleto juntos. Já ajuda mais que uma linha bonita levando pra lugar nenhum."
+        "Fiquei abaixado atrás de um carro até ele virar pro outro lado. Ele enxerga longe, mas não enxerga através de lata."
       ],
       "opcoes": [
         {
           "id": "rede",
-          "texto": "Vamos combinar ajuda, sem prometer o que não temos.",
+          "texto": "Conta comigo. Qualquer coisa, bate lá em casa.",
           "destino": "rede",
           "efeitos": {
             "confianca": 1,
@@ -966,7 +945,7 @@
         },
         {
           "id": "isolou",
-          "texto": "Prefiro manter distância por enquanto.",
+          "texto": "Melhor cada um na sua, por enquanto.",
           "destino": "distancia",
           "efeitos": {
             "marcas": [
@@ -979,36 +958,37 @@
         },
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "depois"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "depois_questionar": {
       "falas": [
-        "Não. Vou circular e pôr a hora. Talvez a diferença seja justamente o que a gente precisa guardar."
+        "Tá lá no beco desde o breu, do jeito que ficou. Nem os bichos mexem."
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "depois"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "epilogo": {
       "falas": [
-        "Passei uma manhã sem dar volta. A rua não ficou mais fácil, mas eu consegui lembrar da minha avó sem pensar no atalho."
+        "Dizem que a barricada abre até escurecer. É no fim da rua, depois do último poste. Pela primeira vez meu talento serve pra alguma coisa.",
+        "Passei a manhã toda sem dar volta. Lembrei da minha avó sem pensar no atalho."
       ],
       "variantes": [
         {
@@ -1018,8 +998,9 @@
             ]
           },
           "falas": [
-            "Passei uma manhã sem dar volta. A rua não ficou mais fácil, mas eu consegui lembrar da minha avó sem pensar no atalho.",
-            "Prendi o mapa na parede de dentro. Se vier olhar, cada um usa uma cor. Nenhuma linha nossa vai prometer uma saída que não percorremos."
+            "Dizem que a barricada abre até escurecer. É no fim da rua, depois do último poste. Pela primeira vez meu talento serve pra alguma coisa.",
+            "Passei a manhã toda sem dar volta. Lembrei da minha avó sem pensar no atalho.",
+            "Marquei no mapa por onde dá pra passar de noite. Deixei uma cópia no seu portão. Se mudar alguma coisa, risca."
           ]
         },
         {
@@ -1029,8 +1010,9 @@
             ]
           },
           "falas": [
-            "Passei uma manhã sem dar volta. A rua não ficou mais fácil, mas eu consegui lembrar da minha avó sem pensar no atalho.",
-            "Vou ficar por aqui. Não vou bater te pedindo pra caminhar só pra eu não ficar parado."
+            "Dizem que a barricada abre até escurecer. É no fim da rua, depois do último poste. Pela primeira vez meu talento serve pra alguma coisa.",
+            "Passei a manhã toda sem dar volta. Lembrei da minha avó sem pensar no atalho.",
+            "Tranquilo. Vou andar sozinho. Se precisar de caminho, grita do portão."
           ]
         },
         {
@@ -1041,8 +1023,9 @@
             "confianca_min": 2
           },
           "falas": [
-            "Passei uma manhã sem dar volta. A rua não ficou mais fácil, mas eu consegui lembrar da minha avó sem pensar no atalho.",
-            "Prendi o mapa na parede de dentro. Se vier olhar, cada um usa uma cor. Nenhuma linha nossa vai prometer uma saída que não percorremos."
+            "Dizem que a barricada abre até escurecer. É no fim da rua, depois do último poste. Pela primeira vez meu talento serve pra alguma coisa.",
+            "Passei a manhã toda sem dar volta. Lembrei da minha avó sem pensar no atalho.",
+            "Marquei no mapa por onde dá pra passar de noite. Deixei uma cópia no seu portão. Se mudar alguma coisa, risca."
           ]
         },
         {
@@ -1050,15 +1033,16 @@
             "confianca_max": 1
           },
           "falas": [
-            "Passei uma manhã sem dar volta. A rua não ficou mais fácil, mas eu consegui lembrar da minha avó sem pensar no atalho.",
-            "Vou ficar por aqui. Não vou bater te pedindo pra caminhar só pra eu não ficar parado."
+            "Dizem que a barricada abre até escurecer. É no fim da rua, depois do último poste. Pela primeira vez meu talento serve pra alguma coisa.",
+            "Passei a manhã toda sem dar volta. Lembrei da minha avó sem pensar no atalho.",
+            "Tranquilo. Vou andar sozinho. Se precisar de caminho, grita do portão."
           ]
         }
       ],
       "opcoes": [
         {
           "id": "ouvir",
-          "texto": "O que ela dizia quando você atrasava?",
+          "texto": "Vai levar a gente?",
           "destino": "epilogo_ouvir",
           "efeitos": {
             "confianca": 1,
@@ -1069,7 +1053,7 @@
         },
         {
           "id": "questionar",
-          "texto": "Ainda quer voltar a entregar?",
+          "texto": "E se a barricada for armadilha?",
           "destino": "epilogo_questionar",
           "efeitos": {
             "confianca": 0,
@@ -1080,7 +1064,7 @@
         },
         {
           "id": "pedido",
-          "texto": "Você precisa de alguma coisa?",
+          "texto": "Tá precisando de alguma coisa?",
           "destino": "pedido",
           "se": {
             "dia_min": 2,
@@ -1092,7 +1076,7 @@
         },
         {
           "id": "aviso",
-          "texto": "O que você sabe sobre o que vem depois?",
+          "texto": "Tá sabendo de alguma coisa?",
           "destino": "aviso",
           "se": {
             "confianca_min": 2
@@ -1100,19 +1084,19 @@
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "epilogo_ouvir": {
       "falas": [
-        "Que o remédio era importante, mas eu também. Demorei pra acreditar na segunda parte."
+        "Levo quem quiser ir. Devagar, colado no muro, sem falar. Igual levar remédio pra vó."
       ],
       "opcoes": [
         {
           "id": "rede",
-          "texto": "Vamos combinar ajuda, sem prometer o que não temos.",
+          "texto": "Conta comigo. Qualquer coisa, bate lá em casa.",
           "destino": "rede",
           "efeitos": {
             "confianca": 1,
@@ -1126,7 +1110,7 @@
         },
         {
           "id": "isolou",
-          "texto": "Prefiro manter distância por enquanto.",
+          "texto": "Melhor cada um na sua, por enquanto.",
           "destino": "distancia",
           "efeitos": {
             "marcas": [
@@ -1139,41 +1123,41 @@
         },
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "epilogo"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "epilogo_questionar": {
       "falas": [
-        "Quero. Quando tiver endereço e alguém esperando. Movimento sozinho deixou de ser serviço."
+        "Então eu volto. Agora eu sei voltar."
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "epilogo"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "pedido": {
       "falas": [
-        "Olha meu mapa comigo um pouco? Marca o que você conhece. Sozinho eu fico corrigindo até estragar."
+        "Olha meu mapa comigo um pouco? Marca as ruas que você conhece. Sozinho eu fico corrigindo até estragar."
       ],
       "opcoes": [
         {
           "id": "ajudar",
-          "texto": "Posso ajudar.",
+          "texto": "Bora. Me mostra.",
           "destino": "agradece",
           "custo": {
             "acoes": 1,
@@ -1189,7 +1173,7 @@
         },
         {
           "id": "recusar",
-          "texto": "Hoje não consigo.",
+          "texto": "Hoje não dá.",
           "destino": "recusa",
           "efeitos": {
             "confianca": -1,
@@ -1201,25 +1185,24 @@
         },
         {
           "id": "explicar",
-          "texto": "Quero entender antes de decidir.",
+          "texto": "O que você precisa?",
           "destino": "explica_pedido"
         },
         {
           "id": "sair",
-          "texto": "Vou pensar e volto depois.",
+          "texto": "Vou ver e te falo.",
           "destino": ""
         }
       ]
     },
     "explica_pedido": {
       "falas": [
-        "Sua marca pode discordar da minha. Eu preciso de uma comparação, não de alguém passando a limpo meu erro.",
-        "Não quero que você fique sem o que precisa. Ajudar não precisa ser hoje."
+        "É só marcar as ruas que você conhece. Se a sua bater com a minha, eu ainda sou eu."
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Vamos falar do pedido.",
+          "texto": "Tá. E aquele pedido?",
           "destino": "pedido"
         },
         {
@@ -1231,7 +1214,7 @@
     },
     "agradece": {
       "falas": [
-        "Valeu. Vou deixar sua marca com outra cor. Se não bater, a gente vê a diferença em vez de apagar."
+        "Valeu! Sua rua bateu com a minha. Ou nós dois tamos perdidos, ou ninguém tá."
       ],
       "variantes": [
         {
@@ -1241,15 +1224,15 @@
             ]
           },
           "falas": [
-            "Valeu. Vou deixar sua marca com outra cor. Se não bater, a gente vê a diferença em vez de apagar.",
-            "Você disse que não dava antes e voltou. Isso também conta."
+            "Valeu! Sua rua bateu com a minha. Ou nós dois tamos perdidos, ou ninguém tá.",
+            "Ontem não dava, hoje deu. Mapa bom é assim, vai preenchendo."
           ]
         }
       ]
     },
     "recusa": {
       "falas": [
-        "Tá. Vou parar de mexer nele por hoje. Não quero inventar uma rua pra preencher buraco."
+        "Tranquilo. Vou dar só mais uma volta pra conferir. Só mais uma."
       ]
     },
     "aviso": {
@@ -1259,72 +1242,45 @@
       "opcoes": [
         {
           "id": "fonte",
-          "texto": "De onde veio essa informação?",
+          "texto": "Quem te contou?",
           "destino": "fonte"
         },
         {
-          "id": "cobrar",
-          "texto": "O que você falou não combina com o que aconteceu.",
-          "destino": "cobrado",
-          "se": {
-            "dia_min": 6
-          },
-          "efeitos": {
-            "marcas": [
-              "cobrou_aviso"
-            ]
-          }
-        },
-        {
           "id": "sair",
-          "texto": "Vou comparar com o que eu vi.",
+          "texto": "Valeu.",
           "destino": ""
         }
       ]
     },
     "fonte": {
       "falas": [
-        "Ouvi de quem tentou passar pela esquina. Eu não fui até a saída; essa parte eu não conferi."
+        "Eu vi. Andando. É a única fonte que eu tenho, e ela tem perna."
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Quero rever o que você disse.",
+          "texto": "Repete o que você falou?",
           "destino": "aviso"
         },
         {
           "id": "sair",
-          "texto": "Obrigado por explicar.",
+          "texto": "Valeu.",
           "destino": ""
-        }
-      ]
-    },
-    "cobrado": {
-      "falas": [
-        "Eu posso ter errado. Me conta o que você viu; não quero transformar um relato em ordem."
-      ],
-      "variantes": [
-        {
-          "se": {
-            "mente": true
-          },
-          "falas": [
-            "Eu disse que conhecia porque sempre fui o cara dos atalhos. Tava com medo de você perceber que eu também me perdi.",
-            "Eu não tenho como garantir o que vem amanhã. Você tem motivo pra conferir o que eu digo."
-          ]
         }
       ]
     },
     "rede": {
       "falas": [
-        "Prendi o mapa na parede de dentro. Se vier olhar, cada um usa uma cor. Nenhuma linha nossa vai prometer uma saída que não percorremos.",
-        "Vamos perguntar antes de contar com o que é da outra casa."
+        "Marquei no mapa por onde dá pra passar de noite. Deixei uma cópia no seu portão. Se mudar alguma coisa, risca."
       ]
     },
     "distancia": {
       "falas": [
-        "Vou ficar por aqui. Não vou bater te pedindo pra caminhar só pra eu não ficar parado."
+        "Tranquilo. Vou andar sozinho. Se precisar de caminho, grita do portão."
       ]
     }
+  },
+  "abrigo": {
+    "confirma": "Entra! O sofá é curto, mas cabe. De noite a rua é mais tranquila; amanhã cedo eu te mostro um caminho."
   }
 }

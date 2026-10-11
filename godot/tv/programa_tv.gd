@@ -16,6 +16,9 @@ var falas_de_fora: Array = []
 var loop_de_fora := 0.0
 ## O letreiro que corre no rodapé do telejornal.
 var rodape := RODAPE
+## O que passa no telão atrás da âncora: "ciencia" (o átomo da equipe de
+## pesquisa) ou "desaparecidos" (rostos sem foto, de quem sumiu).
+var telao := "ciencia"
 
 const PRONUNCIAMENTO := {
 	"loop": 12.0,
@@ -233,6 +236,11 @@ func _rosto(boca: int, pisca: bool) -> void:
 
 func _desenhar_telao(x: float) -> void:
 	tela_img.copy_from(tela_base)
+	if telao == "desaparecidos":
+		_telao_desaparecidos(x)
+		tela_img.flip_y()
+		tela_tex.update(tela_img)
+		return
 	tela_img.fill_rect(Rect2i(0, 0, 64, 31), Color("#0d2350"))
 	var a: float = x / float(P["loop"]) * TAU * 6.0
 	for o in 3:
@@ -246,6 +254,38 @@ func _desenhar_telao(x: float) -> void:
 	tela_img.fill_rect(Rect2i(30, 13, 4, 4), Color("#e8453c"))
 	tela_img.flip_y()
 	tela_tex.update(tela_img)
+
+## Quatro retratos sem rosto, de cabeça e ombros, e uma tarja vermelha. Um
+## deles pisca: o mais recente.
+func _telao_desaparecidos(x: float) -> void:
+	tela_img.fill_rect(Rect2i(0, 0, 64, 31), Color("#1a0d0d"))
+	for i in 4:
+		var px := 4 + i * 15
+		var fundo := Color("#3a3f46") if not (i == 3 and int(x * 2.0) % 2 == 0) else Color("#5a2a2a")
+		tela_img.fill_rect(Rect2i(px, 3, 12, 15), fundo)
+		tela_img.fill_rect(Rect2i(px + 4, 5, 4, 5), Color("#15171a"))
+		tela_img.fill_rect(Rect2i(px + 2, 11, 8, 7), Color("#15171a"))
+		tela_img.fill_rect(Rect2i(px + 5, 6, 2, 2), Color("#9aa0a8"))
+	tela_img.fill_rect(Rect2i(0, 21, 64, 8), Color("#b8262d"))
+	for k in 12:
+		tela_img.fill_rect(Rect2i(4 + k * 5, 24, 3, 2), Color("#f2e6d8"))
+	# A plaquinha de baixo, que dizia CIÊNCIA, vira DESAPARECIDOS em letra 3 × 5.
+	tela_img.fill_rect(Rect2i(0, 31, 64, 9), Color("#f2c62a"))
+	var cursor := 6
+	for letra in "DESAPARECIDOS":
+		var linhas: Array = LETRAS[letra]
+		for y in 5:
+			for c in 3:
+				if String(linhas[y])[c] == "1": tela_img.set_pixel(cursor + c, 33 + y, Color("#1a0d0d"))
+		cursor += 4
+
+const LETRAS := {
+	"D": ["110", "101", "101", "101", "110"], "E": ["111", "100", "110", "100", "111"],
+	"S": ["111", "100", "111", "001", "111"], "A": ["010", "101", "111", "101", "101"],
+	"P": ["110", "101", "110", "100", "100"], "R": ["110", "101", "110", "101", "101"],
+	"C": ["111", "100", "100", "100", "111"], "I": ["111", "010", "010", "010", "111"],
+	"O": ["111", "101", "101", "101", "111"],
+}
 
 func _camera(x: float) -> void:
 	if tipo == "pronunciamento":

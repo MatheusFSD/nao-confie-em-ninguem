@@ -1,0 +1,43 @@
+{
+  "chegada": [
+    "Pronto, cheguei viva. Hoje em dia isso já dá manchete.",
+    "Toma, o rádio. É a pilha: quando a luz acabar de vez, é ele que vai falar com a gente.",
+    "Guarda as pilhas boas pra noite. Fica na sua mochila, que eu perco tudo."
+  ],
+  "dias": {
+    "6": [
+      "Que escuridão, né? Nem em apagão de verão a rua ficava assim.",
+      "Deixa que de madrugada eu fico de olho na porta. Pode dormir.",
+      "Lembra quando a gente brincava de toque de recolher? Era brincadeira."
+    ],
+    "7": [
+      "Ouviu os caminhões? O rádio chama de evacuação. Eu não gostei do jeito que aquele sargento sorri.",
+      "Se você quiser ir, eu não te seguro. Mas pensa bem antes de dar seu nome pra lista de alguém.",
+      "A comida tá contada. Eu como menos, não discute."
+    ],
+    "8": [
+      "O bairro ficou quieto demais. Nem cachorro late mais.",
+      "Ouvi aquele grito de novo, lá pros becos. Aquela coisa vê a gente, eu tenho certeza.",
+      "Mas repara: de dia eles tomam a rua. De noite somem quase todos. Se precisar sair, sai no escuro, e devagar."
+    ],
+    "9": [
+      "O rádio pegou uma voz nova: tem gente na barricada do fim da rua.",
+      "Pode ser gente boa. Pode ser só gente. Hoje em dia é difícil saber a diferença.",
+      "Eu confio em você pra decidir. Só não confia em ninguém sorrindo demais."
+    ],
+    "10": [
+      "Hoje é o último dia que o rádio falou da barricada. Depois, ninguém sabe.",
+      "Se for, eu vou junto. Se ficar, eu fico. Mas decide antes do escuro.",
+      "E obrigada por ter ido me buscar. Não falei antes porque não sou dessas."
+    ]
+  },
+  "outro_dia": [
+    "Tô aqui. Não vou a lugar nenhum, a não ser que você vá.",
+    "O rádio tá falando o de sempre: que está tudo sob controle. De quem, não dizem."
+  ],
+  "repetir": [
+    "Já falei tudo, chato. Vai fazer alguma coisa útil.",
+    "Tô aqui, tô viva. Pode ir.",
+    "Se for ficar me olhando, pelo menos esquenta uma água."
+  ]
+}

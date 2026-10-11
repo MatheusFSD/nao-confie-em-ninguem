@@ -1,0 +1,30 @@
+{
+  "_leia": "Aparições do Observador. 'dias' [de, até] e 'periodos' (0 manhã, 1 tarde, 2 fim de tarde, 3 anoitecer, 4 noite) dizem quando ele pode surgir; 'lugares' aponta um grupo abaixo, e a cada partida/dia um ponto do grupo é sorteado. Modo 'desviar': some quando o jogador o vê e desvia o olhar. Modo 'fugir': quando o jogador chega a 'alerta' metros ele vira, corre e some. Ele só surge longe e fora da vista do jogador, um por vez, e cada aparição acontece no máximo uma vez por dia. Nunca no breu (6) nem no ataque (7).",
+  "regras": {
+    "distancia_minima_para_surgir": 14.0,
+    "segundos_para_sumir_depois_de_visto": 0.6,
+    "alcance_da_vista": 70.0
+  },
+  "lugares": {
+    "rua_leste": [[65.0, 0.0, 28.2], [67.0, 0.0, 30.8]],
+    "rua_oeste": [[-49.5, 0.0, 28.2], [-51.5, 0.0, 25.6]],
+    "frente_da_casa": [[12.5, 0.0, 34.8], [16.0, 0.0, 34.8], [9.0, 0.0, 34.8]],
+    "engarrafamento": [[30.0, 0.0, 34.8], [-8.0, 0.0, 34.8], [44.0, 0.0, 34.8]],
+    "becos_entrada": [[-17.0, 0.0, 47.0], [8.5, 0.0, 53.0], [53.0, 0.0, 47.0]],
+    "becos_fundo": [[10.0, 0.0, 44.0], [28.0, 0.0, 46.0], [52.0, 0.0, 46.0], [-34.0, 0.0, 48.0], [-12.0, 0.0, 50.0], [60.0, 0.0, 56.0], [54.0, 0.0, 58.0], [50.0, 0.0, 66.0], [-24.0, 0.0, 62.0], [-2.0, 0.0, 54.0], [40.0, 0.0, 58.0], [-28.0, 0.0, 66.0]]
+  },
+  "aparicoes": [
+    {"id": "d1_no_fim_da_rua", "dias": [1, 1], "periodos": [3, 4], "lugares": "rua_leste", "modo": "desviar"},
+    {"id": "d2_no_beco", "dias": [2, 2], "periodos": [4], "lugares": "becos_entrada", "modo": "fugir", "alerta": 7.0},
+    {"id": "d3_na_outra_ponta", "dias": [3, 3], "periodos": [1, 2], "lugares": "rua_oeste", "modo": "desviar"},
+    {"id": "d3_olhando_a_casa", "dias": [3, 3], "periodos": [4], "lugares": "frente_da_casa", "modo": "desviar", "olha_para_a_casa": true, "alerta": 9.0},
+    {"id": "d4_fundo_do_beco", "dias": [4, 4], "periodos": [3], "lugares": "becos_fundo", "modo": "fugir", "alerta": 7.0},
+    {"id": "d4_boca_do_beco", "dias": [4, 4], "periodos": [4], "lugares": "becos_entrada", "modo": "fugir", "alerta": 7.0},
+    {"id": "d5_entre_os_carros", "dias": [5, 5], "periodos": [1, 2], "lugares": "engarrafamento", "modo": "desviar", "alerta": 8.0},
+    {"id": "d5_no_beco", "dias": [5, 5], "periodos": [3, 4], "lugares": "becos_fundo", "modo": "fugir", "alerta": 7.0},
+    {"id": "ruinas_no_fim_da_rua", "dias": [8, 99], "periodos": [2, 3], "lugares": "rua_leste", "modo": "desviar"},
+    {"id": "ruinas_no_beco", "dias": [8, 99], "periodos": [3, 4], "lugares": "becos_fundo", "modo": "fugir", "alerta": 7.0},
+    {"id": "ruinas_olhando_a_casa", "dias": [9, 99], "periodos": [4], "lugares": "frente_da_casa", "modo": "desviar", "olha_para_a_casa": true, "alerta": 9.0},
+    {"id": "ruinas_boca_do_beco", "dias": [10, 99], "periodos": [4], "lugares": "becos_entrada", "modo": "fugir", "alerta": 7.0}
+  ]
+}

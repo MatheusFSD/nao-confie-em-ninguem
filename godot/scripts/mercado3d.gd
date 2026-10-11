@@ -84,7 +84,7 @@ func _ready() -> void:
 	for n in cena.find_children("Cliente_*", "", true, false):
 		_clientes.append(Pose3D.esqueleto(n))
 	# Um freguês em silhueta indo e voltando pelo corredor.
-	_freguês = load("res://modelos/marquinhos_ps1.glb").instantiate()
+	_freguês = load("res://modelos/personagens/marquinhos_ps1.glb").instantiate()
 	add_child(_freguês)
 	RuaModelo.silhueta(_freguês, Color("2f2a3a"))
 	var passos: AnimationPlayer = _freguês.find_child("AnimationPlayer", true, false)

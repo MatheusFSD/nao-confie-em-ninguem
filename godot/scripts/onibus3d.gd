@@ -62,6 +62,13 @@ func _ready() -> void:
 	(camada_da_interface if camada_da_interface != null else self).add_child(hud)
 	hud.linha.text = receita.linha
 	hud.dica.text = "Enter: pular"
+	# O diesel o tempo todo e o freio a ar logo que a cena abre.
+	var motor := AudioStreamPlayer.new()
+	motor.stream = Sons3D.motor_onibus()
+	motor.volume_db = -8.0
+	add_child(motor)
+	motor.play()
+	Sons3D.tocar(self, Sons3D.freio_onibus(), -6.0)
 
 func _unhandled_input(evento: InputEvent) -> void:
 	if evento.is_action_pressed("ui_accept"): terminou.emit()

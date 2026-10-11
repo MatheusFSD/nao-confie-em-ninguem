@@ -82,7 +82,7 @@ static func caixa(pai: Node3D, nome: String, lugar: Vector3, tamanho: Vector3, v
 ## Cimentado do beco: a mesma placa com juntas da calçada da rua, uma a cada
 ## TAMANHO_PLACA metros. A malha é picada em quadrados pequenos porque o shader
 ## PS1 usa textura afim, que entorta em triângulos grandes vistos de perto.
-const TEXTURA_PISO := "res://modelos/rua_penha_3.png"
+const TEXTURA_PISO := "res://modelos/rua/rua_penha_3.png"
 const TAMANHO_PLACA := 1.6
 const PEDACO := 1.6
 

@@ -35,8 +35,8 @@ const ESTADOS := {
 const SHADER := preload("res://shaders/cidade.gdshader")
 ## A criatura e os helicópteros do pacote do artefato. No horizonte ela aparece
 ## inteira: a cena sabe se comportar como cenário (sem câmera e sem céu).
-const MONSTRO := preload("res://monstro/monstro_cena.tscn")
-const CORPO_DA_CRIATURA := preload("res://monstro/criatura_corpo.glb")
+const MONSTRO := preload("res://modelos/monstro/monstro_cena.tscn")
+const CORPO_DA_CRIATURA := preload("res://modelos/monstro/criatura_corpo.glb")
 ## Quantos focos de incêndio a mais, espalhados, quando a cidade queima.
 const FOGOS_A_MAIS := 54
 ## Os vultos de criaturas que ficam no fundo da cidade destruída.
@@ -118,11 +118,18 @@ func mostrar(novo: String) -> void:
 		var passo: float = (grupo.get_child(quantos - 1).position.y - grupo.get_child(0).position.y) / float(quantos - 1)
 		_fumacas.append([grupo, passo * quantos])
 
+## Focos que o modelo traz rente ao chão. Só eles servem de molde para as
+## cópias: copiar um fogo de telhado para o lado deixava chama solta no ar.
+const ALTURA_DO_CHAO := 8.0
+
+func fogos_no_chao() -> Array:
+	return _corpo.find_children("Fogo*", "", true, false).filter(func(f: Node3D): return f.position.y < ALTURA_DO_CHAO)
+
 ## Mais focos de incêndio, copiados dos que o modelo já traz e espalhados em
-## volta. O sorteio tem semente fixa: o incêndio é sempre o mesmo, como o resto
-## do cenário.
+## volta, na mesma altura do chão do molde. O sorteio tem semente fixa: o
+## incêndio é sempre o mesmo, como o resto do cenário.
 func espalhar_fogo(quantos: int) -> void:
-	var fogos := _corpo.find_children("Fogo*", "", true, false)
+	var fogos := fogos_no_chao()
 	if fogos.is_empty(): return
 	var sorte := RandomNumberGenerator.new()
 	sorte.seed = 20261001
@@ -132,7 +139,7 @@ func espalhar_fogo(quantos: int) -> void:
 		copia.name = "FogoEspalhado%d" % (i + 1)
 		var volta := sorte.randf_range(0.0, TAU)
 		var longe := sorte.randf_range(25.0, 110.0)
-		copia.position = molde.position + Vector3(cos(volta) * longe, sorte.randf_range(-6.0, 14.0), sin(volta) * longe)
+		copia.position = molde.position + Vector3(cos(volta) * longe, 0.0, sin(volta) * longe)
 		copia.scale = molde.scale * sorte.randf_range(0.7, 1.7)
 		molde.get_parent().add_child(copia)
 
@@ -142,7 +149,7 @@ func onde_a_criatura_ataca() -> Vector3:
 
 ## Fogo em volta de um ponto: o quarteirão que a criatura está pisando agora.
 func fogo_em_volta(onde: Vector3, quantos: int) -> void:
-	var fogos := _corpo.find_children("Fogo*", "", true, false)
+	var fogos := fogos_no_chao()
 	if fogos.is_empty(): return
 	var sorte := RandomNumberGenerator.new()
 	sorte.seed = 7102026
@@ -205,7 +212,9 @@ func por_os_vultos(ar: Color) -> void:
 		# O que a cena cria para fogo, fumaça e tiro fica de fora: aqui é só o vulto.
 		for filho in vulto.get_children():
 			if filho is MeshInstance3D: (filho as MeshInstance3D).visible = false
-		pintar_de_sombra(vulto.get_node("Criatura"), ar.darkened(0.68))
+		# No mesmo cinza do humanoide do fundo (que é a névoa escurecida): antes
+		# eram quase pretos e destoavam.
+		pintar_de_sombra(vulto.get_node("Criatura"), ar.darkened(0.45))
 		_vultos.append(vulto)
 
 ## Silhueta chapada: sem luz, sem névoa e sem textura. É o que se enxerga de um
@@ -241,9 +250,20 @@ func vestir(no: Node, ar: Color, distancia: float) -> void:
 			mi.set_surface_override_material(i, prontos[chave])
 
 
+## Segundos até o próximo rugido da criatura, enquanto ela está no horizonte.
+var _proximo_rugido := 4.0
+
 func _process(delta: float) -> void:
 	if _corpo == null: return
 	_tempo += delta
+	if _criatura != null:
+		_proximo_rugido -= delta
+		if _proximo_rugido <= 0.0:
+			_proximo_rugido = randf_range(14.0, 26.0)
+			# A criatura é enorme: a gravação de monstro, mais grave e de longe.
+			var rugido := Sons3D.tocar_trecho(self, AmbienteSonoro.carregar(AmbienteSonoro.MONSTROS[randi() % 3]), 0.0, 9.0, -4.0)
+			rugido.bus = AmbienteSonoro.BARRAMENTO
+			rugido.pitch_scale = randf_range(0.6, 0.75)
 	for i in _fogos.size():
 		var grupo: Node3D = _fogos[i]
 		for k in grupo.get_child_count():

@@ -10,7 +10,7 @@ extends CharacterBody3D
 # A irmã e o protagonista têm dono e por isso ficam fora do sorteio: ela é
 # personagem da casa, ele é quem está segurando a câmera.
 const ELENCO := {
-	"marquinhos": {"arquivo": "res://modelos/marquinhos_ps1.glb", "passo": 1.35},
+	"marquinhos": {"arquivo": "res://modelos/personagens/marquinhos_ps1.glb", "passo": 1.35},
 	"dona_celia": {"arquivo": "res://modelos/personagens/dona_celia.glb", "passo": 0.74},
 	"seu_ze": {"arquivo": "res://modelos/personagens/seu_ze.glb", "passo": 0.85},
 	"vanessa": {"arquivo": "res://modelos/personagens/vanessa.glb", "passo": 1.23},
@@ -53,6 +53,14 @@ var _guia := CAMINHOS.new()
 var _caminho := PackedVector3Array()
 var _tempo_rota := 0.0
 var _sem_avanco := 0.0
+## Quem ela está acompanhando (a irmã voltando com o jogador). Seguindo, ela
+## não bloqueia ninguém: anda atrás, contorna o que der e, se ficar presa ou
+## para trás demais, reaparece atrás de quem segue, fora da vista dele.
+var seguindo: Node3D
+var camera_de_quem_segue: Camera3D
+## Distância que ela tenta manter.
+const COLADA := 1.5
+const LONGE_DEMAIS := 9.0
 
 func _ready() -> void:
 	add_to_group("pessoas3d")
@@ -111,6 +119,66 @@ func aparecer(ativo: bool) -> void:
 		_tempo_rota = 0.0
 		_sem_avanco = 0.0
 
+## Começa ou para de acompanhar alguém.
+func seguir(quem_seguir: Node3D, camera: Camera3D = null) -> void:
+	seguindo = quem_seguir
+	camera_de_quem_segue = camera
+	parada = seguindo == null
+	visible = true
+	set_physics_process(true)
+	# Acompanhando, ela não empurra nem é empurrada: só o cenário a segura.
+	collision_layer = 0 if seguindo != null else 4
+	collision_mask = 1 if seguindo != null else MASCARA
+	_sem_avanco = 0.0
+
+func acompanhar(delta: float) -> void:
+	var alvo := seguindo.global_position
+	var rumo := alvo - global_position
+	rumo.y = 0.0
+	var longe := rumo.length()
+	if longe > LONGE_DEMAIS or _sem_avanco > 1.5:
+		reaparecer_atras()
+		return
+	var antes := global_position
+	if longe > COLADA:
+		var ritmo := clampf(longe * 1.8, passo, 5.8)
+		velocity.x = rumo.x / longe * ritmo
+		velocity.z = rumo.z / longe * ritmo
+		rotation.y = lerp_angle(rotation.y, atan2(rumo.x, rumo.z), 1.0 - exp(-delta * 10.0))
+	else:
+		velocity.x = 0.0
+		velocity.z = 0.0
+	move_and_slide()
+	if is_on_floor(): velocity.y = 0.0
+	var andou := Vector2(global_position.x - antes.x, global_position.z - antes.z).length()
+	animar(andou > passo * delta * 0.15)
+	_sem_avanco = _sem_avanco + delta if longe > COLADA * 1.4 and andou < passo * delta * 0.15 else 0.0
+
+## Presa atrás de um muro ou ficou longe: volta para trás de quem segue, num
+## ponto com chão e sem parede, de preferência fora da vista dele.
+func reaparecer_atras() -> void:
+	var espaco := get_world_3d().direct_space_state
+	var costas := seguindo.global_basis.z.slide(Vector3.UP).normalized()
+	var capsula := CapsuleShape3D.new()
+	capsula.radius = 0.28
+	capsula.height = 1.6
+	var teste := PhysicsShapeQueryParameters3D.new()
+	teste.shape = capsula
+	teste.collision_mask = 1
+	for distancia in [2.0, 1.4, 3.0]:
+		for lado in [0.0, 0.8, -0.8]:
+			var ponto: Vector3 = seguindo.global_position + costas * float(distancia) + costas.cross(Vector3.UP) * float(lado)
+			teste.transform.origin = ponto + Vector3.UP * 0.95
+			if not espaco.intersect_shape(teste, 1).is_empty(): continue
+			var chao := espaco.intersect_ray(PhysicsRayQueryParameters3D.create(ponto + Vector3.UP * 0.5, ponto + Vector3.DOWN * 0.6, 1))
+			if chao.is_empty(): continue
+			global_position = (chao.position as Vector3)
+			velocity = Vector3.ZERO
+			_sem_avanco = 0.0
+			return
+	# Nenhum ponto livre: fica onde está e tenta de novo daqui a pouco.
+	_sem_avanco = 0.0
+
 func animar(andando: bool) -> void:
 	if _animacao == null: return
 	var nome := "andar" if andando else "parado"
@@ -145,6 +213,9 @@ func seguir_caminho(delta: float) -> Vector3:
 
 func _physics_process(delta: float) -> void:
 	velocity.y -= GRAVIDADE * delta
+	if seguindo != null:
+		acompanhar(delta)
+		return
 	if parada:
 		velocity.x = 0.0
 		velocity.z = 0.0

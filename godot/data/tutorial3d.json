@@ -1,0 +1,79 @@
+{
+  "personagem": "Irmã",
+  "falas_dormiu": [
+    "Ah, se não quer comprar, você que sabe. Não somos mais crianças.",
+    "Vou pra casa. Amanhã você se vira."
+  ],
+  "falas_dormiu_sem_trancar": [
+    "Vai dormir com a casa aberta? Você que sabe. Não somos mais crianças.",
+    "Vou pra casa. Tranca isso, pelo menos."
+  ],
+  "falas_sem_tempo": [
+    "Escureceu e a gente não resolveu metade. Vou nessa antes que fique pior.",
+    "Amanhã começa pelo mercadinho. E tranca a porta quando eu sair."
+  ],
+  "reacoes": {
+    "tv": "Ligou a TV sozinho? Tá aprendendo. Já sabe o que eles vão dizer, né?",
+    "agua": "Encheu as garrafas sem eu pedir? Olha só, virou gente.",
+    "trabalhou": "Foi trabalhar sem nem ver o jornal? Tá, pelo menos voltou com dinheiro.",
+    "comprou": "Já comprou? Pulando etapa. Espero que tenha sobrado pro ônibus.",
+    "trancou": "Trancando a porta de dia, comigo do lado? Que medo é esse?"
+  },
+  "passos": [
+    {
+      "id": "acordar",
+      "falas": [
+        "Bom dia. Dormi mal: a luz piscou a madrugada inteira. Três vezes, depois mais três.",
+        "E aquele pronunciamento ontem? Quando ele diz que tá tudo normal é que eu começo a me preocupar.",
+        "Liga a TV da sala. Quero ver se falam do racionamento hoje."
+      ],
+      "objetivo": "Ligar a TV da sala (olhe para ela e aperte E)",
+      "evento": "tv"
+    },
+    {
+      "id": "tv",
+      "falas": [
+        "Racionamento \"por precaução\". Precaução de quem, né?",
+        "Enche as garrafas na torneira da cozinha enquanto tem água. Na rua de cima faltou ontem e ninguém avisou nada.",
+        "Aqui em casa tudo vira suprimento: comida, água, vela, gás. E cada noite come um pouco do que tem guardado."
+      ],
+      "objetivo": "Encher as garrafas na torneira da cozinha",
+      "evento": "agua"
+    },
+    {
+      "id": "agua",
+      "falas": [
+        "Isso. Agora vai trabalhar, que o mercadinho não aceita boa vontade como pagamento.",
+        "Eu te acompanho até o ponto. O ônibus pro centro passa ali na frente."
+      ],
+      "objetivo": "Pegar o ônibus no ponto e ir trabalhar",
+      "evento": "trabalhou"
+    },
+    {
+      "id": "trabalhou",
+      "falas": [
+        "Voltou inteiro? Já é lucro.",
+        "O mercadinho do seu Toninho é aqui na rua mesmo. Compra o que der antes que o racionamento aperte."
+      ],
+      "objetivo": "Comprar suprimentos no mercadinho",
+      "evento": "comprou"
+    },
+    {
+      "id": "comprou",
+      "falas": [
+        "Isso aí dá pra uns dias. Uns poucos dias.",
+        "Vou nessa, que lá em casa ninguém trancou nada. A casa amarela, você sabe onde é.",
+        "Quando entrar, tranca a porta. Gente sumindo não é coisa só de jornal."
+      ],
+      "objetivo": "Trancar a porta de casa (olhe para ela e aperte T)",
+      "evento": "trancou",
+      "vai_embora": true
+    },
+    {
+      "id": "trancou",
+      "falas": [],
+      "objetivo": "Dormir (E na cama)",
+      "evento": "dormiu"
+    }
+  ]
+}

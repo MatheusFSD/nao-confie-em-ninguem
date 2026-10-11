@@ -17,6 +17,7 @@ const CANAIS := [
 	{"chave": "pronunciamento", "nome": "CADEIA NACIONAL", "cena": "res://tv/pronunciamento.tscn"},
 	{"chave": "telejornal", "nome": "JORNAL DA REDE 7", "cena": "res://tv/telejornal.tscn"},
 	{"chave": "chuvisco", "nome": "SEM SINAL", "cena": ""},
+	{"chave": "fora_do_ar", "nome": "TV EDUCATIVA · FORA DO AR", "cena": ""},
 ]
 const CHUVISCO := preload("res://shaders/chuvisco.gdshader")
 const TUBO := preload("res://shaders/tubo.gdshader")
@@ -41,6 +42,10 @@ var _legenda: Label
 var _aviso: Label
 var _recado: Label
 var _tempo_do_aviso := 0.0
+## O zumbido do tubo, por baixo de tudo, e o som do canal (chiado ou o bipe de
+## fora do ar), que troca com o canal.
+var _zumbido: AudioStreamPlayer
+var _som_do_canal: AudioStreamPlayer
 ## Carência antes de aceitar tecla, para a tecla que abriu não trocar o canal.
 var _espera := 0.18
 
@@ -57,24 +62,23 @@ func _init() -> void:
 	add_child(_quadro)
 	# A legenda é nossa, desenhada por cima do vidro: a das cenas do artefato
 	# fica desligada, senão a mesma fala apareceria duas vezes.
-	_legenda = Label.new()
-	_legenda.name = "Legenda"
-	_legenda.add_theme_font_size_override("font_size", 19)
-	_legenda.add_theme_color_override("font_color", Color("f6f1e4"))
-	_legenda.add_theme_color_override("font_shadow_color", Color(0, 0, 0, 0.95))
-	_legenda.add_theme_constant_override("shadow_offset_x", 2)
-	_legenda.add_theme_constant_override("shadow_offset_y", 2)
-	_legenda.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	_legenda.vertical_alignment = VERTICAL_ALIGNMENT_BOTTOM
-	_legenda.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	_legenda.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	# Acima do rodapé do telejornal, para uma coisa não comer a outra.
-	_legenda.position = Vector2(28, ALTURA - 160)
-	_legenda.size = Vector2(LARGURA - 56, 118)
+	# Tarja preta translúcida atrás do texto (LegendaTV), acima do rodapé do
+	# telejornal, para uma coisa não comer a outra.
+	_legenda = LegendaTV.criar(LARGURA - 56)
 	_quadro.add_child(_legenda)
 	_aviso = escrever(22, Color("ffd35a"))
 	_recado = escrever(17, Color(0.95, 0.9, 0.78, 0.7))
 	_recado.text = "← →  trocar de canal          E  desligar"
+
+## Um tocador em laço com uma gravação de res://sons.
+func laco(arquivo: String, volume: float) -> AudioStreamPlayer:
+	var tocador := AudioStreamPlayer.new()
+	var som := AmbienteSonoro.carregar(arquivo)
+	if "loop" in som: som.set("loop", true)
+	tocador.stream = som
+	tocador.volume_db = volume
+	add_child(tocador)
+	return tocador
 
 func escrever(tamanho: int, cor: Color) -> Label:
 	var rotulo := Label.new()
@@ -88,6 +92,10 @@ func escrever(tamanho: int, cor: Color) -> Label:
 	return rotulo
 
 func _ready() -> void:
+	_zumbido = laco("tv_zumbido.ogg", 2.0)
+	_zumbido.play()
+	_som_do_canal = AudioStreamPlayer.new()
+	add_child(_som_do_canal)
 	arrumar()
 	get_viewport().size_changed.connect(arrumar)
 	sintonizar(canal)
@@ -122,13 +130,20 @@ func sintonizar(qual: int) -> void:
 		_programa.queue_free()
 		_programa = null
 	_no_ar = null
-	_legenda.text = ""
+	LegendaTV.escrever(_legenda, "", LARGURA / 2.0, ALTURA - 42)
 	_aviso.text = "CANAL %d · %s" % [canal + 1, dados.nome if pode else "SEM SINAL"]
 	_tempo_do_aviso = AVISO
 	_aviso.modulate.a = 1.0
 	mudou_de_canal.emit(chave)
-	if cena.is_empty() or not pode:
+	# Um estalo de chiado a cada troca, como no botão giratório.
+	if is_inside_tree(): Sons3D.tocar_trecho(self, AmbienteSonoro.carregar("tv_chiado.ogg"), randf() * 4.0, 0.3, -4.0)
+	if _som_do_canal != null: _som_do_canal.stop()
+	if chave == "fora_do_ar":
+		_programa = barras()
+		tocar_no_canal("tv_fora_do_ar.ogg", -14.0)
+	elif cena.is_empty() or not pode:
 		_programa = chiado()
+		tocar_no_canal("tv_chiado.ogg", -8.0)
 	else:
 		_programa = programa(cena, chave)
 	_quadro.add_child(_programa)
@@ -153,6 +168,33 @@ func programa(caminho: String, chave: String) -> Control:
 	_no_ar = programa_do_canal
 	return cena
 
+func tocar_no_canal(arquivo: String, volume: float) -> void:
+	if _som_do_canal == null: return
+	var som := AmbienteSonoro.carregar(arquivo)
+	if "loop" in som: som.set("loop", true)
+	_som_do_canal.stream = som
+	_som_do_canal.volume_db = volume
+	_som_do_canal.play()
+
+## Fora do ar: as barras coloridas da emissora, com o bipe por cima.
+func barras() -> Control:
+	var tela := Control.new()
+	tela.name = "Barras"
+	tela.set_anchors_preset(Control.PRESET_FULL_RECT)
+	var cores := ["c0c0c0", "c0c000", "00c0c0", "00c000", "c000c0", "c00000", "0000c0"]
+	for i in cores.size():
+		var faixa := ColorRect.new()
+		faixa.color = Color(cores[i])
+		faixa.position = Vector2(LARGURA * i / 7.0, 0)
+		faixa.size = Vector2(LARGURA / 7.0 + 1.0, ALTURA * 0.72)
+		tela.add_child(faixa)
+	var baixo := ColorRect.new()
+	baixo.color = Color("101018")
+	baixo.position = Vector2(0, ALTURA * 0.72)
+	baixo.size = Vector2(LARGURA, ALTURA * 0.28)
+	tela.add_child(baixo)
+	return tela
+
 func chiado() -> Control:
 	var tela := ColorRect.new()
 	tela.name = "Chuvisco"
@@ -164,7 +206,7 @@ func chiado() -> Control:
 
 func _process(delta: float) -> void:
 	_espera = maxf(0.0, _espera - delta)
-	if _no_ar != null: _legenda.text = falando_agora(float(_no_ar.tq))
+	if _no_ar != null: LegendaTV.escrever(_legenda, falando_agora(float(_no_ar.tq)), LARGURA / 2.0, ALTURA - 42)
 	if _tempo_do_aviso <= 0.0: return
 	_tempo_do_aviso -= delta
 	if _tempo_do_aviso < 0.6: _aviso.modulate.a = maxf(0.0, _tempo_do_aviso / 0.6)

@@ -7,7 +7,7 @@ extends RefCounted
 # Medidas lidas do arquivo: a rua corre no eixo Z local, com 124 m de extensão.
 # Na seção, o eixo local X vale: pista de 8 m (-4 a 4), meio-fio de 15 cm,
 # calçadas de 4,95 m (4,25 a 9,2) e as fachadas de 8,88 até 15,04.
-const MODELO := preload("res://modelos/rua_penha.glb")
+const MODELO := preload("res://modelos/rua/rua_penha.glb")
 const SHADER := preload("res://shaders/ps1_artefato.gdshader")
 const MEIA_PISTA := 4.0
 const MEIO_FIO := 4.25
@@ -31,7 +31,7 @@ const COMPRIMENTO := 124.0
 ## Peças que só fazem sentido perto: nas cópias de continuação elas saem.
 const MIUDEZAS := ["lixo", "mesa_bar", "orelhao", "objeto", "carro", "pipa"]
 ## Peças que saem de toda cópia da rua, inclusive a principal. Os carros parados
-## do modelo saem: quem anda na rua são os do pacote (res://carros).
+## do modelo saem: quem anda na rua são os do pacote (res://modelos/carros).
 const FORA := ["carro"]
 
 ## Coloca a rua com o eixo da pista em `z_do_eixo`, correndo no eixo X do mundo.

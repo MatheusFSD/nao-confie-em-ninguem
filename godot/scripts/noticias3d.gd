@@ -19,6 +19,9 @@ const MAXIMO := 7.0
 const PAUSA := 0.5
 
 var dias := {}
+## O que é verdade nesta partida (sorteado no começo). Notícia com "se" só
+## passa quando a condição bate: "agua_contaminada" ou "agua_limpa".
+var estado := {}
 
 func _init() -> void:
 	var lido = JSON.parse_string(FileAccess.get_file_as_string(ARQUIVO))
@@ -31,14 +34,54 @@ func do_dia(dia: int) -> Dictionary:
 	var jornal: Array = []
 	for item: Dictionary in hoje.get("tv", []):
 		var texto := String(item.get("texto", ""))
-		if texto.is_empty(): continue
-		if String(item.get("fonte", "")).to_lower() == OFICIAL: oficiais.append(texto)
-		else: jornal.append(texto)
+		if texto.is_empty() or not vale(item): continue
+		# Uma frase por vez na tela: fala de três frases não cabe num letreiro.
+		if String(item.get("fonte", "")).to_lower() == OFICIAL: oficiais.append_array(frases(texto))
+		else: jornal.append_array(frases(texto))
 	return {
 		"pronunciamento": marcar_o_tempo(oficiais),
 		"telejornal": marcar_o_tempo(jornal),
 		"rodape": letreiro(hoje),
 	}
+
+## A notícia vale nesta partida? As que dependem de um sorteio só passam
+## quando ele bate.
+func vale(item: Dictionary) -> bool:
+	match String(item.get("se", "")):
+		"agua_contaminada": return bool(estado.get("agua_vai_contaminar", false))
+		"agua_limpa": return not bool(estado.get("agua_vai_contaminar", false))
+	return true
+
+## O que o rádio diz hoje: [[fonte, texto], ...]. Funciona sem luz — é a pilha.
+func radio_do_dia(dia: int) -> Array:
+	var falas: Array = []
+	for item: Dictionary in dias.get(str(dia), {}).get("radio", []):
+		var texto := String(item.get("texto", ""))
+		if texto.is_empty() or not vale(item): continue
+		for frase in frases(texto): falas.append([quem_fala(String(item.get("fonte", ""))), frase])
+	return falas
+
+## Como cada fonte se apresenta no rádio.
+static func quem_fala(fonte: String) -> String:
+	match fonte.to_lower():
+		"governo": return "Presidente (gravado)"
+		"cientistas": return "Equipe de pesquisa"
+		"testemunhas": return "Vizinhos na escuta"
+		"conspiracionistas": return "Faixa livre"
+	return fonte
+
+## Quebra um texto nas frases dele, para mostrar uma por vez.
+static func frases(texto: String) -> PackedStringArray:
+	var lista := PackedStringArray()
+	var atual := ""
+	for i in texto.length():
+		atual += texto[i]
+		var fim := texto[i] in [".", "!", "?"] and (i == texto.length() - 1 or texto[i + 1] == " ")
+		if fim:
+			lista.append(atual.strip_edges())
+			atual = ""
+	if not atual.strip_edges().is_empty(): lista.append(atual.strip_edges())
+	return lista
 
 ## Cada fala ganha começo e fim conforme o tamanho: frase curta some rápido,
 ## frase longa fica tempo de ler.

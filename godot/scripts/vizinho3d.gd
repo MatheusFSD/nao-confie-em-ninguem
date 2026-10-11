@@ -4,7 +4,7 @@ extends RefCounted
 # Conteúdo em data/vizinhos/*.json. O estado pertence a cada morador sorteado;
 # conversas, confiança e escolhas duram a partida, sem mudar o arquivo.
 const PASTA := "res://data/vizinhos/"
-const RETRATOS := "res://sprites/vizinhos/%s.png"
+const RETRATOS := "res://ui/retratos/vizinhos/%s.webp"
 const CHAVES := ["neide", "beto", "sueli", "claudia", "rita", "jorge", "nilton", "emerson", "valdo", "fabinho", "kaio"]
 
 var chave := ""
@@ -12,7 +12,6 @@ var nome := ""
 var casa: Node3D
 var porta: StaticBody3D
 var conversas := 0
-var mente := false
 var adiado_ate := 0
 var historia := {"confianca": 0, "marcas": [], "escolhas": {}}
 var dados := {}
@@ -39,7 +38,6 @@ static func sortear(quantos: int) -> Array:
 	for i in mini(quantos, baralho.size()):
 		var conteudo := carregar(String(baralho[i]))
 		if not conteudo.is_empty(): escolhidos.append(Vizinho3D.new(conteudo))
-	if not escolhidos.is_empty(): escolhidos[randi() % escolhidos.size()].mente = true
 	return escolhidos
 
 func retrato() -> String:
@@ -51,7 +49,6 @@ func atende(condicoes: Dictionary, dia: int) -> bool:
 	if dia > int(condicoes.get("dia_max", 2147483647)): return false
 	if int(historia.confianca) < int(condicoes.get("confianca_min", -99)): return false
 	if int(historia.confianca) > int(condicoes.get("confianca_max", 99)): return false
-	if condicoes.has("mente") and mente != bool(condicoes.mente): return false
 	if bool(condicoes.get("pedido_disponivel", false)) and dia < adiado_ate: return false
 	for marca: String in condicoes.get("marcas", []):
 		if not historia.marcas.has(marca): return false
@@ -84,9 +81,9 @@ func falas() -> Array:
 	for linha: String in linhas: resultado.append(linha.replace("{aviso}", aviso()))
 	return resultado
 
+## A dica do dia: sempre de boa-fé. Vizinho aqui não mente — no máximo não sabe.
 func aviso() -> String:
 	var de_hoje: Dictionary = dados.get("avisos", {}).get(str(dia_da_conversa), {})
-	if mente: return String(de_hoje.get("mentira", "Me disseram que amanhã volta tudo. Não sei de onde veio."))
 	return String(de_hoje.get("verdade", aviso_do_mundo if not aviso_do_mundo.is_empty() else "Não sei o que vem amanhã. Só sei o que vi hoje."))
 
 func opcoes() -> Array:
@@ -120,6 +117,10 @@ func pode_passar_numero() -> bool:
 ## Abrigo usa a mesma amizade que libera o contato, sem depender do celular.
 func pode_abrigar() -> bool:
 	return pode_passar_numero()
+
+## O que ele diz ao aceitar: texto do morador ou o comum.
+func confirmacao_de_abrigo() -> String:
+	return String(dados.get("abrigo", {}).get("confirma", "Entra. Fica no sofá, apaga a luz e não abre a janela pra ninguém. Amanhã cedo você vai."))
 
 ## Texto opcional por morador; a regra e o custo continuam no ciclo.
 func convite_de_abrigo() -> String:

@@ -1,173 +1,306 @@
 {
-  "0": {
-	"evento": "Sua irmã dormiu aqui e acordou reclamando da luz que piscou de madrugada. Não há comida em casa.",
-	"tv": [
-	  {
-		"fonte": "Governo",
-		"texto": "Boa noite. Registramos oscilações rápidas em alguns bairros, sem risco à população."
-	  },
-	  {
-		"fonte": "Cientistas",
-		"texto": "As oscilações começaram e terminaram no mesmo minuto em bairros distantes. Isso não costuma acontecer."
-	  }
-	],
-	"radio": [
-	  {
-		"fonte": "Conspiracionistas",
-		"texto": "Três piscadas, sempre às três e dezessete. Anota aí e confere amanhã."
-	  }
-	],
-	"celular": [
-	  {
-		"fonte": "Cientistas",
-		"texto": "Grupo do bairro: alguém mais ficou sem água na rua de cima ontem?"
-	  }
-	]
-  },
-  "1": {
-	"evento": "Tudo parece normal. Ainda há água na rede e produtos à venda.",
-	"tv": [
-	  {
-		"fonte": "Governo",
-		"texto": "Não há motivo para preocupação. O abastecimento continuará funcionando normalmente."
-	  },
-	  {
-		"fonte": "Cientistas",
-		"texto": "No jornal, pesquisadores dizem que os dados disponíveis ainda não explicam as falhas registradas no Rio."
-	  }
-	],
-	"radio": [
-	  {
-		"fonte": "Cientistas",
-		"texto": "Estamos registrando perturbações eletromagnéticas incomuns."
-	  }
-	],
-	"celular": [
-	  {
-		"fonte": "Conspiracionistas",
-		"texto": "Encha recipientes com água enquanto ainda pode."
-	  }
-	]
-  },
-  "2": {
-	"evento": "O jornal noticia problemas no abastecimento em bairros do Rio.",
-	"tv": [
-	  {
-		"fonte": "Governo",
-		"texto": "As interrupções são pontuais. A distribuição será normalizada ainda hoje."
-	  }
-	],
-	"radio": [
-	  {
-		"fonte": "Cientistas",
-		"texto": "As falhas atingem várias estações ao mesmo tempo. Não temos previsão segura de normalização."
-	  }
-	],
-	"celular": [
-	  {
-		"fonte": "Conspiracionistas",
-		"texto": "Disseram que era pontual ontem também. O caminhão não chegou ao mercado aqui do bairro."
-	  }
-	]
-  },
-  "3": {
-	"evento": "As falhas continuam e a cidade parece estranha. A água da rede ainda chega, mas o abastecimento preocupa os moradores.",
-	"tv": [
-	  {
-		"fonte": "Governo",
-		"texto": "O fornecimento segue um cronograma preventivo. Não há previsão de suspensão geral."
-	  },
-	  {
-		"fonte": "Cientistas",
-		"texto": "As falhas simultâneas continuam sem explicação. A população deve manter uma reserva de água."
-	  }
-	],
-	"radio": [
-	  {
-		"fonte": "Conspiracionistas",
-		"texto": "A torneira ainda sai aqui. Eu tô enchendo os potes antes de acreditar em cronograma."
-	  }
-	],
-	"celular": [
-	  {
-		"fonte": "Conspiracionistas",
-		"texto": "Guarde o que conseguir enquanto a rede funciona. Ninguém sabe até quando."
-	  }
-	]
-  },
-  "4": {
-	"evento": "A instabilidade piorou. A rua está mais vazia e os moradores relatam barulhos e oscilações de luz.",
-	"tv": [
-	  {
-		"fonte": "Governo",
-		"texto": "Oscilações de energia não representam risco prolongado. As equipes estão trabalhando."
-	  }
-	],
-	"radio": [
-	  {
-		"fonte": "Cientistas",
-		"texto": "As perturbações persistem. Ainda não conseguimos distinguir a causa das consequências."
-	  }
-	],
-	"celular": [
-	  {
-		"fonte": "Conspiracionistas",
-		"texto": "A luz piscou na rua inteira, mas ninguém apareceu para consertar nada."
-	  }
-	]
-  },
-  "5": {
-	"evento": "Os mercados estão ficando vazios e caros. A fuga dos moradores provoca um engarrafamento no bairro.",
-	"tv": [
-	  {
-		"fonte": "Governo",
-		"texto": "Há reservas suficientes. As filas resultam de compras acima da média."
-	  },
-	  {
-		"fonte": "Cientistas",
-		"texto": "O trânsito está congestionado nas saídas. Não há garantia de passagem ou reposição nos mercados."
-	  }
-	],
-	"radio": [
-	  {
-		"fonte": "Cientistas",
-		"texto": "Os dados de distribuição estão incompletos. Não é possível garantir que todos os bairros recebam reposição."
-	  }
-	],
-	"celular": [
-	  {
-		"fonte": "Conspiracionistas",
-		"texto": "Prateleiras vazias por aqui. No noticiário, o mercado ainda está cheio."
-	  }
-	]
-  },
-  "6": {
-	"evento": "Breu durante o dia inteiro. Dois caçadores percorrem a pista. A água ainda chega, mas os ônibus já pararam.",
-	"tv": [],
-	"agua_da_rede": true,
-	"energia_da_rede": false,
-	"onibus": false
-  },
-  "7": {
-	"evento": "A cidade está sob ataque. Passa um comboio militar; a água e a energia da rede foram cortadas. Os ônibus pararam.",
-	"tv": [],
-	"agua_da_rede": false,
-	"energia_da_rede": false,
-	"onibus": false
-  },
-  "8": {
-	"evento": "Depois do ataque, restam ruínas e criaturas na rua. Sem água da rede, eletricidade ou ônibus, os moradores dependem das reservas.",
-	"tv": [],
-	"agua_da_rede": false,
-	"energia_da_rede": false,
-	"onibus": false
-  },
-  "9": {
-	"evento": "A cidade continua destruída. Quem ficou tenta manter contato entre as casas.",
-	"tv": []
-  },
-  "10": {
-	"evento": "Não há reposição nem transporte. As decisões entre vizinhos definem quem ainda conversa com quem.",
-	"tv": []
-  }
+	"0": {
+		"celular": [],
+		"evento": "Racionamento de alimentos começa na segunda. Número de desaparecidos triplica em três semanas.",
+		"radio": [
+			{
+				"fonte": "Conspiracionistas",
+				"texto": "Racionamento, desaparecido e luz piscando na mesma semana: quem não liga os pontos é porque não quer. Eu liguei, fiz até um quadro com barbante aqui na parede da cozinha. Não vou dizer o que é pelo rádio, mas começa com a letra que vocês estão pensando."
+			},
+			{
+				"fonte": "Testemunhas",
+				"texto": "Aqui é a Dona Socorro, do grupo do bairro. O filho da vizinha do 12 saiu pra trabalhar de madrugada e até agora nada, ninguém atende o telefone dele. Se alguém viu um rapaz de boné vermelho perto do ponto, me avisa, pelo amor de Deus."
+			}
+		],
+		"tv": [
+			{
+				"fonte": "Governo",
+				"texto": "Boa noite, povo brasileiro. Está tudo normal, normalíssimo, e eu tenho um gráfico que prova, só não trouxe. Só por precaução, a partir de segunda começa um racionamento de alimentos, que é diferente de falta, é organização. Não estoquem, que quem estoca é que causa a falta."
+			},
+			{
+				"fonte": "Cientistas",
+				"texto": "Os registros de desaparecimento no estado triplicaram em três semanas, e a maioria das pessoas sumiu à noite, fora de casa. Ainda não sabemos se os casos têm relação entre si, e não vamos afirmar o que não medimos. Pedimos a quem puder que evite sair sozinho depois que escurecer."
+			}
+		]
+	},
+	"1": {
+		"evento": "Tudo parece normal. Ainda há água na rede e produtos à venda.",
+		"tv": [
+			{
+				"fonte": "Governo",
+				"texto": "Boa noite, povo brasileiro. Teve umas piscadinhas de luz aí, coisa pequena, coisa de bairro. Já liguei pessoalmente pro responsável e mandei resolver, porque comigo problema não dorme. Pode ir deitar tranquilo, que o Presidente aqui está de olho em tudo, menos no que não precisa."
+			},
+			{
+				"fonte": "Cientistas",
+				"texto": "Registramos oscilações elétricas simultâneas em bairros que não dividem a mesma rede. Todas começaram de madrugada e duraram o mesmo tempo, o que é muito improvável por acaso. Ainda não temos explicação e pedimos que quem perceber algo parecido anote quando aconteceu."
+			}
+		],
+		"radio": [
+			{
+				"fonte": "Conspiracionistas",
+				"texto": "Pesquisei a noite inteira e posso afirmar com base científica: são antenas. Eu tenho um medidor de frequência que comprei na internet e ele apitou três vezes de madrugada. Quem tem estudo entende, quem não tem fica aí vendo novela."
+			},
+			{
+				"fonte": "Testemunhas",
+				"texto": "Aqui é a Dona Socorro, do grupo do bairro. Ontem de noite tinha um homem alto parado no fim da rua, só olhando as casas, sem piscar. Se alguém precisar de vela ou de companhia, eu tô acordada, é só bater no portão."
+			}
+		],
+		"celular": [
+			{
+				"fonte": "Conspiracionistas",
+				"texto": "Encha recipientes com água enquanto ainda pode."
+			}
+		]
+	},
+	"2": {
+		"evento": "O jornal noticia problemas no abastecimento em bairros do Rio.",
+		"tv": [
+			{
+				"fonte": "Governo",
+				"texto": "O abastecimento de água está normal, e onde não está, está em fase de normalização. Eu tomei banho hoje e estava ótimo, pode perguntar pra quem quiser. E ônibus atrasado é tradição nacional, não é crise, é cultura."
+			},
+			{
+				"fonte": "Cientistas",
+				"texto": "As falhas nas estações de tratamento aconteceram ao mesmo tempo em pontos distantes da cidade. Estamos coletando amostras da água da rede e os resultados saem nos próximos dias. Até lá, a recomendação é simples: guardem água e não entrem em pânico."
+			}
+		],
+		"radio": [
+			{
+				"fonte": "Testemunhas",
+				"texto": "O mercadinho tá limitando: uma de cada coisa por pessoa, e o Seu Toninho anota tudo num caderno. Não briga com ele, que ele tá fazendo o possível. Se alguém tiver arroz sobrando, a creche da rua de baixo tá aceitando."
+			},
+			{
+				"fonte": "Conspiracionistas",
+				"texto": "Racionamento é teste de obediência, isso está em todos os documentos que eu li no grupo. Compra tudo hoje, porque amanhã dobra e depois de amanhã não tem. Eu não sou economista, mas estudo o assunto há três semanas."
+			}
+		],
+		"celular": [
+			{
+				"fonte": "Conspiracionistas",
+				"texto": "Disseram que era pontual ontem também. O caminhão não chegou ao mercado aqui do bairro."
+			}
+		]
+	},
+	"3": {
+		"evento": "As falhas continuam e a cidade parece estranha. A água da rede ainda chega, mas o abastecimento preocupa os moradores.",
+		"tv": [
+			{
+				"fonte": "Governo",
+				"texto": "A água distribuída é tratada e seguríssima, eu bebo da torneira desde criança e olha só como eu fiquei. Sobre os desaparecidos, criei uma comissão para estudar a criação de um grupo de trabalho. O resultado sai ano que vem, ou no outro."
+			},
+			{
+				"fonte": "Cientistas",
+				"texto": "As amostras da rede vieram contaminadas. Fervam toda a água antes de beber, cozinhar ou escovar os dentes, por alguns minutos. Também recebemos dezenas de relatos do mesmo sonho em bairros diferentes e pedimos que as pessoas registrem o que lembram.",
+				"se": "agua_contaminada"
+			},
+			{
+				"fonte": "Cientistas",
+				"texto": "As amostras da rede vieram limpas: a cor turva é sedimento do encanamento, desagradável mas inofensivo. Ao mesmo tempo, recebemos dezenas de relatos do mesmo sonho em bairros diferentes. Pedimos que as pessoas registrem o que lembram, sem tirar conclusões.",
+				"se": "agua_limpa"
+			}
+		],
+		"radio": [
+			{
+				"fonte": "Testemunhas",
+				"texto": "Sumiu o Seu Arlindo, da casa de esquina. A TV dele continua ligada e o portão ficou aberto. Eu acho que vi ele no beco de noite, mas tava escuro e eu posso ter me enganado; se alguém souber de alguma coisa, avisa a filha dele."
+			},
+			{
+				"fonte": "Conspiracionistas",
+				"texto": "Botaram coisa na água, e eu sei porque a minha planta murchou. Fervam tudo e não confiem em laudo, laudo é escrito por quem ganha pra escrever. E tem mais: eles levam quem fica olhando, então não olhem pra eles, isso eu deduzi sozinho."
+			}
+		],
+		"celular": [
+			{
+				"fonte": "Conspiracionistas",
+				"texto": "Guarde o que conseguir enquanto a rede funciona. Ninguém sabe até quando."
+			}
+		]
+	},
+	"4": {
+		"evento": "A instabilidade piorou. A rua está mais vazia e os moradores relatam barulhos e oscilações de luz.",
+		"tv": [
+			{
+				"fonte": "Governo",
+				"texto": "As padarias fecharam por falta de farinha, mas a reposição chega em breve, já conversei com um amigo que tem um moinho. Eu não sou padeiro, mas sei que o pão brasileiro é o melhor do mundo. Em vez de reclamar, faz um bolo, que é mais gostoso e une a família."
+			},
+			{
+				"fonte": "Cientistas",
+				"texto": "Há casos de febre e vômito nos bairros abastecidos pela mesma estação, o que reforça a contaminação da rede. A pressão nas tubulações cai rápido, e é provável que o abastecimento seja interrompido amanhã. Guardem água fervida enquanto ainda sai.",
+				"se": "agua_contaminada"
+			},
+			{
+				"fonte": "Cientistas",
+				"texto": "Não encontramos relação entre a água e os casos de mal-estar relatados; a água da rede segue própria para consumo. Mas a pressão nas tubulações cai rápido, e é provável que o abastecimento seja interrompido amanhã. Guardem água enquanto ainda sai.",
+				"se": "agua_limpa"
+			}
+		],
+		"radio": [
+			{
+				"fonte": "Testemunhas",
+				"texto": "Meu vizinho bebeu da torneira e passou a noite no banheiro, coitado. Fervam, gente, não custa nada. Tenho soro caseiro aqui em casa se alguém precisar, é só chamar no portão azul.",
+				"se": "agua_contaminada"
+			},
+			{
+				"fonte": "Testemunhas",
+				"texto": "Aqui todo mundo bebe da torneira e ninguém passou mal até agora. O Lúcio da padaria baixou a porta de vez e falou que não volta. Minha mãe tá fazendo pão em casa e dividindo, quem precisar pode vir.",
+				"se": "agua_limpa"
+			},
+			{
+				"fonte": "Conspiracionistas",
+				"texto": "A farinha foi confiscada pelo Exército: eu vi um caminhão de longe e não era de farinha, era camuflado. Eu não tenho prova, mas tenho certeza, que é diferente. Quem estudou sabe que o pão é a primeira coisa que some antes de uma guerra."
+			}
+		],
+		"celular": [
+			{
+				"fonte": "Conspiracionistas",
+				"texto": "A luz piscou na rua inteira, mas ninguém apareceu para consertar nada."
+			}
+		]
+	},
+	"5": {
+		"evento": "Os mercados estão ficando vazios e caros. A fuga dos moradores provoca um engarrafamento no bairro.",
+		"tv": [
+			{
+				"fonte": "Governo",
+				"texto": "A água foi interrompida de forma temporária e democrática: todo mundo está sem, ninguém é privilegiado. A energia está garantida, isso eu assino embaixo e em cima. E pra quem está indo embora de carro, boa viagem, mas depois não venha chorar no engarrafamento."
+			},
+			{
+				"fonte": "Cientistas",
+				"texto": "A rede elétrica começou a mostrar o mesmo padrão que vimos na água: falhas simultâneas em pontos sem ligação. Não podemos garantir o fornecimento de energia a partir de amanhã. Recomendamos lanternas, pilhas e que as famílias decidam onde vão passar a noite enquanto há luz."
+			}
+		],
+		"radio": [
+			{
+				"fonte": "Testemunhas",
+				"texto": "Quem saiu de carro voltou a pé: a estrada tá fechada lá na frente, ninguém passa. O Seu Zé do bar tá fechando hoje e falou pra levar o que precisar. Tem um posto do Exército cadastrando gente na avenida; não sei pra que serve, mas tão dando água."
+			},
+			{
+				"fonte": "Conspiracionistas",
+				"texto": "Amanhã apaga tudo, anota aí, e quem avisou fui eu. Comprem pilha e vela hoje, porque o apagão é o primeiro passo do plano, isso é básico. Eu fiz um curso online de sobrevivência e tirei nota máxima, então podem confiar."
+			}
+		],
+		"celular": [
+			{
+				"fonte": "Conspiracionistas",
+				"texto": "Prateleiras vazias por aqui. No noticiário, o mercado ainda está cheio."
+			}
+		],
+		"agua_da_rede": false,
+		"energia_da_rede": true
+	},
+	"6": {
+		"evento": "Breu durante o dia inteiro. Dois caçadores percorrem a pista. A água acabou desde ontem e os ônibus pararam.",
+		"tv": [],
+		"agua_da_rede": false,
+		"energia_da_rede": false,
+		"onibus": false,
+		"radio": [
+			{
+				"fonte": "Governo",
+				"texto": "Atenção, povo brasileiro, esta é uma mensagem gravada do Presidente. Permaneçam em suas casas até o restabelecimento, que vai ser rapidinho. Eu estou em local seguro, trabalhando muito, e já mandei comprar lanterna pra todo mundo assim que o comércio abrir."
+			},
+			{
+				"fonte": "Cientistas",
+				"texto": "Não é uma falha da rede: aparelhos desligados e até baterias pararam ao mesmo tempo. Não sabemos a causa e não vamos fingir que sabemos. Permaneçam em casa, longe das janelas, e façam o mínimo de barulho possível."
+			},
+			{
+				"fonte": "Testemunhas",
+				"texto": "Tem gente andando no escuro sem lanterna, devagar, encostando nos muros. Se esconde e não faz barulho, que eles parecem que escutam. Quem tiver vizinho idoso sozinho, bate três vezes na parede pra ele saber que não tá sozinho."
+			},
+			{
+				"fonte": "Conspiracionistas",
+				"texto": "Eles não enxergam, eles ouvem, e isso eu já sabia desde o começo. É tudo frequência, a mesma das antenas que eu falei, e quem riu de mim tá rindo no escuro agora. Fica quieto e respira pelo nariz, que a boca faz barulho."
+			}
+		]
+	},
+	"7": {
+		"evento": "A cidade está sob ataque. Passa um comboio militar; a água e a energia da rede foram cortadas. Os ônibus pararam.",
+		"tv": [],
+		"agua_da_rede": false,
+		"energia_da_rede": false,
+		"onibus": false,
+		"radio": [
+			{
+				"fonte": "Governo",
+				"texto": "O Exército está nas ruas por ordem minha, e o comboio vai retirar os cadastrados pela avenida, à tarde. Quem não se cadastrou teve tempo, eu avisei, ou alguém avisou por mim. Não entrem em pânico, que o pânico ainda não foi regulamentado."
+			},
+			{
+				"fonte": "Cientistas",
+				"texto": "Não sabemos o que são essas criaturas e pedimos que ninguém se aproxime delas. Elas parecem guiadas por som, e há relatos de uma figura alta que aparece antes delas. Fiquem em locais fechados e não sigam para o centro sem orientação."
+			},
+			{
+				"fonte": "Testemunhas",
+				"texto": "Arrombaram a padaria e não tinha nada, nem farinha. Não vale o risco, gente, o barulho chama eles. A gente tá dividindo água aqui na igreja; quem precisar vem pelos fundos, devagar, sem correr."
+			},
+			{
+				"fonte": "Conspiracionistas",
+				"texto": "Esses helicópteros não são nossos, repara no barulho da hélice, é diferente. Eu tenho ouvido treinado de tanto ver vídeo de avião. O comboio leva as pessoas pra um lugar que eu não vou dizer, porque eu também não sei."
+			}
+		]
+	},
+	"8": {
+		"evento": "Depois do ataque, restam ruínas e criaturas na rua. Sem água da rede, eletricidade ou ônibus, os moradores dependem das reservas.",
+		"tv": [],
+		"agua_da_rede": false,
+		"energia_da_rede": false,
+		"onibus": false,
+		"radio": [
+			{
+				"fonte": "Governo",
+				"texto": "Atenção, povo brasileiro, esta é uma mensagem gravada do Presidente. Permaneçam em suas casas até o restabelecimento, que vai ser rapidinho. Eu estou em local seguro, trabalhando muito, e só não digo onde é porque aí deixaria de ser seguro."
+			},
+			{
+				"fonte": "Cientistas",
+				"texto": "Centro de acolhimento lotado. Repetimos: não venham sem orientação, não há lugar. As criaturas evitam lugares em silêncio absoluto; reduzam o barulho ao mínimo."
+			},
+			{
+				"fonte": "Testemunhas",
+				"texto": "O homem alto voltou. Fica no fim da rua olhando as casas, e quando ele grita os bichos vêm correndo. Se vir ele, sai da vista dele antes de qualquer outra coisa."
+			},
+			{
+				"fonte": "Conspiracionistas",
+				"texto": "O abrigo caiu ontem à noite, quem me contou foi o primo de um conhecido que estava lá. Eu não confirmo nem desminto, mas eu já sabia. Fiquem em casa, que é o único lugar que eles não controlam, segundo os meus cálculos."
+			},
+			{
+				"fonte": "Testemunhas",
+				"texto": "Aqui é da faixa livre, quem puder escutar, escuta. Eles saem com o sol: de dia a rua é deles, a gente contou mais de dez numa quadra só. De noite rareia, quase nenhum, e não enxergam direito no escuro. Se for se mexer, mexe de noite, devagar e calado."
+			}
+		]
+	},
+	"9": {
+		"evento": "A cidade continua destruída. Quem ficou tenta manter contato entre as casas.",
+		"tv": [],
+		"radio": [
+			{
+				"fonte": "Cientistas",
+				"texto": "Esta é uma transmissão automática da equipe de pesquisa. As criaturas evitam lugares em silêncio e respondem a ruído contínuo. Se esta mensagem ainda estiver tocando, não há mais ninguém na estação."
+			},
+			{
+				"fonte": "Testemunhas",
+				"texto": "Aqui é o pessoal da barricada de lata, no fim da rua, pro lado da barbearia. A gente tem água, um gerador fraco e lugar pra mais gente. Amanhã, antes de escurecer, a gente abre o portão uma última vez; depois disso, fecha de vez."
+			},
+			{
+				"fonte": "Conspiracionistas",
+				"texto": "Barricada de lata com água e gerador? É isca, óbvio. Ninguém dá água de graça no fim do mundo, isso é estatística. Eu fico em casa, e quem for, depois não diga que eu não avisei."
+			}
+		]
+	},
+	"10": {
+		"evento": "Não há reposição nem transporte. As decisões entre vizinhos definem quem ainda conversa com quem.",
+		"tv": [],
+		"radio": [
+			{
+				"fonte": "Testemunhas",
+				"texto": "Última transmissão da barricada no fim da rua, pro lado da barbearia. A gente fecha o portão quando escurecer, e não dá pra abrir de novo, sinto muito. Se você está ouvindo isso, vem agora, devagar e sem correr."
+			},
+			{
+				"fonte": "Conspiracionistas",
+				"texto": "Quem entra não sai, eu sinto isso. Não tenho como provar, mas o meu instinto nunca errou, tirando algumas vezes. Fica em casa e confia em mim."
+			},
+			{
+				"fonte": "Governo",
+				"texto": "Atenção, povo brasileiro, esta é uma mensagem gravada do Presidente. Permaneçam em suas casas até o restabelecimento, que vai ser rapidinho. Esta mensagem vai se repetir até alguém desligar o rádio."
+			}
+		]
+	}
 }

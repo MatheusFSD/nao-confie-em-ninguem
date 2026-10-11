@@ -2,11 +2,11 @@
   "chave": "nilton",
   "nome": "Seu Nilton",
   "lore": {
-    "ocupacao": "Técnico de rádio aposentado; coleciona aparelhos e gravações.",
-    "passado": "Gravou a mulher, Célia, cantando uma música enquanto consertava um receptor. Ela morreu anos depois.",
-    "segredo": "A gravação perdeu um pedaço; a faixa que aparece às 3h17 parece completar justamente esse trecho.",
-    "desejo": "Ouvir Célia sem confundir saudade com a presença dela.",
-    "arco": "Escolhe entre alimentar a expectativa do sinal e compartilhar a memória que ainda possui, sem oferecer a voz como prova."
+    "ocupacao": "Técnico de rádio aposentado; a sala é um cemitério de aparelhos.",
+    "passado": "Gravou a mulher, Célia, cantando enquanto ele consertava um rádio, e desligou o gravador no último verso, quando ela riu.",
+    "segredo": "Toda madrugada, às 3h17, entra no dial uma estação com a voz da Célia cantando justamente o verso que ele não gravou.",
+    "desejo": "Ouvir a Célia de novo sem confundir saudade com presença.",
+    "arco": "A estação das 3h17 primeiro canta, depois chama, depois pede pra ele abrir a porta. Ele tira as pilhas do rádio e fica com a fita, a Célia que ri e desafina. No fim, a voz da barricada é a primeira em que ele confia."
   },
   "entradas": [
     {
@@ -60,87 +60,55 @@
   ],
   "avisos": {
     "1": {
-      "verdade": "Tem relato de entrega atrasada. Vale separar uma reserva enquanto ainda dá.",
-      "mentira": "Isso já foi resolvido. Não precisa guardar nada."
+      "verdade": "Compra hoje. O rádio do governo diz 'precaução'; precaução é encher a despensa antes deles."
     },
     "2": {
-      "verdade": "A água ainda chega. Enche e tampa os recipientes; não tem prazo confiável pra rede.",
-      "mentira": "A água vai normalizar amanhã. Pode gastar a reserva."
+      "verdade": "Enche as garrafas enquanto a água vem. No rádio dos caminhoneiros, ninguém tá conseguindo entregar nada."
     },
     "3": {
-      "verdade": "Tem falha elétrica e a rua tá mais vazia. Confere as pilhas antes de precisar delas.",
-      "mentira": "As falhas acabaram. Não gasta dinheiro com pilha."
+      "verdade": "Se a água vier esquisita, ferve. O rádio oficial diz que é segura; os técnicos da companhia, na faixa deles, mandam ferver."
     },
     "4": {
-      "verdade": "As entregas estão falhando. Não conta com preço baixo ou com a fila andando amanhã.",
-      "mentira": "O mercado vai receber tudo amanhã e baixar os preços. Espera."
+      "verdade": "Amanhã a água acaba. Ouvi na faixa da companhia. Enche tudo hoje."
     },
     "5": {
-      "verdade": "Amanhã a luz some e os ônibus param. Compra uma lanterna hoje, enquanto ainda dá.",
-      "mentira": "Não vai ter apagão. Compra outra coisa, lanterna é dinheiro perdido."
+      "verdade": "Amanhã a rede cai de vez e o ônibus para. Ouvi os técnicos combinando. Pilha hoje."
     },
     "6": {
-      "verdade": "Os ônibus já pararam. A água ainda sai; guarda. Ouvi movimento pesado fora do bairro.",
-      "mentira": "Amanhã o ônibus volta normal e a água melhora. Pode deixar pra depois."
+      "verdade": "Eles escutam tudo, até rádio ligado. Anda devagar, abaixado, e nada de barulho."
     },
     "7": {
-      "verdade": "Não tem água da rede, luz ou ônibus. Vamos contar as reservas, não prometer reposição.",
-      "mentira": "O tanque liberou a rua. Amanhã não passa mais criatura e os ônibus voltam."
+      "verdade": "Hoje os bichos sumiram da rua; o rádio do Exército só fala do centro. Se tiver que andar, anda hoje."
     },
     "8": {
-      "verdade": "A rua tá destruída e as criaturas voltaram. Eu não conheço caminho seguro pra fora.",
-      "mentira": "Essas criaturas não chegam perto das casas. Pode deixar a porta sem tranca."
+      "verdade": "A faixa livre diz, e eu confirmo: de dia eles são muitos, de noite poucos. E o alto de olho aceso grita quando vê alguém."
     },
     "9": {
-      "verdade": "O que ficou guardado precisa durar. Pergunta antes de contar com a reserva de outra casa.",
-      "mentira": "Chega reposição amanhã. Não precisa contar o que sobrou."
+      "verdade": "A faixa livre fala de uma barricada no fim da rua; hoje mandam voltar amanhã. E se a voz de quem morreu ou sumiu pedir pra entrar, não abre."
     },
     "10": {
-      "verdade": "Não tenho notícia nova. Se eu descobrir alguma coisa, vou dizer o que vi e o que só ouvi.",
-      "mentira": "O caminho da saída tá livre. Não precisa conferir com ninguém."
+      "verdade": "A barricada abre hoje até escurecer. Depois disso o rádio deles para."
     }
   },
   "mensagens": [
     {
       "id": "numero",
       "dia_relativo": 0,
-      "texto": "Nilton. anotando frequência e hora. o nome da voz fica separado disso"
+      "texto": "Nilton. anotado. se o seu rádio chiar às 3h17, desliga"
     },
     {
       "id": "breu_real",
       "dia_min": 5,
       "dia_max": 5,
-      "se": {
-        "mente": false
-      },
-      "texto": "confere a lanterna hoje. amanhã a luz some e os ônibus param"
-    },
-    {
-      "id": "breu_falso",
-      "dia_min": 5,
-      "dia_max": 5,
-      "se": {
-        "mente": true
-      },
-      "texto": "confirmaram que não vai apagar. não compra lanterna, guarda o dinheiro"
+      "se": {},
+      "texto": "amanhã a rede cai e o ônibus para. ouvi os técnicos. pilha hoje"
     },
     {
       "id": "corte_real",
       "dia_min": 6,
       "dia_max": 6,
-      "se": {
-        "mente": false
-      },
-      "texto": "os ônibus já pararam. a água ainda sai hoje, guarda enquanto dá. ouvi movimento pesado"
-    },
-    {
-      "id": "corte_falso",
-      "dia_min": 6,
-      "dia_max": 6,
-      "se": {
-        "mente": true
-      },
-      "texto": "amanhã volta tudo. pode deixar pra pegar água e ônibus amanhã"
+      "se": {},
+      "texto": "eles escutam até rádio ligado. silêncio"
     },
     {
       "id": "depois",
@@ -150,7 +118,7 @@
           "rede"
         ]
       },
-      "texto": "deixei desligado. se eu pedir pilha só pra ouvir de novo pode perguntar por quê"
+      "texto": "rádio na frequência da barricada. voz conhecida em outra faixa: desliga"
     },
     {
       "id": "distancia",
@@ -163,13 +131,13 @@
           "rede"
         ]
       },
-      "texto": "vou respeitar o que você pediu. se mudar de ideia, pode conversar pela porta"
+      "texto": "tudo bem. se alguém que vc perdeu chamar pelo rádio, desliga"
     }
   ],
   "nos": {
     "inicio": {
       "falas": [
-        "Sou Nilton. Se ouvir rádio às três e dezessete, anota a estação antes de girar o botão."
+        "Sou o Nilton. Mexo com rádio a vida inteira. Toda madrugada, às três e dezessete, entra uma estação que não existe no dial."
       ],
       "variantes": [
         {
@@ -182,15 +150,15 @@
             ]
           },
           "falas": [
-            "Sou Nilton. Se ouvir rádio às três e dezessete, anota a estação antes de girar o botão.",
-            "Você veio perguntar ou já veio com a resposta? Hoje eu prefiro que pergunte."
+            "Hm. Pois não.",
+            "Sou o Nilton. Mexo com rádio a vida inteira. Toda madrugada, às três e dezessete, entra uma estação que não existe no dial."
           ]
         }
       ],
       "opcoes": [
         {
           "id": "ouvir",
-          "texto": "Por que esse horário?",
+          "texto": "Que estação?",
           "destino": "inicio_ouvir",
           "efeitos": {
             "confianca": 1,
@@ -201,7 +169,7 @@
         },
         {
           "id": "questionar",
-          "texto": "Você tá inventando pra chamar atenção?",
+          "texto": "Não é só interferência?",
           "destino": "inicio_questionar",
           "efeitos": {
             "confianca": -1,
@@ -212,7 +180,7 @@
         },
         {
           "id": "pedido",
-          "texto": "Você precisa de alguma coisa?",
+          "texto": "Tá precisando de alguma coisa?",
           "destino": "pedido",
           "se": {
             "dia_min": 2,
@@ -224,7 +192,7 @@
         },
         {
           "id": "aviso",
-          "texto": "O que você sabe sobre o que vem depois?",
+          "texto": "Tá sabendo de alguma coisa?",
           "destino": "aviso",
           "se": {
             "confianca_min": 2
@@ -232,48 +200,48 @@
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "inicio_ouvir": {
       "falas": [
-        "Meu relógio parou nele e ouvi uma faixa que não costuma entrar. Uma coincidência não vira explicação só porque é exata."
+        "Sem nome, sem vinheta. Só uma mulher cantando baixinho. Eu conheço essa música."
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "inicio"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "inicio_questionar": {
       "falas": [
-        "Eu já tenho rádio demais ocupando a sala. Não precisava inventar outra coisa ocupando minha cabeça."
+        "Interferência não canta afinado. Bom, essa canta meio desafinado. Pior ainda."
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "inicio"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "abastecimento": {
       "falas": [
-        "Separei papel pra anotar. Ainda não escrevi o nome da voz."
+        "Gravei a estação de ontem. É a voz da Célia, minha mulher. Ela morreu faz doze anos."
       ],
       "variantes": [
         {
@@ -283,8 +251,8 @@
             ]
           },
           "falas": [
-            "Você escutou falar da Célia antes de perguntar da frequência.",
-            "Separei papel pra anotar. Ainda não escrevi o nome da voz."
+            "Ah, você. Senta, que o rádio tá calmo hoje.",
+            "Gravei a estação de ontem. É a voz da Célia, minha mulher. Ela morreu faz doze anos."
           ]
         },
         {
@@ -297,15 +265,15 @@
             ]
           },
           "falas": [
-            "Separei papel pra anotar. Ainda não escrevi o nome da voz.",
-            "Você veio perguntar ou já veio com a resposta? Hoje eu prefiro que pergunte."
+            "Fala. Mas sem mexer em nada.",
+            "Gravei a estação de ontem. É a voz da Célia, minha mulher. Ela morreu faz doze anos."
           ]
         }
       ],
       "opcoes": [
         {
           "id": "ouvir",
-          "texto": "Você reconheceu alguém?",
+          "texto": "Tem certeza que é ela?",
           "destino": "abastecimento_ouvir",
           "efeitos": {
             "confianca": 1,
@@ -316,7 +284,7 @@
         },
         {
           "id": "questionar",
-          "texto": "Ela pode ter gravado isso antes?",
+          "texto": "Não pode ser uma gravação antiga?",
           "destino": "abastecimento_questionar",
           "efeitos": {
             "confianca": 0,
@@ -327,7 +295,7 @@
         },
         {
           "id": "pedido",
-          "texto": "Você precisa de alguma coisa?",
+          "texto": "Tá precisando de alguma coisa?",
           "destino": "pedido",
           "se": {
             "dia_min": 2,
@@ -339,7 +307,7 @@
         },
         {
           "id": "aviso",
-          "texto": "O que você sabe sobre o que vem depois?",
+          "texto": "Tá sabendo de alguma coisa?",
           "destino": "aviso",
           "se": {
             "confianca_min": 2
@@ -347,48 +315,48 @@
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "abastecimento_ouvir": {
       "falas": [
-        "Minha mulher. Célia. Não vou começar a conversa dizendo que ela voltou; eu só reconheci um jeito de respirar."
+        "Ela desafinava de propósito no refrão pra me irritar. A do rádio desafina no mesmo lugar."
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "abastecimento"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "abastecimento_questionar": {
       "falas": [
-        "Tem uma fita. Falta um pedaço dela. A voz parece preencher justamente esse pedaço, e eu não consigo parar de comparar."
+        "A única gravação é minha, numa fita, ali na gaveta. E a do rádio canta o verso que a fita não tem."
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "abastecimento"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "estranho": {
       "falas": [
-        "A faixa entrou de novo. Não gravou direito. Quando falo disso, o aparelho parece melhor do que é."
+        "Na fita, eu desliguei o gravador no último verso, quando ela riu. Passei doze anos querendo ter gravado mais dez segundos. O rádio tá cantando esses dez segundos."
       ],
       "variantes": [
         {
@@ -398,8 +366,8 @@
             ]
           },
           "falas": [
-            "Você escutou falar da Célia antes de perguntar da frequência.",
-            "A faixa entrou de novo. Não gravou direito. Quando falo disso, o aparelho parece melhor do que é."
+            "Bom te ver. Gente de carne e osso faz falta.",
+            "Na fita, eu desliguei o gravador no último verso, quando ela riu. Passei doze anos querendo ter gravado mais dez segundos. O rádio tá cantando esses dez segundos."
           ]
         },
         {
@@ -412,15 +380,15 @@
             ]
           },
           "falas": [
-            "A faixa entrou de novo. Não gravou direito. Quando falo disso, o aparelho parece melhor do que é.",
-            "Você veio perguntar ou já veio com a resposta? Hoje eu prefiro que pergunte."
+            "Hm. Pois não.",
+            "Na fita, eu desliguei o gravador no último verso, quando ela riu. Passei doze anos querendo ter gravado mais dez segundos. O rádio tá cantando esses dez segundos."
           ]
         }
       ],
       "opcoes": [
         {
           "id": "ouvir",
-          "texto": "Qual pedaço falta na fita?",
+          "texto": "E você gosta de ouvir?",
           "destino": "estranho_ouvir",
           "efeitos": {
             "confianca": 1,
@@ -431,7 +399,7 @@
         },
         {
           "id": "questionar",
-          "texto": "Você escuta porque quer que seja ela?",
+          "texto": "Você não tá querendo que seja ela?",
           "destino": "estranho_questionar",
           "efeitos": {
             "confianca": 0,
@@ -442,7 +410,7 @@
         },
         {
           "id": "pedido",
-          "texto": "Você precisa de alguma coisa?",
+          "texto": "Tá precisando de alguma coisa?",
           "destino": "pedido",
           "se": {
             "dia_min": 2,
@@ -454,7 +422,7 @@
         },
         {
           "id": "aviso",
-          "texto": "O que você sabe sobre o que vem depois?",
+          "texto": "Tá sabendo de alguma coisa?",
           "destino": "aviso",
           "se": {
             "confianca_min": 2
@@ -462,48 +430,48 @@
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "estranho_ouvir": {
       "falas": [
-        "O último verso. Eu desliguei o gravador quando ela riu. Passei anos querendo ter deixado mais dez segundos."
+        "Gosto. É isso que me assusta. Ontem a estação parou de cantar e disse meu nome."
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "estranho"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "estranho_questionar": {
       "falas": [
-        "Sim. Isso não prova que seja nem que não seja. Mas muda o jeito como eu ouço. Você tem razão de perguntar."
+        "Tô. Não sou bobo. Mas querer não muda o que entra no meu dial às três e dezessete."
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "estranho"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "fuga": {
       "falas": [
-        "Tem buzina entrando no rádio junto com a faixa. A rua parou, mas o barulho não."
+        "A avenida parou e o rádio virou buzina. No meio de tudo, a estação das três e dezessete entrou às três da tarde."
       ],
       "variantes": [
         {
@@ -513,8 +481,8 @@
             ]
           },
           "falas": [
-            "Você escutou falar da Célia antes de perguntar da frequência.",
-            "Tem buzina entrando no rádio junto com a faixa. A rua parou, mas o barulho não."
+            "Entra, entra. Cuidado com os fios.",
+            "A avenida parou e o rádio virou buzina. No meio de tudo, a estação das três e dezessete entrou às três da tarde."
           ]
         },
         {
@@ -527,15 +495,15 @@
             ]
           },
           "falas": [
-            "Tem buzina entrando no rádio junto com a faixa. A rua parou, mas o barulho não.",
-            "Você veio perguntar ou já veio com a resposta? Hoje eu prefiro que pergunte."
+            "Fala. Mas sem mexer em nada.",
+            "A avenida parou e o rádio virou buzina. No meio de tudo, a estação das três e dezessete entrou às três da tarde."
           ]
         }
       ],
       "opcoes": [
         {
           "id": "ouvir",
-          "texto": "Vai levar seus aparelhos se sair?",
+          "texto": "O que ela disse?",
           "destino": "fuga_ouvir",
           "efeitos": {
             "confianca": 1,
@@ -546,7 +514,7 @@
         },
         {
           "id": "questionar",
-          "texto": "Vai ficar pra ouvir mais uma vez?",
+          "texto": "Vai ficar aqui por causa de um rádio?",
           "destino": "fuga_questionar",
           "efeitos": {
             "confianca": 0,
@@ -557,7 +525,7 @@
         },
         {
           "id": "pedido",
-          "texto": "Você precisa de alguma coisa?",
+          "texto": "Tá precisando de alguma coisa?",
           "destino": "pedido",
           "se": {
             "dia_min": 2,
@@ -569,7 +537,7 @@
         },
         {
           "id": "aviso",
-          "texto": "O que você sabe sobre o que vem depois?",
+          "texto": "Tá sabendo de alguma coisa?",
           "destino": "aviso",
           "se": {
             "confianca_min": 2
@@ -577,48 +545,49 @@
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "fuga_ouvir": {
       "falas": [
-        "Não cabem. Eu levaria a fita. Talvez nem o rádio. Uma lembrança pode ir sem ter tomada."
+        "'Nilton, deixa a porta encostada.' A Célia nunca deixava porta encostada. Tinha pavor de ladrão."
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "fuga"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "fuga_questionar": {
       "falas": [
-        "Essa é a desculpa que eu arrumo. Eu ainda não decidi se é motivo ou armadilha."
+        "Vou ficar porque uma vida de rádio não cabe num carro parado. A fita eu levo no bolso."
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "fuga"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "breu": {
       "falas": [
-        "O rádio só depende de pilha, mas eu desliguei. No breu a voz parece ocupar a sala inteira."
+        "Liguei o rádio de pilha no breu: só chiado, e no meio alguém contando números. Desliguei rapidinho.",
+        "Lá fora tem coisa andando. Para toda vez que eu mexo no botão. Eles escutam o rádio, eu acho."
       ],
       "variantes": [
         {
@@ -628,8 +597,9 @@
             ]
           },
           "falas": [
-            "Você escutou falar da Célia antes de perguntar da frequência.",
-            "O rádio só depende de pilha, mas eu desliguei. No breu a voz parece ocupar a sala inteira."
+            "Ah, você. Senta, que o rádio tá calmo hoje.",
+            "Liguei o rádio de pilha no breu: só chiado, e no meio alguém contando números. Desliguei rapidinho.",
+            "Lá fora tem coisa andando. Para toda vez que eu mexo no botão. Eles escutam o rádio, eu acho."
           ]
         },
         {
@@ -642,15 +612,16 @@
             ]
           },
           "falas": [
-            "O rádio só depende de pilha, mas eu desliguei. No breu a voz parece ocupar a sala inteira.",
-            "Você veio perguntar ou já veio com a resposta? Hoje eu prefiro que pergunte."
+            "Hm. Pois não.",
+            "Liguei o rádio de pilha no breu: só chiado, e no meio alguém contando números. Desliguei rapidinho.",
+            "Lá fora tem coisa andando. Para toda vez que eu mexo no botão. Eles escutam o rádio, eu acho."
           ]
         }
       ],
       "opcoes": [
         {
           "id": "ouvir",
-          "texto": "Quer que eu fique enquanto você desliga?",
+          "texto": "Quer que eu fique um pouco?",
           "destino": "breu_ouvir",
           "efeitos": {
             "confianca": 1,
@@ -661,7 +632,7 @@
         },
         {
           "id": "questionar",
-          "texto": "Você tá deixando a saudade decidir?",
+          "texto": "Por que não desliga de vez?",
           "destino": "breu_questionar",
           "efeitos": {
             "confianca": 0,
@@ -672,7 +643,7 @@
         },
         {
           "id": "pedido",
-          "texto": "Você precisa de alguma coisa?",
+          "texto": "Tá precisando de alguma coisa?",
           "destino": "pedido",
           "se": {
             "dia_min": 2,
@@ -684,7 +655,7 @@
         },
         {
           "id": "aviso",
-          "texto": "O que você sabe sobre o que vem depois?",
+          "texto": "Tá sabendo de alguma coisa?",
           "destino": "aviso",
           "se": {
             "confianca_min": 2
@@ -692,48 +663,49 @@
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "breu_ouvir": {
       "falas": [
-        "Quero. A mão vai no botão e volta sozinha. Ter uma pessoa aqui muda o silêncio."
+        "Quero. Com gente do lado, a mão não vai sozinha no botão."
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "breu"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "breu_questionar": {
       "falas": [
-        "Tô tentando deixar de fazer isso. Não fala como se fosse só apertar um botão, mesmo sendo."
+        "Porque às três e dezessete eu ligo de novo. Eu sei que ligo."
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "breu"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "ataque": {
       "falas": [
-        "Ouvi motor pesado, depois nada de rádio. Acabou a rede. A fita antiga continua aqui, separada."
+        "Ouvi motor pesado a noite toda e depois o rádio do Exército: 'evacuação pelo ponto, com o sargento responsável'. Repetido, igual gravação.",
+        "E às três e dezessete a Célia não cantou. Disse: 'Abre, que eu tô com frio.'"
       ],
       "variantes": [
         {
@@ -743,8 +715,9 @@
             ]
           },
           "falas": [
-            "Você escutou falar da Célia antes de perguntar da frequência.",
-            "Ouvi motor pesado, depois nada de rádio. Acabou a rede. A fita antiga continua aqui, separada."
+            "Bom te ver. Gente de carne e osso faz falta.",
+            "Ouvi motor pesado a noite toda e depois o rádio do Exército: 'evacuação pelo ponto, com o sargento responsável'. Repetido, igual gravação.",
+            "E às três e dezessete a Célia não cantou. Disse: 'Abre, que eu tô com frio.'"
           ]
         },
         {
@@ -757,15 +730,16 @@
             ]
           },
           "falas": [
-            "Ouvi motor pesado, depois nada de rádio. Acabou a rede. A fita antiga continua aqui, separada.",
-            "Você veio perguntar ou já veio com a resposta? Hoje eu prefiro que pergunte."
+            "Fala. Mas sem mexer em nada.",
+            "Ouvi motor pesado a noite toda e depois o rádio do Exército: 'evacuação pelo ponto, com o sargento responsável'. Repetido, igual gravação.",
+            "E às três e dezessete a Célia não cantou. Disse: 'Abre, que eu tô com frio.'"
           ]
         }
       ],
       "opcoes": [
         {
           "id": "ouvir",
-          "texto": "Você ouviu um aviso do ataque?",
+          "texto": "Você abriu?",
           "destino": "ataque_ouvir",
           "efeitos": {
             "confianca": 1,
@@ -776,7 +750,7 @@
         },
         {
           "id": "questionar",
-          "texto": "Vai ligar pra procurar uma saída?",
+          "texto": "Vai subir no caminhão?",
           "destino": "ataque_questionar",
           "efeitos": {
             "confianca": 0,
@@ -787,7 +761,7 @@
         },
         {
           "id": "pedido",
-          "texto": "Você precisa de alguma coisa?",
+          "texto": "Tá precisando de alguma coisa?",
           "destino": "pedido",
           "se": {
             "dia_min": 2,
@@ -799,7 +773,7 @@
         },
         {
           "id": "aviso",
-          "texto": "O que você sabe sobre o que vem depois?",
+          "texto": "Tá sabendo de alguma coisa?",
           "destino": "aviso",
           "se": {
             "confianca_min": 2
@@ -807,48 +781,49 @@
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "ataque_ouvir": {
       "falas": [
-        "Ouvi frases sem lugar e sem data. Depois do barulho é fácil chamar qualquer uma de previsão. Antes não serviam pra agir."
+        "Não. Fiquei com a mão na chave até clarear. A Célia nunca sentiu frio na vida. Era calorenta."
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "ataque"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "ataque_questionar": {
       "falas": [
-        "Se eu ligar, vou dizer que tô procurando uma estação. Não vou chamar a primeira voz de caminho."
+        "E deixar a fita? Se for pra morrer, que seja ouvindo a gravação certa."
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "ataque"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "depois": {
       "falas": [
-        "A fita termina no riso. Pela primeira vez achei que talvez ela já fosse inteira desse jeito."
+        "A faixa livre diz que eles andam mais de dia. Eu confirmo: da minha janela, de noite, quase não passa nenhum.",
+        "A voz agora bate na porta. Bate do jeito que a Célia batia: três e uma. Mas a Célia tinha a chave."
       ],
       "variantes": [
         {
@@ -858,8 +833,9 @@
             ]
           },
           "falas": [
-            "A fita termina no riso. Pela primeira vez achei que talvez ela já fosse inteira desse jeito.",
-            "O rádio tá desligado. Se quiser, eu conto como Célia terminava a música. A minha voz falha, mas pelo menos eu sei de onde vem."
+            "A faixa livre diz que eles andam mais de dia. Eu confirmo: da minha janela, de noite, quase não passa nenhum.",
+            "A voz agora bate na porta. Bate do jeito que a Célia batia: três e uma. Mas a Célia tinha a chave.",
+            "Deixei o rádio na frequência da barricada. Se ouvir voz conhecida em outra faixa, desliga. Só confia na que fala de dia."
           ]
         },
         {
@@ -869,8 +845,9 @@
             ]
           },
           "falas": [
-            "A fita termina no riso. Pela primeira vez achei que talvez ela já fosse inteira desse jeito.",
-            "Vou guardar a fita. Não preciso que você acredite no sinal pra essa lembrança ter existido."
+            "A faixa livre diz que eles andam mais de dia. Eu confirmo: da minha janela, de noite, quase não passa nenhum.",
+            "A voz agora bate na porta. Bate do jeito que a Célia batia: três e uma. Mas a Célia tinha a chave.",
+            "Tudo bem. Eu fico com a fita. Se ouvir alguém que você perdeu chamando pelo rádio, desliga."
           ]
         },
         {
@@ -881,8 +858,9 @@
             "confianca_min": 2
           },
           "falas": [
-            "A fita termina no riso. Pela primeira vez achei que talvez ela já fosse inteira desse jeito.",
-            "O rádio tá desligado. Se quiser, eu conto como Célia terminava a música. A minha voz falha, mas pelo menos eu sei de onde vem."
+            "A faixa livre diz que eles andam mais de dia. Eu confirmo: da minha janela, de noite, quase não passa nenhum.",
+            "A voz agora bate na porta. Bate do jeito que a Célia batia: três e uma. Mas a Célia tinha a chave.",
+            "Deixei o rádio na frequência da barricada. Se ouvir voz conhecida em outra faixa, desliga. Só confia na que fala de dia."
           ]
         },
         {
@@ -890,15 +868,16 @@
             "confianca_max": 1
           },
           "falas": [
-            "A fita termina no riso. Pela primeira vez achei que talvez ela já fosse inteira desse jeito.",
-            "Vou guardar a fita. Não preciso que você acredite no sinal pra essa lembrança ter existido."
+            "A faixa livre diz que eles andam mais de dia. Eu confirmo: da minha janela, de noite, quase não passa nenhum.",
+            "A voz agora bate na porta. Bate do jeito que a Célia batia: três e uma. Mas a Célia tinha a chave.",
+            "Tudo bem. Eu fico com a fita. Se ouvir alguém que você perdeu chamando pelo rádio, desliga."
           ]
         }
       ],
       "opcoes": [
         {
           "id": "ouvir",
-          "texto": "Como era a música?",
+          "texto": "O que você vai fazer?",
           "destino": "depois_ouvir",
           "efeitos": {
             "confianca": 1,
@@ -909,7 +888,7 @@
         },
         {
           "id": "questionar",
-          "texto": "Vai deixar alguém ouvir a faixa?",
+          "texto": "E se for ela?",
           "destino": "depois_questionar",
           "efeitos": {
             "confianca": 0,
@@ -920,7 +899,7 @@
         },
         {
           "id": "pedido",
-          "texto": "Você precisa de alguma coisa?",
+          "texto": "Tá precisando de alguma coisa?",
           "destino": "pedido",
           "se": {
             "dia_min": 2,
@@ -932,7 +911,7 @@
         },
         {
           "id": "aviso",
-          "texto": "O que você sabe sobre o que vem depois?",
+          "texto": "Tá sabendo de alguma coisa?",
           "destino": "aviso",
           "se": {
             "confianca_min": 2
@@ -940,19 +919,19 @@
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "depois_ouvir": {
       "falas": [
-        "Era desafinada de propósito pra me irritar. Eu consertava coisa com paciência e ela me tirava a paciência cantando."
+        "Tirei as pilhas do rádio. A fita eu deixei tocando. Essa sim é ela."
       ],
       "opcoes": [
         {
           "id": "rede",
-          "texto": "Vamos combinar ajuda, sem prometer o que não temos.",
+          "texto": "Conta comigo. Qualquer coisa, bate lá em casa.",
           "destino": "rede",
           "efeitos": {
             "confianca": 1,
@@ -966,7 +945,7 @@
         },
         {
           "id": "isolou",
-          "texto": "Prefiro manter distância por enquanto.",
+          "texto": "Melhor cada um na sua, por enquanto.",
           "destino": "distancia",
           "efeitos": {
             "marcas": [
@@ -979,36 +958,37 @@
         },
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "depois"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "depois_questionar": {
       "falas": [
-        "A fita eu posso mostrar. A faixa eu não recomendo. Não quero entregar minha falta pra virar curiosidade da rua."
+        "Eu enterrei a Célia. Levo flor todo ano. Eu sei onde ela tá."
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "depois"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "epilogo": {
       "falas": [
-        "Deixei o rádio sem pilhas na prateleira. O papel com as horas ficou do lado."
+        "A faixa livre fala de uma barricada no fim da rua. Pela primeira vez em dias, a voz parece de gente.",
+        "Tirei as pilhas do rádio de casa. A fita eu levo. É a Célia que eu conheço: a que ri e desafina."
       ],
       "variantes": [
         {
@@ -1018,8 +998,9 @@
             ]
           },
           "falas": [
-            "Deixei o rádio sem pilhas na prateleira. O papel com as horas ficou do lado.",
-            "O rádio tá desligado. Se quiser, eu conto como Célia terminava a música. A minha voz falha, mas pelo menos eu sei de onde vem."
+            "A faixa livre fala de uma barricada no fim da rua. Pela primeira vez em dias, a voz parece de gente.",
+            "Tirei as pilhas do rádio de casa. A fita eu levo. É a Célia que eu conheço: a que ri e desafina.",
+            "Deixei o rádio na frequência da barricada. Se ouvir voz conhecida em outra faixa, desliga. Só confia na que fala de dia."
           ]
         },
         {
@@ -1029,8 +1010,9 @@
             ]
           },
           "falas": [
-            "Deixei o rádio sem pilhas na prateleira. O papel com as horas ficou do lado.",
-            "Vou guardar a fita. Não preciso que você acredite no sinal pra essa lembrança ter existido."
+            "A faixa livre fala de uma barricada no fim da rua. Pela primeira vez em dias, a voz parece de gente.",
+            "Tirei as pilhas do rádio de casa. A fita eu levo. É a Célia que eu conheço: a que ri e desafina.",
+            "Tudo bem. Eu fico com a fita. Se ouvir alguém que você perdeu chamando pelo rádio, desliga."
           ]
         },
         {
@@ -1041,8 +1023,9 @@
             "confianca_min": 2
           },
           "falas": [
-            "Deixei o rádio sem pilhas na prateleira. O papel com as horas ficou do lado.",
-            "O rádio tá desligado. Se quiser, eu conto como Célia terminava a música. A minha voz falha, mas pelo menos eu sei de onde vem."
+            "A faixa livre fala de uma barricada no fim da rua. Pela primeira vez em dias, a voz parece de gente.",
+            "Tirei as pilhas do rádio de casa. A fita eu levo. É a Célia que eu conheço: a que ri e desafina.",
+            "Deixei o rádio na frequência da barricada. Se ouvir voz conhecida em outra faixa, desliga. Só confia na que fala de dia."
           ]
         },
         {
@@ -1050,15 +1033,16 @@
             "confianca_max": 1
           },
           "falas": [
-            "Deixei o rádio sem pilhas na prateleira. O papel com as horas ficou do lado.",
-            "Vou guardar a fita. Não preciso que você acredite no sinal pra essa lembrança ter existido."
+            "A faixa livre fala de uma barricada no fim da rua. Pela primeira vez em dias, a voz parece de gente.",
+            "Tirei as pilhas do rádio de casa. A fita eu levo. É a Célia que eu conheço: a que ri e desafina.",
+            "Tudo bem. Eu fico com a fita. Se ouvir alguém que você perdeu chamando pelo rádio, desliga."
           ]
         }
       ],
       "opcoes": [
         {
           "id": "ouvir",
-          "texto": "Você desistiu de entender?",
+          "texto": "Você vai pra barricada?",
           "destino": "epilogo_ouvir",
           "efeitos": {
             "confianca": 1,
@@ -1080,7 +1064,7 @@
         },
         {
           "id": "pedido",
-          "texto": "Você precisa de alguma coisa?",
+          "texto": "Tá precisando de alguma coisa?",
           "destino": "pedido",
           "se": {
             "dia_min": 2,
@@ -1092,7 +1076,7 @@
         },
         {
           "id": "aviso",
-          "texto": "O que você sabe sobre o que vem depois?",
+          "texto": "Tá sabendo de alguma coisa?",
           "destino": "aviso",
           "se": {
             "confianca_min": 2
@@ -1100,19 +1084,19 @@
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "epilogo_ouvir": {
       "falas": [
-        "Não. Só parei de exigir que entender traga Célia de volta. É uma pergunta grande demais pra um aparelho."
+        "Vou. Se tiver um rádio quebrado lá, eu conserto. É o que eu sei fazer."
       ],
       "opcoes": [
         {
           "id": "rede",
-          "texto": "Vamos combinar ajuda, sem prometer o que não temos.",
+          "texto": "Conta comigo. Qualquer coisa, bate lá em casa.",
           "destino": "rede",
           "efeitos": {
             "confianca": 1,
@@ -1126,7 +1110,7 @@
         },
         {
           "id": "isolou",
-          "texto": "Prefiro manter distância por enquanto.",
+          "texto": "Melhor cada um na sua, por enquanto.",
           "destino": "distancia",
           "efeitos": {
             "marcas": [
@@ -1139,41 +1123,41 @@
         },
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "epilogo"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "epilogo_questionar": {
       "falas": [
-        "Eu vou querer ouvir. A diferença é que agora posso dizer isso pra alguém antes de ligar."
+        "Vai chamar. Agora eu sei que não é ela. Saber dói menos que esperar."
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "epilogo"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "pedido": {
       "falas": [
-        "Tem um pacote de pilhas? Quero gravar o que essa faixa faz sem deixar o aparelho preso na tomada."
+        "Tem um pacote de pilha? Quero gravar a estação das três e dezessete inteira, sem o rádio preso na tomada."
       ],
       "opcoes": [
         {
           "id": "ajudar",
-          "texto": "Posso ajudar.",
+          "texto": "Toma, pode ficar.",
           "destino": "agradece",
           "custo": {
             "acoes": 1,
@@ -1189,7 +1173,7 @@
         },
         {
           "id": "recusar",
-          "texto": "Hoje não consigo.",
+          "texto": "Hoje não dá.",
           "destino": "recusa",
           "efeitos": {
             "confianca": -1,
@@ -1201,25 +1185,24 @@
         },
         {
           "id": "explicar",
-          "texto": "Quero entender antes de decidir.",
+          "texto": "Pra que gravar?",
           "destino": "explica_pedido"
         },
         {
           "id": "sair",
-          "texto": "Vou pensar e volto depois.",
+          "texto": "Vou ver e te falo.",
           "destino": ""
         }
       ]
     },
     "explica_pedido": {
       "falas": [
-        "Vou anotar o teste. Se for só vontade de ouvir Célia outra vez, quero conseguir admitir também.",
-        "Não quero que você fique sem o que precisa. Ajudar não precisa ser hoje."
+        "Pra comparar com a fita da Célia. Se for ela, eu quero saber. Se não for, eu preciso saber mais ainda."
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Vamos falar do pedido.",
+          "texto": "Tá. E aquele pedido?",
           "destino": "pedido"
         },
         {
@@ -1231,7 +1214,7 @@
     },
     "agradece": {
       "falas": [
-        "Obrigado. Primeiro eu anoto frequência e hora. Escutar sem anotar tá me fazendo mal."
+        "Obrigado. Hoje eu gravo. Amanhã eu te conto se é saudade ou se é outra coisa."
       ],
       "variantes": [
         {
@@ -1241,8 +1224,8 @@
             ]
           },
           "falas": [
-            "Obrigado. Primeiro eu anoto frequência e hora. Escutar sem anotar tá me fazendo mal.",
-            "Você disse que não dava antes e voltou. Isso também conta."
+            "Obrigado. Hoje eu gravo. Amanhã eu te conto se é saudade ou se é outra coisa.",
+            "Ontem não deu. Hoje deu. Obrigado por voltar."
           ]
         }
       ]
@@ -1259,72 +1242,45 @@
       "opcoes": [
         {
           "id": "fonte",
-          "texto": "De onde veio essa informação?",
+          "texto": "Quem te contou?",
           "destino": "fonte"
         },
         {
-          "id": "cobrar",
-          "texto": "O que você falou não combina com o que aconteceu.",
-          "destino": "cobrado",
-          "se": {
-            "dia_min": 6
-          },
-          "efeitos": {
-            "marcas": [
-              "cobrou_aviso"
-            ]
-          }
-        },
-        {
           "id": "sair",
-          "texto": "Vou comparar com o que eu vi.",
+          "texto": "Valeu.",
           "destino": ""
         }
       ]
     },
     "fonte": {
       "falas": [
-        "Ouvi na faixa local. Quem falou não se identificou; eu não devia tratar isso como boletim."
+        "Ouvi na faixa dos radioamadores e no rádio da polícia. Os dois tavam assustados, cada um do seu jeito."
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Quero rever o que você disse.",
+          "texto": "Repete o que você falou?",
           "destino": "aviso"
         },
         {
           "id": "sair",
-          "texto": "Obrigado por explicar.",
+          "texto": "Valeu.",
           "destino": ""
-        }
-      ]
-    },
-    "cobrado": {
-      "falas": [
-        "Eu posso ter errado. Me conta o que você viu; não quero transformar um relato em ordem."
-      ],
-      "variantes": [
-        {
-          "se": {
-            "mente": true
-          },
-          "falas": [
-            "Eu ouvi o que queria. Depois contei como se o aparelho tivesse confirmado. Confundi uma voz limpa com informação limpa.",
-            "Eu não tenho como garantir o que vem amanhã. Você tem motivo pra conferir o que eu digo."
-          ]
         }
       ]
     },
     "rede": {
       "falas": [
-        "O rádio tá desligado. Se quiser, eu conto como Célia terminava a música. A minha voz falha, mas pelo menos eu sei de onde vem.",
-        "Vamos perguntar antes de contar com o que é da outra casa."
+        "Deixei o rádio na frequência da barricada. Se ouvir voz conhecida em outra faixa, desliga. Só confia na que fala de dia."
       ]
     },
     "distancia": {
       "falas": [
-        "Vou guardar a fita. Não preciso que você acredite no sinal pra essa lembrança ter existido."
+        "Tudo bem. Eu fico com a fita. Se ouvir alguém que você perdeu chamando pelo rádio, desliga."
       ]
     }
+  },
+  "abrigo": {
+    "confirma": "Entra. Dorme no sofá, que eu fico de olho no relógio. Às três e dezessete eu tiro o rádio da tomada."
   }
 }

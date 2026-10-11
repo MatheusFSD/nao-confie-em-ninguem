@@ -1,7 +1,11 @@
 extends CharacterBody3D
 
-# Primeira pessoa: WASD anda, mouse olha, Shift corre, E usa o que estiver na
-# mira, Esc solta o mouse.
+# Primeira pessoa: WASD anda, mouse olha, Shift corre, Ctrl agacha (devagar e
+# quieto: os caçadores e o Observador demoram mais a notar), E usa o que estiver
+# na mira, Esc solta o mouse.
+#
+# F5 a F8 ficam de fora de propósito: rodando pelo editor do Godot, são os
+# atalhos dele (F8 para o jogo, F7 pausa).
 signal interagiu
 ## A tranca tem tecla própria, como no jogo 2D: T.
 signal trancou
@@ -9,10 +13,20 @@ signal trancou
 signal pediu_modo_deus
 ## I abre a mochila, onde estão a lanterna e o celular.
 signal abriu_a_mochila
-## F6 e F7 andam com o relógio do dia, no modo deus.
+signal abriu_o_celular
+## Page Down e Page Up andam com o relógio do dia, no modo deus.
 signal mexeu_na_hora(passo: int)
+## F1 a F4: ver um final (só vale no modo deus).
+signal pediu_final(qual: int)
+## F9: a mesa de som, com todos os sons do jogo.
+signal pediu_mesa_de_som
+## Esc: o menu de pausa.
+signal pediu_pausa
 const VELOCIDADE := 3.2
 const CORRIDA := 5.4
+## Agachado: devagar, olhos baixos e passos quase sem som.
+const AGACHADO := 1.5
+const OLHOS_AGACHADO := 1.05
 const GRAVIDADE := 18.0
 const ALTURA_OLHOS := 1.62
 ## Altura que o corpo vence sozinho: o meio-fio da rua tem 15 cm.
@@ -20,6 +34,13 @@ const DEGRAU := 0.3
 ## Quanto o mouse gira a câmera por pixel.
 @export var sensibilidade := 0.0022
 var balanco := 0.0
+## Segurando Ctrl. Os caçadores e o Observador leem isto.
+var agachado := false
+## Altura dos olhos sem o balanço: desce e sobe devagar ao agachar.
+var _olhos := ALTURA_OLHOS
+## Passos: um a cada tantos metros andados no chão.
+var _passos: AudioStreamPlayer
+var _andado := 0.0
 ## O próprio jogo guarda se o mouse está preso, em vez de perguntar ao sistema:
 ## assim o Esc e o clique mandam de verdade, mesmo quando a janela não permite
 ## prender o cursor (nos testes, por exemplo).
@@ -28,6 +49,8 @@ var mouse_preso := true
 
 func _ready() -> void:
 	configurar_controles()
+	sensibilidade = float(Configuracoes.carregar().sensibilidade)
+	camera.doppler_tracking = Camera3D.DOPPLER_TRACKING_PHYSICS_STEP
 	# Cenário = 1, jogador = 2, pedestres = 4, veículos = 32, caçadores = 64.
 	collision_layer = 2
 	collision_mask = 1 | 4 | 32 | 64
@@ -45,7 +68,7 @@ func _ready() -> void:
 	prender_mouse(true)
 
 func configurar_controles() -> void:
-	var teclas := {"andar_frente": [KEY_W, KEY_UP], "andar_tras": [KEY_S, KEY_DOWN], "andar_esquerda": [KEY_A, KEY_LEFT], "andar_direita": [KEY_D, KEY_RIGHT], "correr": [KEY_SHIFT]}
+	var teclas := {"andar_frente": [KEY_W, KEY_UP], "andar_tras": [KEY_S, KEY_DOWN], "andar_esquerda": [KEY_A, KEY_LEFT], "andar_direita": [KEY_D, KEY_RIGHT], "correr": [KEY_SHIFT], "agachar": [KEY_CTRL]}
 	for acao: String in teclas:
 		if not InputMap.has_action(acao): InputMap.add_action(acao)
 		for tecla: int in teclas[acao]:
@@ -65,12 +88,19 @@ func _unhandled_input(evento: InputEvent) -> void:
 		pediu_modo_deus.emit()
 	elif evento is InputEventKey and evento.pressed and not evento.echo and evento.physical_keycode == KEY_I:
 		abriu_a_mochila.emit()
-	elif evento is InputEventKey and evento.pressed and not evento.echo and evento.physical_keycode == KEY_F6:
+	elif evento is InputEventKey and evento.pressed and not evento.echo and evento.physical_keycode == KEY_C:
+		abriu_o_celular.emit()
+	elif evento is InputEventKey and evento.pressed and not evento.echo and evento.physical_keycode in [KEY_F1, KEY_F2, KEY_F3, KEY_F4]:
+		pediu_final.emit([KEY_F1, KEY_F2, KEY_F3, KEY_F4].find(evento.physical_keycode))
+	elif evento is InputEventKey and evento.pressed and not evento.echo and evento.physical_keycode == KEY_F9:
+		pediu_mesa_de_som.emit()
+	elif evento is InputEventKey and evento.pressed and not evento.echo and evento.physical_keycode == KEY_PAGEDOWN:
 		mexeu_na_hora.emit(-1)
-	elif evento is InputEventKey and evento.pressed and not evento.echo and evento.physical_keycode == KEY_F7:
+	elif evento is InputEventKey and evento.pressed and not evento.echo and evento.physical_keycode == KEY_PAGEUP:
 		mexeu_na_hora.emit(1)
-	elif evento is InputEventKey and evento.pressed and evento.physical_keycode == KEY_ESCAPE:
+	elif evento is InputEventKey and evento.pressed and not evento.echo and evento.physical_keycode == KEY_ESCAPE:
 		prender_mouse(false)
+		pediu_pausa.emit()
 	elif evento is InputEventMouseButton and evento.pressed:
 		prender_mouse(true)
 
@@ -92,7 +122,9 @@ func vencer_degrau(passo: Vector3, delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	var direcao := Input.get_vector("andar_esquerda", "andar_direita", "andar_frente", "andar_tras")
 	var passo := (transform.basis * Vector3(direcao.x, 0, direcao.y)).normalized()
-	var velocidade_alvo := CORRIDA if Input.is_action_pressed("correr") else VELOCIDADE
+	agachado = Input.is_action_pressed("agachar")
+	var velocidade_alvo := AGACHADO if agachado else (CORRIDA if Input.is_action_pressed("correr") else VELOCIDADE)
+	_olhos = lerpf(_olhos, OLHOS_AGACHADO if agachado else ALTURA_OLHOS, 1.0 - exp(-delta * 10.0))
 	velocity.x = passo.x * velocidade_alvo
 	velocity.z = passo.z * velocidade_alvo
 	velocity.y -= GRAVIDADE * delta
@@ -102,9 +134,24 @@ func _physics_process(delta: float) -> void:
 	# Balanço curto da cabeça, como nos jogos da época.
 	if passo.length() > 0.1 and is_on_floor():
 		balanco += delta * velocidade_alvo * 2.4
-		camera.position.y = ALTURA_OLHOS + sin(balanco) * 0.035
+		camera.position.y = _olhos + sin(balanco) * 0.035
+		pisar(Vector2(velocity.x, velocity.z).length() * delta, velocidade_alvo == CORRIDA)
 	else:
-		camera.position.y = lerpf(camera.position.y, ALTURA_OLHOS, 1.0 - exp(-delta * 8.0))
+		camera.position.y = lerpf(camera.position.y, _olhos, 1.0 - exp(-delta * 8.0))
+
+## O chinelo no chão: correndo, passos mais largos e mais altos.
+func pisar(metros: float, correndo: bool) -> void:
+	_andado += metros
+	if _andado < (1.05 if correndo else 0.72): return
+	_andado = 0.0
+	if _passos == null:
+		_passos = AudioStreamPlayer.new()
+		_passos.name = "Passos"
+		_passos.stream = Sons3D.passo_jogador()
+		add_child(_passos)
+	_passos.volume_db = -9.0 if correndo else (-24.0 if agachado else -14.0)
+	_passos.pitch_scale = randf_range(0.88, 1.12)
+	_passos.play()
 
 ## Prende ou solta o cursor. O estado fica no jogo; o sistema é avisado depois.
 func prender_mouse(preso: bool) -> void:

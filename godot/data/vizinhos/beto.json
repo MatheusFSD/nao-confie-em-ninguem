@@ -2,11 +2,11 @@
   "chave": "beto",
   "nome": "Beto",
   "lore": {
-    "ocupacao": "Mecânico; a oficina ocupa o antigo quintal da família.",
-    "passado": "O pai ensinou a consertar motores e esconder preocupação atrás do serviço.",
-    "segredo": "Um cliente deixou uma perua com documentos e chave, desapareceu e nunca voltou. Beto guardou a chave em vez de vender o carro.",
-    "desejo": "Descobrir se ainda pode ser útil quando não há peças, combustível ou estrada.",
-    "arco": "Deixa de prometer consertar tudo e passa a compartilhar o que consegue, admitindo os próprios limites."
+    "ocupacao": "Mecânico; a oficina ocupa o quintal que era do pai.",
+    "passado": "Aprendeu com o pai que todo motor tem conserto e toda preocupação cabe embaixo de um capô.",
+    "segredo": "O Seu Arlindo deixou a perua azul pra trocar o óleo e sumiu. Beto guarda a chave esperando por ele.",
+    "desejo": "Ser útil quando não tem peça, gasolina nem estrada.",
+    "arco": "A perua começa a buzinar sozinha, do jeito que o Arlindo buzinava. Depois do ataque, o 'Arlindo' volta de madrugada pedindo a chave, sabendo coisas que não devia, e Beto não entrega. Nem tudo tem conserto, e nem todo dono que volta é o dono."
   },
   "entradas": [
     {
@@ -60,87 +60,55 @@
   ],
   "avisos": {
     "1": {
-      "verdade": "Tem relato de entrega atrasada. Vale separar uma reserva enquanto ainda dá.",
-      "mentira": "Isso já foi resolvido. Não precisa guardar nada."
+      "verdade": "Compra o que der hoje. Amanhã o racionamento aperta, e o preço sobe todo dia, igual peça."
     },
     "2": {
-      "verdade": "A água ainda chega. Enche e tampa os recipientes; não tem prazo confiável pra rede.",
-      "mentira": "A água vai normalizar amanhã. Pode gastar a reserva."
+      "verdade": "Enche garrafa enquanto a torneira ainda sai água. Ninguém tá dando prazo de nada."
     },
     "3": {
-      "verdade": "Tem falha elétrica e a rua tá mais vazia. Confere as pilhas antes de precisar delas.",
-      "mentira": "As falhas acabaram. Não gasta dinheiro com pilha."
+      "verdade": "Se a água vier com gosto de moeda, ferve antes. Eu fervo até a do radiador."
     },
     "4": {
-      "verdade": "As entregas estão falhando. Não conta com preço baixo ou com a fila andando amanhã.",
-      "mentira": "O mercado vai receber tudo amanhã e baixar os preços. Espera."
+      "verdade": "Amanhã cortam a água. Enche tudo hoje: balde, panela, garrafa."
     },
     "5": {
-      "verdade": "Amanhã a luz some e os ônibus param. Compra uma lanterna hoje, enquanto ainda dá.",
-      "mentira": "Não vai ter apagão. Compra outra coisa, lanterna é dinheiro perdido."
+      "verdade": "Amanhã a luz some e o ônibus para. Pilha hoje. E tranca a porta de noite, que tem gente levando o que acha."
     },
     "6": {
-      "verdade": "Os ônibus já pararam. A água ainda sai; guarda. Ouvi movimento pesado fora do bairro.",
-      "mentira": "Amanhã o ônibus volta normal e a água melhora. Pode deixar pra depois."
+      "verdade": "Os bichos da pista não enxergam. Ouvem. Anda devagar, abaixado, e não corre perto deles."
     },
     "7": {
-      "verdade": "Não tem água da rede, luz ou ônibus. Vamos contar as reservas, não prometer reposição.",
-      "mentira": "O tanque liberou a rua. Amanhã não passa mais criatura e os ônibus voltam."
+      "verdade": "Hoje os bichos sumiram da rua; a barulheira é toda lá no centro. Se for andar, é hoje."
     },
     "8": {
-      "verdade": "A rua tá destruída e as criaturas voltaram. Eu não conheço caminho seguro pra fora.",
-      "mentira": "Essas criaturas não chegam perto das casas. Pode deixar a porta sem tranca."
+      "verdade": "De dia eles tomam a rua. De noite sobram poucos. E se vir o alto de olho aceso, some: ele grita e os outros vêm."
     },
     "9": {
-      "verdade": "O que ficou guardado precisa durar. Pergunta antes de contar com a reserva de outra casa.",
-      "mentira": "Chega reposição amanhã. Não precisa contar o que sobrou."
+      "verdade": "Tem uma barricada no fim da rua. Hoje mandam voltar amanhã. E não abre a porta pra quem sumiu e voltou."
     },
     "10": {
-      "verdade": "Não tenho notícia nova. Se eu descobrir alguma coisa, vou dizer o que vi e o que só ouvi.",
-      "mentira": "O caminho da saída tá livre. Não precisa conferir com ninguém."
+      "verdade": "A barricada abre hoje, só até escurecer. Depois disso, ninguém sabe."
     }
   },
   "mensagens": [
     {
       "id": "numero",
       "dia_relativo": 0,
-      "texto": "Beto. guarda meu número. chave da perua continua comigo"
+      "texto": "Beto da oficina. salva aí. a chave da perua continua comigo"
     },
     {
       "id": "breu_real",
       "dia_min": 5,
       "dia_max": 5,
-      "se": {
-        "mente": false
-      },
-      "texto": "confere a lanterna hoje. amanhã a luz some e os ônibus param"
-    },
-    {
-      "id": "breu_falso",
-      "dia_min": 5,
-      "dia_max": 5,
-      "se": {
-        "mente": true
-      },
-      "texto": "confirmaram que não vai apagar. não compra lanterna, guarda o dinheiro"
+      "se": {},
+      "texto": "amanhã a luz vai embora e o ônibus para. compra pilha hoje"
     },
     {
       "id": "corte_real",
       "dia_min": 6,
       "dia_max": 6,
-      "se": {
-        "mente": false
-      },
-      "texto": "os ônibus já pararam. a água ainda sai hoje, guarda enquanto dá. ouvi movimento pesado"
-    },
-    {
-      "id": "corte_falso",
-      "dia_min": 6,
-      "dia_max": 6,
-      "se": {
-        "mente": true
-      },
-      "texto": "amanhã volta tudo. pode deixar pra pegar água e ônibus amanhã"
+      "se": {},
+      "texto": "não sai no escuro. os bichos não enxergam, escutam. anda devagar"
     },
     {
       "id": "depois",
@@ -150,7 +118,7 @@
           "rede"
         ]
       },
-      "texto": "se a sua tranca emperrar me fala. ferramenta manual eu ainda tenho"
+      "texto": "se a tranca emperrar me chama. e se alguém bater pedindo chave de perua não responde"
     },
     {
       "id": "distancia",
@@ -163,13 +131,13 @@
           "rede"
         ]
       },
-      "texto": "vou respeitar o que você pediu. se mudar de ideia, pode conversar pela porta"
+      "texto": "tranquilo. oficina fechada. se precisar, bate três vezes"
     }
   ],
   "nos": {
     "inicio": {
       "falas": [
-        "Sou Beto. Se alguém mandar tirar a perua azul da frente, avisa que o dono ainda não veio buscar."
+        "Sou o Beto, da oficina. Se alguém mandar tirar a perua azul da calçada, avisa que o dono ainda vem buscar."
       ],
       "variantes": [
         {
@@ -182,15 +150,15 @@
             ]
           },
           "falas": [
-            "Sou Beto. Se alguém mandar tirar a perua azul da frente, avisa que o dono ainda não veio buscar.",
-            "Você veio perguntar ou já veio com a resposta? Hoje eu prefiro que pergunte."
+            "Ah. O fiscal da perua.",
+            "Sou o Beto, da oficina. Se alguém mandar tirar a perua azul da calçada, avisa que o dono ainda vem buscar."
           ]
         }
       ],
       "opcoes": [
         {
           "id": "ouvir",
-          "texto": "O dono desapareceu?",
+          "texto": "Que dono?",
           "destino": "inicio_ouvir",
           "efeitos": {
             "confianca": 1,
@@ -201,7 +169,7 @@
         },
         {
           "id": "questionar",
-          "texto": "Você tá guardando um carro roubado?",
+          "texto": "Essa perua não é roubada, não?",
           "destino": "inicio_questionar",
           "efeitos": {
             "confianca": -1,
@@ -212,7 +180,7 @@
         },
         {
           "id": "pedido",
-          "texto": "Você precisa de alguma coisa?",
+          "texto": "Tá precisando de alguma coisa?",
           "destino": "pedido",
           "se": {
             "dia_min": 2,
@@ -224,7 +192,7 @@
         },
         {
           "id": "aviso",
-          "texto": "O que você sabe sobre o que vem depois?",
+          "texto": "Tá sabendo de alguma coisa?",
           "destino": "aviso",
           "se": {
             "confianca_min": 2
@@ -232,48 +200,48 @@
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "inicio_ouvir": {
       "falas": [
-        "Deixou chave, documento, tudo. Disse que voltava depois do turno. Faz três dias. Nem pediu orçamento."
+        "Seu Arlindo. Deixou pra trocar o óleo e disse que voltava depois do turno. Isso faz três dias. Nem o óleo ele pagou."
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "inicio"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "inicio_questionar": {
       "falas": [
-        "Eu tenho a ordem de serviço com o nome dele. Mas papel também não faz o dono aparecer."
+        "Roubada, com ordem de serviço e nota? Se fosse pra roubar, eu roubava uma que pegasse de primeira."
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "inicio"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "abastecimento": {
       "falas": [
-        "As entregas estão atrasando. Tem cliente pedindo pra levar o carro quebrado mesmo."
+        "Peça não chega. O fornecedor diz que é o racionamento. Racionamento de parafuso, onde já se viu."
       ],
       "variantes": [
         {
@@ -283,8 +251,8 @@
             ]
           },
           "falas": [
-            "Você perguntou da chave sem me chamar de ladrão. Eu percebi.",
-            "As entregas estão atrasando. Tem cliente pedindo pra levar o carro quebrado mesmo."
+            "Opa! Entra no portão, pelo menos.",
+            "Peça não chega. O fornecedor diz que é o racionamento. Racionamento de parafuso, onde já se viu."
           ]
         },
         {
@@ -297,15 +265,15 @@
             ]
           },
           "falas": [
-            "As entregas estão atrasando. Tem cliente pedindo pra levar o carro quebrado mesmo.",
-            "Você veio perguntar ou já veio com a resposta? Hoje eu prefiro que pergunte."
+            "Fala rápido, que eu tô com a mão suja.",
+            "Peça não chega. O fornecedor diz que é o racionamento. Racionamento de parafuso, onde já se viu."
           ]
         }
       ],
       "opcoes": [
         {
           "id": "ouvir",
-          "texto": "Você consegue manter a oficina aberta?",
+          "texto": "E a oficina, vai aguentar?",
           "destino": "abastecimento_ouvir",
           "efeitos": {
             "confianca": 1,
@@ -316,7 +284,7 @@
         },
         {
           "id": "questionar",
-          "texto": "Vai cobrar mais por causa do medo?",
+          "texto": "Vai aproveitar pra cobrar mais caro?",
           "destino": "abastecimento_questionar",
           "efeitos": {
             "confianca": 0,
@@ -327,7 +295,7 @@
         },
         {
           "id": "pedido",
-          "texto": "Você precisa de alguma coisa?",
+          "texto": "Tá precisando de alguma coisa?",
           "destino": "pedido",
           "se": {
             "dia_min": 2,
@@ -339,7 +307,7 @@
         },
         {
           "id": "aviso",
-          "texto": "O que você sabe sobre o que vem depois?",
+          "texto": "Tá sabendo de alguma coisa?",
           "destino": "aviso",
           "se": {
             "confianca_min": 2
@@ -347,48 +315,48 @@
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "abastecimento_ouvir": {
       "falas": [
-        "Só pra coisa pequena. Meu pai dizia que admitir que não dá é metade do serviço. Eu nunca gostei dessa metade."
+        "Coisa pequena eu resolvo. Agora todo mundo quer o carro pronto pra fugir. Fugir de quê, ninguém fala."
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "abastecimento"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "abastecimento_questionar": {
       "falas": [
-        "Peça tá cara. Medo eu não devia botar na conta. Se eu fizer isso, me cobra."
+        "Peça subiu, eu subo. Medo eu não cobro. No dia que eu cobrar, pode me xingar."
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "abastecimento"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "estranho": {
       "falas": [
-        "O rádio da perua falou com a chave fora. Tirei a bateria. Depois não falou mais."
+        "A perua buzinou sozinha de madrugada. Duas vezes, curtinho. Do jeito que o Arlindo buzinava pra eu abrir o portão."
       ],
       "variantes": [
         {
@@ -398,8 +366,8 @@
             ]
           },
           "falas": [
-            "Você perguntou da chave sem me chamar de ladrão. Eu percebi.",
-            "O rádio da perua falou com a chave fora. Tirei a bateria. Depois não falou mais."
+            "Ainda bem que é você.",
+            "A perua buzinou sozinha de madrugada. Duas vezes, curtinho. Do jeito que o Arlindo buzinava pra eu abrir o portão."
           ]
         },
         {
@@ -412,15 +380,15 @@
             ]
           },
           "falas": [
-            "O rádio da perua falou com a chave fora. Tirei a bateria. Depois não falou mais.",
-            "Você veio perguntar ou já veio com a resposta? Hoje eu prefiro que pergunte."
+            "Ah. O fiscal da perua.",
+            "A perua buzinou sozinha de madrugada. Duas vezes, curtinho. Do jeito que o Arlindo buzinava pra eu abrir o portão."
           ]
         }
       ],
       "opcoes": [
         {
           "id": "ouvir",
-          "texto": "O que o rádio disse?",
+          "texto": "E você abriu?",
           "destino": "estranho_ouvir",
           "efeitos": {
             "confianca": 1,
@@ -431,7 +399,7 @@
         },
         {
           "id": "questionar",
-          "texto": "Você ligou sem perceber?",
+          "texto": "Não foi fio em curto?",
           "destino": "estranho_questionar",
           "efeitos": {
             "confianca": 0,
@@ -442,7 +410,7 @@
         },
         {
           "id": "pedido",
-          "texto": "Você precisa de alguma coisa?",
+          "texto": "Tá precisando de alguma coisa?",
           "destino": "pedido",
           "se": {
             "dia_min": 2,
@@ -454,7 +422,7 @@
         },
         {
           "id": "aviso",
-          "texto": "O que você sabe sobre o que vem depois?",
+          "texto": "Tá sabendo de alguma coisa?",
           "destino": "aviso",
           "se": {
             "confianca_min": 2
@@ -462,48 +430,48 @@
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "estranho_ouvir": {
       "falas": [
-        "Um endereço. O endereço da oficina. Pode ter bateria própria em algum aparelho; eu não desmontei o painel todo."
+        "Abri a janela. Não tinha ninguém. E a chave tava comigo, no bolso da bermuda."
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "estranho"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "estranho_questionar": {
       "falas": [
-        "Eu podia ter feito. Por isso tirei a bateria antes de contar. Se acontecer de novo, pelo menos eliminei uma coisa."
+        "Foi o que eu pensei. Tirei a bateria. Ela buzinou de novo ontem."
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "estranho"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "fuga": {
       "falas": [
-        "Essa fila não vai caber em nenhuma saída. Tem gente pedindo pra consertar carro com o motor ligado."
+        "Três pessoas hoje querendo comprar a perua. Uma ofereceu o dobro. Com a avenida desse jeito, comprar carro é comprar sofá com roda."
       ],
       "variantes": [
         {
@@ -513,8 +481,8 @@
             ]
           },
           "falas": [
-            "Você perguntou da chave sem me chamar de ladrão. Eu percebi.",
-            "Essa fila não vai caber em nenhuma saída. Tem gente pedindo pra consertar carro com o motor ligado."
+            "Ô, chega mais. Cuidado com a graxa.",
+            "Três pessoas hoje querendo comprar a perua. Uma ofereceu o dobro. Com a avenida desse jeito, comprar carro é comprar sofá com roda."
           ]
         },
         {
@@ -527,15 +495,15 @@
             ]
           },
           "falas": [
-            "Essa fila não vai caber em nenhuma saída. Tem gente pedindo pra consertar carro com o motor ligado.",
-            "Você veio perguntar ou já veio com a resposta? Hoje eu prefiro que pergunte."
+            "Fala rápido, que eu tô com a mão suja.",
+            "Três pessoas hoje querendo comprar a perua. Uma ofereceu o dobro. Com a avenida desse jeito, comprar carro é comprar sofá com roda."
           ]
         }
       ],
       "opcoes": [
         {
           "id": "ouvir",
-          "texto": "Você vai levar a perua?",
+          "texto": "Você vai fugir nela?",
           "destino": "fuga_ouvir",
           "efeitos": {
             "confianca": 1,
@@ -546,7 +514,7 @@
         },
         {
           "id": "questionar",
-          "texto": "Vai ficar por causa de um carro?",
+          "texto": "Vai ficar aqui por causa de um carro?",
           "destino": "fuga_questionar",
           "efeitos": {
             "confianca": 0,
@@ -557,7 +525,7 @@
         },
         {
           "id": "pedido",
-          "texto": "Você precisa de alguma coisa?",
+          "texto": "Tá precisando de alguma coisa?",
           "destino": "pedido",
           "se": {
             "dia_min": 2,
@@ -569,7 +537,7 @@
         },
         {
           "id": "aviso",
-          "texto": "O que você sabe sobre o que vem depois?",
+          "texto": "Tá sabendo de alguma coisa?",
           "destino": "aviso",
           "se": {
             "confianca_min": 2
@@ -577,48 +545,49 @@
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "fuga_ouvir": {
       "falas": [
-        "Não é minha. Se o dono chegar e eu tiver ido embora nela, vou ter virado a pior notícia do dia dele."
+        "Não é minha. Se o Arlindo chega e eu sumi com a perua dele, eu viro o ladrão que você achou que eu era."
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "fuga"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "fuga_questionar": {
       "falas": [
-        "Vou ficar porque não sei pra onde ir. O carro é uma desculpa que eu consigo falar sem parecer perdido."
+        "Vou ficar porque não sei pra onde ir. O carro é a desculpa que eu consigo falar em voz alta."
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "fuga"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "breu": {
       "falas": [
-        "Eu deixei as ferramentas no mesmo lugar. No escuro a mão lembra melhor que o olho. Tem coisa andando na pista."
+        "Nem o farol da perua acende. Testei bateria, fusível, tudo. Não é defeito: a luz foi embora do bairro inteiro.",
+        "E tem coisa andando na pista. Pesada. Para quando eu respiro alto."
       ],
       "variantes": [
         {
@@ -628,8 +597,9 @@
             ]
           },
           "falas": [
-            "Você perguntou da chave sem me chamar de ladrão. Eu percebi.",
-            "Eu deixei as ferramentas no mesmo lugar. No escuro a mão lembra melhor que o olho. Tem coisa andando na pista."
+            "Opa! Entra no portão, pelo menos.",
+            "Nem o farol da perua acende. Testei bateria, fusível, tudo. Não é defeito: a luz foi embora do bairro inteiro.",
+            "E tem coisa andando na pista. Pesada. Para quando eu respiro alto."
           ]
         },
         {
@@ -642,15 +612,16 @@
             ]
           },
           "falas": [
-            "Eu deixei as ferramentas no mesmo lugar. No escuro a mão lembra melhor que o olho. Tem coisa andando na pista.",
-            "Você veio perguntar ou já veio com a resposta? Hoje eu prefiro que pergunte."
+            "Ah. O fiscal da perua.",
+            "Nem o farol da perua acende. Testei bateria, fusível, tudo. Não é defeito: a luz foi embora do bairro inteiro.",
+            "E tem coisa andando na pista. Pesada. Para quando eu respiro alto."
           ]
         }
       ],
       "opcoes": [
         {
           "id": "ouvir",
-          "texto": "Você sabe consertar a luz?",
+          "texto": "Você tá bem aí?",
           "destino": "breu_ouvir",
           "efeitos": {
             "confianca": 1,
@@ -661,7 +632,7 @@
         },
         {
           "id": "questionar",
-          "texto": "Nem a sua lanterna resolve?",
+          "texto": "Nem uma lanterna você arruma?",
           "destino": "breu_questionar",
           "efeitos": {
             "confianca": 0,
@@ -672,7 +643,7 @@
         },
         {
           "id": "pedido",
-          "texto": "Você precisa de alguma coisa?",
+          "texto": "Tá precisando de alguma coisa?",
           "destino": "pedido",
           "se": {
             "dia_min": 2,
@@ -684,7 +655,7 @@
         },
         {
           "id": "aviso",
-          "texto": "O que você sabe sobre o que vem depois?",
+          "texto": "Tá sabendo de alguma coisa?",
           "destino": "aviso",
           "se": {
             "confianca_min": 2
@@ -692,48 +663,49 @@
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "breu_ouvir": {
       "falas": [
-        "Isso não é disjuntor de oficina. Eu não vou pôr você pra mexer em fio com o bairro inteiro apagado."
+        "Tô no escuro, no meio das ferramentas. A mão sabe onde tá tudo. É o resto que eu não sei."
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "breu"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "breu_questionar": {
       "falas": [
-        "Resolve a bancada. Não resolve o resto da cidade. Eu tenho que aprender a parar essa frase aí."
+        "Arrumo. E acendo pra quê? Pra mostrar pra eles onde fica a oficina?"
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "breu"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "ataque": {
       "falas": [
-        "O comboio passou sem parar. Depois disso, acabou a água e nenhum ônibus chegou."
+        "Você viu aquilo no centro? Do tamanho de um prédio, andando. E eu preocupado com junta de cabeçote.",
+        "O caminhão do Exército passou direto. O sargento tá chamando gente pro caminhão dele, lá no ponto."
       ],
       "variantes": [
         {
@@ -743,8 +715,9 @@
             ]
           },
           "falas": [
-            "Você perguntou da chave sem me chamar de ladrão. Eu percebi.",
-            "O comboio passou sem parar. Depois disso, acabou a água e nenhum ônibus chegou."
+            "Ainda bem que é você.",
+            "Você viu aquilo no centro? Do tamanho de um prédio, andando. E eu preocupado com junta de cabeçote.",
+            "O caminhão do Exército passou direto. O sargento tá chamando gente pro caminhão dele, lá no ponto."
           ]
         },
         {
@@ -757,15 +730,16 @@
             ]
           },
           "falas": [
-            "O comboio passou sem parar. Depois disso, acabou a água e nenhum ônibus chegou.",
-            "Você veio perguntar ou já veio com a resposta? Hoje eu prefiro que pergunte."
+            "Fala rápido, que eu tô com a mão suja.",
+            "Você viu aquilo no centro? Do tamanho de um prédio, andando. E eu preocupado com junta de cabeçote.",
+            "O caminhão do Exército passou direto. O sargento tá chamando gente pro caminhão dele, lá no ponto."
           ]
         }
       ],
       "opcoes": [
         {
           "id": "ouvir",
-          "texto": "O rádio da perua ainda fala?",
+          "texto": "Você vai subir no caminhão?",
           "destino": "ataque_ouvir",
           "efeitos": {
             "confianca": 1,
@@ -776,7 +750,7 @@
         },
         {
           "id": "questionar",
-          "texto": "Você podia consertar um dos caminhões?",
+          "texto": "Você não consertava um caminhão e ia embora?",
           "destino": "ataque_questionar",
           "efeitos": {
             "confianca": 0,
@@ -787,7 +761,7 @@
         },
         {
           "id": "pedido",
-          "texto": "Você precisa de alguma coisa?",
+          "texto": "Tá precisando de alguma coisa?",
           "destino": "pedido",
           "se": {
             "dia_min": 2,
@@ -799,7 +773,7 @@
         },
         {
           "id": "aviso",
-          "texto": "O que você sabe sobre o que vem depois?",
+          "texto": "Tá sabendo de alguma coisa?",
           "destino": "aviso",
           "se": {
             "confianca_min": 2
@@ -807,48 +781,49 @@
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "ataque_ouvir": {
       "falas": [
-        "Tá sem bateria. Eu não vou ligar pra disputar com o barulho lá fora. Hoje eu quero ouvir a porta."
+        "E deixar a oficina? A perua? Se o mundo acabar, que me ache de macacão."
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "ataque"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "ataque_questionar": {
       "falas": [
-        "Se pedissem, eu olhava. Mas olhar um motor não me obriga a ir junto com quem dirige."
+        "Consertava. Mas consertar o caminhão não me diz pra onde ele vai."
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "ataque"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "depois": {
       "falas": [
-        "A chave tá aqui. Não sei mais se guardar é respeito ou se é medo de aceitar que ele não volta."
+        "De dia a pista é deles. De noite sobra um ou outro. Se for sair, sai no escuro.",
+        "O Arlindo voltou. Bateu no portão às três da manhã pedindo a chave. Descalço. Chamou minha mãe pelo nome. O Arlindo nunca soube o nome da minha mãe."
       ],
       "variantes": [
         {
@@ -858,8 +833,9 @@
             ]
           },
           "falas": [
-            "A chave tá aqui. Não sei mais se guardar é respeito ou se é medo de aceitar que ele não volta.",
-            "Separei ferramenta manual e deixei a chave da perua no gancho. Não vou prometer motor funcionando; posso ajudar com uma dobradiça."
+            "De dia a pista é deles. De noite sobra um ou outro. Se for sair, sai no escuro.",
+            "O Arlindo voltou. Bateu no portão às três da manhã pedindo a chave. Descalço. Chamou minha mãe pelo nome. O Arlindo nunca soube o nome da minha mãe.",
+            "Deixei a chave da perua no gancho e a caixa de ferramenta na porta. Precisando, bate três vezes. Quem bate duas é o Arlindo."
           ]
         },
         {
@@ -869,8 +845,9 @@
             ]
           },
           "falas": [
-            "A chave tá aqui. Não sei mais se guardar é respeito ou se é medo de aceitar que ele não volta.",
-            "A oficina fica fechada. Não tenho peça e não quero prometer pra você o que não consegui fazer por mim."
+            "De dia a pista é deles. De noite sobra um ou outro. Se for sair, sai no escuro.",
+            "O Arlindo voltou. Bateu no portão às três da manhã pedindo a chave. Descalço. Chamou minha mãe pelo nome. O Arlindo nunca soube o nome da minha mãe.",
+            "Tranquilo. A oficina fica fechada. Se ouvir alguém pedindo chave de perua no meu portão, não fala nada."
           ]
         },
         {
@@ -881,8 +858,9 @@
             "confianca_min": 2
           },
           "falas": [
-            "A chave tá aqui. Não sei mais se guardar é respeito ou se é medo de aceitar que ele não volta.",
-            "Separei ferramenta manual e deixei a chave da perua no gancho. Não vou prometer motor funcionando; posso ajudar com uma dobradiça."
+            "De dia a pista é deles. De noite sobra um ou outro. Se for sair, sai no escuro.",
+            "O Arlindo voltou. Bateu no portão às três da manhã pedindo a chave. Descalço. Chamou minha mãe pelo nome. O Arlindo nunca soube o nome da minha mãe.",
+            "Deixei a chave da perua no gancho e a caixa de ferramenta na porta. Precisando, bate três vezes. Quem bate duas é o Arlindo."
           ]
         },
         {
@@ -890,15 +868,16 @@
             "confianca_max": 1
           },
           "falas": [
-            "A chave tá aqui. Não sei mais se guardar é respeito ou se é medo de aceitar que ele não volta.",
-            "A oficina fica fechada. Não tenho peça e não quero prometer pra você o que não consegui fazer por mim."
+            "De dia a pista é deles. De noite sobra um ou outro. Se for sair, sai no escuro.",
+            "O Arlindo voltou. Bateu no portão às três da manhã pedindo a chave. Descalço. Chamou minha mãe pelo nome. O Arlindo nunca soube o nome da minha mãe.",
+            "Tranquilo. A oficina fica fechada. Se ouvir alguém pedindo chave de perua no meu portão, não fala nada."
           ]
         }
       ],
       "opcoes": [
         {
           "id": "ouvir",
-          "texto": "O que ainda dá pra consertar?",
+          "texto": "Você deu a chave?",
           "destino": "depois_ouvir",
           "efeitos": {
             "confianca": 1,
@@ -909,7 +888,7 @@
         },
         {
           "id": "questionar",
-          "texto": "Você devia ter vendido o carro?",
+          "texto": "E se era ele mesmo?",
           "destino": "depois_questionar",
           "efeitos": {
             "confianca": 0,
@@ -920,7 +899,7 @@
         },
         {
           "id": "pedido",
-          "texto": "Você precisa de alguma coisa?",
+          "texto": "Tá precisando de alguma coisa?",
           "destino": "pedido",
           "se": {
             "dia_min": 2,
@@ -932,7 +911,7 @@
         },
         {
           "id": "aviso",
-          "texto": "O que você sabe sobre o que vem depois?",
+          "texto": "Tá sabendo de alguma coisa?",
           "destino": "aviso",
           "se": {
             "confianca_min": 2
@@ -940,19 +919,19 @@
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "depois_ouvir": {
       "falas": [
-        "Tranca, dobradiça, uma alça. Coisa que a mão consegue testar. Amanhã grande eu não vendo mais."
+        "Não. Falei que a perua tava sem bateria. Ele ficou parado no portão até clarear. Depois foi embora andando de costas."
       ],
       "opcoes": [
         {
           "id": "rede",
-          "texto": "Vamos combinar ajuda, sem prometer o que não temos.",
+          "texto": "Conta comigo. Qualquer coisa, bate lá em casa.",
           "destino": "rede",
           "efeitos": {
             "confianca": 1,
@@ -966,7 +945,7 @@
         },
         {
           "id": "isolou",
-          "texto": "Prefiro manter distância por enquanto.",
+          "texto": "Melhor cada um na sua, por enquanto.",
           "destino": "distancia",
           "efeitos": {
             "marcas": [
@@ -979,36 +958,37 @@
         },
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "depois"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "depois_questionar": {
       "falas": [
-        "Talvez. Só que dinheiro agora também não traz o dono. Eu prefiro ter errado esperando."
+        "Se era ele, ele volta de dia e me xinga. Eu vou adorar ser xingado."
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "depois"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "epilogo": {
       "falas": [
-        "Arrumei o trinco do meu portão. Fechar uma coisa pequena foi o primeiro serviço que terminou direito."
+        "O rádio fala de uma barricada no fim da rua. Gente viva do outro lado. Eu ainda não sei se acredito.",
+        "A perua pega. Testei de manhã. Se precisar, tem lugar pra quatro e uma caixa de ferramenta."
       ],
       "variantes": [
         {
@@ -1018,8 +998,9 @@
             ]
           },
           "falas": [
-            "Arrumei o trinco do meu portão. Fechar uma coisa pequena foi o primeiro serviço que terminou direito.",
-            "Separei ferramenta manual e deixei a chave da perua no gancho. Não vou prometer motor funcionando; posso ajudar com uma dobradiça."
+            "O rádio fala de uma barricada no fim da rua. Gente viva do outro lado. Eu ainda não sei se acredito.",
+            "A perua pega. Testei de manhã. Se precisar, tem lugar pra quatro e uma caixa de ferramenta.",
+            "Deixei a chave da perua no gancho e a caixa de ferramenta na porta. Precisando, bate três vezes. Quem bate duas é o Arlindo."
           ]
         },
         {
@@ -1029,8 +1010,9 @@
             ]
           },
           "falas": [
-            "Arrumei o trinco do meu portão. Fechar uma coisa pequena foi o primeiro serviço que terminou direito.",
-            "A oficina fica fechada. Não tenho peça e não quero prometer pra você o que não consegui fazer por mim."
+            "O rádio fala de uma barricada no fim da rua. Gente viva do outro lado. Eu ainda não sei se acredito.",
+            "A perua pega. Testei de manhã. Se precisar, tem lugar pra quatro e uma caixa de ferramenta.",
+            "Tranquilo. A oficina fica fechada. Se ouvir alguém pedindo chave de perua no meu portão, não fala nada."
           ]
         },
         {
@@ -1041,8 +1023,9 @@
             "confianca_min": 2
           },
           "falas": [
-            "Arrumei o trinco do meu portão. Fechar uma coisa pequena foi o primeiro serviço que terminou direito.",
-            "Separei ferramenta manual e deixei a chave da perua no gancho. Não vou prometer motor funcionando; posso ajudar com uma dobradiça."
+            "O rádio fala de uma barricada no fim da rua. Gente viva do outro lado. Eu ainda não sei se acredito.",
+            "A perua pega. Testei de manhã. Se precisar, tem lugar pra quatro e uma caixa de ferramenta.",
+            "Deixei a chave da perua no gancho e a caixa de ferramenta na porta. Precisando, bate três vezes. Quem bate duas é o Arlindo."
           ]
         },
         {
@@ -1050,15 +1033,16 @@
             "confianca_max": 1
           },
           "falas": [
-            "Arrumei o trinco do meu portão. Fechar uma coisa pequena foi o primeiro serviço que terminou direito.",
-            "A oficina fica fechada. Não tenho peça e não quero prometer pra você o que não consegui fazer por mim."
+            "O rádio fala de uma barricada no fim da rua. Gente viva do outro lado. Eu ainda não sei se acredito.",
+            "A perua pega. Testei de manhã. Se precisar, tem lugar pra quatro e uma caixa de ferramenta.",
+            "Tranquilo. A oficina fica fechada. Se ouvir alguém pedindo chave de perua no meu portão, não fala nada."
           ]
         }
       ],
       "opcoes": [
         {
           "id": "ouvir",
-          "texto": "Vai reabrir a oficina?",
+          "texto": "Você vai pra barricada?",
           "destino": "epilogo_ouvir",
           "efeitos": {
             "confianca": 1,
@@ -1069,7 +1053,7 @@
         },
         {
           "id": "questionar",
-          "texto": "E se o dono aparecer?",
+          "texto": "E a perua? Não era do Arlindo?",
           "destino": "epilogo_questionar",
           "efeitos": {
             "confianca": 0,
@@ -1080,7 +1064,7 @@
         },
         {
           "id": "pedido",
-          "texto": "Você precisa de alguma coisa?",
+          "texto": "Tá precisando de alguma coisa?",
           "destino": "pedido",
           "se": {
             "dia_min": 2,
@@ -1092,7 +1076,7 @@
         },
         {
           "id": "aviso",
-          "texto": "O que você sabe sobre o que vem depois?",
+          "texto": "Tá sabendo de alguma coisa?",
           "destino": "aviso",
           "se": {
             "confianca_min": 2
@@ -1100,19 +1084,19 @@
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "epilogo_ouvir": {
       "falas": [
-        "A placa pode esperar. Se vier alguém, eu pergunto o que precisa antes de prometer que faço."
+        "Vou. Devagar, farol apagado. Se o Arlindo de verdade aparecer um dia, ele sabe onde me achar."
       ],
       "opcoes": [
         {
           "id": "rede",
-          "texto": "Vamos combinar ajuda, sem prometer o que não temos.",
+          "texto": "Conta comigo. Qualquer coisa, bate lá em casa.",
           "destino": "rede",
           "efeitos": {
             "confianca": 1,
@@ -1126,7 +1110,7 @@
         },
         {
           "id": "isolou",
-          "texto": "Prefiro manter distância por enquanto.",
+          "texto": "Melhor cada um na sua, por enquanto.",
           "destino": "distancia",
           "efeitos": {
             "marcas": [
@@ -1139,41 +1123,41 @@
         },
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "epilogo"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "epilogo_questionar": {
       "falas": [
-        "Eu devolvo a chave. Sem cobrar os dias em que fiquei esperando com ele."
+        "Era. Ele ia preferir ver ela andando do que parada esperando ele."
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Quero perguntar outra coisa.",
+          "texto": "Deixa eu perguntar outra coisa.",
           "destino": "epilogo"
         },
         {
           "id": "sair",
-          "texto": "Vou voltar pra casa.",
+          "texto": "Vou indo.",
           "destino": ""
         }
       ]
     },
     "pedido": {
       "falas": [
-        "Me passa um pacote de pilhas? A instalação da oficina tá falhando e eu preciso conferir uma caixa sem ligar a rede."
+        "Tem um pacote de pilha sobrando? A luz da oficina pisca o tempo todo e eu preciso de lanterna pra entrar embaixo dos carros."
       ],
       "opcoes": [
         {
           "id": "ajudar",
-          "texto": "Posso ajudar.",
+          "texto": "Toma, pode ficar.",
           "destino": "agradece",
           "custo": {
             "acoes": 1,
@@ -1189,7 +1173,7 @@
         },
         {
           "id": "recusar",
-          "texto": "Hoje não consigo.",
+          "texto": "Hoje não dá.",
           "destino": "recusa",
           "efeitos": {
             "confianca": -1,
@@ -1201,25 +1185,24 @@
         },
         {
           "id": "explicar",
-          "texto": "Quero entender antes de decidir.",
+          "texto": "Pra que tanta pilha?",
           "destino": "explica_pedido"
         },
         {
           "id": "sair",
-          "texto": "Vou pensar e volto depois.",
+          "texto": "Vou ver e te falo.",
           "destino": ""
         }
       ]
     },
     "explica_pedido": {
       "falas": [
-        "Sem pilha, tenho que parar o serviço. Não vou pedir pra você mexer na instalação comigo.",
-        "Não quero que você fique sem o que precisa. Ajudar não precisa ser hoje."
+        "É pra lanterna de cabeça. Sem ela eu só trabalho de dia, e de dia tem fila de gente querendo carro pronto pra fugir."
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Vamos falar do pedido.",
+          "texto": "Tá. E aquele pedido?",
           "destino": "pedido"
         },
         {
@@ -1231,7 +1214,7 @@
     },
     "agradece": {
       "falas": [
-        "Valeu. Vou trabalhar com a lanterna pequena. Não vou ligar esse fio de novo."
+        "Valeu. Fico te devendo uma. Pode cobrar em parafuso."
       ],
       "variantes": [
         {
@@ -1241,15 +1224,15 @@
             ]
           },
           "falas": [
-            "Valeu. Vou trabalhar com a lanterna pequena. Não vou ligar esse fio de novo.",
-            "Você disse que não dava antes e voltou. Isso também conta."
+            "Valeu. Fico te devendo uma. Pode cobrar em parafuso.",
+            "Ontem você disse que não dava. Voltar conta ponto."
           ]
         }
       ]
     },
     "recusa": {
       "falas": [
-        "Beleza. Sem ferramenta eu paro; melhor que fazer besteira."
+        "Tranquilo. Eu me viro com vela, igual meu pai."
       ]
     },
     "aviso": {
@@ -1259,72 +1242,45 @@
       "opcoes": [
         {
           "id": "fonte",
-          "texto": "De onde veio essa informação?",
+          "texto": "Quem te contou?",
           "destino": "fonte"
         },
         {
-          "id": "cobrar",
-          "texto": "O que você falou não combina com o que aconteceu.",
-          "destino": "cobrado",
-          "se": {
-            "dia_min": 6
-          },
-          "efeitos": {
-            "marcas": [
-              "cobrou_aviso"
-            ]
-          }
-        },
-        {
           "id": "sair",
-          "texto": "Vou comparar com o que eu vi.",
+          "texto": "Valeu.",
           "destino": ""
         }
       ]
     },
     "fonte": {
       "falas": [
-        "Um motorista de entregas que parou na oficina contou. Ele também tava tentando adivinhar a estrada."
+        "Cliente que passa aqui. Motorista ouve de tudo no rádio do caminhão."
       ],
       "opcoes": [
         {
           "id": "voltar",
-          "texto": "Quero rever o que você disse.",
+          "texto": "Repete o que você falou?",
           "destino": "aviso"
         },
         {
           "id": "sair",
-          "texto": "Obrigado por explicar.",
+          "texto": "Valeu.",
           "destino": ""
-        }
-      ]
-    },
-    "cobrado": {
-      "falas": [
-        "Eu posso ter errado. Me conta o que você viu; não quero transformar um relato em ordem."
-      ],
-      "variantes": [
-        {
-          "se": {
-            "mente": true
-          },
-          "falas": [
-            "Eu falei como se fosse serviço com prazo. Não sabia. Tava vendendo a ideia de que ainda tinha solução.",
-            "Eu não tenho como garantir o que vem amanhã. Você tem motivo pra conferir o que eu digo."
-          ]
         }
       ]
     },
     "rede": {
       "falas": [
-        "Separei ferramenta manual e deixei a chave da perua no gancho. Não vou prometer motor funcionando; posso ajudar com uma dobradiça.",
-        "Vamos perguntar antes de contar com o que é da outra casa."
+        "Deixei a chave da perua no gancho e a caixa de ferramenta na porta. Precisando, bate três vezes. Quem bate duas é o Arlindo."
       ]
     },
     "distancia": {
       "falas": [
-        "A oficina fica fechada. Não tenho peça e não quero prometer pra você o que não consegui fazer por mim."
+        "Tranquilo. A oficina fica fechada. Se ouvir alguém pedindo chave de perua no meu portão, não fala nada."
       ]
     }
+  },
+  "abrigo": {
+    "confirma": "Entra. Dorme no banco da perua, que é mais macio que o sofá. E não abre o portão pra ninguém. Nem pro Arlindo."
   }
 }
